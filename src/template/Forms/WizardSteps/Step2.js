@@ -19,18 +19,18 @@ const style = {
   infoText: {
     fontWeight: "300",
     margin: "10px 0 30px",
-    textAlign: "center"
+    textAlign: "center",
   },
   inputAdornmentIcon: {
-    color: "#555"
+    color: "#555",
   },
   choiche: {
     textAlign: "center",
     cursor: "pointer",
-    marginTop: "20px"
+    marginTop: "20px",
   },
   ...customSelectStyle,
-  ...customCheckboxRadioSwitch
+  ...customCheckboxRadioSwitch,
 };
 
 class Step2 extends React.Component {
@@ -40,16 +40,16 @@ class Step2 extends React.Component {
       simpleSelect: "",
       desgin: false,
       code: false,
-      develop: false
+      develop: false,
     };
   }
   sendState() {
     return this.state;
   }
-  handleSimple = event => {
+  handleSimple = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
-  handleChange = name => event => {
+  handleChange = (name) => (event) => {
     this.setState({ [name]: event.target.checked });
   };
   isValidated() {
@@ -84,7 +84,7 @@ class Step2 extends React.Component {
                     }
                     classes={{
                       checked: classes.iconCheckboxChecked,
-                      root: classes.iconCheckbox
+                      root: classes.iconCheckbox,
                     }}
                   />
                   <h6>Design</h6>
@@ -111,7 +111,7 @@ class Step2 extends React.Component {
                     }
                     classes={{
                       checked: classes.iconCheckboxChecked,
-                      root: classes.iconCheckbox
+                      root: classes.iconCheckbox,
                     }}
                   />
                   <h6>Code</h6>
@@ -134,7 +134,7 @@ class Step2 extends React.Component {
                     }
                     classes={{
                       checked: classes.iconCheckboxChecked,
-                      root: classes.iconCheckbox
+                      root: classes.iconCheckbox,
                     }}
                   />
                   <h6>Develop</h6>
@@ -148,22 +148,22 @@ class Step2 extends React.Component {
                   </InputLabel>
                   <Select
                     MenuProps={{
-                      className: classes.selectMenu
+                      className: classes.selectMenu,
                     }}
                     classes={{
-                      select: classes.select
+                      select: classes.select,
                     }}
                     value={this.state.simpleSelect}
                     onChange={this.handleSimple}
                     inputProps={{
                       name: "simpleSelect",
-                      id: "simple-select"
+                      id: "simple-select",
                     }}
                   >
                     <MenuItem
                       disabled
                       classes={{
-                        root: classes.selectMenuItem
+                        root: classes.selectMenuItem,
                       }}
                     >
                       Choose City
@@ -171,7 +171,7 @@ class Step2 extends React.Component {
                     <MenuItem
                       classes={{
                         root: classes.selectMenuItem,
-                        selected: classes.selectMenuItemSelected
+                        selected: classes.selectMenuItemSelected,
                       }}
                       value="2"
                     >
@@ -180,7 +180,7 @@ class Step2 extends React.Component {
                     <MenuItem
                       classes={{
                         root: classes.selectMenuItem,
-                        selected: classes.selectMenuItemSelected
+                        selected: classes.selectMenuItemSelected,
                       }}
                       value="3"
                     >
@@ -198,7 +198,7 @@ class Step2 extends React.Component {
 }
 
 Step2.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
 };
 
 export default withStyles(style)(Step2);

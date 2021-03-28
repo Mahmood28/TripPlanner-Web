@@ -27,7 +27,7 @@ export default function Dashboard(props) {
   const [miniActive, setMiniActive] = React.useState(false);
   const image = require("assets/img/sidebar-2.jpg");
   const logo = require("assets/img/logo-white.svg");
-  const color = "blue";
+  const color = "orange";
   const bgColor = "black";
   // styles
   const classes = useStyles();
@@ -63,9 +63,7 @@ export default function Dashboard(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  const getRoute = () => {
-    return window.location.pathname !== "/admin/full-screen-maps";
-  };
+
   const getActiveRoute = (routes) => {
     let activeRoute = "Default Brand Text";
     for (let i = 0; i < routes.length; i++) {
@@ -133,24 +131,14 @@ export default function Dashboard(props) {
           handleDrawerToggle={handleDrawerToggle}
           {...rest}
         />
-        {/* On the /maps/full-screen-maps route we want the map to be on full screen - this is not possible if the content and conatiner classes are present because they have some paddings which would make the map smaller */}
-        {getRoute() ? (
-          <div className={classes.content}>
-            <div className={classes.container}>
-              <Switch>
-                {getRoutes(routes)}
-                <Redirect to="/" />
-              </Switch>
-            </div>
-          </div>
-        ) : (
-          <div className={classes.map}>
+        <div className={classes.content}>
+          <div className={classes.container}>
             <Switch>
               {getRoutes(routes)}
               <Redirect to="/" />
             </Switch>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

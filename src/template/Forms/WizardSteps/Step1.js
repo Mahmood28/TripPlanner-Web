@@ -19,14 +19,14 @@ const style = {
   infoText: {
     fontWeight: "300",
     margin: "10px 0 30px",
-    textAlign: "center"
+    textAlign: "center",
   },
   inputAdornmentIcon: {
-    color: "#555"
+    color: "#555",
   },
   inputAdornment: {
-    position: "relative"
-  }
+    position: "relative",
+  },
 };
 
 class Step1 extends React.Component {
@@ -38,7 +38,7 @@ class Step1 extends React.Component {
       lastname: "",
       lastnameState: "",
       email: "",
-      emailState: ""
+      emailState: "",
     };
   }
   sendState() {
@@ -123,10 +123,10 @@ class Step1 extends React.Component {
             }
             id="firstname"
             formControlProps={{
-              fullWidth: true
+              fullWidth: true,
             }}
             inputProps={{
-              onChange: event => this.change(event, "firstname", "length", 3),
+              onChange: (event) => this.change(event, "firstname", "length", 3),
               endAdornment: (
                 <InputAdornment
                   position="end"
@@ -134,7 +134,7 @@ class Step1 extends React.Component {
                 >
                   <Face className={classes.inputAdornmentIcon} />
                 </InputAdornment>
-              )
+              ),
             }}
           />
           <CustomInput
@@ -147,10 +147,10 @@ class Step1 extends React.Component {
             }
             id="lastname"
             formControlProps={{
-              fullWidth: true
+              fullWidth: true,
             }}
             inputProps={{
-              onChange: event => this.change(event, "lastname", "length", 3),
+              onChange: (event) => this.change(event, "lastname", "length", 3),
               endAdornment: (
                 <InputAdornment
                   position="end"
@@ -158,7 +158,7 @@ class Step1 extends React.Component {
                 >
                   <RecordVoiceOver className={classes.inputAdornmentIcon} />
                 </InputAdornment>
-              )
+              ),
             }}
           />
         </GridItem>
@@ -173,10 +173,10 @@ class Step1 extends React.Component {
             }
             id="email"
             formControlProps={{
-              fullWidth: true
+              fullWidth: true,
             }}
             inputProps={{
-              onChange: event => this.change(event, "email", "email"),
+              onChange: (event) => this.change(event, "email", "email"),
               endAdornment: (
                 <InputAdornment
                   position="end"
@@ -184,7 +184,7 @@ class Step1 extends React.Component {
                 >
                   <Email className={classes.inputAdornmentIcon} />
                 </InputAdornment>
-              )
+              ),
             }}
           />
         </GridItem>
@@ -194,7 +194,7 @@ class Step1 extends React.Component {
 }
 
 Step1.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
 };
 
 export default withStyles(style)(Step1);
