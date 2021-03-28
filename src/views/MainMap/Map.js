@@ -10,6 +10,7 @@ import Loading from "components/Loading";
 import Markers from "views/MainMap/Markers";
 // Styling
 import { StyledMapContainer, StyledMapElement } from "views/MainMap/styles";
+import customMap from "./customMap";
 
 const Map = compose(
   withProps({
@@ -28,12 +29,33 @@ const Map = compose(
   let initialState = {};
   for (const activity of activities) initialState[activity.id] = false;
   const [open, setOpen] = useState(initialState);
+  const [details, setDetails] = useState(initialState);
+  const [hidden, setHidden] = useState(true);
   const handleOpen = (id) => {
     setOpen({ ...initialState, [id]: !open[id] });
   };
+  const handleDetails = (id) => {
+    setDetails({ ...initialState, [id]: !details[id] });
+  };
+
   return (
-    <GoogleMap defaultZoom={10} defaultCenter={{ lat, lng }}>
-      {isMarkerShown && <Markers open={open} handleOpen={handleOpen} />}
+    <GoogleMap
+      defaultZoom={10}
+      defaultCenter={{ lat, lng }}
+      options={{
+        styles: customMap,
+      }}
+    >
+      {isMarkerShown && (
+        <Markers
+          open={open}
+          handleOpen={handleOpen}
+          hidden={hidden}
+          setHidden={setHidden}
+          details={details}
+          handleDetails={handleDetails}
+        />
+      )}
     </GoogleMap>
   );
 });
