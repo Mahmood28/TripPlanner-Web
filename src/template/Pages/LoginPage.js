@@ -1,9 +1,13 @@
 import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
+import TextField from "@material-ui/core/TextField";
 
 // @material-ui/icons
 import Face from "@material-ui/icons/Face";
@@ -22,12 +26,29 @@ import CardFooter from "components/Card/CardFooter.js";
 
 import styles from "assets/jss/material-dashboard-pro-react/views/loginPageStyle.js";
 
+// Store
+import { signin } from "../../store/actions/authActions";
+
 const useStyles = makeStyles(styles);
 
 export default function LoginPage() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (event) =>
+    setUser({ ...user, [event.target.name]: event.target.value });
+
+  const handleSubmit = () => {
+    dispatch(signin(user, history));
+  };
+
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   React.useEffect(() => {
-    let id = setTimeout(function() {
+    let id = setTimeout(function () {
       setCardAnimation("");
     }, 700);
     // Specify how to clean up after this effect:
@@ -47,59 +68,32 @@ export default function LoginPage() {
                 color="rose"
               >
                 <h4 className={classes.cardTitle}>Log in</h4>
-                <div className={classes.socialLine}>
-                  {[
-                    "fab fa-facebook-square",
-                    "fab fa-twitter",
-                    "fab fa-google-plus"
-                  ].map((prop, key) => {
-                    return (
-                      <Button
-                        color="transparent"
-                        justIcon
-                        key={key}
-                        className={classes.customButtonClass}
-                      >
-                        <i className={prop} />
-                      </Button>
-                    );
-                  })}
-                </div>
               </CardHeader>
               <CardBody>
-                <CustomInput
-                  labelText="First Name.."
-                  id="firstname"
+                {/* <CustomInput
+                  labelText="Username.."
+                  id="username"
+                  name="username"
                   formControlProps={{
-                    fullWidth: true
+                    fullWidth: true,
                   }}
                   inputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
                         <Face className={classes.inputAdornmentIcon} />
                       </InputAdornment>
-                    )
+                    ),
                   }}
                 />
-                <CustomInput
-                  labelText="Email..."
-                  id="email"
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                  inputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <Email className={classes.inputAdornmentIcon} />
-                      </InputAdornment>
-                    )
-                  }}
-                />
+
                 <CustomInput
                   labelText="Password"
                   id="password"
+                  name="password"
+                  value={user.password}
+                  onChange={handleChange}
                   formControlProps={{
-                    fullWidth: true
+                    fullWidth: true,
                   }}
                   inputProps={{
                     endAdornment: (
@@ -110,12 +104,32 @@ export default function LoginPage() {
                       </InputAdornment>
                     ),
                     type: "password",
-                    autoComplete: "off"
+                    autoComplete: "off",
                   }}
+                  onChange={handleChange}
+                /> */}
+
+                <TextField
+                  id="standard-basic"
+                  label="Username"
+                  name="username"
+                  onChange={handleChange}
+                />
+                <TextField
+                  id="standard-basic"
+                  label="Password"
+                  name="password"
+                  onChange={handleChange}
                 />
               </CardBody>
               <CardFooter className={classes.justifyContentCenter}>
-                <Button color="rose" simple size="lg" block>
+                <Button
+                  color="rose"
+                  simple
+                  size="lg"
+                  block
+                  onClick={handleSubmit}
+                >
                   Let{"'"}s Go
                 </Button>
               </CardFooter>
