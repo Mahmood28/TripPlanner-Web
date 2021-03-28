@@ -7,7 +7,7 @@ import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import styles from "assets/jss/material-dashboard-pro-react/layouts/authStyle.js";
 import background from "assets/img/register.jpeg";
 
-import RegisterPage from "../../template/Pages/RegisterPage";
+import RegisterPage from "views/Authentication/RegisterPage";
 
 const useStyles = makeStyles(styles);
 

@@ -6,11 +6,9 @@ import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
-import TextField from "@material-ui/core/TextField";
 
 // @material-ui/icons
 import Face from "@material-ui/icons/Face";
-import Email from "@material-ui/icons/Email";
 // import LockOutline from "@material-ui/icons/LockOutline";
 
 // core components
@@ -40,6 +38,7 @@ export default function LoginPage() {
 
   const handleChange = (event) =>
     setUser({ ...user, [event.target.name]: event.target.value });
+  console.log(user);
 
   const handleSubmit = () => {
     dispatch(signin(user, history));
@@ -66,19 +65,19 @@ export default function LoginPage() {
                 className={`${classes.cardHeader} ${classes.textCenter}`}
                 color="warning"
               >
-                <h4 className={classes.cardTitle}>Log in</h4>
+                <h4 className={classes.cardTitle}>Sign In</h4>
               </CardHeader>
               <CardBody>
-                {/* <CustomInput
-                  labelText="Username.."
+                <CustomInput
+                  labelText="Username"
                   id="username"
                   name="username"
                   formControlProps={{
                     fullWidth: true,
                   }}
                   inputProps={{
-                    onChange: (event) =>
-                      setTest({ ...test, firstName: event.target.value }),
+                    name: "username",
+                    onChange: handleChange,
                     endAdornment: (
                       <InputAdornment position="end">
                         <Face className={classes.inputAdornmentIcon} />
@@ -96,6 +95,8 @@ export default function LoginPage() {
                     fullWidth: true,
                   }}
                   inputProps={{
+                    name: "password",
+                    onChange: handleChange,
                     endAdornment: (
                       <InputAdornment position="end">
                         <Icon className={classes.inputAdornmentIcon}>
@@ -106,19 +107,6 @@ export default function LoginPage() {
                     type: "password",
                     autoComplete: "off",
                   }}
-                  onChange={handleChange}
-                /> */}
-
-                <TextField
-                  id="standard-basic"
-                  label="Username"
-                  name="username"
-                  onChange={handleChange}
-                />
-                <TextField
-                  id="standard-basic"
-                  label="Password"
-                  name="password"
                   onChange={handleChange}
                 />
               </CardBody>

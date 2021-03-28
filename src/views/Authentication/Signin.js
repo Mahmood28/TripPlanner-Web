@@ -7,7 +7,7 @@ import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import styles from "assets/jss/material-dashboard-pro-react/layouts/authStyle.js";
 import background from "assets/img/login.jpeg";
 
-import LoginPage from "../../template/Pages/LoginPage";
+import LoginPage from "views/Authentication/LoginPage";
 
 const useStyles = makeStyles(styles);
 

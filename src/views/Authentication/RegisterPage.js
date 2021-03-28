@@ -1,14 +1,10 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Icon from "@material-ui/core/Icon";
-import TextField from "@material-ui/core/TextField";
 
 // @material-ui/icons
 import Timeline from "@material-ui/icons/Timeline";
@@ -17,7 +13,6 @@ import Group from "@material-ui/icons/Group";
 import Face from "@material-ui/icons/Face";
 import Email from "@material-ui/icons/Email";
 // import LockOutline from "@material-ui/icons/LockOutline";
-import Check from "@material-ui/icons/Check";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
@@ -32,6 +27,7 @@ import styles from "assets/jss/material-dashboard-pro-react/views/registerPageSt
 
 // Store
 import { signup } from "../../store/actions/authActions";
+import { Box } from "@material-ui/core";
 
 const useStyles = makeStyles(styles);
 
@@ -46,7 +42,7 @@ export default function RegisterPage() {
     email: "",
     password: "",
   });
-
+  console.log(user);
   const handleChange = (event) =>
     setUser({ ...user, [event.target.name]: event.target.value });
 
@@ -73,7 +69,7 @@ export default function RegisterPage() {
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={10}>
           <Card className={classes.cardSignup}>
-            <h2 className={classes.cardTitle}>Register</h2>
+            <h2 className={classes.cardTitle}>Sign Up</h2>
             <CardBody>
               <GridContainer justify="center">
                 <GridItem xs={12} sm={12} md={5}>
@@ -97,28 +93,53 @@ export default function RegisterPage() {
                   />
                 </GridItem>
                 <GridItem xs={12} sm={8} md={5}>
-                  <div className={classes.center}>
-                    <Button justIcon round color="twitter">
-                      <i className="fab fa-twitter" />
-                    </Button>
-                    {` `}
-                    <Button justIcon round color="dribbble">
-                      <i className="fab fa-dribbble" />
-                    </Button>
-                    {` `}
-                    <Button justIcon round color="facebook">
-                      <i className="fab fa-facebook-f" />
-                    </Button>
-                    {` `}
-                    <h4 className={classes.socialTitle}>or be classical</h4>
-                  </div>
                   <form className={classes.form}>
-                    {/* <CustomInput
+                    <CustomInput
                       formControlProps={{
                         fullWidth: true,
-                        className: classes.customFormControlClasses
+                        className: classes.customFormControlClasses,
                       }}
                       inputProps={{
+                        name: "firstName",
+                        onChange: handleChange,
+                        startAdornment: (
+                          <InputAdornment
+                            position="start"
+                            className={classes.inputAdornment}
+                          >
+                            {/* <Face className={classes.inputAdornmentIcon} /> */}
+                          </InputAdornment>
+                        ),
+                        placeholder: "First Name",
+                      }}
+                    />
+                    <CustomInput
+                      formControlProps={{
+                        fullWidth: true,
+                        className: classes.customFormControlClasses,
+                      }}
+                      inputProps={{
+                        name: "lastName",
+                        onChange: handleChange,
+                        startAdornment: (
+                          <InputAdornment
+                            position="start"
+                            className={classes.inputAdornment}
+                          >
+                            {/* <Face className={classes.inputAdornmentIcon} /> */}
+                          </InputAdornment>
+                        ),
+                        placeholder: "Last Name",
+                      }}
+                    />
+                    <CustomInput
+                      formControlProps={{
+                        fullWidth: true,
+                        className: classes.customFormControlClasses,
+                      }}
+                      inputProps={{
+                        name: "username",
+                        onChange: handleChange,
                         startAdornment: (
                           <InputAdornment
                             position="start"
@@ -127,15 +148,17 @@ export default function RegisterPage() {
                             <Face className={classes.inputAdornmentIcon} />
                           </InputAdornment>
                         ),
-                        placeholder: "First Name..."
+                        placeholder: "Username",
                       }}
                     />
                     <CustomInput
                       formControlProps={{
                         fullWidth: true,
-                        className: classes.customFormControlClasses
+                        className: classes.customFormControlClasses,
                       }}
                       inputProps={{
+                        name: "email",
+                        onChange: handleChange,
                         startAdornment: (
                           <InputAdornment
                             position="start"
@@ -144,15 +167,17 @@ export default function RegisterPage() {
                             <Email className={classes.inputAdornmentIcon} />
                           </InputAdornment>
                         ),
-                        placeholder: "Email..."
+                        placeholder: "Email",
                       }}
                     />
                     <CustomInput
                       formControlProps={{
                         fullWidth: true,
-                        className: classes.customFormControlClasses
+                        className: classes.customFormControlClasses,
                       }}
                       inputProps={{
+                        name: "password",
+                        onChange: handleChange,
                         startAdornment: (
                           <InputAdornment
                             position="start"
@@ -163,74 +188,17 @@ export default function RegisterPage() {
                             </Icon>
                           </InputAdornment>
                         ),
-                        placeholder: "Password..."
+                        placeholder: "Password",
+                        type: "password",
+                        autoComplete: "off",
                       }}
-                    /> */}
-
-                    <TextField
-                      id="standard-basic"
-                      label="First Name"
-                      name="firstName"
-                      onChange={handleChange}
                     />
-                    <TextField
-                      id="standard-basic"
-                      label="Last Name"
-                      name="lastName"
-                      onChange={handleChange}
-                    />
-
-                    <TextField
-                      id="standard-basic"
-                      label="Username"
-                      name="username"
-                      onChange={handleChange}
-                    />
-                    <TextField
-                      id="standard-basic"
-                      label="Password"
-                      name="password"
-                      onChange={handleChange}
-                    />
-                    <TextField
-                      id="standard-basic"
-                      label="Email"
-                      name="email"
-                      onChange={handleChange}
-                    />
-
-                    <FormControlLabel
-                      classes={{
-                        root: classes.checkboxLabelControl,
-                        label: classes.checkboxLabel,
-                      }}
-                      control={
-                        <Checkbox
-                          tabIndex={-1}
-                          onClick={() => handleToggle(1)}
-                          checkedIcon={
-                            <Check className={classes.checkedIcon} />
-                          }
-                          icon={<Check className={classes.uncheckedIcon} />}
-                          classes={{
-                            checked: classes.checked,
-                            root: classes.checkRoot,
-                          }}
-                        />
-                      }
-                      label={
-                        <span>
-                          I agree to the{" "}
-                          <a href="#pablo">terms and conditions</a>.
-                        </span>
-                      }
-                    />
-
                     <div className={classes.center}>
-                      <Button round color="primary" onClick={handleSubmit}>
-                        {" "}
-                        Get started
-                      </Button>
+                      <Box mt={4} ml={6}>
+                        <Button round color="warning" onClick={handleSubmit}>
+                          Get started
+                        </Button>
+                      </Box>
                     </div>
                   </form>
                 </GridItem>
