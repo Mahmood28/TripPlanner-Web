@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -25,9 +24,12 @@ import styles from "assets/jss/material-dashboard-pro-react/views/loginPageStyle
 const useStyles = makeStyles(styles);
 
 export default function LoginPage() {
-  const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
-  React.useEffect(() => {
-    let id = setTimeout(function() {
+  const [cardAnimaton, setCardAnimation] = useState("cardHidden");
+  const [test, setTest] = useState({});
+  console.log(test);
+
+  useEffect(() => {
+    let id = setTimeout(function () {
       setCardAnimation("");
     }, 700);
     // Specify how to clean up after this effect:
@@ -44,62 +46,46 @@ export default function LoginPage() {
             <Card login className={classes[cardAnimaton]}>
               <CardHeader
                 className={`${classes.cardHeader} ${classes.textCenter}`}
-                color="rose"
+                color="warning"
               >
                 <h4 className={classes.cardTitle}>Log in</h4>
-                <div className={classes.socialLine}>
-                  {[
-                    "fab fa-facebook-square",
-                    "fab fa-twitter",
-                    "fab fa-google-plus"
-                  ].map((prop, key) => {
-                    return (
-                      <Button
-                        color="transparent"
-                        justIcon
-                        key={key}
-                        className={classes.customButtonClass}
-                      >
-                        <i className={prop} />
-                      </Button>
-                    );
-                  })}
-                </div>
               </CardHeader>
               <CardBody>
                 <CustomInput
                   labelText="First Name.."
                   id="firstname"
                   formControlProps={{
-                    fullWidth: true
+                    fullWidth: true,
                   }}
                   inputProps={{
+                    onChange: (event) =>
+                      setTest({ ...test, firstName: event.target.value }),
                     endAdornment: (
                       <InputAdornment position="end">
                         <Face className={classes.inputAdornmentIcon} />
                       </InputAdornment>
-                    )
+                    ),
                   }}
                 />
                 <CustomInput
                   labelText="Email..."
                   id="email"
                   formControlProps={{
-                    fullWidth: true
+                    fullWidth: true,
                   }}
                   inputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
                         <Email className={classes.inputAdornmentIcon} />
                       </InputAdornment>
-                    )
+                    ),
                   }}
                 />
                 <CustomInput
                   labelText="Password"
                   id="password"
                   formControlProps={{
-                    fullWidth: true
+                    fullWidth: true,
                   }}
                   inputProps={{
                     endAdornment: (
@@ -110,12 +96,12 @@ export default function LoginPage() {
                       </InputAdornment>
                     ),
                     type: "password",
-                    autoComplete: "off"
+                    autoComplete: "off",
                   }}
                 />
               </CardBody>
               <CardFooter className={classes.justifyContentCenter}>
-                <Button color="rose" simple size="lg" block>
+                <Button color="warning" simple size="lg" block>
                   Let{"'"}s Go
                 </Button>
               </CardFooter>

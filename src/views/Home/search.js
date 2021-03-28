@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { searchActivity } from "store/actions/activityActions";
 import { MAP_API_KEY } from "keys";
 import Geocode from "react-geocode";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
@@ -17,35 +19,41 @@ const useStyles = makeStyles(styles);
 
 export default function Search() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [destination, setDestination] = useState("");
 
   Geocode.setApiKey(MAP_API_KEY);
   Geocode.setLanguage("en");
   Geocode.setLocationType("ROOFTOP");
 
-  useEffect(() => {
-    let location = "";
-    if (destination["value"])
-      location = destination["value"]["terms"][0]["value"];
-    Geocode.fromAddress(location).then(
-      (response) => {
-        const { lat, lng } = response.results[0].geometry.location;
-        console.log(lat, lng);
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }, [destination]);
+  let location = "";
+  let coordinates = {};
+  if (destination["value"])
+    location = destination["value"]["terms"][0]["value"];
+  Geocode.fromAddress(location).then(
+    (response) => {
+      const { lat, lng } = response.results[0].geometry.location;
+      coordinates = { latitude: lat, longitude: lng };
+      console.log(coordinates);
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
 
-  const handleSearch = () => {};
+  const handleSearch = () => {
+    console.log(coordinates);
+    dispatch(searchActivity(coordinates));
+  };
 
   return (
     <div className={classes.container}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={6}>
           <h2 className={classes.title}>Plan your next adventure!</h2>
-          <h5 className={classes.description}></h5>
+          <h5 className={classes.description}>
+            Explore activities and create an itinerary for your trip
+          </h5>
         </GridItem>
       </GridContainer>
       <GridContainer justify="center">
@@ -85,7 +93,7 @@ export default function Search() {
         <GridItem xs={12} sm={12} md={3}>
           <Card pricing plain>
             <CardBody pricing plain>
-              <Button round color="rose">
+              <Button round color="warning" onClick={() => handleSearch}>
                 Explore
               </Button>
             </CardBody>
