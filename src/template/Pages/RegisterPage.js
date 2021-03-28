@@ -1,11 +1,14 @@
 import React from "react";
-
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Icon from "@material-ui/core/Icon";
+import TextField from "@material-ui/core/TextField";
 
 // @material-ui/icons
 import Timeline from "@material-ui/icons/Timeline";
@@ -27,11 +30,33 @@ import CardBody from "components/Card/CardBody.js";
 
 import styles from "assets/jss/material-dashboard-pro-react/views/registerPageStyle";
 
+// Store
+import { signup } from "../../store/actions/authActions";
+
 const useStyles = makeStyles(styles);
 
 export default function RegisterPage() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (event) =>
+    setUser({ ...user, [event.target.name]: event.target.value });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(signup(user, history));
+  };
+
   const [checked, setChecked] = React.useState([]);
-  const handleToggle = value => {
+  const handleToggle = (value) => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
@@ -88,7 +113,7 @@ export default function RegisterPage() {
                     <h4 className={classes.socialTitle}>or be classical</h4>
                   </div>
                   <form className={classes.form}>
-                    <CustomInput
+                    {/* <CustomInput
                       formControlProps={{
                         fullWidth: true,
                         className: classes.customFormControlClasses
@@ -140,11 +165,44 @@ export default function RegisterPage() {
                         ),
                         placeholder: "Password..."
                       }}
+                    /> */}
+
+                    <TextField
+                      id="standard-basic"
+                      label="First Name"
+                      name="firstName"
+                      onChange={handleChange}
                     />
+                    <TextField
+                      id="standard-basic"
+                      label="Last Name"
+                      name="lastName"
+                      onChange={handleChange}
+                    />
+
+                    <TextField
+                      id="standard-basic"
+                      label="Username"
+                      name="username"
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      id="standard-basic"
+                      label="Password"
+                      name="password"
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      id="standard-basic"
+                      label="Email"
+                      name="email"
+                      onChange={handleChange}
+                    />
+
                     <FormControlLabel
                       classes={{
                         root: classes.checkboxLabelControl,
-                        label: classes.checkboxLabel
+                        label: classes.checkboxLabel,
                       }}
                       control={
                         <Checkbox
@@ -156,7 +214,7 @@ export default function RegisterPage() {
                           icon={<Check className={classes.uncheckedIcon} />}
                           classes={{
                             checked: classes.checked,
-                            root: classes.checkRoot
+                            root: classes.checkRoot,
                           }}
                         />
                       }
@@ -167,8 +225,10 @@ export default function RegisterPage() {
                         </span>
                       }
                     />
+
                     <div className={classes.center}>
-                      <Button round color="primary">
+                      <Button round color="primary" onClick={handleSubmit}>
+                        {" "}
                         Get started
                       </Button>
                     </div>

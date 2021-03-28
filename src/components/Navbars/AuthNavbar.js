@@ -33,10 +33,14 @@ export default function AuthNavbar(props) {
   const list = (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
+<<<<<<< HEAD
         <NavLink to={"/login"} className={cx(classes.navLink)}>
+=======
+        <NavLink to={"/signin"} className={cx(classes.navLink)}>
+>>>>>>> 2d71a4f07fc24c8e116e7a99ed103927e95395d9
           <Fingerprint className={classes.listItemIcon} />
           <ListItemText
-            primary={"Login"}
+            primary={"Sign in"}
             disableTypography={true}
             className={classes.listItemText}
           />

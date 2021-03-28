@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
+import TextField from "@material-ui/core/TextField";
 
 // @material-ui/icons
 import Face from "@material-ui/icons/Face";
@@ -21,13 +26,27 @@ import CardFooter from "components/Card/CardFooter.js";
 
 import styles from "assets/jss/material-dashboard-pro-react/views/loginPageStyle.js";
 
+// Store
+import { signin } from "../../store/actions/authActions";
+
 const useStyles = makeStyles(styles);
 
 export default function LoginPage() {
-  const [cardAnimaton, setCardAnimation] = useState("cardHidden");
-  const [test, setTest] = useState({});
-  console.log(test);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
 
+  const handleChange = (event) =>
+    setUser({ ...user, [event.target.name]: event.target.value });
+
+  const handleSubmit = () => {
+    dispatch(signin(user, history));
+  };
+
+  const [cardAnimaton, setCardAnimation] = useState("cardHidden");
   useEffect(() => {
     let id = setTimeout(function () {
       setCardAnimation("");
@@ -51,9 +70,10 @@ export default function LoginPage() {
                 <h4 className={classes.cardTitle}>Log in</h4>
               </CardHeader>
               <CardBody>
-                <CustomInput
-                  labelText="First Name.."
-                  id="firstname"
+                {/* <CustomInput
+                  labelText="Username.."
+                  id="username"
+                  name="username"
                   formControlProps={{
                     fullWidth: true,
                   }}
@@ -68,22 +88,11 @@ export default function LoginPage() {
                   }}
                 />
                 <CustomInput
-                  labelText="Email..."
-                  id="email"
-                  formControlProps={{
-                    fullWidth: true,
-                  }}
-                  inputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <Email className={classes.inputAdornmentIcon} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <CustomInput
                   labelText="Password"
                   id="password"
+                  name="password"
+                  value={user.password}
+                  onChange={handleChange}
                   formControlProps={{
                     fullWidth: true,
                   }}
@@ -98,11 +107,31 @@ export default function LoginPage() {
                     type: "password",
                     autoComplete: "off",
                   }}
+                  onChange={handleChange}
+                /> */}
+
+                <TextField
+                  id="standard-basic"
+                  label="Username"
+                  name="username"
+                  onChange={handleChange}
+                />
+                <TextField
+                  id="standard-basic"
+                  label="Password"
+                  name="password"
+                  onChange={handleChange}
                 />
               </CardBody>
               <CardFooter className={classes.justifyContentCenter}>
-                <Button color="warning" simple size="lg" block>
-                  Let{"'"}s Go
+                <Button
+                  color="warning"
+                  simple
+                  size="lg"
+                  block
+                  onClick={handleSubmit}
+                >
+                  Let's Go
                 </Button>
               </CardFooter>
             </Card>
