@@ -30,7 +30,6 @@ const Map = compose(
   for (const activity of activities) initialState[activity.id] = false;
   const [open, setOpen] = useState(initialState);
   const [details, setDetails] = useState(initialState);
-  const [hidden, setHidden] = useState(true);
   const handleOpen = (id) => {
     setOpen({ ...initialState, [id]: !open[id] });
   };
@@ -40,7 +39,7 @@ const Map = compose(
 
   return (
     <GoogleMap
-      defaultZoom={10}
+      defaultZoom={13}
       defaultCenter={{ lat, lng }}
       options={{
         styles: customMap,
@@ -50,8 +49,6 @@ const Map = compose(
         <Markers
           open={open}
           handleOpen={handleOpen}
-          hidden={hidden}
-          setHidden={setHidden}
           details={details}
           handleDetails={handleDetails}
         />

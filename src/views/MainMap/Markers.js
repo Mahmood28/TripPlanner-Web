@@ -51,29 +51,6 @@ const Markers = ({ open, handleOpen, details, handleDetails }) => {
             <StyledHeader title={activity.name} />
             <StarContainer>{starRating(activity.rating)}</StarContainer>
             <Divider variant="middle" />
-            {/* <CardContent>
-              <StyledContainer>
-                <Typography variant="body" align="left">
-                  {activity.shortDescription.slice(
-                    0,
-                    hidden ? 100 : activity.shortDescription.length
-                  )}
-                  {
-                    <Typography
-                      variant="body"
-                      color="primary"
-                      onClick={() => setHidden(!hidden)}
-                    >
-                      {hidden ? "..." : " "}
-                    </Typography>
-                  }
-                </Typography>
-                <Typography variant="body" align="right">
-                  {`${activity.price.currencyCode} ${activity.price.amount}`}
-                </Typography>
-              </StyledContainer>
-            </CardContent>
-            <Divider variant="middle" /> */}
             <ButtonContainer>
               <StyledButton
                 variant="contained"
