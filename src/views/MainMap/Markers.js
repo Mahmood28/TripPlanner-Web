@@ -1,9 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { Marker, InfoWindow } from "react-google-maps";
 // Data
 import activities from "views/MainMap/activities";
+//Components
+import ActivityDetails from "./ActivityDetails";
+//Styling
+import { Divider, Typography, CardContent } from "@material-ui/core";
+import {
+  StarRounded,
+  StarHalfRounded,
+  StarBorderRounded,
+  Details,
+} from "@material-ui/icons";
+import {
+  ButtonContainer,
+  InfoCard,
+  StyledButton,
+  StyledHeader,
+  StarContainer,
+  StyledContainer,
+} from "./styles";
 
-const Markers = ({ open, handleOpen }) => {
+const Markers = ({ open, handleOpen, details, handleDetails }) => {
+  const starRating = (rating) => {
+    const arr = [];
+    for (let i = 1; i <= 5; i++)
+      arr.push(
+        Math.floor(rating) >= i ? (
+          <StarRounded style={{ color: "#ffd700" }} />
+        ) : rating > i - 1 ? (
+          <StarHalfRounded style={{ color: "#ffd700" }} />
+        ) : (
+          <StarBorderRounded style={{ color: "#ffd700" }} />
+        )
+      );
+    return arr;
+  };
   const markers = activities.map((activity) => (
     <Marker
       key={activity.id}
@@ -12,11 +44,32 @@ const Markers = ({ open, handleOpen }) => {
         lng: +activity.geoCode.longitude,
       }}
       onClick={() => handleOpen(activity.id)}
-      //   icon="https://www.russellheimlich.com/blog/wp-content/uploads/2008/04/homer-in-html-css.png"
     >
       {open[activity.id] && (
         <InfoWindow onCloseClick={() => handleOpen(activity.id)}>
-          <div>{activity.name}</div>
+          <InfoCard>
+            <StyledHeader title={activity.name} />
+            <StarContainer>{starRating(activity.rating)}</StarContainer>
+            <Divider variant="middle" />
+            <ButtonContainer>
+              <StyledButton
+                variant="contained"
+                color="primary"
+                onClick={() => handleDetails(activity.id)}
+              >
+                View
+              </StyledButton>
+              <StyledButton variant="contained" color="primary">
+                Add
+              </StyledButton>
+            </ButtonContainer>
+            <ActivityDetails
+              details={details}
+              handleDetails={handleDetails}
+              activity={activity}
+              starRating={starRating}
+            />
+          </InfoCard>
         </InfoWindow>
       )}
     </Marker>

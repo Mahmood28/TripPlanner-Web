@@ -3,6 +3,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 // core components
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
+import Search from "views/Home/Search";
 
 import styles from "assets/jss/material-dashboard-pro-react/layouts/authStyle.js";
 import background from "assets/img/lock.jpeg";
@@ -28,7 +29,9 @@ export default function Home(props) {
         <div
           className={classes.fullPage}
           style={{ backgroundImage: "url(" + background + ")" }}
-        ></div>
+        >
+          <Search />
+        </div>
       </div>
     </div>
   );
