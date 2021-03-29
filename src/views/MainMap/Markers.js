@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Marker, InfoWindow } from "react-google-maps";
-// Data
-import activities from "views/MainMap/activities";
 //Components
 import ActivityDetails from "./ActivityDetails";
 //Styling
-import { Divider, Typography, CardContent } from "@material-ui/core";
+import { Divider } from "@material-ui/core";
 import {
   StarRounded,
   StarHalfRounded,
   StarBorderRounded,
-  Details,
 } from "@material-ui/icons";
 import {
   ButtonContainer,
@@ -18,10 +15,27 @@ import {
   StyledButton,
   StyledHeader,
   StarContainer,
-  StyledContainer,
 } from "./styles";
 
-const Markers = ({ open, handleOpen, details, handleDetails }) => {
+const Markers = ({
+  open,
+  handleOpen,
+  details,
+  handleDetails,
+  filter,
+  activities,
+}) => {
+  //Filters
+  const filteredActivities = activities.filter(
+    (activity) =>
+      +activity.price.amount >= filter.price[0] &&
+      +activity.price.amount <= filter.price[1] &&
+      +activity.rating >= filter.rating &&
+      (activity.name.toLowerCase().includes(filter.query.toLowerCase()) ||
+        activity.shortDescription
+          .toLowerCase()
+          .includes(filter.query.toLowerCase()))
+  );
   const starRating = (rating) => {
     const arr = [];
     for (let i = 1; i <= 5; i++)
@@ -36,7 +50,7 @@ const Markers = ({ open, handleOpen, details, handleDetails }) => {
       );
     return arr;
   };
-  const markers = activities.map((activity) => (
+  const markers = filteredActivities.map((activity) => (
     <Marker
       key={activity.id}
       position={{
