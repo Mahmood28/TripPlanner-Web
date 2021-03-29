@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Marker, InfoWindow } from "react-google-maps";
 //Store
-import { addActivity } from "../../store/actions/tripActions";
+import { addActivity } from "store/actions/tripActions";
 //Components
 import ActivityDetails from "./ActivityDetails";
 //Styling
@@ -21,8 +21,6 @@ import {
   StarContainer,
 } from "./styles";
 
-const Markers = ({ open, handleOpen, details, handleDetails, activities }) => {
-  
 const Markers = ({
   open,
   handleOpen,

@@ -12,7 +12,7 @@ import {
 import { DialogContainer, StyledImage, StyledDescription } from "./styles";
 
 // Store
-import { addActivity } from "../../store/actions/tripActions";
+import { addActivity } from "store/actions/tripActions";
 
 const ActivityDetails = ({
   activity,
