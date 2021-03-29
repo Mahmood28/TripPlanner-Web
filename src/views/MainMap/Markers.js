@@ -1,10 +1,7 @@
-
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Marker, InfoWindow } from "react-google-maps";
 import { useToasts } from "react-toast-notifications";
-// Data
-import activities from "views/MainMap/activities";
 
 //Components
 import ActivityDetails from "./ActivityDetails";
@@ -23,13 +20,8 @@ import {
   StarContainer,
 } from "./styles";
 
-
 // Store
 import { addActivity } from "../../store/actions/tripActions";
-
-const Markers = ({ open, handleOpen, details, handleDetails }) => {
-  const dispatch = useDispatch();
-  const { addToast } = useToasts();
 
 const Markers = ({
   open,
@@ -39,6 +31,8 @@ const Markers = ({
   filter,
   activities,
 }) => {
+  const dispatch = useDispatch();
+  const { addToast } = useToasts();
   //Filters
   const filteredActivities = activities.filter(
     (activity) =>
@@ -76,7 +70,6 @@ const Markers = ({
   };
 
   const markers = filteredActivities.map((activity) => (
-
     <Marker
       key={activity.id}
       position={{
