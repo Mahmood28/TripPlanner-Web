@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 // Components
+import Loading from "components/Loading";
 import Map from "./Map";
 //Styling
 import { TextField, Slider, Typography, Button } from "@material-ui/core";
@@ -8,6 +9,7 @@ import { Tune } from "@material-ui/icons/";
 import { DialogContainer, FilterContainer } from "./styles";
 
 const MainMap = () => {
+  const location = JSON.parse(localStorage.getItem("ActiveTrip")).destination;
   const { activities } = useSelector((state) => state.activity);
   const maxPrice = Math.max(
     ...activities.map((activity) => +activity.price.amount)
@@ -19,16 +21,12 @@ const MainMap = () => {
   };
   const [shown, setShown] = useState(false);
   const [filter, setFilter] = useState(initialFilter);
-
-  const Place = {
-    lat: 35.6684415,
-    lng: 139.6007848,
-    name: "Tokyo",
-  };
+    
+  if (activities.length === 0) return <Loading />;
   return (
     <>
       <DialogContainer>
-        <Typography variant="h3">Explore Activities in {Place.name}</Typography>
+        <Typography variant="h3">Explore Activities in {location.city}</Typography>
         <Button onClick={() => setShown(!shown)}>
           <Tune />
         </Button>
@@ -90,8 +88,8 @@ const MainMap = () => {
       )}
       <Map
         isMarkerShown
-        lat={Place.lat}
-        lng={Place.lng}
+        lat={location.latitude}
+        lng={location.longitude}
         filter={filter}
         activities={activities}
       />

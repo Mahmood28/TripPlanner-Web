@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Marker, InfoWindow } from "react-google-maps";
-import { useToasts } from "react-toast-notifications";
-
+//Store
+import { addActivity } from "../../store/actions/tripActions";
 //Components
 import ActivityDetails from "./ActivityDetails";
 //Styling
+import { useToasts } from "react-toast-notifications";
 import { Divider } from "@material-ui/core";
 import {
   StarRounded,
@@ -20,9 +21,8 @@ import {
   StarContainer,
 } from "./styles";
 
-// Store
-import { addActivity } from "../../store/actions/tripActions";
-
+const Markers = ({ open, handleOpen, details, handleDetails, activities }) => {
+  
 const Markers = ({
   open,
   handleOpen,
