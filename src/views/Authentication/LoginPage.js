@@ -12,6 +12,7 @@ import Face from "@material-ui/icons/Face";
 // import LockOutline from "@material-ui/icons/LockOutline";
 
 // core components
+import Primary from "components/Typography/Primary.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
@@ -25,6 +26,7 @@ import styles from "assets/jss/material-dashboard-pro-react/views/loginPageStyle
 
 // Store
 import { signin } from "../../store/actions/authActions";
+import { Box } from "@material-ui/core";
 
 const useStyles = makeStyles(styles);
 
@@ -38,7 +40,6 @@ export default function LoginPage() {
 
   const handleChange = (event) =>
     setUser({ ...user, [event.target.name]: event.target.value });
-  console.log(user);
 
   const handleSubmit = () => {
     dispatch(signin(user, history));
@@ -109,6 +110,7 @@ export default function LoginPage() {
                   }}
                   onChange={handleChange}
                 />
+                <a href="/signup">Don't have an account? Signup</a>
               </CardBody>
               <CardFooter className={classes.justifyContentCenter}>
                 <Button

@@ -9,7 +9,7 @@ import {
   DialogActions,
   Button,
 } from "@material-ui/core";
-import { DialogContainer, StyledImage } from "./styles";
+import { DialogContainer, StyledImage, StyledDescription } from "./styles";
 
 // Store
 import { addActivity } from "../../store/actions/tripActions";
@@ -43,7 +43,9 @@ const ActivityDetails = ({
       </DialogTitle>
       <DialogContent dividers>
         <StyledImage src={activity.pictures[0]} key={activity.id} />
-        <Typography gutterBottom>{activity.shortDescription}</Typography>
+        <StyledDescription gutterBottom>
+          {activity.shortDescription}
+        </StyledDescription>
         <DialogContainer>
           <Typography gutterBottom align="left">
             {starRating(activity.rating)}
