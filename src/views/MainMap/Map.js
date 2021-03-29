@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { MAP_API_KEY } from "keys";
 import { compose, withProps } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
-// Data
-// import activities from "views/MainMap/activities";
 // Components
 import Loading from "components/Loading";
 import Markers from "views/MainMap/Markers";
 // Styling
-import { StyledMapContainer, StyledMapElement } from "views/MainMap/styles";
-import customMap from "./customMap";
+import {
+  StyledMapContainer,
+  StyledMapElement,
+  styledMap,
+} from "views/MainMap/styles";
 
 const Map = compose(
   withProps({
@@ -24,8 +25,7 @@ const Map = compose(
   }),
   withScriptjs,
   withGoogleMap
-)(({ isMarkerShown, lng, lat, activities }) => {
-  console.log("Hellooo", activities);
+)(({ isMarkerShown, lng, lat, filter, activities }) => {
   let initialState = {};
   for (const activity of activities) initialState[activity.id] = false;
   const [open, setOpen] = useState(initialState);
@@ -39,10 +39,10 @@ const Map = compose(
 
   return (
     <GoogleMap
-      defaultZoom={10}
+      defaultZoom={11}
       defaultCenter={{ lat, lng }}
       options={{
-        styles: customMap,
+        styles: styledMap,
       }}
     >
       {isMarkerShown && (
@@ -51,6 +51,7 @@ const Map = compose(
           handleOpen={handleOpen}
           details={details}
           handleDetails={handleDetails}
+          filter={filter}
           activities={activities}
         />
       )}

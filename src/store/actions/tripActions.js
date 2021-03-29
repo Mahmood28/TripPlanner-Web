@@ -12,4 +12,6 @@ export const tripCreate = (trip) => async (dispatch) => {
   } catch (error) {
     console.log("Error:", error);
   }
-};
+
+export const addActivity = (activity) => {
+  return { type: types.ADD_ACTIVITY, payload: activity };

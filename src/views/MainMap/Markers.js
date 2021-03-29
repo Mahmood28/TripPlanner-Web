@@ -1,16 +1,17 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Marker, InfoWindow } from "react-google-maps";
-// Data
-// import activities from "views/MainMap/activities";
+//Store
+import { addActivity } from "../../store/actions/tripActions";
 //Components
 import ActivityDetails from "./ActivityDetails";
 //Styling
-import { Divider, Typography, CardContent } from "@material-ui/core";
+import { useToasts } from "react-toast-notifications";
+import { Divider } from "@material-ui/core";
 import {
   StarRounded,
   StarHalfRounded,
   StarBorderRounded,
-  Details,
 } from "@material-ui/icons";
 import {
   ButtonContainer,
@@ -18,10 +19,32 @@ import {
   StyledButton,
   StyledHeader,
   StarContainer,
-  StyledContainer,
 } from "./styles";
 
 const Markers = ({ open, handleOpen, details, handleDetails, activities }) => {
+  
+const Markers = ({
+  open,
+  handleOpen,
+  details,
+  handleDetails,
+  filter,
+  activities,
+}) => {
+  const dispatch = useDispatch();
+  const { addToast } = useToasts();
+  //Filters
+  const filteredActivities = activities.filter(
+    (activity) =>
+      +activity.price.amount >= filter.price[0] &&
+      +activity.price.amount <= filter.price[1] &&
+      +activity.rating >= filter.rating &&
+      (activity.name.toLowerCase().includes(filter.query.toLowerCase()) ||
+        activity.shortDescription
+          .toLowerCase()
+          .includes(filter.query.toLowerCase()))
+  );
+
   const starRating = (rating) => {
     const arr = [];
     for (let i = 1; i <= 5; i++)
@@ -36,7 +59,17 @@ const Markers = ({ open, handleOpen, details, handleDetails, activities }) => {
       );
     return arr;
   };
-  const markers = activities.map((activity) => (
+
+  const add = (activity) => {
+    dispatch(addActivity(activity));
+    handleOpen(activity.id);
+    addToast("Activity added to your trip", {
+      appearance: "success",
+      autoDismiss: true,
+    });
+  };
+
+  const markers = filteredActivities.map((activity) => (
     <Marker
       key={activity.id}
       position={{
@@ -59,7 +92,11 @@ const Markers = ({ open, handleOpen, details, handleDetails, activities }) => {
               >
                 View
               </StyledButton>
-              <StyledButton variant="contained" color="primary">
+              <StyledButton
+                variant="contained"
+                color="primary"
+                onClick={() => add(activity)}
+              >
                 Add
               </StyledButton>
             </ButtonContainer>
@@ -68,6 +105,7 @@ const Markers = ({ open, handleOpen, details, handleDetails, activities }) => {
               handleDetails={handleDetails}
               activity={activity}
               starRating={starRating}
+              handleOpen={handleOpen}
             />
           </InfoCard>
         </InfoWindow>

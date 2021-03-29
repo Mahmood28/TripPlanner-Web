@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useToasts } from "react-toast-notifications";
 import {
   Dialog,
   DialogTitle,
@@ -7,9 +9,30 @@ import {
   DialogActions,
   Button,
 } from "@material-ui/core";
-import { DialogContainer, StyledImage } from "./styles";
+import { DialogContainer, StyledImage, StyledDescription } from "./styles";
 
-const ActivityDetails = ({ activity, details, handleDetails, starRating }) => {
+// Store
+import { addActivity } from "../../store/actions/tripActions";
+
+const ActivityDetails = ({
+  activity,
+  details,
+  handleDetails,
+  starRating,
+  handleOpen,
+}) => {
+  const dispatch = useDispatch();
+  const { addToast } = useToasts();
+  const add = (activity) => {
+    dispatch(addActivity(activity));
+    handleOpen(activity.id);
+    handleDetails(activity.id);
+    addToast("Activity added to your trip", {
+      appearance: "success",
+      autoDismiss: true,
+    });
+  };
+
   return (
     <Dialog
       onClose={() => handleDetails(activity.id)}
@@ -20,7 +43,9 @@ const ActivityDetails = ({ activity, details, handleDetails, starRating }) => {
       </DialogTitle>
       <DialogContent dividers>
         <StyledImage src={activity.pictures[0]} key={activity.id} />
-        <Typography gutterBottom>{activity.shortDescription}</Typography>
+        <StyledDescription gutterBottom>
+          {activity.shortDescription}
+        </StyledDescription>
         <DialogContainer>
           <Typography gutterBottom align="left">
             {starRating(activity.rating)}
@@ -38,7 +63,7 @@ const ActivityDetails = ({ activity, details, handleDetails, starRating }) => {
         >
           Cancel
         </Button>
-        <Button autoFocus color="primary">
+        <Button autoFocus color="primary" onClick={() => add(activity)}>
           Add Activity
         </Button>
       </DialogActions>
