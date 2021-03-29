@@ -51,18 +51,6 @@ export default function RegisterPage() {
     dispatch(signup(user, history));
   };
 
-  const [checked, setChecked] = React.useState([]);
-  const handleToggle = (value) => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-    setChecked(newChecked);
-  };
   const classes = useStyles();
   return (
     <div className={classes.container}>
@@ -193,6 +181,9 @@ export default function RegisterPage() {
                         autoComplete: "off",
                       }}
                     />
+                    <Box mt={2} ml={2}>
+                      <a href="/signin">Already have an account? Signin</a>
+                    </Box>
                     <div className={classes.center}>
                       <Box mt={4} ml={6}>
                         <Button round color="warning" onClick={handleSubmit}>
