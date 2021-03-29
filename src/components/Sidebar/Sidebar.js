@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
@@ -21,7 +22,8 @@ import AdminNavbarLinks from "components/Navbars/AdminNavbarLinks.js";
 
 import sidebarStyle from "assets/jss/material-dashboard-pro-react/components/sidebarStyle.js";
 
-import avatar from "assets/img/faces/avatar.jpg";
+import avatar from "assets/img/faces/avatar3.png";
+import { useSelector } from "react-redux";
 
 var ps;
 
@@ -29,6 +31,7 @@ var ps;
 // This was necessary so that we could initialize PerfectScrollbar on the links.
 // There might be something with the Hidden component from material-ui, and we didn't have access to
 // the links, and couldn't initialize the plugin.
+
 class SidebarWrapper extends React.Component {
   sidebarWrapper = React.createRef();
   componentDidMount() {
@@ -66,6 +69,7 @@ class Sidebar extends React.Component {
     };
   }
   mainPanel = React.createRef();
+
   // this creates the intial state of this component based on the collapse routes
   // that it gets through this.props.routes
   getCollapseStates = (routes) => {
@@ -106,6 +110,8 @@ class Sidebar extends React.Component {
   }
   // this function creates the links and collapses that appear in the sidebar (left menu)
   createLinks = (routes) => {
+    const { currUser } = this.props;
+
     const { classes, color, rtlActive } = this.props;
     return routes.map((prop, key) => {
       if (prop.redirect) {
@@ -296,6 +302,7 @@ class Sidebar extends React.Component {
       );
     });
   };
+
   render() {
     const {
       classes,
@@ -305,6 +312,7 @@ class Sidebar extends React.Component {
       routes,
       bgColor,
       rtlActive,
+      currUser,
     } = this.props;
     const itemText =
       classes.itemText +
@@ -351,99 +359,118 @@ class Sidebar extends React.Component {
       });
     var user = (
       <div className={userWrapperClass}>
-        <div className={photo}>
-          <img src={avatar} className={classes.avatarImg} alt="..." />
-        </div>
-        <List className={classes.list}>
-          <ListItem className={classes.item + " " + classes.userItem}>
-            <NavLink
-              to={"#"}
-              className={classes.itemLink + " " + classes.userCollapseButton}
-              onClick={() => this.openCollapse("openAvatar")}
-            >
-              <ListItemText
-                primary="User Name"
-                secondary={
-                  <b
-                    className={
-                      caret +
-                      " " +
-                      classes.userCaret +
-                      " " +
-                      (this.state.openAvatar ? classes.caretActive : "")
+        {currUser.user ? (
+          <div>
+            <div className={photo}>
+              <img src={avatar} className={classes.avatarImg} alt="..." />
+            </div>
+            <List className={classes.list}>
+              <ListItem className={classes.item + " " + classes.userItem}>
+                <NavLink
+                  to={"#"}
+                  className={
+                    classes.itemLink + " " + classes.userCollapseButton
+                  }
+                  onClick={() => this.openCollapse("openAvatar")}
+                >
+                  <ListItemText
+                    primary={currUser.user.username}
+                    secondary={
+                      <b
+                        className={
+                          caret +
+                          " " +
+                          classes.userCaret +
+                          " " +
+                          (this.state.openAvatar ? classes.caretActive : "")
+                        }
+                      />
                     }
+                    disableTypography={true}
+                    className={itemText + " " + classes.userItemText}
                   />
-                }
-                disableTypography={true}
-                className={itemText + " " + classes.userItemText}
-              />
-            </NavLink>
-            <Collapse in={this.state.openAvatar} unmountOnExit>
-              <List className={classes.list + " " + classes.collapseList}>
-                <ListItem className={classes.collapseItem}>
-                  <NavLink
-                    to="#"
-                    className={
-                      classes.itemLink + " " + classes.userCollapseLinks
-                    }
-                  >
-                    <span className={collapseItemMini}>{"P"}</span>
-                    <ListItemText
-                      primary="Profile"
-                      disableTypography={true}
-                      className={collapseItemText}
-                    />
-                  </NavLink>
-                </ListItem>
-                <ListItem className={classes.collapseItem}>
-                  <NavLink
-                    to="#"
-                    className={
-                      classes.itemLink + " " + classes.userCollapseLinks
-                    }
-                  >
-                    <span className={collapseItemMini}>{"T"}</span>
-                    <ListItemText
-                      primary="Trips"
-                      disableTypography={true}
-                      className={collapseItemText}
-                    />
-                  </NavLink>
-                </ListItem>
-                <ListItem className={classes.collapseItem}>
-                  <NavLink
-                    to="#"
-                    className={
-                      classes.itemLink + " " + classes.userCollapseLinks
-                    }
-                  >
-                    <span className={collapseItemMini}>{"R"}</span>
-                    <ListItemText
-                      primary="Reviews"
-                      disableTypography={true}
-                      className={collapseItemText}
-                    />
-                  </NavLink>
-                </ListItem>
-                <ListItem className={classes.collapseItem}>
-                  <NavLink
-                    to="#"
-                    className={
-                      classes.itemLink + " " + classes.userCollapseLinks
-                    }
-                  >
-                    <span className={collapseItemMini}>{"L"}</span>
-                    <ListItemText
-                      primary="Logout"
-                      disableTypography={true}
-                      className={collapseItemText}
-                    />
-                  </NavLink>
-                </ListItem>
-              </List>
-            </Collapse>
-          </ListItem>
-        </List>
+                </NavLink>
+                <Collapse in={this.state.openAvatar} unmountOnExit>
+                  <List className={classes.list + " " + classes.collapseList}>
+                    <ListItem className={classes.collapseItem}>
+                      <NavLink
+                        to="#"
+                        className={
+                          classes.itemLink + " " + classes.userCollapseLinks
+                        }
+                      >
+                        <span className={collapseItemMini}>{"P"}</span>
+                        <ListItemText
+                          primary="Profile"
+                          disableTypography={true}
+                          className={collapseItemText}
+                        />
+                      </NavLink>
+                    </ListItem>
+                    <ListItem className={classes.collapseItem}>
+                      <NavLink
+                        to="#"
+                        className={
+                          classes.itemLink + " " + classes.userCollapseLinks
+                        }
+                      >
+                        <span className={collapseItemMini}>{"T"}</span>
+                        <ListItemText
+                          primary="Trips"
+                          disableTypography={true}
+                          className={collapseItemText}
+                        />
+                      </NavLink>
+                    </ListItem>
+                    <ListItem className={classes.collapseItem}>
+                      <NavLink
+                        to="#"
+                        className={
+                          classes.itemLink + " " + classes.userCollapseLinks
+                        }
+                      >
+                        <span className={collapseItemMini}>{"R"}</span>
+                        <ListItemText
+                          primary="Reviews"
+                          disableTypography={true}
+                          className={collapseItemText}
+                        />
+                      </NavLink>
+                    </ListItem>
+                    <ListItem className={classes.collapseItem}>
+                      <NavLink
+                        to="#"
+                        className={
+                          classes.itemLink + " " + classes.userCollapseLinks
+                        }
+                      >
+                        <span className={collapseItemMini}>{"L"}</span>
+                        <ListItemText
+                          primary="Logout"
+                          disableTypography={true}
+                          className={collapseItemText}
+                        />
+                      </NavLink>
+                    </ListItem>
+                  </List>
+                </Collapse>
+              </ListItem>
+            </List>
+          </div>
+        ) : (
+          <NavLink
+            to={"/signin"}
+            className={classes.itemLink + " " + classes.userCollapseButton}
+            onClick={() => this.openCollapse("openAvatar")}
+          >
+            <ListItemText
+              primary="Sign in"
+              disableTypography={true}
+              className={itemText + " " + classes.userItemText}
+            />
+          </NavLink>
+        )}
+        {/*  */}
       </div>
     );
     var links = (
@@ -592,4 +619,10 @@ SidebarWrapper.propTypes = {
   links: PropTypes.object,
 };
 
-export default withStyles(sidebarStyle)(Sidebar);
+const mapStateToProps = (state) => {
+  return {
+    currUser: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(withStyles(sidebarStyle)(Sidebar));
