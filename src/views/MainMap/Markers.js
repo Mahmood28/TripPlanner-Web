@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Marker, InfoWindow } from "react-google-maps";
 // Data
-import activities from "views/MainMap/activities";
+// import activities from "views/MainMap/activities";
 //Components
 import ActivityDetails from "./ActivityDetails";
 //Styling
@@ -21,7 +21,7 @@ import {
   StyledContainer,
 } from "./styles";
 
-const Markers = ({ open, handleOpen, details, handleDetails }) => {
+const Markers = ({ open, handleOpen, details, handleDetails, activities }) => {
   const starRating = (rating) => {
     const arr = [];
     for (let i = 1; i <= 5; i++)

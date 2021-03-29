@@ -1,10 +1,9 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { MAP_API_KEY } from "keys";
 import { compose, withProps } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
 // Data
-import activities from "views/MainMap/activities";
+// import activities from "views/MainMap/activities";
 // Components
 import Loading from "components/Loading";
 import Markers from "views/MainMap/Markers";
@@ -25,7 +24,8 @@ const Map = compose(
   }),
   withScriptjs,
   withGoogleMap
-)(({ isMarkerShown, lng, lat }) => {
+)(({ isMarkerShown, lng, lat, activities }) => {
+  console.log("Hellooo", activities);
   let initialState = {};
   for (const activity of activities) initialState[activity.id] = false;
   const [open, setOpen] = useState(initialState);
@@ -51,6 +51,7 @@ const Map = compose(
           handleOpen={handleOpen}
           details={details}
           handleDetails={handleDetails}
+          activities={activities}
         />
       )}
     </GoogleMap>

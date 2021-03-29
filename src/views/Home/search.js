@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { searchActivity } from "store/actions/activityActions";
+import { searchActivities } from "store/actions/activityActions";
+import { tripCreate } from "store/actions/tripActions";
 import { MAP_API_KEY } from "keys";
 import Geocode from "react-geocode";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
@@ -64,14 +65,14 @@ export default function Search() {
     setDates({ ...dates, [event.target.name]: event.target.value });
   };
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     const trip = {
       ...dates,
       destination: { ...coordinates, country, city },
     };
-    console.log(trip);
-    // dispatch(searchActivity(coordinates));
-    // history.push("/explore");
+    await dispatch(searchActivities(trip.destination));
+    await dispatch(tripCreate(trip));
+    history.push("/explore");
   };
 
   return (
@@ -160,7 +161,7 @@ export default function Search() {
         <GridItem xs={12} sm={12} md={1}>
           <Card plain>
             <CardBody plain>
-              <Button round color="warning" onClick={() => handleSearch}>
+              <Button round color="warning" onClick={handleSearch}>
                 Explore
               </Button>
             </CardBody>

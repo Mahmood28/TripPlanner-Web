@@ -13,7 +13,11 @@ const activityReducer = (state = initialState, action) => {
         activities: action.payload,
         loading: false,
       };
-
+    case types.SET_ACTIVITIES:
+      return {
+        ...state,
+        activities: action.payload,
+      };
     default:
       return state;
   }
