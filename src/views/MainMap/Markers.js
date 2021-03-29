@@ -1,5 +1,11 @@
-import React from "react";
+
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Marker, InfoWindow } from "react-google-maps";
+import { useToasts } from "react-toast-notifications";
+// Data
+import activities from "views/MainMap/activities";
+
 //Components
 import ActivityDetails from "./ActivityDetails";
 //Styling
@@ -16,6 +22,14 @@ import {
   StyledHeader,
   StarContainer,
 } from "./styles";
+
+
+// Store
+import { addActivity } from "../../store/actions/tripActions";
+
+const Markers = ({ open, handleOpen, details, handleDetails }) => {
+  const dispatch = useDispatch();
+  const { addToast } = useToasts();
 
 const Markers = ({
   open,
@@ -36,6 +50,7 @@ const Markers = ({
           .toLowerCase()
           .includes(filter.query.toLowerCase()))
   );
+
   const starRating = (rating) => {
     const arr = [];
     for (let i = 1; i <= 5; i++)
@@ -50,7 +65,18 @@ const Markers = ({
       );
     return arr;
   };
+
+  const add = (activity) => {
+    dispatch(addActivity(activity));
+    handleOpen(activity.id);
+    addToast("Activity added to your trip", {
+      appearance: "success",
+      autoDismiss: true,
+    });
+  };
+
   const markers = filteredActivities.map((activity) => (
+
     <Marker
       key={activity.id}
       position={{
@@ -73,7 +99,11 @@ const Markers = ({
               >
                 View
               </StyledButton>
-              <StyledButton variant="contained" color="primary">
+              <StyledButton
+                variant="contained"
+                color="primary"
+                onClick={() => add(activity)}
+              >
                 Add
               </StyledButton>
             </ButtonContainer>
@@ -82,6 +112,7 @@ const Markers = ({
               handleDetails={handleDetails}
               activity={activity}
               starRating={starRating}
+              handleOpen={handleOpen}
             />
           </InfoCard>
         </InfoWindow>

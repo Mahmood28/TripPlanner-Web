@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useToasts } from "react-toast-notifications";
 import {
   Dialog,
   DialogTitle,
@@ -9,7 +11,28 @@ import {
 } from "@material-ui/core";
 import { DialogContainer, StyledImage, StyledDescription } from "./styles";
 
-const ActivityDetails = ({ activity, details, handleDetails, starRating }) => {
+// Store
+import { addActivity } from "../../store/actions/tripActions";
+
+const ActivityDetails = ({
+  activity,
+  details,
+  handleDetails,
+  starRating,
+  handleOpen,
+}) => {
+  const dispatch = useDispatch();
+  const { addToast } = useToasts();
+  const add = (activity) => {
+    dispatch(addActivity(activity));
+    handleOpen(activity.id);
+    handleDetails(activity.id);
+    addToast("Activity added to your trip", {
+      appearance: "success",
+      autoDismiss: true,
+    });
+  };
+
   return (
     <Dialog
       onClose={() => handleDetails(activity.id)}
@@ -40,7 +63,7 @@ const ActivityDetails = ({ activity, details, handleDetails, starRating }) => {
         >
           Cancel
         </Button>
-        <Button autoFocus color="primary">
+        <Button autoFocus color="primary" onClick={() => add(activity)}>
           Add Activity
         </Button>
       </DialogActions>
