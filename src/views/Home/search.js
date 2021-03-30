@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchActivities } from "store/actions/activityActions";
 import { tripCreate } from "store/actions/tripActions";
 import { MAP_API_KEY } from "keys";
@@ -28,7 +28,7 @@ export default function Search() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
-
+  const { user } = useSelector((state) => state.user);
   const [destination, setDestination] = useState("");
   // const [startDate, setStartDate] = useState("");
   // const [endDate, setEndDate] = useState("");
@@ -70,6 +70,7 @@ export default function Search() {
       ...dates,
       destination: { ...coordinates, country, city },
     };
+    if (user) trip.userId = user.id;
     await dispatch(searchActivities(trip.destination));
     await dispatch(tripCreate(trip));
     history.push("/explore");
