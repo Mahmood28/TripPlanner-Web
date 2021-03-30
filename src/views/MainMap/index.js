@@ -10,6 +10,7 @@ import { DialogContainer, FilterContainer, StyledRating } from "./styles";
 import { Redirect } from "react-router";
 
 const MainMap = () => {
+  const location = JSON.parse(localStorage.getItem("activeTrip")).destination;
   const { activities } = useSelector((state) => state.activity);
   const activeTrip = JSON.parse(localStorage.getItem("ActiveTrip"));
   const maxPrice = Math.max(
@@ -24,7 +25,6 @@ const MainMap = () => {
   const [filter, setFilter] = useState(initialFilter);
 
   if (!activeTrip) return <Redirect to="/home" />;
-
   if (activities.length === 0) return <Loading />;
 
   const location = activeTrip.destination;

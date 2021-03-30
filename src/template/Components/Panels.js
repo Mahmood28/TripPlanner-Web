@@ -26,12 +26,12 @@ const styles = {
   pageSubcategoriesTitle: {
     color: "#3C4858",
     textDecoration: "none",
-    textAlign: "center"
+    textAlign: "center",
   },
   cardCategory: {
     margin: "0",
-    color: "#999999"
-  }
+    color: "#999999",
+  },
 };
 
 const useStyles = makeStyles(styles);
@@ -72,7 +72,7 @@ export default function Panels() {
                         <br />
                         <p>This is very nice.</p>
                       </span>
-                    )
+                    ),
                   },
                   {
                     tabButton: "Settings",
@@ -89,7 +89,7 @@ export default function Panels() {
                           without functional solutions.
                         </p>
                       </span>
-                    )
+                    ),
                   },
                   {
                     tabButton: "Options",
@@ -106,8 +106,8 @@ export default function Panels() {
                           service for state of the art customer service.
                         </p>
                       </span>
-                    )
-                  }
+                    ),
+                  },
                 ]}
               />
             </CardBody>
@@ -125,7 +125,7 @@ export default function Panels() {
                 color="rose"
                 horizontal={{
                   tabsGrid: { xs: 12, sm: 12, md: 4 },
-                  contentGrid: { xs: 12, sm: 12, md: 8 }
+                  contentGrid: { xs: 12, sm: 12, md: 8 },
                 }}
                 tabs={[
                   {
@@ -148,7 +148,7 @@ export default function Panels() {
                         <br />
                         <p>This is very nice.</p>
                       </span>
-                    )
+                    ),
                   },
                   {
                     tabButton: "Settings",
@@ -165,7 +165,7 @@ export default function Panels() {
                           without functional solutions.
                         </p>
                       </span>
-                    )
+                    ),
                   },
                   {
                     tabButton: "Options",
@@ -182,8 +182,8 @@ export default function Panels() {
                           service for state of the art customer service.
                         </p>
                       </span>
-                    )
-                  }
+                    ),
+                  },
                 ]}
               />
             </CardBody>
@@ -203,18 +203,18 @@ export default function Panels() {
                   {
                     title: "Collapsible group Item #1",
                     content:
-                      "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS."
+                      "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.",
                   },
                   {
                     title: "Collapsible group Item #2",
                     content:
-                      "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS."
+                      "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.",
                   },
                   {
                     title: "Collapsible group Item #3",
                     content:
-                      "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS."
-                  }
+                      "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.",
+                  },
                 ]}
               />
             </CardBody>
@@ -232,7 +232,7 @@ export default function Panels() {
                 color="rose"
                 horizontal={{
                   tabsGrid: { xs: 12, sm: 12, md: 4 },
-                  contentGrid: { xs: 12, sm: 12, md: 8 }
+                  contentGrid: { xs: 12, sm: 12, md: 8 },
                 }}
                 tabs={[
                   {
@@ -262,7 +262,7 @@ export default function Panels() {
                           installed base benefits.
                         </p>
                       </span>
-                    )
+                    ),
                   },
                   {
                     tabButton: "Schedule",
@@ -284,8 +284,8 @@ export default function Panels() {
                           B2C users after installed base benefits.
                         </p>
                       </span>
-                    )
-                  }
+                    ),
+                  },
                 ]}
               />
             </CardBody>
@@ -323,7 +323,7 @@ export default function Panels() {
                       without revolutionary ROI.
                     </CardBody>
                   </Card>
-                )
+                ),
               },
               {
                 tabButton: "Location",
@@ -348,7 +348,7 @@ export default function Panels() {
                       functional solutions.
                     </CardBody>
                   </Card>
-                )
+                ),
               },
               {
                 tabButton: "Legal Info",
@@ -373,7 +373,7 @@ export default function Panels() {
                       for state of the art customer service.
                     </CardBody>
                   </Card>
-                )
+                ),
               },
               {
                 tabButton: "Help Center",
@@ -399,8 +399,8 @@ export default function Panels() {
                       enclosure in a remarkable, simplified design.
                     </CardBody>
                   </Card>
-                )
-              }
+                ),
+              },
             ]}
           />
         </GridItem>

@@ -137,7 +137,7 @@ export default function SweetAlertPage() {
         showCancel
         style={{ display: "block", marginTop: "-100px" }}
         title="Input something"
-        onConfirm={e => {
+        onConfirm={(e) => {
           inputConfirmAlertNext(e);
         }}
         onCancel={() => hideAlert()}
@@ -155,7 +155,7 @@ export default function SweetAlertPage() {
   //     inputConfirmAlertNext();
   //   }, 5000);
   // };
-  const inputConfirmAlertNext = e => {
+  const inputConfirmAlertNext = (e) => {
     setAlert(e);
     setTimeout(() => {
       setAlert(

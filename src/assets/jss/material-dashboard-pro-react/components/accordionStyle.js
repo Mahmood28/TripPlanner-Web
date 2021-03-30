@@ -1,21 +1,22 @@
 import {
   primaryColor,
-  grayColor
+  roseColor,
+  grayColor,
 } from "assets/jss/material-dashboard-pro-react.js";
 
-const accordionStyle = theme => ({
+const accordionStyle = (theme) => ({
   root: {
     flexGrow: 1,
-    marginBottom: "20px"
+    marginBottom: "20px",
   },
   expansionPanel: {
     boxShadow: "none",
     "&:before": {
-      display: "none !important"
-    }
+      display: "none !important",
+    },
   },
   expansionPanelExpanded: {
-    margin: "0 !important"
+    margin: "0 !important",
   },
   expansionPanelSummary: {
     minHeight: "auto !important",
@@ -26,35 +27,35 @@ const accordionStyle = theme => ({
     borderTopRightRadius: "3px",
     color: grayColor[2],
     "&:hover": {
-      color: primaryColor[0]
-    }
+      color: roseColor[0],
+    },
   },
   expansionPanelSummaryExpaned: {
-    color: primaryColor[0],
+    color: roseColor[0],
     "& $expansionPanelSummaryExpandIcon": {
       [theme.breakpoints.up("md")]: {
-        top: "auto !important"
+        top: "auto !important",
       },
       transform: "rotate(180deg)",
       [theme.breakpoints.down("sm")]: {
-        top: "10px !important"
-      }
-    }
+        top: "10px !important",
+      },
+    },
   },
   expansionPanelSummaryContent: {
-    margin: "0 !important"
+    margin: "0 !important",
   },
   expansionPanelSummaryExpandIcon: {
     [theme.breakpoints.up("md")]: {
-      top: "auto !important"
+      top: "auto !important",
     },
     transform: "rotate(0deg)",
     color: "inherit",
     position: "absolute",
-    right: "20px",
+    right: "0px",
     [theme.breakpoints.down("sm")]: {
-      top: "10px !important"
-    }
+      top: "10px !important",
+    },
   },
   expansionPanelSummaryExpandIconExpanded: {},
   title: {
@@ -62,11 +63,11 @@ const accordionStyle = theme => ({
     fontWeight: "bolder",
     marginTop: "0",
     marginBottom: "0",
-    color: "inherit"
+    color: "inherit",
   },
   expansionPanelDetails: {
-    padding: "15px 0px 5px"
-  }
+    padding: "15px 0px 5px",
+  },
 });
 
 export default accordionStyle;
