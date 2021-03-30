@@ -30,3 +30,10 @@ export const deleteTrip = (tripId, history) => async (dispatch) => {
     console.log("Error:", error);
   }
 };
+
+export const handleActivity = (activity) => ({
+  type: types.HANDLE_ACTIVITY,
+  payload: activity,
+});
+
+

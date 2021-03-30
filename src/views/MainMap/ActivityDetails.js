@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useToasts } from "react-toast-notifications";
 // Store
-import { addActivity } from "../../store/actions/tripActions";
+import { handleActivity } from "../../store/actions/tripActions";
 //Styling
 import {
   Dialog,
@@ -15,17 +15,28 @@ import {
 import { DialogContainer, StyledImage, StyledDescription } from "./styles";
 import { Rating } from "@material-ui/lab";
 
-const ActivityDetails = ({ activity, details, handleDetails, handleOpen }) => {
+const ActivityDetails = ({
+  activity,
+  details,
+  handleDetails,
+  handleOpen,
+  remove,
+}) => {
   const dispatch = useDispatch();
   const { addToast } = useToasts();
   const add = (activity) => {
-    dispatch(addActivity(activity));
+    dispatch(handleActivity(activity));
     handleOpen(activity.id);
     handleDetails(activity.id);
-    addToast("Activity added to your trip", {
-      appearance: "success",
-      autoDismiss: true,
-    });
+    addToast(
+      `${activity.name} ${
+        remove ? "removed from" : "added to"
+      } your itinerary.`,
+      {
+        appearance: "success",
+        autoDismiss: true,
+      }
+    );
   };
 
   return (
@@ -58,8 +69,12 @@ const ActivityDetails = ({ activity, details, handleDetails, handleOpen }) => {
         >
           Cancel
         </Button>
-        <Button autoFocus color="primary" onClick={() => add(activity)}>
-          Add Activity
+        <Button
+          autoFocus
+          color={remove ? "secondary" : "primary"}
+          onClick={() => add(activity)}
+        >
+          {`${remove ? "Remove" : "Add"} Activity`}
         </Button>
       </DialogActions>
     </Dialog>

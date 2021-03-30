@@ -12,10 +12,14 @@ const tripReducer = (state = initialState, action) => {
         ...state,
         trip: action.payload,
       };
-    case types.ADD_ACTIVITY:
-      return { 
-        ...state, 
-        activities: [...state.activities, action.payload] };
+    case types.HANDLE_ACTIVITY:
+      const remove = state.activities.includes(action.payload);
+      return {
+        ...state,
+        activities: remove
+          ? state.activities.filter((activity) => activity !== action.payload)
+          : [...state.activities, action.payload],
+      };
 
     default:
       return state;
