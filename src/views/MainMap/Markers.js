@@ -1,25 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { Marker, InfoWindow } from "react-google-maps";
-//Store
-import { addActivity } from "store/actions/tripActions";
 //Components
 import ActivityDetails from "./ActivityDetails";
+// Store
+import { handleActivity } from "../../store/actions/tripActions";
 //Styling
 import { useToasts } from "react-toast-notifications";
 import { Divider } from "@material-ui/core";
-import {
-  StarRounded,
-  StarHalfRounded,
-  StarBorderRounded,
-} from "@material-ui/icons";
 import {
   ButtonContainer,
   InfoCard,
   StyledButton,
   StyledHeader,
   StarContainer,
+  customIcon,
+  selectedIcon,
 } from "./styles";
+import { Rating } from "@material-ui/lab";
 
 const Markers = ({
   open,
@@ -28,6 +26,7 @@ const Markers = ({
   handleDetails,
   filter,
   activities,
+  selectedActivities,
 }) => {
   const dispatch = useDispatch();
   const { addToast } = useToasts();
@@ -43,73 +42,71 @@ const Markers = ({
           .includes(filter.query.toLowerCase()))
   );
 
-  const starRating = (rating) => {
-    const arr = [];
-    for (let i = 1; i <= 5; i++)
-      arr.push(
-        Math.floor(rating) >= i ? (
-          <StarRounded style={{ color: "#ffd700" }} />
-        ) : rating > i - 1 ? (
-          <StarHalfRounded style={{ color: "#ffd700" }} />
-        ) : (
-          <StarBorderRounded style={{ color: "#ffd700" }} />
-        )
-      );
-    return arr;
-  };
-
-  const add = (activity) => {
-    dispatch(addActivity(activity));
+  const add = (activity, remove) => {
+    dispatch(handleActivity(activity));
     handleOpen(activity.id);
-    addToast("Activity added to your trip", {
-      appearance: "success",
-      autoDismiss: true,
-    });
+    addToast(
+      `${activity.name} ${remove ? "removed from" : "added to"} your trip.`,
+      {
+        appearance: "success",
+        autoDismiss: true,
+      }
+    );
   };
 
-  const markers = filteredActivities.map((activity) => (
-    <Marker
-      key={activity.id}
-      position={{
-        lat: +activity.geoCode.latitude,
-        lng: +activity.geoCode.longitude,
-      }}
-      onClick={() => handleOpen(activity.id)}
-    >
-      {open[activity.id] && (
-        <InfoWindow onCloseClick={() => handleOpen(activity.id)}>
-          <InfoCard>
-            <StyledHeader title={activity.name} />
-            <StarContainer>{starRating(activity.rating)}</StarContainer>
-            <Divider variant="middle" />
-            <ButtonContainer>
-              <StyledButton
-                variant="contained"
-                color="primary"
-                onClick={() => handleDetails(activity.id)}
-              >
-                View
-              </StyledButton>
-              <StyledButton
-                variant="contained"
-                color="primary"
-                onClick={() => add(activity)}
-              >
-                Add
-              </StyledButton>
-            </ButtonContainer>
-            <ActivityDetails
-              details={details}
-              handleDetails={handleDetails}
-              activity={activity}
-              starRating={starRating}
-              handleOpen={handleOpen}
-            />
-          </InfoCard>
-        </InfoWindow>
-      )}
-    </Marker>
-  ));
+  const markers = filteredActivities.map((activity) => {
+    const remove = selectedActivities.includes(activity);
+    return (
+      <Marker
+        key={activity.id}
+        position={{
+          lat: +activity.geoCode.latitude,
+          lng: +activity.geoCode.longitude,
+        }}
+        onClick={() => handleOpen(activity.id)}
+        icon={remove ? selectedIcon : customIcon}
+      >
+        {open[activity.id] && (
+          <InfoWindow onCloseClick={() => handleOpen(activity.id)}>
+            <InfoCard>
+              <StyledHeader title={activity.name} />
+              <StarContainer>
+                <Rating
+                  defaultValue={activity.rating}
+                  precision={0.25}
+                  readOnly
+                />
+              </StarContainer>
+              <Divider variant="middle" />
+              <ButtonContainer>
+                <StyledButton
+                  variant="contained"
+                  color="primary"
+                  onClick={() => handleDetails(activity.id)}
+                >
+                  View
+                </StyledButton>
+                <StyledButton
+                  variant="contained"
+                  color={remove ? "secondary" : "primary"}
+                  onClick={() => add(activity, remove)}
+                >
+                  {remove ? "Remove" : "Add"}
+                </StyledButton>
+              </ButtonContainer>
+              <ActivityDetails
+                details={details}
+                handleDetails={handleDetails}
+                activity={activity}
+                handleOpen={handleOpen}
+                remove={remove}
+              />
+            </InfoCard>
+          </InfoWindow>
+        )}
+      </Marker>
+    );
+  });
   return markers;
 };
 

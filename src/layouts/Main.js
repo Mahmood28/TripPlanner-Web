@@ -15,6 +15,7 @@ import Sidebar from "components/Sidebar/Sidebar.js";
 import routes from "routes.js";
 
 import styles from "assets/jss/material-dashboard-pro-react/layouts/adminStyle.js";
+import TripHistory from "views/TripHistory";
 
 var ps;
 

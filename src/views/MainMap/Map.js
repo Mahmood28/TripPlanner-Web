@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { MAP_API_KEY } from "keys";
+import { useSelector } from "react-redux";
 import { compose, withProps } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
+import { MAP_API_KEY } from "keys";
 // Components
 import Loading from "components/Loading";
 import Markers from "views/MainMap/Markers";
@@ -26,6 +27,7 @@ const Map = compose(
   withScriptjs,
   withGoogleMap
 )(({ isMarkerShown, lng, lat, filter, activities }) => {
+  const selectedActivities = useSelector((state) => state.trip.activities);
   let initialState = {};
   for (const activity of activities) initialState[activity.id] = false;
   const [open, setOpen] = useState(initialState);
@@ -53,6 +55,7 @@ const Map = compose(
           handleDetails={handleDetails}
           filter={filter}
           activities={activities}
+          selectedActivities={selectedActivities}
         />
       )}
     </GoogleMap>

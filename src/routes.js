@@ -2,12 +2,12 @@
 import MainMap from "views/MainMap";
 import Itinerary from "views/Itinerary";
 import Calendar from "views/Calendar";
+import Profile from "views/Profile";
+import ProfileEdit from "views/Profile/ProfileEdit";
+import TripHistory from "views/TripHistory";
 // @material-ui/icons
-import Place from "@material-ui/icons/Place";
-import Timeline from "@material-ui/icons/Timeline";
-import GridOn from "@material-ui/icons/GridOn";
-import Map from "@material-ui/icons/Map";
-import DateRange from "@material-ui/icons/DateRange";
+import { DateRange, Place, Timeline, GridOn, Map } from "@material-ui/icons/";
+
 
 const routes = [
   {
@@ -44,6 +44,27 @@ const routes = [
     icon: DateRange,
     component: Calendar,
     layout: "/",
+  },
+  {
+    path: "profile/edit",
+    name: "Edit Profile",
+    component: ProfileEdit,
+    layout: "/",
+    redirect: true,
+  },
+  {
+    path: "profile",
+    name: "Profile",
+    component: Profile,
+    layout: "/",
+    redirect: true,
+  },
+    {
+    path: "history",
+    name: "History",
+    component: TripHistory,
+    layout: "/",
+    redirect: true,
   },
 ];
 export default routes;
