@@ -33,13 +33,13 @@ export default function RegularForms() {
   const [checked, setChecked] = React.useState([24, 22]);
   const [selectedEnabled, setSelectedEnabled] = React.useState("b");
   const [selectedValue, setSelectedValue] = React.useState(null);
-  const handleChange = event => {
+  const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
-  const handleChangeEnabled = event => {
+  const handleChangeEnabled = (event) => {
     setSelectedEnabled(event.target.value);
   };
-  const handleToggle = value => {
+  const handleToggle = (value) => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
@@ -67,21 +67,21 @@ export default function RegularForms() {
                 labelText="Email adress"
                 id="email_adress"
                 formControlProps={{
-                  fullWidth: true
+                  fullWidth: true,
                 }}
                 inputProps={{
-                  type: "email"
+                  type: "email",
                 }}
               />
               <CustomInput
                 labelText="Password"
                 id="password"
                 formControlProps={{
-                  fullWidth: true
+                  fullWidth: true,
                 }}
                 inputProps={{
                   type: "password",
-                  autoComplete: "off"
+                  autoComplete: "off",
                 }}
               />
               <div className={classes.checkboxAndRadio}>
@@ -94,13 +94,13 @@ export default function RegularForms() {
                       icon={<Check className={classes.uncheckedIcon} />}
                       classes={{
                         checked: classes.checked,
-                        root: classes.checkRoot
+                        root: classes.checkRoot,
                       }}
                     />
                   }
                   classes={{
                     label: classes.label,
-                    root: classes.labelRoot
+                    root: classes.labelRoot,
                   }}
                   label="Subscribe to newsletter"
                 />
@@ -130,10 +130,10 @@ export default function RegularForms() {
                   <CustomInput
                     id="email_adress2"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     inputProps={{
-                      type: "email"
+                      type: "email",
                     }}
                   />
                 </GridItem>
@@ -148,11 +148,11 @@ export default function RegularForms() {
                   <CustomInput
                     id="password2"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     inputProps={{
                       type: "password",
-                      autoComplete: "off"
+                      autoComplete: "off",
                     }}
                   />
                 </GridItem>
@@ -171,13 +171,13 @@ export default function RegularForms() {
                           icon={<Check className={classes.uncheckedIcon} />}
                           classes={{
                             checked: classes.checked,
-                            root: classes.checkRoot
+                            root: classes.checkRoot,
                           }}
                         />
                       }
                       classes={{
                         label: classes.label,
-                        root: classes.labelRoot
+                        root: classes.labelRoot,
                       }}
                       label="Remember me"
                     />
@@ -212,10 +212,10 @@ export default function RegularForms() {
                   <CustomInput
                     id="help-text"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     inputProps={{
-                      type: "text"
+                      type: "text",
                     }}
                     helpText="A block of help text that breaks onto a new line."
                   />
@@ -231,11 +231,11 @@ export default function RegularForms() {
                   <CustomInput
                     id="pass"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     inputProps={{
                       type: "password",
-                      autoComplete: "off"
+                      autoComplete: "off",
                     }}
                   />
                 </GridItem>
@@ -250,10 +250,10 @@ export default function RegularForms() {
                   <CustomInput
                     id="placeholder"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     inputProps={{
-                      placeholder: "placeholder"
+                      placeholder: "placeholder",
                     }}
                   />
                 </GridItem>
@@ -268,11 +268,11 @@ export default function RegularForms() {
                   <CustomInput
                     id="disabled"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     inputProps={{
                       placeholder: "Disabled",
-                      disabled: true
+                      disabled: true,
                     }}
                   />
                 </GridItem>
@@ -322,13 +322,13 @@ export default function RegularForms() {
                           icon={<Check className={classes.uncheckedIcon} />}
                           classes={{
                             checked: classes.checked,
-                            root: classes.checkRoot
+                            root: classes.checkRoot,
                           }}
                         />
                       }
                       classes={{
                         label: classes.label,
-                        root: classes.labelRoot
+                        root: classes.labelRoot,
                       }}
                       label="First Checkbox"
                     />
@@ -351,13 +351,13 @@ export default function RegularForms() {
                           icon={<Check className={classes.uncheckedIcon} />}
                           classes={{
                             checked: classes.checked,
-                            root: classes.checkRoot
+                            root: classes.checkRoot,
                           }}
                         />
                       }
                       classes={{
                         label: classes.label,
-                        root: classes.labelRoot
+                        root: classes.labelRoot,
                       }}
                       label="Second Checkbox"
                     />
@@ -389,13 +389,13 @@ export default function RegularForms() {
                           }
                           classes={{
                             checked: classes.radio,
-                            root: classes.radioRoot
+                            root: classes.radioRoot,
                           }}
                         />
                       }
                       classes={{
                         label: classes.label,
-                        root: classes.labelRoot
+                        root: classes.labelRoot,
                       }}
                       label="First Radio"
                     />
@@ -427,13 +427,13 @@ export default function RegularForms() {
                           }
                           classes={{
                             checked: classes.radio,
-                            root: classes.radioRoot
+                            root: classes.radioRoot,
                           }}
                         />
                       }
                       classes={{
                         label: classes.label,
-                        root: classes.labelRoot
+                        root: classes.labelRoot,
                       }}
                       label="Second Radio"
                     />
@@ -465,13 +465,13 @@ export default function RegularForms() {
                           icon={<Check className={classes.uncheckedIcon} />}
                           classes={{
                             checked: classes.checked,
-                            root: classes.checkRoot
+                            root: classes.checkRoot,
                           }}
                         />
                       }
                       classes={{
                         label: classes.label,
-                        root: classes.labelRoot
+                        root: classes.labelRoot,
                       }}
                       label="a"
                     />
@@ -486,13 +486,13 @@ export default function RegularForms() {
                           icon={<Check className={classes.uncheckedIcon} />}
                           classes={{
                             checked: classes.checked,
-                            root: classes.checkRoot
+                            root: classes.checkRoot,
                           }}
                         />
                       }
                       classes={{
                         label: classes.label,
-                        root: classes.labelRoot
+                        root: classes.labelRoot,
                       }}
                       label="b"
                     />
@@ -507,13 +507,13 @@ export default function RegularForms() {
                           icon={<Check className={classes.uncheckedIcon} />}
                           classes={{
                             checked: classes.checked,
-                            root: classes.checkRoot
+                            root: classes.checkRoot,
                           }}
                         />
                       }
                       classes={{
                         label: classes.label,
-                        root: classes.labelRoot
+                        root: classes.labelRoot,
                       }}
                       label="c"
                     />
@@ -564,13 +564,13 @@ export default function RegularForms() {
                           icon={<Check className={classes.uncheckedIcon} />}
                           classes={{
                             checked: classes.checked,
-                            root: classes.checkRoot
+                            root: classes.checkRoot,
                           }}
                         />
                       }
                       classes={{
                         label: classes.label,
-                        root: classes.labelRoot
+                        root: classes.labelRoot,
                       }}
                       label="Unchecked"
                     />
@@ -594,13 +594,13 @@ export default function RegularForms() {
                           icon={<Check className={classes.uncheckedIcon} />}
                           classes={{
                             checked: classes.checked,
-                            root: classes.checkRoot
+                            root: classes.checkRoot,
                           }}
                         />
                       }
                       classes={{
                         label: classes.label,
-                        root: classes.labelRoot
+                        root: classes.labelRoot,
                       }}
                       label="Checked"
                     />
@@ -623,14 +623,14 @@ export default function RegularForms() {
                           icon={<Check className={classes.uncheckedIcon} />}
                           classes={{
                             checked: classes.checked,
-                            root: classes.checkRoot
+                            root: classes.checkRoot,
                           }}
                         />
                       }
                       classes={{
                         label: classes.label,
                         disabled: classes.disabledCheckboxAndRadio,
-                        root: classes.labelRoot
+                        root: classes.labelRoot,
                       }}
                       label="Disabled Unchecked"
                     />
@@ -654,14 +654,14 @@ export default function RegularForms() {
                           icon={<Check className={classes.uncheckedIcon} />}
                           classes={{
                             checked: classes.checked,
-                            root: classes.checkRoot
+                            root: classes.checkRoot,
                           }}
                         />
                       }
                       classes={{
                         label: classes.label,
                         disabled: classes.disabledCheckboxAndRadio,
-                        root: classes.labelRoot
+                        root: classes.labelRoot,
                       }}
                       label="Disabled Checked"
                     />
@@ -695,13 +695,13 @@ export default function RegularForms() {
                           }
                           classes={{
                             checked: classes.radio,
-                            root: classes.radioRoot
+                            root: classes.radioRoot,
                           }}
                         />
                       }
                       classes={{
                         label: classes.label,
-                        root: classes.labelRoot
+                        root: classes.labelRoot,
                       }}
                       label="First Radio"
                     />
@@ -733,13 +733,13 @@ export default function RegularForms() {
                           }
                           classes={{
                             checked: classes.radio,
-                            root: classes.radioRoot
+                            root: classes.radioRoot,
                           }}
                         />
                       }
                       classes={{
                         label: classes.label,
-                        root: classes.labelRoot
+                        root: classes.labelRoot,
                       }}
                       label="Second Radio"
                     />
@@ -772,13 +772,13 @@ export default function RegularForms() {
                           classes={{
                             checked: classes.radio,
                             disabled: classes.disabledCheckboxAndRadio,
-                            root: classes.radioRoot
+                            root: classes.radioRoot,
                           }}
                         />
                       }
                       classes={{
                         label: classes.label,
-                        root: classes.labelRoot
+                        root: classes.labelRoot,
                       }}
                       label="Second Radio"
                     />
@@ -811,13 +811,13 @@ export default function RegularForms() {
                           classes={{
                             checked: classes.radio,
                             disabled: classes.disabledCheckboxAndRadio,
-                            root: classes.radioRoot
+                            root: classes.radioRoot,
                           }}
                         />
                       }
                       classes={{
                         label: classes.label,
-                        root: classes.labelRoot
+                        root: classes.labelRoot,
                       }}
                       label="Second Radio"
                     />
@@ -835,7 +835,7 @@ export default function RegularForms() {
                     id="success"
                     labelText="Success"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     inputProps={{
                       endAdornment: (
@@ -847,7 +847,7 @@ export default function RegularForms() {
                             className={classes.inputAdornmentIconSuccess}
                           />
                         </InputAdornment>
-                      )
+                      ),
                     }}
                     success
                   />
@@ -864,7 +864,7 @@ export default function RegularForms() {
                     id="error"
                     labelText="Error"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     inputProps={{
                       endAdornment: (
@@ -874,7 +874,7 @@ export default function RegularForms() {
                         >
                           <Clear className={classes.inputAdornmentIconError} />
                         </InputAdornment>
-                      )
+                      ),
                     }}
                     error
                   />
@@ -892,10 +892,10 @@ export default function RegularForms() {
                       <CustomInput
                         id="md3"
                         formControlProps={{
-                          fullWidth: true
+                          fullWidth: true,
                         }}
                         inputProps={{
-                          placeholder: "md={3}"
+                          placeholder: "md={3}",
                         }}
                       />
                     </GridItem>
@@ -903,10 +903,10 @@ export default function RegularForms() {
                       <CustomInput
                         id="md4"
                         formControlProps={{
-                          fullWidth: true
+                          fullWidth: true,
                         }}
                         inputProps={{
-                          placeholder: "md={4}"
+                          placeholder: "md={4}",
                         }}
                       />
                     </GridItem>
@@ -914,10 +914,10 @@ export default function RegularForms() {
                       <CustomInput
                         id="md5"
                         formControlProps={{
-                          fullWidth: true
+                          fullWidth: true,
                         }}
                         inputProps={{
-                          placeholder: "md={5}"
+                          placeholder: "md={5}",
                         }}
                       />
                     </GridItem>

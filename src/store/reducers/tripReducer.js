@@ -3,6 +3,7 @@ import * as types from "../types";
 const initialState = {
   trip: {},
   activities: [],
+  itinerary: {},
 };
 
 const tripReducer = (state = initialState, action) => {
@@ -24,6 +25,16 @@ const tripReducer = (state = initialState, action) => {
       return {
         ...state,
         activities: action.payload,
+      };
+    case types.ADD_TO_ITINERARY:
+      return {
+        ...state,
+        itinerary: action.payload,
+      };
+    case types.SET_ITINERARY:
+      return {
+        ...state,
+        itinerary: action.payload,
       };
     default:
       return state;
