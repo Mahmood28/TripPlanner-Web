@@ -10,9 +10,8 @@ import { DialogContainer, FilterContainer, StyledRating } from "./styles";
 import { Redirect } from "react-router";
 
 const MainMap = () => {
-  const location = JSON.parse(localStorage.getItem("activeTrip")).destination;
   const { activities } = useSelector((state) => state.activity);
-  const activeTrip = JSON.parse(localStorage.getItem("ActiveTrip"));
+  const activeTrip = JSON.parse(localStorage.getItem("activeTrip"));
   const maxPrice = Math.max(
     ...activities.map((activity) => +activity.price.amount)
   );

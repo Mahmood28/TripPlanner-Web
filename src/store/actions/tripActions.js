@@ -33,6 +33,10 @@ export const addToItinerary = (activity) => async (dispatch) => {
       type: types.ADD_TO_ITINERARY,
       payload: res.data,
     });
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
 
 export const deleteTrip = (tripId, history) => async (dispatch) => {
   try {

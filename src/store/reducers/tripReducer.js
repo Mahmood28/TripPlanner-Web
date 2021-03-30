@@ -30,14 +30,16 @@ const tripReducer = (state = initialState, action) => {
       };
     case types.HANDLE_ACTIVITY:
       const remove = state.activities.includes(action.payload);
-      const activities = remove? state.activities.filter((activity) => activity !== action.payload : [...state.activities, action.payload];
+
+      const activities = remove
+        ? state.activities.filter((activity) => activity !== action.payload)
+        : [...state.activities, action.payload];
+
       const activitiesId = activities.map((activity) => activity.id);
       localStorage.setItem("myActivities", JSON.stringify(activitiesId));
       return {
         ...state,
-        activities: remove
-          ? state.activities.filter((activity) => activity !== action.payload)
-          : [...state.activities, action.payload],
+        activities: activities,
       };
     default:
       return state;
