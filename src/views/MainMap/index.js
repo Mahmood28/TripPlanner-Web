@@ -7,10 +7,11 @@ import Map from "./Map";
 import { TextField, Slider, Typography, Button } from "@material-ui/core";
 import { Tune, Star } from "@material-ui/icons/";
 import { DialogContainer, FilterContainer, StyledRating } from "./styles";
+import { Redirect } from "react-router";
 
 const MainMap = () => {
-  const location = JSON.parse(localStorage.getItem("ActiveTrip")).destination;
   const { activities } = useSelector((state) => state.activity);
+  const activeTrip = JSON.parse(localStorage.getItem("ActiveTrip"));
   const maxPrice = Math.max(
     ...activities.map((activity) => +activity.price.amount)
   );
@@ -21,12 +22,19 @@ const MainMap = () => {
   };
   const [shown, setShown] = useState(false);
   const [filter, setFilter] = useState(initialFilter);
-    
+
+  if (!activeTrip) return <Redirect to="/home" />;
+
   if (activities.length === 0) return <Loading />;
+
+  const location = activeTrip.destination;
+
   return (
     <>
       <DialogContainer>
-        <Typography variant="h3">Explore Activities in {location.city}</Typography>
+        <Typography variant="h3">
+          Explore Activities in {location.city}
+        </Typography>
         <Button onClick={() => setShown(!shown)}>
           <Tune />
         </Button>
