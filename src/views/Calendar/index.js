@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useState } from "react";
 // react components used to create a calendar with events on it
 import { Calendar as BigCalendar, momentLocalizer } from "react-big-calendar";
 // dependency plugin for react-big-calendar
@@ -27,8 +27,8 @@ const useStyles = makeStyles(styles);
 
 export default function Calendar() {
   const classes = useStyles();
-  const [events, setEvents] = React.useState(calendarEvents);
-  const [alert, setAlert] = React.useState(null);
+  const [events, setEvents] = useState(calendarEvents);
+  const [alert, setAlert] = useState(null);
   const selectedEvent = (event) => {
     window.alert(event.title);
   };
@@ -70,28 +70,6 @@ export default function Calendar() {
   };
   return (
     <div>
-      <Heading
-        textAlign="center"
-        title="React Big Calendar"
-        category={
-          <span>
-            A beautiful react component made by{" "}
-            <a
-              href="https://github.com/intljusticemission?ref=creativetim"
-              target="_blank"
-            >
-              International Justice Mission
-            </a>
-            . Please checkout their{" "}
-            <a
-              href="https://github.com/intljusticemission/react-big-calendar?ref=creativetim"
-              target="_blank"
-            >
-              full documentation.
-            </a>
-          </span>
-        }
-      />
       {alert}
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={10}>
@@ -101,7 +79,7 @@ export default function Calendar() {
                 selectable
                 localizer={localizer}
                 events={events}
-                defaultView="month"
+                defaultView="agenda"
                 scrollToTime={new Date(1970, 1, 1, 6)}
                 defaultDate={new Date()}
                 onSelectEvent={(event) => selectedEvent(event)}

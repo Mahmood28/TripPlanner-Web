@@ -13,10 +13,18 @@ const tripReducer = (state = initialState, action) => {
         trip: action.payload,
       };
     case types.ADD_ACTIVITY:
-      return { 
-        ...state, 
-        activities: [...state.activities, action.payload] };
-
+      const activities = [...state.activities, action.payload];
+      const activitiesId = activities.map((activity) => activity.id);
+      localStorage.setItem("myActivities", JSON.stringify(activitiesId));
+      return {
+        ...state,
+        activities,
+      };
+    case types.SET_TRIP_ACTIVITIES:
+      return {
+        ...state,
+        activities: action.payload,
+      };
     default:
       return state;
   }

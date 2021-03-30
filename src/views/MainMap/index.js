@@ -9,7 +9,7 @@ import { Tune } from "@material-ui/icons/";
 import { DialogContainer, FilterContainer } from "./styles";
 
 const MainMap = () => {
-  const location = JSON.parse(localStorage.getItem("ActiveTrip")).destination;
+  const location = JSON.parse(localStorage.getItem("activeTrip")).destination;
   const { activities } = useSelector((state) => state.activity);
   const maxPrice = Math.max(
     ...activities.map((activity) => +activity.price.amount)
@@ -21,12 +21,14 @@ const MainMap = () => {
   };
   const [shown, setShown] = useState(false);
   const [filter, setFilter] = useState(initialFilter);
-    
+
   if (activities.length === 0) return <Loading />;
   return (
     <>
       <DialogContainer>
-        <Typography variant="h3">Explore Activities in {location.city}</Typography>
+        <Typography variant="h3">
+          Explore Activities in {location.city}
+        </Typography>
         <Button onClick={() => setShown(!shown)}>
           <Tune />
         </Button>

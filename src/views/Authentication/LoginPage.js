@@ -110,7 +110,9 @@ export default function LoginPage() {
                   }}
                   onChange={handleChange}
                 />
-                <a href="/signup">Don't have an account? Signup</a>
+                <a href="/signup" style={{ color: "#e91e63" }}>
+                  Don't have an account? Signup
+                </a>
               </CardBody>
               <CardFooter className={classes.justifyContentCenter}>
                 <Button

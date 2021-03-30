@@ -3,7 +3,6 @@ import * as types from "../types";
 
 export const searchActivities = (destination) => async (dispatch) => {
   try {
-    console.log(destination);
     const res = await instance.post("/activities", destination);
     dispatch({
       type: types.SEARCH_ACTIVITY,

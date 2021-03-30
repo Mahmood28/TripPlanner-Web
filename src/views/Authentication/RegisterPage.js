@@ -182,7 +182,9 @@ export default function RegisterPage() {
                       }}
                     />
                     <Box mt={2} ml={2}>
-                      <a href="/signin">Already have an account? Signin</a>
+                      <a href="/signin" style={{ color: "#e91e63" }}>
+                        Already have an account? Signin
+                      </a>
                     </Box>
                     <div className={classes.center}>
                       <Box mt={4} ml={6}>
