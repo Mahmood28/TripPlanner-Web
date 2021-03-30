@@ -8,7 +8,6 @@ import TripHistory from "views/TripHistory";
 // @material-ui/icons
 import { DateRange, Place, Timeline, GridOn, Map } from "@material-ui/icons/";
 
-
 const routes = [
   {
     path: "explore",
@@ -59,9 +58,9 @@ const routes = [
     layout: "/",
     redirect: true,
   },
-    {
+  {
     path: "history",
-    name: "History",
+    name: "Trips History",
     component: TripHistory,
     layout: "/",
     redirect: true,

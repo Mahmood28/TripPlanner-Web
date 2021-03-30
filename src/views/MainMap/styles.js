@@ -31,8 +31,10 @@ export const customIcon = {
 
 export const StyledMapContainer = styled.div`
   position: relative;
-  height: 500px;
+  height: 90vh;
   width: 100%;
+  border-radius: 6px;
+  over-flow: hidden;
 `;
 
 export const StyledMapElement = styled.div`

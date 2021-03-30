@@ -18,6 +18,7 @@ const useStyles = makeStyles(() => ({
   formInput: {
     marginTop: 10,
     marginBottom: 10,
+    width: "70ch",
   },
 }));
 
@@ -58,7 +59,9 @@ const ActivityForm = ({ day }) => {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Add Activity to Day 1</DialogTitle>
+        <DialogTitle>
+          <h4>Add Activity to Day 1</h4>
+        </DialogTitle>
         <DialogContent>
           {/* <DialogContentText>
             To subscribe to this website, please enter your email address here.
@@ -71,8 +74,7 @@ const ActivityForm = ({ day }) => {
             label="Activity"
             type="text"
             autoComplete="off"
-            placeholder="add a title to your activity"
-            fullWidth
+            placeholder="add a custom title to your activity"
             className={classes.formInput}
             InputLabelProps={{
               shrink: true,
@@ -86,7 +88,6 @@ const ActivityForm = ({ day }) => {
             label="Start Time"
             type="time"
             defaultValue={new Date()}
-            fullWidth
             className={classes.formInput}
             InputLabelProps={{
               shrink: true,
@@ -100,7 +101,6 @@ const ActivityForm = ({ day }) => {
             label="End Time"
             type="time"
             defaultValue={new Date()}
-            fullWidth
             className={classes.formInput}
             InputLabelProps={{
               shrink: true,
@@ -115,9 +115,6 @@ const ActivityForm = ({ day }) => {
               },
             ]}
           />
-          {/* <Button color="warning" simple size="lg" block>
-            Select Activity
-          </Button> */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="rose">

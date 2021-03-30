@@ -27,7 +27,7 @@ export default function TripHistory() {
   ));
   return (
     <div>
-      <h3>Trips History</h3>
+      <br />
       <br />
       <GridContainer>{trips}</GridContainer>
     </div>

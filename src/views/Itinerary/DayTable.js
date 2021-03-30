@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // material-ui icons
@@ -19,19 +20,13 @@ import styles from "assets/jss/material-dashboard-pro-react/views/extendedTables
 const useStyles = makeStyles(styles);
 
 const DayTable = ({ day }) => {
-  const [checked, setChecked] = useState([]);
-  const handleToggle = (value) => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-    setChecked(newChecked);
-  };
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const _activities = day.activities.sort(
+    (a, b) => a.DayActivity.startTime - b.DayActivity.startTime
+  );
+  console.log("sorted activities", _activities);
 
   const editButton = (
     <Button color="warning" simple className={classes.actionButton}>
@@ -39,12 +34,19 @@ const DayTable = ({ day }) => {
     </Button>
   );
 
-  const deleteButton = (
-    <Button color="rose" simple className={classes.actionButton}>
-      <Close className={classes.icon} />
-    </Button>
-  );
-  console.log("day activities", day.activities);
+  const deleteButton = (dayId, activityId) => {
+    return (
+      <Button
+        color="rose"
+        simple
+        className={classes.actionButton}
+        onClick={() => alert(`delete actvity ${activityId} from day ${dayId}`)}
+      >
+        <Close className={classes.icon} />
+      </Button>
+    );
+  };
+
   let data = [["", "", "Start your day plan by adding activities", "", ""]];
 
   if (day.activities.length > 0) {
@@ -56,11 +58,9 @@ const DayTable = ({ day }) => {
       )} -${activity.DayActivity.endTime.slice(0, -3)}`,
       activity.name,
       "",
-      [editButton, deleteButton],
+      [editButton, deleteButton(day.id, activity.id)],
     ]);
-    console.log(`Day ${day.day}`, data);
   }
-  console.log(`Day ${day.day}`, data);
 
   return (
     <GridItem xs={12}>
