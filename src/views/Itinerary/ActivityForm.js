@@ -60,7 +60,7 @@ const ActivityForm = ({ day }) => {
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle>
-          <h4>Add Activity to Day 1</h4>
+          <h4>Add Activity to Day {day}</h4>
         </DialogTitle>
         <DialogContent>
           {/* <DialogContentText>
