@@ -22,6 +22,7 @@ import AdminNavbarLinks from "components/Navbars/AdminNavbarLinks.js";
 import sidebarStyle from "assets/jss/material-dashboard-pro-react/components/sidebarStyle.js";
 
 import avatar from "assets/img/faces/avatar.jpg";
+import { connect, useSelector } from "react-redux";
 
 var ps;
 
@@ -106,7 +107,7 @@ class Sidebar extends React.Component {
   }
   // this function creates the links and collapses that appear in the sidebar (left menu)
   createLinks = (routes) => {
-    const { classes, color, rtlActive } = this.props;
+    const { classes, color, rtlActive, currUser } = this.props;
     return routes.map((prop, key) => {
       if (prop.redirect) {
         return null;
@@ -305,6 +306,7 @@ class Sidebar extends React.Component {
       routes,
       bgColor,
       rtlActive,
+      currUser,
     } = this.props;
     const itemText =
       classes.itemText +
@@ -349,7 +351,7 @@ class Sidebar extends React.Component {
       cx({
         [classes.photoRTL]: rtlActive,
       });
-    var user = (
+    var user = currUser ? (
       <div className={userWrapperClass}>
         <div className={photo}>
           <img src={avatar} className={classes.avatarImg} alt="..." />
@@ -362,7 +364,7 @@ class Sidebar extends React.Component {
               onClick={() => this.openCollapse("openAvatar")}
             >
               <ListItemText
-                primary="User Name"
+                primary="Username"
                 secondary={
                   <b
                     className={
@@ -382,7 +384,7 @@ class Sidebar extends React.Component {
               <List className={classes.list + " " + classes.collapseList}>
                 <ListItem className={classes.collapseItem}>
                   <NavLink
-                    to="#"
+                    to="/profile"
                     className={
                       classes.itemLink + " " + classes.userCollapseLinks
                     }
@@ -445,7 +447,7 @@ class Sidebar extends React.Component {
           </ListItem>
         </List>
       </div>
-    );
+    ) : null;
     var links = (
       <List className={classes.list}>{this.createLinks(routes)}</List>
     );
@@ -592,4 +594,10 @@ SidebarWrapper.propTypes = {
   links: PropTypes.object,
 };
 
-export default withStyles(sidebarStyle)(Sidebar);
+const mapStateToProps = (state) => {
+  return {
+    currUser: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(withStyles(sidebarStyle)(Sidebar));
