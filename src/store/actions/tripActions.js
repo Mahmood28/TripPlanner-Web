@@ -18,3 +18,4 @@ export const handleActivity = (activity) => ({
   type: types.HANDLE_ACTIVITY,
   payload: activity,
 });
+
