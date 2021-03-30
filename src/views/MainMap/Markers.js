@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Marker, InfoWindow } from "react-google-maps";
-import { useToasts } from "react-toast-notifications";
 //Components
 import ActivityDetails from "./ActivityDetails";
 //Styling
+import { useToasts } from "react-toast-notifications";
 import { Divider } from "@material-ui/core";
 import {
   ButtonContainer,
