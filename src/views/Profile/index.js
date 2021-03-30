@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router";
 //Styling
-import { Typography, Button } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import {
   ProfilePicture,
   TabButton,

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 // Components
 import Map from "./Map";
 //Styling
-import { TextField, Slider, Typography, Button, Box } from "@material-ui/core";
+import { TextField, Slider, Typography, Button } from "@material-ui/core";
 import { Tune, Star } from "@material-ui/icons/";
 import { DialogContainer, FilterContainer, StyledRating } from "./styles";
 

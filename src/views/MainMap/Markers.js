@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { Marker, InfoWindow } from "react-google-maps";
 import { useToasts } from "react-toast-notifications";
