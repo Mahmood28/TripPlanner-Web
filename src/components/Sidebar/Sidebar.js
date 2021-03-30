@@ -23,7 +23,6 @@ import AdminNavbarLinks from "components/Navbars/AdminNavbarLinks.js";
 import sidebarStyle from "assets/jss/material-dashboard-pro-react/components/sidebarStyle.js";
 
 import avatar from "assets/img/faces/avatar3.png";
-import { useSelector } from "react-redux";
 
 var ps;
 
@@ -110,9 +109,7 @@ class Sidebar extends React.Component {
   }
   // this function creates the links and collapses that appear in the sidebar (left menu)
   createLinks = (routes) => {
-    const { currUser } = this.props;
-
-    const { classes, color, rtlActive } = this.props;
+    const { classes, color, rtlActive, currUser } = this.props;
     return routes.map((prop, key) => {
       if (prop.redirect) {
         return null;
@@ -394,7 +391,7 @@ class Sidebar extends React.Component {
                   <List className={classes.list + " " + classes.collapseList}>
                     <ListItem className={classes.collapseItem}>
                       <NavLink
-                        to="#"
+                        to="/profile"
                         className={
                           classes.itemLink + " " + classes.userCollapseLinks
                         }
@@ -470,7 +467,6 @@ class Sidebar extends React.Component {
             />
           </NavLink>
         )}
-        {/*  */}
       </div>
     );
     var links = (

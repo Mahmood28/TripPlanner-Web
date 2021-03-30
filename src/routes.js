@@ -1,10 +1,10 @@
 // Components
 import MainMap from "views/MainMap";
-import FullScreenMap from "template/Maps/FullScreenMap";
 import Test from "views/Test";
 // @material-ui/icons
-import DateRange from "@material-ui/icons/DateRange";
-import Place from "@material-ui/icons/Place";
+import { DateRange, Place } from "@material-ui/icons/";
+import Profile from "./views/Profile";
+import ProfileEdit from "./views/Profile/ProfileEdit";
 
 const routes = [
   {
@@ -20,6 +20,20 @@ const routes = [
     icon: DateRange,
     component: Test,
     layout: "/",
+  },
+  {
+    path: "profile/edit",
+    name: "Edit Profile",
+    component: ProfileEdit,
+    layout: "/",
+    redirect: true,
+  },
+  {
+    path: "profile",
+    name: "Profile",
+    component: Profile,
+    layout: "/",
+    redirect: true,
   },
 ];
 export default routes;

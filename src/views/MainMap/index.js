@@ -5,8 +5,8 @@ import Loading from "components/Loading";
 import Map from "./Map";
 //Styling
 import { TextField, Slider, Typography, Button } from "@material-ui/core";
-import { Tune } from "@material-ui/icons/";
-import { DialogContainer, FilterContainer } from "./styles";
+import { Tune, Star } from "@material-ui/icons/";
+import { DialogContainer, FilterContainer, StyledRating } from "./styles";
 
 const MainMap = () => {
   const location = JSON.parse(localStorage.getItem("ActiveTrip")).destination;
@@ -16,7 +16,7 @@ const MainMap = () => {
   );
   const initialFilter = {
     price: [0, Infinity],
-    rating: 1,
+    rating: 0,
     query: "",
   };
   const [shown, setShown] = useState(false);
@@ -48,37 +48,24 @@ const MainMap = () => {
             </Typography>
             <Slider
               value={filter.price}
-              onChange={(event, priceRange) =>
-                setFilter({ ...filter, price: priceRange })
-              }
+              onChange={(event, price) => setFilter({ ...filter, price })}
               step={10}
               valueLabelDisplay="auto"
               aria-labelledby="range-slider"
               max={Math.round(maxPrice + 10)}
-              style={{ width: "200px", marginLeft: "20px" }}
+              style={{ width: "200px", marginLeft: "30px" }}
             />
           </div>
           <div>
             <Typography style={{ textAlign: "center" }} gutterBottom>
               Rating
             </Typography>
-            <Slider
+            <StyledRating
+              name="simple-controlled"
               value={filter.rating}
-              onChange={(event, newValue) =>
-                setFilter({ ...filter, rating: newValue })
-              }
-              defaultValue={1}
-              aria-labelledby="discrete-slider"
-              valueLabelDisplay="auto"
-              step={0.5}
-              marks
-              min={1}
-              max={5}
-              style={{
-                width: "200px",
-                marginLeft: "20px",
-                marginRight: "20px",
-              }}
+              onChange={(event, rating) => setFilter({ ...filter, rating })}
+              precision={0.5}
+              icon={<Star fontSize="30px" />}
             />
           </div>
           <Button contained onClick={() => setFilter(initialFilter)}>
