@@ -18,7 +18,7 @@ const tripReducer = (state = initialState, action) => {
         ...state,
         activities: action.payload,
       };
-    case types.ADD_TO_ITINERARY:
+    case types.ADD_ACTIVITY:
       return {
         ...state,
         itinerary: action.payload,

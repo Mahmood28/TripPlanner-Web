@@ -26,11 +26,11 @@ export const fetchActivities = (activites) => async (dispatch) => {
   }
 };
 
-export const addToItinerary = (activity) => async (dispatch) => {
+export const addActivity = (activity) => async (dispatch) => {
   try {
     const res = await instance.post(`/trip/activities`, activity);
     dispatch({
-      type: types.ADD_TO_ITINERARY,
+      type: types.ADD_ACTIVITY,
       payload: res.data,
     });
   } catch (error) {

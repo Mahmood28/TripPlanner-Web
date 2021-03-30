@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addToItinerary } from "store/actions/tripActions";
+import { addActivity } from "store/actions/tripActions";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -16,7 +16,6 @@ import ActivityList from "views/Itinerary/ActivityList";
 
 const useStyles = makeStyles(() => ({
   formInput: {
-    // width: "40ch",
     marginTop: 10,
     marginBottom: 10,
   },
@@ -44,7 +43,7 @@ const ActivityForm = ({ day }) => {
   const handleSubmit = () => {
     activity.activityId = event.id;
     const newActivity = { tripId, day, activity };
-    dispatch(addToItinerary(newActivity));
+    dispatch(addActivity(newActivity));
     handleClose();
     setActivity({});
   };
@@ -54,9 +53,6 @@ const ActivityForm = ({ day }) => {
       <Button color="rose" round onClick={handleClickOpen}>
         Add Activity
       </Button>
-      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open form dialog
-      </Button> */}
       <Dialog
         open={open}
         onClose={handleClose}
