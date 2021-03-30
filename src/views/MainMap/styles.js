@@ -6,6 +6,8 @@ import {
   Button,
   CardHeader,
 } from "@material-ui/core";
+import { Rating } from "@material-ui/lab";
+import { withStyles } from "@material-ui/core/styles";
 
 export const StyledMapContainer = styled.div`
   position: relative;
@@ -325,3 +327,16 @@ export const FilterContainer = styled(StyledContainer)`
   flex: 1;
   margin-bottom: 10px;
 `;
+
+export const StyledRating = withStyles({
+  iconFilled: {
+    color: "#daa520",
+  },
+  iconHover: {
+    color: "#daa520",
+  },
+  root: {
+    marginLeft: "30px",
+    marginRight: "30px",
+  },
+})(Rating);

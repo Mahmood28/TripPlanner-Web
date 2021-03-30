@@ -1,6 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useToasts } from "react-toast-notifications";
+// Store
+import { addActivity } from "../../store/actions/tripActions";
+//Styling
 import {
   Dialog,
   DialogTitle,
@@ -10,17 +13,9 @@ import {
   Button,
 } from "@material-ui/core";
 import { DialogContainer, StyledImage, StyledDescription } from "./styles";
+import { Rating } from "@material-ui/lab";
 
-// Store
-import { addActivity } from "../../store/actions/tripActions";
-
-const ActivityDetails = ({
-  activity,
-  details,
-  handleDetails,
-  starRating,
-  handleOpen,
-}) => {
+const ActivityDetails = ({ activity, details, handleDetails, handleOpen }) => {
   const dispatch = useDispatch();
   const { addToast } = useToasts();
   const add = (activity) => {
@@ -48,7 +43,7 @@ const ActivityDetails = ({
         </StyledDescription>
         <DialogContainer>
           <Typography gutterBottom align="left">
-            {starRating(activity.rating)}
+            <Rating defaultValue={activity.rating} precision={0.25} readOnly />
           </Typography>
           <Typography gutterBottom align="right">
             {`${activity.price.currencyCode} ${activity.price.amount}`}
