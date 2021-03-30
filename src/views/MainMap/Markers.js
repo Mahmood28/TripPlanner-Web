@@ -21,8 +21,6 @@ import {
   StarContainer,
 } from "./styles";
 
-const Markers = ({ open, handleOpen, details, handleDetails, activities }) => {
-  
 const Markers = ({
   open,
   handleOpen,

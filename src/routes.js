@@ -5,6 +5,7 @@ import Test from "views/Test";
 // @material-ui/icons
 import DateRange from "@material-ui/icons/DateRange";
 import Place from "@material-ui/icons/Place";
+import TripHistory from "views/TripHistory";
 
 const routes = [
   {
@@ -20,6 +21,13 @@ const routes = [
     icon: DateRange,
     component: Test,
     layout: "/",
+  },
+  {
+    path: "history",
+    name: "History",
+    component: TripHistory,
+    layout: "/",
+    redirect: true,
   },
 ];
 export default routes;

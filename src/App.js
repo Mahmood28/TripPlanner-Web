@@ -6,11 +6,12 @@ import MainLayout from "layouts/Main";
 import Home from "views/Home";
 import Signin from "views/Authentication/Signin";
 import Signup from "views/Authentication/Signup";
-
+// import TripHistory from "views/TripHistory";
 function App() {
   return (
     <ToastProvider>
       <Switch>
+        {/* <Route path="/history" component={TripHistory} /> */}
         <Route path="/home" component={Home} />
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
