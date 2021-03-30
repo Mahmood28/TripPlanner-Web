@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { deleteTrip } from "store/actions/tripActions";
 import moment from "moment";
 import { useToasts } from "react-toast-notifications";
 
@@ -9,30 +10,23 @@ import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
 
 // @material-ui/icons
-
 // import InfoOutline from "@material-ui/icons/InfoOutline";
-
 import Refresh from "@material-ui/icons/Refresh";
+import Close from "@material-ui/icons/Close";
 import Edit from "@material-ui/icons/Edit";
 import Place from "@material-ui/icons/Place";
 import ArtTrack from "@material-ui/icons/ArtTrack";
 
 // core components
-
 import GridItem from "components/Grid/GridItem.js";
-
 import Button from "components/CustomButtons/Button.js";
-
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
-
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 
 import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
-
 import priceImage1 from "assets/img/card-2.jpeg";
-import { deleteTrip } from "store/actions/tripActions";
 
 const useStyles = makeStyles(styles);
 
@@ -61,7 +55,7 @@ export default function TripItem({ trip }) {
           <div className={classes.cardHoverUnder}>
             <Tooltip
               id="tooltip-top"
-              title="View"
+              title="Details"
               placement="bottom"
               classes={{ tooltip: classes.tooltip }}
             >
@@ -75,18 +69,18 @@ export default function TripItem({ trip }) {
               placement="bottom"
               classes={{ tooltip: classes.tooltip }}
             >
-              <Button color="success" simple justIcon>
-                <Refresh className={classes.underChartIcons} />
+              <Button color="warning" simple justIcon>
+                <Edit className={classes.underChartIcons} />
               </Button>
             </Tooltip>
             <Tooltip
               id="tooltip-top"
-              title="Remove"
+              title="Delete"
               placement="bottom"
               classes={{ tooltip: classes.tooltip }}
             >
-              <Button color="danger" simple justIcon onClick={handleDelete}>
-                <Edit className={classes.underChartIcons} />
+              <Button color="rose" simple justIcon onClick={handleDelete}>
+                <Close className={classes.underChartIcons} />
               </Button>
             </Tooltip>
           </div>

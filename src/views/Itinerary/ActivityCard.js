@@ -10,7 +10,7 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
-    width: "70ch",
+    width: "74ch",
     height: "15ch",
   },
   cover: {

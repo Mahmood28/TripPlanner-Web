@@ -1,17 +1,29 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { fetchItinerary } from "store/actions/tripActions";
 // Components
+import GridContainer from "components/Grid/GridContainer.js";
+import GridItem from "components/Grid/GridItem.js";
+import Card from "components/Card/Card.js";
+import CardBody from "components/Card/CardBody.js";
+import CardIcon from "components/Card/CardIcon.js";
+import CardHeader from "components/Card/CardHeader.js";
 import Loading from "components/Loading";
 import Map from "./Map";
-//Styling
+// Styling
 import { TextField, Slider, Typography, Button } from "@material-ui/core";
 import { Tune, Star } from "@material-ui/icons/";
 import { DialogContainer, FilterContainer, StyledRating } from "./styles";
 import { Redirect } from "react-router";
 
 const MainMap = () => {
+  const dispatch = useDispatch();
+
   const { activities } = useSelector((state) => state.activity);
   const activeTrip = JSON.parse(localStorage.getItem("activeTrip"));
+  dispatch(fetchItinerary({ id: activeTrip.id }));
+
   const maxPrice = Math.max(
     ...activities.map((activity) => +activity.price.amount)
   );
@@ -31,9 +43,7 @@ const MainMap = () => {
   return (
     <>
       <DialogContainer>
-        <Typography variant="h3">
-          Explore Activities in {location.city}
-        </Typography>
+        <h3>Explore Activities in {location.city}</h3>
         <Button onClick={() => setShown(!shown)}>
           <Tune />
         </Button>
@@ -80,13 +90,21 @@ const MainMap = () => {
           </Button>
         </FilterContainer>
       )}
-      <Map
-        isMarkerShown
-        lat={location.latitude}
-        lng={location.longitude}
-        filter={filter}
-        activities={activities}
-      />
+      <GridContainer>
+        <GridItem xs={12} sm={12} md={12}>
+          <Card>
+            <CardBody>
+              <Map
+                isMarkerShown
+                lat={location.latitude}
+                lng={location.longitude}
+                filter={filter}
+                activities={activities}
+              />
+            </CardBody>
+          </Card>
+        </GridItem>
+      </GridContainer>
     </>
   );
 };

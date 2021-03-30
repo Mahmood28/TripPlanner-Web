@@ -4,7 +4,7 @@ import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker
+  Marker,
 } from "react-google-maps";
 
 // @material-ui/core components
@@ -28,8 +28,8 @@ const styles = {
   cardIconTitle: {
     ...cardTitle,
     marginTop: "15px",
-    marginBottom: "0px"
-  }
+    marginBottom: "0px",
+  },
 };
 
 const useStyles = makeStyles(styles);
@@ -41,7 +41,7 @@ const SatelliteMap = withScriptjs(
       mapTypeId={"satellite"}
       defaultCenter={{ lat: 40.748817, lng: -73.985428 }}
       defaultOptions={{
-        scrollwheel: false
+        scrollwheel: false,
       }}
     >
       <Marker position={{ lat: 40.748817, lng: -73.985428 }} />
@@ -55,7 +55,7 @@ const RegularMap = withScriptjs(
       defaultZoom={8}
       defaultCenter={{ lat: 40.748817, lng: -73.985428 }}
       defaultOptions={{
-        scrollwheel: false
+        scrollwheel: false,
       }}
     >
       <Marker position={{ lat: 40.748817, lng: -73.985428 }} />
@@ -78,8 +78,8 @@ const CustomSkinMap = withScriptjs(
             stylers: [
               { saturation: 43 },
               { lightness: -11 },
-              { hue: "#0088ff" }
-            ]
+              { hue: "#0088ff" },
+            ],
           },
           {
             featureType: "road",
@@ -87,51 +87,51 @@ const CustomSkinMap = withScriptjs(
             stylers: [
               { hue: "#ff0000" },
               { saturation: -100 },
-              { lightness: 99 }
-            ]
+              { lightness: 99 },
+            ],
           },
           {
             featureType: "road",
             elementType: "geometry.stroke",
-            stylers: [{ color: "#808080" }, { lightness: 54 }]
+            stylers: [{ color: "#808080" }, { lightness: 54 }],
           },
           {
             featureType: "landscape.man_made",
             elementType: "geometry.fill",
-            stylers: [{ color: "#ece2d9" }]
+            stylers: [{ color: "#ece2d9" }],
           },
           {
             featureType: "poi.park",
             elementType: "geometry.fill",
-            stylers: [{ color: "#ccdca1" }]
+            stylers: [{ color: "#ccdca1" }],
           },
           {
             featureType: "road",
             elementType: "labels.text.fill",
-            stylers: [{ color: "#767676" }]
+            stylers: [{ color: "#767676" }],
           },
           {
             featureType: "road",
             elementType: "labels.text.stroke",
-            stylers: [{ color: "#ffffff" }]
+            stylers: [{ color: "#ffffff" }],
           },
           { featureType: "poi", stylers: [{ visibility: "off" }] },
           {
             featureType: "landscape.natural",
             elementType: "geometry.fill",
-            stylers: [{ visibility: "on" }, { color: "#b8cb93" }]
+            stylers: [{ visibility: "on" }, { color: "#b8cb93" }],
           },
           { featureType: "poi.park", stylers: [{ visibility: "on" }] },
           {
             featureType: "poi.sports_complex",
-            stylers: [{ visibility: "on" }]
+            stylers: [{ visibility: "on" }],
           },
           { featureType: "poi.medical", stylers: [{ visibility: "on" }] },
           {
             featureType: "poi.business",
-            stylers: [{ visibility: "simplified" }]
-          }
-        ]
+            stylers: [{ visibility: "simplified" }],
+          },
+        ],
       }}
     >
       <Marker position={{ lat: 40.748817, lng: -73.985428 }} />
@@ -160,7 +160,7 @@ export default function GoogleMaps() {
                   style={{
                     height: `280px`,
                     borderRadius: "6px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   }}
                 />
               }
@@ -186,7 +186,7 @@ export default function GoogleMaps() {
                   style={{
                     height: `280px`,
                     borderRadius: "6px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   }}
                 />
               }
@@ -214,7 +214,7 @@ export default function GoogleMaps() {
                   style={{
                     height: `280px`,
                     borderRadius: "6px",
-                    overflow: "hidden"
+                    overflow: "hidden",
                   }}
                 />
               }
