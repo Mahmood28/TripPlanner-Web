@@ -14,8 +14,26 @@ export const tripCreate = (trip) => async (dispatch) => {
   }
 };
 
+export const addActivity = (activity) => {
+  return { type: types.ADD_ACTIVITY, payload: activity };
+};
+
+export const deleteTrip = (tripId, history) => async (dispatch) => {
+  try {
+    const res = await instance.delete(`/trips/${tripId}`);
+    history.go("/history");
+    // dispatch({
+    //   type: types.SET_TRIP,
+    //   payload: res.data,
+    // });
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
+
 export const handleActivity = (activity) => ({
   type: types.HANDLE_ACTIVITY,
   payload: activity,
 });
+
 

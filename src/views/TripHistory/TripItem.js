@@ -1,5 +1,9 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import moment from "moment";
+import { useToasts } from "react-toast-notifications";
+
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -28,11 +32,23 @@ import CardFooter from "components/Card/CardFooter.js";
 import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
 
 import priceImage1 from "assets/img/card-2.jpeg";
+import { deleteTrip } from "store/actions/tripActions";
 
 const useStyles = makeStyles(styles);
 
 export default function TripItem({ trip }) {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const classes = useStyles();
+  const { addToast } = useToasts();
+  const handleDelete = () => {
+    addToast("Trip Deleted", {
+      appearance: "warning",
+      autoDismiss: true,
+    });
+    dispatch(deleteTrip(trip.id, history));
+  };
+
   return (
     <GridItem xs={12} sm={12} md={4}>
       <Card product className={classes.cardHover}>
@@ -69,7 +85,7 @@ export default function TripItem({ trip }) {
               placement="bottom"
               classes={{ tooltip: classes.tooltip }}
             >
-              <Button color="danger" simple justIcon>
+              <Button color="danger" simple justIcon onClick={handleDelete}>
                 <Edit className={classes.underChartIcons} />
               </Button>
             </Tooltip>
