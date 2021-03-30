@@ -57,3 +57,13 @@ export const checkForToken = () => (dispatch) => {
     }
   }
 };
+
+// FETCH HISTORY
+export const fetchHistory = () => async (dispatch) => {
+  try {
+    const res = await instance.get(`/`);
+    dispatch({ type: types.FETCH_HISTORY, payload: res.data });
+  } catch (error) {
+    console.log("Error: ", error);
+  }
+};

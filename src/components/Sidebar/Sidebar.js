@@ -406,7 +406,7 @@ class Sidebar extends React.Component {
                     </ListItem>
                     <ListItem className={classes.collapseItem}>
                       <NavLink
-                        to="#"
+                        to="/history"
                         className={
                           classes.itemLink + " " + classes.userCollapseLinks
                         }

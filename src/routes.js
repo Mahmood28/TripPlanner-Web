@@ -5,6 +5,7 @@ import Test from "views/Test";
 import { DateRange, Place } from "@material-ui/icons/";
 import Profile from "./views/Profile";
 import ProfileEdit from "./views/Profile/ProfileEdit";
+import TripHistory from "views/TripHistory";
 
 const routes = [
   {
@@ -32,6 +33,13 @@ const routes = [
     path: "profile",
     name: "Profile",
     component: Profile,
+    layout: "/",
+    redirect: true,
+  },
+    {
+    path: "history",
+    name: "History",
+    component: TripHistory,
     layout: "/",
     redirect: true,
   },
