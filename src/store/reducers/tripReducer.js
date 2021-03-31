@@ -18,18 +18,6 @@ const tripReducer = (state = initialState, action) => {
         ...state,
         activities: action.payload,
       };
-    case types.ADD_ACTIVITY:
-      return {
-        ...state,
-        itinerary: action.payload,
-      };
-    case types.DELETE_ACTIVITY:
-      return {
-        ...state,
-        itinerary: state.itinerary.filter(
-          (activity) => activity.id !== action.payload
-        ),
-      };
     case types.SET_ITINERARY:
       return {
         ...state,
