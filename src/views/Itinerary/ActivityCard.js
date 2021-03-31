@@ -24,7 +24,6 @@ const useStyles = makeStyles(() => ({
 
 const ActivityCard = ({ activity, setEvent }) => {
   const classes = useStyles();
-
   return (
     <Box mb={2}>
       <ButtonBase

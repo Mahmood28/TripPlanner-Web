@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addActivity } from "store/actions/tripActions";
+import { updateActivity } from "store/actions/tripActions";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -9,12 +9,18 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+// material-ui icons
+import Edit from "@material-ui/icons/Edit";
 // Core Components
 import Button from "components/CustomButtons/Button";
 import Accordion from "components/Accordion/Accordion";
 import ActivityList from "views/Itinerary/ActivityList";
 
-const useStyles = makeStyles(() => ({
+import styles from "assets/jss/material-dashboard-pro-react/views/extendedTablesStyle.js";
+
+const useStyles = makeStyles(styles);
+
+const inputStyles = makeStyles(() => ({
   formInput: {
     marginTop: 10,
     marginBottom: 10,
@@ -22,47 +28,61 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const ActivityForm = ({ day }) => {
-  const classes = useStyles();
+const EditForm = ({ activityNum, day, activityId }) => {
+  const _classes = useStyles();
+  const classes = inputStyles();
   const dispatch = useDispatch();
 
-  const tripId = JSON.parse(localStorage.getItem("activeTrip")).id;
+  const foundActivity = day.activities.find(
+    (activity) => activity.id === activityId
+  );
+  const currActivity = {
+    dayId: day.id,
+    activityId,
+    name: foundActivity.DayActivity.name,
+    startTime: foundActivity.DayActivity.startTime,
+    endTime: foundActivity.DayActivity.endTime,
+  };
 
-  const [activity, setActivity] = useState({});
-  const [event, setEvent] = useState({});
+  const [activity, setActivity] = useState(currActivity);
+  const [event, setEvent] = useState(foundActivity);
   const [open, setOpen] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
+  useEffect(() => {
+    activity.name = event.name;
+  }, [event]);
+
+  const handleCancel = () => {
     setOpen(false);
+    setActivity(currActivity);
   };
   const handleChange = (event) => {
     setActivity({ ...activity, [event.target.name]: event.target.value });
   };
   const handleSubmit = () => {
-    activity.activityId = event.id;
-    const newActivity = { tripId, day, activity };
-    dispatch(addActivity(newActivity));
-    handleClose();
-    setActivity({});
+    const newActivity = { ...activity, dayId: day.id, activityId: event.id };
+    dispatch(updateActivity([currActivity, newActivity]));
+    setOpen(false);
+    setActivity(newActivity);
   };
 
   return (
     <div>
-      <Button color="rose" round onClick={handleClickOpen}>
-        Add Activity
+      <Button
+        color="warning"
+        simple
+        className={_classes.actionButton}
+        onClick={() => setOpen(true)}
+      >
+        <Edit className={classes.icon} />
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogTitle>
-          <h4>Add Activity to Day {day}</h4>
+          <h4>
+            Edit Activity {activityNum} of Day {day.day}
+          </h4>
         </DialogTitle>
         <DialogContent>
-          {/* <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText> */}
           <TextField
             name="name"
             value={activity.name}
@@ -70,7 +90,6 @@ const ActivityForm = ({ day }) => {
             label="Activity"
             type="text"
             autoComplete="off"
-            placeholder="add a custom title to your activity"
             className={classes.formInput}
             InputLabelProps={{
               shrink: true,
@@ -113,11 +132,11 @@ const ActivityForm = ({ day }) => {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="rose">
+          <Button onClick={handleCancel} color="rose">
             Cancel
           </Button>
           <Button onClick={handleSubmit} color="warning">
-            Add
+            Edit
           </Button>
         </DialogActions>
       </Dialog>
@@ -125,4 +144,4 @@ const ActivityForm = ({ day }) => {
   );
 };
 
-export default ActivityForm;
+export default EditForm;

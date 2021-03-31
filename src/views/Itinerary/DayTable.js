@@ -15,6 +15,7 @@ import CardBody from "components/Card/CardBody.js";
 import CardIcon from "components/Card/CardIcon.js";
 import CardHeader from "components/Card/CardHeader.js";
 import ActivityForm from "views/Itinerary/ActivityForm";
+import EditForm from "views/Itinerary/EditForm";
 
 import styles from "assets/jss/material-dashboard-pro-react/views/extendedTablesStyle.js";
 
@@ -24,16 +25,27 @@ const DayTable = ({ day }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const _activities = day.activities.sort(
-    (a, b) => a.DayActivity.startTime - b.DayActivity.startTime
-  );
-  console.log("sorted activities", _activities);
+  // const _activities = day.activities.sort(
+  //   (a, b) => a.DayActivity.startTime - b.DayActivity.startTime
+  // );
+  // console.log("sorted activities", _activities);
 
-  const editButton = (
-    <Button color="warning" simple className={classes.actionButton}>
-      <Edit className={classes.icon} />
-    </Button>
-  );
+  // const editButton = (
+  //   <Button color="warning" simple className={classes.actionButton}>
+  //     <Edit className={classes.icon} />
+  //   </Button>
+  // );
+
+  const editButton = (activityNum, day, activityId) => {
+    return (
+      <EditForm
+        activityNum={activityNum}
+        day={day}
+        activityId={activityId}
+        key={activityId}
+      />
+    );
+  };
 
   const deleteButton = (dayId, activityId) => {
     return (
@@ -59,7 +71,10 @@ const DayTable = ({ day }) => {
       )} -${activity.DayActivity.endTime.slice(0, -3)}`,
       activity.name,
       "",
-      [editButton, deleteButton(day.id, activity.id)],
+      [
+        editButton(idx + 1, day, activity.id),
+        deleteButton(day.id, activity.id),
+      ],
     ]);
   }
 
