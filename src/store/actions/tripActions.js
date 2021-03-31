@@ -52,7 +52,7 @@ export const deleteActivity = (activity) => async (dispatch) => {
 
 export const deleteTrip = (tripId, history) => async (dispatch) => {
   try {
-    const res = await instance.delete(`/trips/${tripId}`);
+    const res = await instance.delete(`/trip/${tripId}`);
     history.go("/history");
     // dispatch({
     //   type: types.SET_TRIP,
