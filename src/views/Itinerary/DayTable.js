@@ -29,6 +29,8 @@ const DayTable = ({ day }) => {
   );
   console.log("sorted activities", _activities);
 
+  // REVIEW: Move edit and delete button into their own component files
+
   const editButton = (
     <Button color="warning" simple className={classes.actionButton}>
       <Edit className={classes.icon} />

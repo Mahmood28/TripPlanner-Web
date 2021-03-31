@@ -27,6 +27,7 @@ export default function TripHistory() {
   ));
   return (
     <div>
+      {/* REVIEW: I HATE brs */}
       <br />
       <br />
       <GridContainer>{trips}</GridContainer>

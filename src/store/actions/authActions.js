@@ -61,6 +61,7 @@ export const checkForToken = () => (dispatch) => {
 // FETCH HISTORY
 export const fetchHistory = () => async (dispatch) => {
   try {
+    // REVIEW: birdies should be used for interpolation only
     const res = await instance.get(`/`);
     dispatch({ type: types.FETCH_HISTORY, payload: res.data });
   } catch (error) {

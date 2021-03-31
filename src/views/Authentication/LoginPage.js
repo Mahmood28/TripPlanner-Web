@@ -28,11 +28,17 @@ import styles from "assets/jss/material-dashboard-pro-react/views/loginPageStyle
 import { signin } from "../../store/actions/authActions";
 import { Box } from "@material-ui/core";
 
+// REVIEW: cleanup imports
+
 const useStyles = makeStyles(styles);
 
 export default function LoginPage() {
   const dispatch = useDispatch();
   const history = useHistory();
+
+
+  // REVIEW: Hooks are used at the top of a component 
+  const [cardAnimaton, setCardAnimation] = useState("cardHidden");
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -41,12 +47,13 @@ export default function LoginPage() {
   const handleChange = (event) =>
     setUser({ ...user, [event.target.name]: event.target.value });
 
+  // REVIEW: REmove {}
   const handleSubmit = () => {
     dispatch(signin(user, history));
   };
 
-  const [cardAnimaton, setCardAnimation] = useState("cardHidden");
   useEffect(() => {
+    // REVIEW: USe arrows
     let id = setTimeout(function () {
       setCardAnimation("");
     }, 700);
@@ -55,6 +62,7 @@ export default function LoginPage() {
       window.clearTimeout(id);
     };
   });
+  // REVIEW: put the 2 useStyles under each other
   const classes = useStyles();
   return (
     <div className={classes.container}>

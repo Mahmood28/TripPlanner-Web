@@ -12,6 +12,7 @@ import LoginPage from "views/Authentication/LoginPage";
 const useStyles = makeStyles(styles);
 
 export default function Signin(props) {
+  console.log("🚀 ~ file: Signin.js ~ line 15 ~ Signin ~ props", props.children)
   const { ...rest } = props;
   // ref for the wrapper div
   const wrapper = React.createRef();
@@ -32,6 +33,7 @@ export default function Signin(props) {
           style={{ backgroundImage: "url(" + background + ")" }}
         >
           <LoginPage />
+          {/* {props.children} */}
         </div>
       </div>
     </div>

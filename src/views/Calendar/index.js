@@ -26,12 +26,16 @@ const localizer = momentLocalizer(moment);
 const useStyles = makeStyles(styles);
 
 export default function Calendar() {
+  // REVIEW: Add spaces, let the code breathe
   const classes = useStyles();
+
   const [events, setEvents] = useState(calendarEvents);
   const [alert, setAlert] = useState(null);
+
   const selectedEvent = (event) => {
     window.alert(event.title);
   };
+
   const addNewEventAlert = (slotInfo) => {
     setAlert(
       <SweetAlert
@@ -46,6 +50,7 @@ export default function Calendar() {
       />
     );
   };
+
   const addNewEvent = (e, slotInfo) => {
     var newEvents = events;
     newEvents.push({

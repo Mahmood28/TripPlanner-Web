@@ -1,5 +1,6 @@
 import * as types from "../types";
 
+// REVIEW: move data into its own file
 const initialState = {
   activities: [
     {

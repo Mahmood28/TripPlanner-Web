@@ -5,4 +5,6 @@ import trip from "./tripReducer";
 
 const rootReducer = combineReducers({ user, activity, trip });
 
+// REVIEW: Better naming: userReducer
+
 export default rootReducer;

@@ -15,6 +15,7 @@ export const searchActivities = (destination) => async (dispatch) => {
 
 export const activitiesList = (destinationId) => async (dispatch) => {
   try {
+    // REVIEW: Why is the ID not in the URL? destinations/:destinationId/activities
     const res = await instance.put("/activities", destinationId);
     dispatch({
       type: types.SET_ACTIVITIES,
