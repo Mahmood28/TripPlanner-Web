@@ -75,7 +75,7 @@ export default function TripSummary() {
 
   if (!itinerary.days) return <p>Loading...</p>;
   const daysList = itinerary.days.map((day) => (
-    <DayItem day={day} key={day.id} />
+    <DayItem day={day} key={day.id} destination={activeTrip.destination.city} />
   ));
   return (
     <div>
