@@ -1,5 +1,15 @@
 import React from "react";
 import moment from "moment";
+import { compose, withProps } from "recompose";
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  DirectionsRenderer,
+} from "react-google-maps";
+import { MAP_API_KEY } from "keys";
+// Components
+import Loading from "../../components/Loading";
 
 // react plugin for creating vector maps
 import { VectorMap } from "react-jvectormap";
@@ -16,8 +26,14 @@ import CardHeader from "../../components/Card/CardHeader.js";
 import CardIcon from "../../components/Card/CardIcon.js";
 import CardBody from "../../components/Card/CardBody.js";
 
+// Styling
 import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
-
+import {
+  StyledMapContainer,
+  StyledMapElement,
+  styledMap,
+} from "../Routes/styles";
+import Map from "./Map";
 var mapData = {
   AU: 760,
   BR: 550,
@@ -34,10 +50,17 @@ var mapData = {
 
 const useStyles = makeStyles(styles);
 
-export default function DayItem({ day }) {
+export default function DayItem({ day, destination }) {
+  const classes = useStyles();
+  const sortedActivities = day.activities.sort(
+    (a, b) =>
+      moment.duration(a.DayActivity.startTime) -
+      moment.duration(b.DayActivity.startTime)
+  );
+
   const activitiesList =
     day.activities.length > 0
-      ? day.activities.map((_activity, idx) => {
+      ? sortedActivities.map((_activity, idx) => {
           let activity = _activity.DayActivity;
           return [
             `${idx + 1}`,
@@ -48,7 +71,7 @@ export default function DayItem({ day }) {
           ];
         })
       : null;
-  const classes = useStyles();
+
   return (
     <GridContainer>
       <GridItem xs={12}>
@@ -71,34 +94,17 @@ export default function DayItem({ day }) {
                 )}
               </GridItem>
               <GridItem xs={12} sm={12} md={6}>
-                <VectorMap
-                  map={"world_mill"}
-                  backgroundColor="transparent"
-                  zoomOnScroll={false}
-                  containerStyle={{
-                    width: "100%",
-                    height: "280px",
-                  }}
-                  containerClassName="map"
-                  regionStyle={{
-                    initial: {
-                      fill: "#e4e4e4",
-                      "fill-opacity": 0.9,
-                      stroke: "none",
-                      "stroke-width": 0,
-                      "stroke-opacity": 0,
-                    },
-                  }}
-                  series={{
-                    regions: [
-                      {
-                        values: mapData,
-                        scale: ["#AAAAAA", "#444444"],
-                        normalizeFunction: "polynomial",
-                      },
-                    ],
-                  }}
-                />
+                {day.activities.length > 0 ? (
+                  <Map
+                    isMarkerShown
+                    lat={destination.latitude}
+                    lng={destination.longitude}
+                    activities={sortedActivities}
+                    // shown={1}
+                  />
+                ) : (
+                  <p>add activities</p>
+                )}
               </GridItem>
             </GridContainer>
           </CardBody>
