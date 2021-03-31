@@ -6,7 +6,15 @@ import Profile from "views/Profile";
 import ProfileEdit from "views/Profile/ProfileEdit";
 import TripHistory from "views/TripHistory";
 // @material-ui/icons
-import { DateRange, Place, Timeline, GridOn, Map } from "@material-ui/icons/";
+import {
+  DateRange,
+  Place,
+  Timeline,
+  GridOn,
+  Map,
+  ArtTrack,
+} from "@material-ui/icons/";
+import TripSummary from "views/TripSummary";
 
 const routes = [
   {
@@ -42,6 +50,13 @@ const routes = [
     name: "Calendar",
     icon: DateRange,
     component: Calendar,
+    layout: "/",
+  },
+  {
+    path: "summary",
+    name: "Summary",
+    icon: ArtTrack,
+    component: TripSummary,
     layout: "/",
   },
   {
