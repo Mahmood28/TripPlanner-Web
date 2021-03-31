@@ -34,7 +34,7 @@ export const StyledMapContainer = styled.div`
   height: 90vh;
   width: 100%;
   border-radius: 6px;
-  over-flow: hidden;
+  overflow: hidden;
 `;
 
 export const StyledMapElement = styled.div`
