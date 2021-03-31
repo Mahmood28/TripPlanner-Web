@@ -28,7 +28,7 @@ export default function Search() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.authReducer);
   const [destination, setDestination] = useState("");
   // const [startDate, setStartDate] = useState("");
   // const [endDate, setEndDate] = useState("");

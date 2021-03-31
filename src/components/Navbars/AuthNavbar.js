@@ -23,7 +23,7 @@ const useStyles = makeStyles(styles);
 
 export default function AuthNavbar(props) {
   const [open, setOpen] = React.useState(false);
-  const { user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.authReducer);
   const handleDrawerToggle = () => {
     setOpen(!open);
   };

@@ -1,8 +1,12 @@
 import { combineReducers } from "redux";
-import user from "./authReducer";
-import activity from "./activityReducer";
-import trip from "./tripReducer";
+import authReducer from "./authReducer";
+import activityReducer from "./activityReducer";
+import tripReducer from "./tripReducer";
 
-const rootReducer = combineReducers({ user, activity, trip });
+const rootReducer = combineReducers({
+  authReducer,
+  activityReducer,
+  tripReducer,
+});
 
 export default rootReducer;

@@ -617,7 +617,7 @@ SidebarWrapper.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    currUser: state.user,
+    currUser: state.authReducer,
   };
 };
 

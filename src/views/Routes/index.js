@@ -11,7 +11,7 @@ import { StyledContainer } from "./styles";
 
 const Routes = () => {
   const [shown, setShown] = useState(0);
-  const { days } = useSelector((state) => state.trip.itinerary);
+  const { days } = useSelector((state) => state.tripReducer.itinerary);
 
   if (days == undefined) return <Loading />;
   const activeTrip = JSON.parse(localStorage.getItem("activeTrip"));

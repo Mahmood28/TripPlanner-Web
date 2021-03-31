@@ -15,7 +15,7 @@ const useStyles = makeStyles(styles);
 
 export default function TripHistory() {
   const dispatch = useDispatch();
-  const authReducer = useSelector((state) => state.user);
+  const authReducer = useSelector((state) => state.authReducer);
   useEffect(() => {
     dispatch(fetchHistory());
   }, [dispatch]);
