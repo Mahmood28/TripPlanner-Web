@@ -40,7 +40,8 @@ export const addActivity = (activity) => async (dispatch) => {
 
 export const deleteActivity = (activity) => async (dispatch) => {
   try {
-    await instance.delete(`/trip/activity`, activity);
+    console.log("delete activity", activity);
+    await instance.delete(`/trip/activity`, { data: activity });
     dispatch({
       type: types.DELETE_ACTIVITY,
       payload: activity.activityId,
@@ -52,7 +53,7 @@ export const deleteActivity = (activity) => async (dispatch) => {
 
 export const deleteTrip = (tripId, history) => async (dispatch) => {
   try {
-    const res = await instance.delete(`/trip/${tripId}`);
+    await instance.delete(`/trip/${tripId}`);
     history.go("/history");
     // dispatch({
     //   type: types.SET_TRIP,

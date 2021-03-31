@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { deleteActivity } from "store/actions/tripActions";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // material-ui icons
@@ -40,7 +41,7 @@ const DayTable = ({ day }) => {
         color="rose"
         simple
         className={classes.actionButton}
-        onClick={() => alert(`delete actvity ${activityId} from day ${dayId}`)}
+        onClick={() => dispatch(deleteActivity({ dayId, activityId }))}
       >
         <Close className={classes.icon} />
       </Button>
