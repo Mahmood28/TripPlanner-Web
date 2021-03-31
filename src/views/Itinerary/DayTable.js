@@ -30,12 +30,6 @@ const DayTable = ({ day }) => {
   // );
   // console.log("sorted activities", _activities);
 
-  // const editButton = (
-  //   <Button color="warning" simple className={classes.actionButton}>
-  //     <Edit className={classes.icon} />
-  //   </Button>
-  // );
-
   const editButton = (activityNum, day, activityId) => {
     return (
       <EditForm
