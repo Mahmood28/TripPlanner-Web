@@ -16,7 +16,7 @@ import {
 } from "./styles";
 
 const Profile = () => {
-  const { user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.authReducer);
   const history = useHistory();
   const initialState = {
     reviews: false,

@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
 
 const Itinerary = () => {
   const classes = useStyles();
-  const { itinerary } = useSelector((state) => state.trip);
+  const { itinerary } = useSelector((state) => state.tripReducer);
   const activeTrip = JSON.parse(localStorage.getItem("activeTrip"));
 
   if (!itinerary.days) return <p>Loading...</p>;

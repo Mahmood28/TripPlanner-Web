@@ -20,7 +20,7 @@ import { Redirect } from "react-router";
 const MainMap = () => {
   const dispatch = useDispatch();
 
-  const { activities } = useSelector((state) => state.activity);
+  const { activities } = useSelector((state) => state.activityReducer);
   const activeTrip = JSON.parse(localStorage.getItem("activeTrip"));
   dispatch(fetchItinerary({ id: activeTrip.id }));
 

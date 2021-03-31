@@ -7,7 +7,7 @@ import ActivityCard from "views/Itinerary/ActivityCard";
 
 const ActivityList = ({ setEvent }) => {
   const history = useHistory();
-  const { activities } = useSelector((state) => state.trip);
+  const { activities } = useSelector((state) => state.tripReducer);
 
   return (
     <div>
