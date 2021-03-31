@@ -23,7 +23,7 @@ const Itinerary = () => {
 
   if (!itinerary.days) return <p>Loading...</p>;
   const days = itinerary.days.sort((a, b) => a.day - b.day);
-
+  console.log("Itinerary", itinerary);
   return (
     <div>
       <Box className={classes.box}>

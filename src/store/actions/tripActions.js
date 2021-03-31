@@ -40,11 +40,10 @@ export const addActivity = (activity) => async (dispatch) => {
 
 export const deleteActivity = (activity) => async (dispatch) => {
   try {
-    console.log("delete activity", activity);
-    await instance.delete(`/trip/activity`, { data: activity });
+    const res = await instance.delete(`/trip/activity`, { data: activity });
     dispatch({
       type: types.DELETE_ACTIVITY,
-      payload: activity.activityId,
+      payload: res.data,
     });
   } catch (error) {
     console.log("Error:", error);
