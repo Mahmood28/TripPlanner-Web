@@ -26,7 +26,6 @@ const DayTable = ({ day }) => {
   const _activities = day.activities.sort(
     (a, b) => a.DayActivity.startTime - b.DayActivity.startTime
   );
-  console.log("sorted activities", _activities);
 
   const editButton = (
     <Button color="warning" simple className={classes.actionButton}>

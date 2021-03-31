@@ -24,6 +24,7 @@ import "assets/scss/material-dashboard-pro-react.scss?v=1.9.0";
 
 import App from "./App";
 import store from "./store";
+import { MAP_API_KEY } from "keys";
 
 const hist = createBrowserHistory();
 
