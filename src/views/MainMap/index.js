@@ -36,7 +36,7 @@ const MainMap = () => {
   const activeTrip = JSON.parse(localStorage.getItem("activeTrip"));
   const location = activeTrip.destination;
 
-  if (activeTrip) dispatch(fetchItinerary({ id: activeTrip.id }));
+  if (activeTrip) dispatch(fetchItinerary(activeTrip.id));
   if (!activeTrip) return <Redirect to="/home" />;
   if (activities.length === 0) return <Loading />;
 

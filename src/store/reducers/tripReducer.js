@@ -30,11 +30,10 @@ const tripReducer = (state = initialState, action) => {
         ? state.activities.filter((activity) => activity !== action.payload)
         : [...state.activities, action.payload];
 
-      const activitiesId = activities.map((activity) => activity.id);
-      localStorage.setItem("myActivities", JSON.stringify(activitiesId));
+      localStorage.setItem("myActivities", JSON.stringify(activities));
       return {
         ...state,
-        activities: activities,
+        activities,
       };
     default:
       return state;
