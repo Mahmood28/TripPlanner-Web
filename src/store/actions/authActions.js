@@ -17,6 +17,9 @@ export const signin = (userData, history) => {
     try {
       const res = await instance.post("/signin", userData);
       dispatch(setUser(res.data.token));
+      if (JSON.parse(localStorage.getItem("activeTrip"))) {
+        assignTrip(JSON.parse(localStorage.getItem("activeTrip")).id);
+      }
       history.replace("/");
     } catch (error) {
       console.log("ERROR: ", error);
@@ -29,6 +32,9 @@ export const signup = (newUser, history) => {
     try {
       const res = await instance.post("/signup", newUser);
       dispatch(setUser(res.data.token));
+      if (JSON.parse(localStorage.getItem("activeTrip"))) {
+        assignTrip(JSON.parse(localStorage.getItem("activeTrip")).id);
+      }
       history.replace("/");
     } catch (error) {
       console.log("ERROR: ", error);
@@ -37,6 +43,7 @@ export const signup = (newUser, history) => {
 };
 
 export const signout = () => {
+  console.log("SIGNOUT");
   Cookies.remove("token");
   delete instance.defaults.headers.common.Authorization;
   return {
@@ -78,4 +85,9 @@ export const deleteTrip = (tripId, history) => async (dispatch) => {
   } catch (error) {
     console.log("Error:", error);
   }
+};
+
+const assignTrip = async (tripId) => {
+  const res = await instance.put(`/trips/${tripId}`);
+  localStorage.setItem("activeTrip", JSON.stringify(res.data));
 };
