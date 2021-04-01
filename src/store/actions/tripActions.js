@@ -73,6 +73,7 @@ export const fetchItinerary = (tripId) => async (dispatch) => {
     console.log("Error:", error);
   }
 };
+
 export const handleActivity = (activity) => ({
   type: types.HANDLE_ACTIVITY,
   payload: activity,
