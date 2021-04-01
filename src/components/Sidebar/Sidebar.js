@@ -23,6 +23,7 @@ import AdminNavbarLinks from "components/Navbars/AdminNavbarLinks.js";
 import sidebarStyle from "assets/jss/material-dashboard-pro-react/components/sidebarStyle.js";
 
 import avatar from "assets/img/faces/avatar3.png";
+import { signout } from "store/actions/authActions";
 
 var ps;
 
@@ -436,7 +437,7 @@ class Sidebar extends React.Component {
                     </ListItem>
                     <ListItem className={classes.collapseItem}>
                       <NavLink
-                        to="#"
+                        to="/home"
                         className={
                           classes.itemLink + " " + classes.userCollapseLinks
                         }
@@ -446,6 +447,7 @@ class Sidebar extends React.Component {
                           primary="Logout"
                           disableTypography={true}
                           className={collapseItemText}
+                          onClick={() => this.props.signout()}
                         />
                       </NavLink>
                     </ListItem>
@@ -621,4 +623,13 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(withStyles(sidebarStyle)(Sidebar));
+const mapDispatchToProps = () => {
+  return {
+    signout,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps()
+)(withStyles(sidebarStyle)(Sidebar));
