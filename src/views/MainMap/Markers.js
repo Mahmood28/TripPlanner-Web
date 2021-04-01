@@ -48,7 +48,7 @@ const Markers = ({
     addToast(
       `${activity.name} ${remove ? "removed from" : "added to"} your trip.`,
       {
-        appearance: "success",
+        appearance: `${remove ? "warning" : "success"}`,
         autoDismiss: true,
       }
     );

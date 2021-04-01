@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import cx from "classnames";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
@@ -22,6 +23,7 @@ const useStyles = makeStyles(styles);
 
 export default function AuthNavbar(props) {
   const [open, setOpen] = React.useState(false);
+  const { user } = useSelector((state) => state.authReducer);
   const handleDrawerToggle = () => {
     setOpen(!open);
   };
@@ -33,14 +35,25 @@ export default function AuthNavbar(props) {
   const list = (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
-        <NavLink to={"/signin"} className={cx(classes.navLink)}>
-          <Fingerprint className={classes.listItemIcon} />
-          <ListItemText
-            primary={"Sign in"}
-            disableTypography={true}
-            className={classes.listItemText}
-          />
-        </NavLink>
+        {user ? (
+          <NavLink to={"/profile"} className={cx(classes.navLink)}>
+            <Fingerprint className={classes.listItemIcon} />
+            <ListItemText
+              primary={user.username}
+              disableTypography={true}
+              className={classes.listItemText}
+            />
+          </NavLink>
+        ) : (
+          <NavLink to={"/signin"} className={cx(classes.navLink)}>
+            <Fingerprint className={classes.listItemIcon} />
+            <ListItemText
+              primary={"Sign in"}
+              disableTypography={true}
+              className={classes.listItemText}
+            />
+          </NavLink>
+        )}
       </ListItem>
     </List>
   );

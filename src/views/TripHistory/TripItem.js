@@ -31,8 +31,9 @@ export default function TripItem({ trip }) {
   const history = useHistory();
   const classes = useStyles();
   const { addToast } = useToasts();
-  const handleDelete = () => {
-    addToast("Trip Deleted", {
+
+  const handleDelete = async () => {
+    await addToast("Trip Deleted", {
       appearance: "warning",
       autoDismiss: true,
     });

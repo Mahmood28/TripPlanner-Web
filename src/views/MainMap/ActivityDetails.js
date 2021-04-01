@@ -34,7 +34,7 @@ const ActivityDetails = ({
         remove ? "removed from" : "added to"
       } your itinerary.`,
       {
-        appearance: "success",
+        appearance: `${remove ? "warning" : "success"}`,
         autoDismiss: true,
       }
     );
