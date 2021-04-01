@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { handleActivity } from "../../store/actions/tripActions";
 import { Marker, InfoWindow } from "react-google-maps";
 // Components
@@ -27,9 +27,9 @@ const Markers = ({
   activities,
   selectedActivities,
 }) => {
+  const { user } = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
   const { addToast } = useToasts();
-
   //Filters
   const filteredActivities = activities.filter(
     (activity) =>
@@ -42,16 +42,23 @@ const Markers = ({
           .includes(filter.query.toLowerCase()))
   );
 
-  const add = (activity, remove) => {
-    dispatch(handleActivity(activity));
-    handleOpen(activity.id);
-    addToast(
-      `${activity.name} ${remove ? "removed from" : "added to"} your trip.`,
-      {
-        appearance: `${remove ? "warning" : "success"}`,
+  const add = async (activity, remove) => {
+    if (!user)
+      addToast("You need to log in before adding an activity!", {
+        appearance: "warning",
         autoDismiss: true,
-      }
-    );
+      });
+    else {
+      await dispatch(handleActivity(activity));
+      handleOpen(activity.id);
+      addToast(
+        `${activity.name} ${remove ? "removed from" : "added to"} your trip.`,
+        {
+          appearance: `${remove ? "warning" : "success"}`,
+          autoDismiss: true,
+        }
+      );
+    }
   };
 
   const markers = filteredActivities.map((activity) => {
@@ -100,6 +107,7 @@ const Markers = ({
                 activity={activity}
                 handleOpen={handleOpen}
                 remove={remove}
+                user={user}
               />
             </InfoCard>
           </InfoWindow>

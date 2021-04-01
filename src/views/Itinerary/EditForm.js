@@ -60,7 +60,7 @@ const EditForm = ({ activityNum, day, activityId }) => {
   };
   const handleSubmit = () => {
     const newActivity = { ...activity, dayId: day.id, activityId: event.id };
-    dispatch(updateActivity([currActivity, newActivity]));
+    dispatch(updateActivity(currActivity, newActivity));
     setOpen(false);
     setActivity(newActivity);
   };

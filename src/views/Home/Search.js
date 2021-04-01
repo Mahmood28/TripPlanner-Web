@@ -20,6 +20,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { InputLabel, FormControl, TextField } from "@material-ui/core";
 
 import styles from "assets/jss/material-dashboard-pro-react/views/pricingPageStyle";
+import { addUser } from "store/actions/tripActions";
 
 const useStyles = makeStyles(styles);
 
@@ -70,9 +71,9 @@ export default function Search() {
       ...dates,
       destination: { ...coordinates, country, city },
     };
-    if (user) trip.userId = user.id;
     await dispatch(searchActivities(trip.destination));
     await dispatch(createTrip(trip));
+    if (user) await dispatch(addUser());
     history.push("/explore");
   };
 

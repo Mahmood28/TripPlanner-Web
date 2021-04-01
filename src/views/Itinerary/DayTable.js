@@ -67,7 +67,7 @@ const DayTable = ({ day }) => {
                 colspan: "3",
                 col: {
                   colspan: 2,
-                  text: <ActivityForm day={day.day} />,
+                  text: <ActivityForm day={day.day} dayId={day.id} />,
                 },
               },
             ]}
