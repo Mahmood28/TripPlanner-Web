@@ -3,19 +3,28 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { ToastProvider } from "react-toast-notifications";
 // Components
 import MainLayout from "layouts/Main";
+import AuthLayout from "layouts/Auth";
 import Home from "views/Home";
 import Signin from "views/Authentication/Signin";
 import Signup from "views/Authentication/Signup";
-// import TripHistory from "views/TripHistory";
+
 function App() {
   return (
     <ToastProvider>
       <Switch>
-        {/* <Route path="/history" component={TripHistory} /> */}
-        <Route path="/home" component={Home} />
-        <Route path="/signin" component={Signin} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/" component={MainLayout} />
+        <Route path="/home">
+          <Home />
+        </Route>
+        <Route path="/signin">
+          <Signin />
+        </Route>
+        <Route path="/signup">
+          <Signup />
+        </Route>
+        <Route path="/">
+          <MainLayout />
+        </Route>
+        {/* <Route path="/" component={MainLayout} /> */}
         <Redirect from="/" to="/home" />
       </Switch>
     </ToastProvider>

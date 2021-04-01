@@ -3,12 +3,12 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { fetchItinerary } from "store/actions/tripActions";
 // Components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import CardIcon from "components/Card/CardIcon.js";
-import CardHeader from "components/Card/CardHeader.js";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
+import Card from "components/Card/Card";
+import CardBody from "components/Card/CardBody";
+import CardIcon from "components/Card/CardIcon";
+import CardHeader from "components/Card/CardHeader";
 import Loading from "components/Loading";
 import Map from "./Map";
 // Styling
@@ -19,14 +19,8 @@ import { Redirect } from "react-router";
 
 const MainMap = () => {
   const dispatch = useDispatch();
-
   const { activities } = useSelector((state) => state.activityReducer);
-  const activeTrip = JSON.parse(localStorage.getItem("activeTrip"));
-  dispatch(fetchItinerary({ id: activeTrip.id }));
 
-  const maxPrice = Math.max(
-    ...activities.map((activity) => +activity.price.amount)
-  );
   const initialFilter = {
     price: [0, Infinity],
     rating: 0,
@@ -35,10 +29,16 @@ const MainMap = () => {
   const [shown, setShown] = useState(false);
   const [filter, setFilter] = useState(initialFilter);
 
+  const maxPrice = Math.max(
+    ...activities.map((activity) => +activity.price.amount)
+  );
+
+  const activeTrip = JSON.parse(localStorage.getItem("activeTrip"));
+  const location = activeTrip.destination;
+
+  if (activeTrip) dispatch(fetchItinerary({ id: activeTrip.id }));
   if (!activeTrip) return <Redirect to="/home" />;
   if (activities.length === 0) return <Loading />;
-
-  const location = activeTrip.destination;
 
   return (
     <>

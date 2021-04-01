@@ -1,7 +1,7 @@
 import instance from "./instance";
 import * as types from "../types";
 
-export const tripCreate = (trip) => async (dispatch) => {
+export const createTrip = (trip) => async (dispatch) => {
   try {
     const res = await instance.post(`/trips`, trip);
     localStorage.setItem("activeTrip", JSON.stringify(res.data));
@@ -16,7 +16,7 @@ export const tripCreate = (trip) => async (dispatch) => {
 
 export const fetchActivities = (activites) => async (dispatch) => {
   try {
-    const res = await instance.put(`/trips/activities`, activites);
+    const res = await instance.get("/trips/activities", { params: activites });
     dispatch({
       type: types.SET_TRIP_ACTIVITIES,
       payload: res.data,
@@ -28,7 +28,7 @@ export const fetchActivities = (activites) => async (dispatch) => {
 
 export const addActivity = (activity) => async (dispatch) => {
   try {
-    const res = await instance.post(`/trips/activities`, activity);
+    const res = await instance.post("/trips/activities", activity);
     dispatch({
       type: types.SET_ITINERARY,
       payload: res.data,
@@ -40,7 +40,6 @@ export const addActivity = (activity) => async (dispatch) => {
 
 export const updateActivity = (activity) => async (dispatch) => {
   try {
-    console.log("activity before BE", activity);
     const res = await instance.put("/trips/activity", activity);
     dispatch({
       type: types.SET_ITINERARY,
@@ -53,7 +52,7 @@ export const updateActivity = (activity) => async (dispatch) => {
 
 export const deleteActivity = (activity) => async (dispatch) => {
   try {
-    const res = await instance.delete(`/trips/activity`, { data: activity });
+    const res = await instance.delete("/trips/activity", { data: activity });
     dispatch({
       type: types.SET_ITINERARY,
       payload: res.data,
@@ -78,7 +77,7 @@ export const deleteTrip = (tripId, history) => async (dispatch) => {
 
 export const fetchItinerary = (tripId) => async (dispatch) => {
   try {
-    const res = await instance.put(`/trips/itinerary`, tripId);
+    const res = await instance.get("/trips/itinerary", { params: tripId });
     dispatch({
       type: types.SET_ITINERARY,
       payload: res.data,

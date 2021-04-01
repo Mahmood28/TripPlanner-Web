@@ -2,25 +2,24 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { searchActivities } from "store/actions/activityActions";
-import { tripCreate } from "store/actions/tripActions";
+import { createTrip } from "store/actions/tripActions";
+
 import { MAP_API_KEY } from "keys";
 import Geocode from "react-geocode";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import Datetime from "react-datetime";
 import moment from "moment";
-// @material-ui/core components
+// Components
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
+import Button from "components/CustomButtons/Button";
+import Card from "components/Card/Card";
+import CardBody from "components/Card/CardBody";
+// Styling
 import { makeStyles } from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import TextField from "@material-ui/core/TextField";
-// core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
+import { InputLabel, FormControl, TextField } from "@material-ui/core";
 
-import styles from "assets/jss/material-dashboard-pro-react/views/pricingPageStyle.js";
+import styles from "assets/jss/material-dashboard-pro-react/views/pricingPageStyle";
 
 const useStyles = makeStyles(styles);
 
@@ -29,6 +28,7 @@ export default function Search() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { user } = useSelector((state) => state.authReducer);
+
   const [destination, setDestination] = useState("");
   // const [startDate, setStartDate] = useState("");
   // const [endDate, setEndDate] = useState("");
@@ -72,7 +72,7 @@ export default function Search() {
     };
     if (user) trip.userId = user.id;
     await dispatch(searchActivities(trip.destination));
-    await dispatch(tripCreate(trip));
+    await dispatch(createTrip(trip));
     history.push("/explore");
   };
 

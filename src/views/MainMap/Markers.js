@@ -1,11 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Marker, InfoWindow } from "react-google-maps";
-//Components
-import ActivityDetails from "./ActivityDetails";
-// Store
 import { handleActivity } from "../../store/actions/tripActions";
-//Styling
+import { Marker, InfoWindow } from "react-google-maps";
+// Components
+import ActivityDetails from "./ActivityDetails";
+// Styling
 import { useToasts } from "react-toast-notifications";
 import { Divider } from "@material-ui/core";
 import {
@@ -30,6 +29,7 @@ const Markers = ({
 }) => {
   const dispatch = useDispatch();
   const { addToast } = useToasts();
+
   //Filters
   const filteredActivities = activities.filter(
     (activity) =>

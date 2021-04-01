@@ -30,10 +30,13 @@ const Map = compose(
   const selectedActivities = useSelector(
     (state) => state.tripReducer.activities
   );
+
   let initialState = {};
   for (const activity of activities) initialState[activity.id] = false;
+
   const [open, setOpen] = useState(initialState);
   const [details, setDetails] = useState(initialState);
+
   const handleOpen = (id) => {
     setOpen({ ...initialState, [id]: !open[id] });
   };

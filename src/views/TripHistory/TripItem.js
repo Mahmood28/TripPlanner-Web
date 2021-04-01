@@ -5,28 +5,24 @@ import { deleteTrip } from "store/actions/tripActions";
 import moment from "moment";
 import { useToasts } from "react-toast-notifications";
 
-// @material-ui/core components
+// Components
+import GridItem from "components/Grid/GridItem";
+import Button from "components/CustomButtons/Button";
+import Card from "components/Card/Card";
+import CardHeader from "components/Card/CardHeader";
+import CardBody from "components/Card/CardBody";
+import CardFooter from "components/Card/CardFooter";
+// Styling
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
-
-// @material-ui/icons
-// import InfoOutline from "@material-ui/icons/InfoOutline";
 import Refresh from "@material-ui/icons/Refresh";
 import Close from "@material-ui/icons/Close";
 import Edit from "@material-ui/icons/Edit";
 import Place from "@material-ui/icons/Place";
 import ArtTrack from "@material-ui/icons/ArtTrack";
 
-// core components
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
-import Card from "components/Card/Card.js";
-import CardHeader from "components/Card/CardHeader.js";
-import CardBody from "components/Card/CardBody.js";
-import CardFooter from "components/Card/CardFooter.js";
-
 import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
-import priceImage1 from "assets/img/card-2.jpeg";
+import tripImage from "assets/img/card-2.jpeg";
 
 const useStyles = makeStyles(styles);
 
@@ -49,7 +45,7 @@ export default function TripItem({ trip }) {
       <Card product className={classes.cardHover}>
         <CardHeader image className={classes.cardHeaderHover}>
           <a href="#pablo" onClick={(e) => e.preventDefault()}>
-            <img src={priceImage1} alt="..." />
+            <img src={tripImage} alt="..." />
           </a>
         </CardHeader>
         <CardBody>

@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import moment from "moment";
-// @material-ui/core components
+// Components
+import GridContainer from "components/Grid/GridContainer";
+import DayTable from "views/Itinerary/DayTable";
+// Styling
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
-// Core Components
-import GridContainer from "components/Grid/GridContainer.js";
-import DayTable from "views/Itinerary/DayTable";
 
 const useStyles = makeStyles(() => ({
   box: {
