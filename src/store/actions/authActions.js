@@ -66,3 +66,16 @@ export const fetchHistory = () => async (dispatch) => {
     console.log("Error: ", error);
   }
 };
+
+export const deleteTrip = (tripId, history) => async (dispatch) => {
+  try {
+    await instance.delete(`/trips/${tripId}`);
+    history.replace("/history");
+    dispatch({
+      type: types.DELETE_TRIP,
+      payload: tripId,
+    });
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
