@@ -23,11 +23,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const ActivityForm = ({ day }) => {
+const ActivityForm = ({ day, dayId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const [activity, setActivity] = useState({});
+  const [activity, setActivity] = useState({
+    startTime: "10:00",
+    endTime: "11:00",
+  });
   const [event, setEvent] = useState({});
   const [open, setOpen] = useState(false);
 
@@ -39,7 +42,7 @@ const ActivityForm = ({ day }) => {
 
   const handleSubmit = () => {
     activity.activityId = event.id;
-    const newActivity = { tripId, day, activity };
+    const newActivity = { tripId, day, activity, dayId };
     dispatch(addActivity(newActivity));
     setOpen(false);
     setActivity({});
@@ -75,7 +78,6 @@ const ActivityForm = ({ day }) => {
             onChange={handleChange}
             label="Start Time"
             type="time"
-            defaultValue={new Date()}
             className={classes.formInput}
             InputLabelProps={{
               shrink: true,
@@ -88,7 +90,6 @@ const ActivityForm = ({ day }) => {
             onChange={handleChange}
             label="End Time"
             type="time"
-            defaultValue={new Date()}
             className={classes.formInput}
             InputLabelProps={{
               shrink: true,
