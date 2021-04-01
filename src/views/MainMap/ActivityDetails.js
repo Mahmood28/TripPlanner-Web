@@ -1,9 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useToasts } from "react-toast-notifications";
-// Store
 import { handleActivity } from "../../store/actions/tripActions";
-//Styling
+// Components
 import {
   Dialog,
   DialogTitle,
@@ -12,8 +11,9 @@ import {
   DialogActions,
   Button,
 } from "@material-ui/core";
-import { DialogContainer, StyledImage, StyledDescription } from "./styles";
+// Styling
 import { Rating } from "@material-ui/lab";
+import { DialogContainer, StyledImage, StyledDescription } from "./styles";
 
 const ActivityDetails = ({
   activity,
@@ -24,6 +24,7 @@ const ActivityDetails = ({
 }) => {
   const dispatch = useDispatch();
   const { addToast } = useToasts();
+
   const add = (activity) => {
     dispatch(handleActivity(activity));
     handleOpen(activity.id);

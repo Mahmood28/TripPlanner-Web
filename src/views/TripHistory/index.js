@@ -1,35 +1,29 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-
-// core components
-import GridContainer from "components/Grid/GridContainer.js";
-import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
-import TripItem from "./TripItem";
-
-// Actions
 import { fetchHistory } from "../../store/actions/authActions";
+// Components
+import GridContainer from "components/Grid/GridContainer";
+import TripItem from "./TripItem";
+// Styling
+import { Box } from "@material-ui/core";
 
-const useStyles = makeStyles(styles);
-
-export default function TripHistory() {
+const TripHistory = () => {
   const dispatch = useDispatch();
-  const authReducer = useSelector((state) => state.user);
+  const loading = useSelector((state) => state.authReducer.loading);
+  const history = useSelector((state) => state.authReducer.history);
+
   useEffect(() => {
     dispatch(fetchHistory());
   }, [dispatch]);
 
-  if (authReducer.loading) return <h1>Loading</h1>;
+  if (loading) return <h1>Loading...</h1>;
+  const trips = history.map((trip) => <TripItem trip={trip} key={trip.id} />);
 
-  const trips = authReducer.history.map((trip) => (
-    <TripItem trip={trip} key={trip.id} />
-  ));
   return (
-    <div>
-      <br />
-      <br />
+    <Box mt={4}>
       <GridContainer>{trips}</GridContainer>
-    </div>
+    </Box>
   );
-}
+};
+
+export default TripHistory;

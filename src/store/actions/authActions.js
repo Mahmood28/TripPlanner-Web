@@ -58,7 +58,6 @@ export const checkForToken = () => (dispatch) => {
   }
 };
 
-// FETCH HISTORY
 export const fetchHistory = () => async (dispatch) => {
   try {
     const res = await instance.get("/trips");

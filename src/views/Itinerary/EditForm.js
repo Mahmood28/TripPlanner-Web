@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { updateActivity } from "store/actions/tripActions";
-// @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-// material-ui icons
-import Edit from "@material-ui/icons/Edit";
-// Core Components
+// Components
 import Button from "components/CustomButtons/Button";
 import Accordion from "components/Accordion/Accordion";
 import ActivityList from "views/Itinerary/ActivityList";
+// Styling
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@material-ui/core";
+import Edit from "@material-ui/icons/Edit";
 
-import styles from "assets/jss/material-dashboard-pro-react/views/extendedTablesStyle.js";
-
+import styles from "assets/jss/material-dashboard-pro-react/views/extendedTablesStyle";
 const useStyles = makeStyles(styles);
 
 const inputStyles = makeStyles(() => ({
@@ -126,7 +125,7 @@ const EditForm = ({ activityNum, day, activityId }) => {
             collapses={[
               {
                 title: "Select Activity",
-                content: <ActivityList setEvent={setEvent} />,
+                content: <ActivityList event={event} setEvent={setEvent} />,
               },
             ]}
           />

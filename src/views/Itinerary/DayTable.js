@@ -1,24 +1,19 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteActivity } from "store/actions/tripActions";
-// @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-// material-ui icons
-import Edit from "@material-ui/icons/Edit";
-import Close from "@material-ui/icons/Close";
-// core components
-import GridItem from "components/Grid/GridItem.js";
-import Table from "components/Table/Table.js";
-import Button from "components/CustomButtons/Button.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import CardIcon from "components/Card/CardIcon.js";
-import CardHeader from "components/Card/CardHeader.js";
+// Components
+import GridItem from "components/Grid/GridItem";
+import Table from "components/Table/Table";
+import Button from "components/CustomButtons/Button";
+import Card from "components/Card/Card";
+import CardBody from "components/Card/CardBody";
+import CardIcon from "components/Card/CardIcon";
+import CardHeader from "components/Card/CardHeader";
 import ActivityForm from "views/Itinerary/ActivityForm";
-import EditForm from "views/Itinerary/EditForm";
+import Buttons from "views/Itinerary/Buttons";
+// Styling
+import { makeStyles } from "@material-ui/core/styles";
 
-import styles from "assets/jss/material-dashboard-pro-react/views/extendedTablesStyle.js";
-
+import styles from "assets/jss/material-dashboard-pro-react/views/extendedTablesStyle";
 const useStyles = makeStyles(styles);
 
 const DayTable = ({ day }) => {
@@ -30,36 +25,6 @@ const DayTable = ({ day }) => {
   // );
   // console.log("sorted activities", _activities);
 
-  // const editButton = (
-  //   <Button color="warning" simple className={classes.actionButton}>
-  //     <Edit className={classes.icon} />
-  //   </Button>
-  // );
-
-  const editButton = (activityNum, day, activityId) => {
-    return (
-      <EditForm
-        activityNum={activityNum}
-        day={day}
-        activityId={activityId}
-        key={activityId}
-      />
-    );
-  };
-
-  const deleteButton = (dayId, activityId) => {
-    return (
-      <Button
-        color="rose"
-        simple
-        className={classes.actionButton}
-        onClick={() => dispatch(deleteActivity({ dayId, activityId }))}
-      >
-        <Close className={classes.icon} />
-      </Button>
-    );
-  };
-
   let data = [["", "", "Start your day plan by adding activities", "", ""]];
 
   if (day.activities.length > 0) {
@@ -69,11 +34,15 @@ const DayTable = ({ day }) => {
         0,
         -3
       )} -${activity.DayActivity.endTime.slice(0, -3)}`,
-      activity.name,
+      activity.DayActivity.name,
       "",
       [
-        editButton(idx + 1, day, activity.id),
-        deleteButton(day.id, activity.id),
+        <Buttons
+          activityNum={idx + 1}
+          day={day}
+          dayId={day.id}
+          activityId={activity.id}
+        />,
       ],
     ]);
   }

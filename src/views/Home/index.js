@@ -1,11 +1,11 @@
 import React from "react";
-// @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-// core components
-import AuthNavbar from "components/Navbars/AuthNavbar.js";
+// Components
+import AuthNavbar from "components/Navbars/AuthNavbar";
 import Search from "./Search";
+// Styling
+import { makeStyles } from "@material-ui/core/styles";
 
-import styles from "assets/jss/material-dashboard-pro-react/layouts/authStyle.js";
+import styles from "assets/jss/material-dashboard-pro-react/layouts/authStyle";
 import background from "assets/img/lock.jpeg";
 
 const useStyles = makeStyles(styles);

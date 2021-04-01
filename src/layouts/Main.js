@@ -1,37 +1,34 @@
-import React from "react";
-import cx from "classnames";
+import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-// creates a beautiful scrollbar
+import cx from "classnames";
+// Scrollbar
 import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
-
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-
-// core components
+// Components
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 
 import routes from "routes.js";
-
 import styles from "assets/jss/material-dashboard-pro-react/layouts/adminStyle.js";
-import TripHistory from "views/TripHistory";
 
-var ps;
+let ps;
 
 const useStyles = makeStyles(styles);
 
-export default function Dashboard(props) {
+const MainLayout = (props) => {
+  const classes = useStyles();
   const { ...rest } = props;
-  // states and functions
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [miniActive, setMiniActive] = React.useState(false);
+
   const image = require("assets/img/sidebar-2.jpg");
   const logo = require("assets/img/logo-white.svg");
   const color = "orange";
   const bgColor = "black";
-  // styles
-  const classes = useStyles();
+
   const mainPanelClasses =
     classes.mainPanel +
     " " +
@@ -40,10 +37,11 @@ export default function Dashboard(props) {
       [classes.mainPanelWithPerfectScrollbar]:
         navigator.platform.indexOf("Win") > -1,
     });
+
   // ref for main panel div
   const mainPanel = React.createRef();
   // effect instead of componentDidMount, componentDidUpdate and componentWillUnmount
-  React.useEffect(() => {
+  useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
       ps = new PerfectScrollbar(mainPanel.current, {
         suppressScrollX: true,
@@ -66,7 +64,7 @@ export default function Dashboard(props) {
   };
 
   const getActiveRoute = (routes) => {
-    let activeRoute = "Default Brand Text";
+    let activeRoute = "Default Page Title";
     for (let i = 0; i < routes.length; i++) {
       if (routes[i].collapse) {
         let collapseActiveRoute = getActiveRoute(routes[i].views);
@@ -143,4 +141,6 @@ export default function Dashboard(props) {
       </div>
     </div>
   );
-}
+};
+
+export default MainLayout;

@@ -12,13 +12,13 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
 const trip = JSON.parse(localStorage.getItem("activeTrip"));
-if (trip !== null) {
+if (trip) {
   store.dispatch(activitiesList({ id: trip.destination.id }));
   store.dispatch(fetchItinerary({ id: trip.id }));
 }
 
 const activities = JSON.parse(localStorage.getItem("myActivities"));
-if (activities !== null) store.dispatch(fetchActivities({ activities }));
+if (activities) store.dispatch(fetchActivities({ activities }));
 
 store.dispatch(checkForToken());
 
