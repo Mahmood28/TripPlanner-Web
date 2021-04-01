@@ -62,19 +62,6 @@ export const deleteActivity = (activity) => async (dispatch) => {
   }
 };
 
-export const deleteTrip = (tripId, history) => async (dispatch) => {
-  try {
-    await instance.delete(`/trips/${tripId}`);
-    history.go("/history");
-    // dispatch({
-    //   type: types.SET_TRIP,
-    //   payload: res.data,
-    // });
-  } catch (error) {
-    console.log("Error:", error);
-  }
-};
-
 export const fetchItinerary = (tripId) => async (dispatch) => {
   try {
     const res = await instance.get("/trips/itinerary", { params: tripId });
