@@ -13,9 +13,9 @@ export const searchActivities = (destination) => async (dispatch) => {
   }
 };
 
-export const activitiesList = (destinationId) => async (dispatch) => {
+export const listActivities = (destinationId) => async (dispatch) => {
   try {
-    const res = await instance.get("/activities", { params: destinationId });
+    const res = await instance.get(`/destinations/${destinationId}/activities`);
     dispatch({
       type: types.SET_ACTIVITIES,
       payload: res.data,

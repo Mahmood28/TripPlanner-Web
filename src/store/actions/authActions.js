@@ -2,6 +2,7 @@ import instance from "./instance";
 import decode from "jwt-decode";
 import Cookies from "js-cookie";
 import * as types from "../types";
+import { addUser } from "./tripActions";
 
 const setUser = (token) => {
   Cookies.set("token", token);
@@ -16,7 +17,8 @@ export const signin = (userData, history) => {
   return async (dispatch) => {
     try {
       const res = await instance.post("/signin", userData);
-      dispatch(setUser(res.data.token));
+      await dispatch(setUser(res.data.token));
+      await dispatch(addUser());
       history.replace("/");
     } catch (error) {
       console.log("ERROR: ", error);
@@ -28,7 +30,8 @@ export const signup = (newUser, history) => {
   return async (dispatch) => {
     try {
       const res = await instance.post("/signup", newUser);
-      dispatch(setUser(res.data.token));
+      await dispatch(setUser(res.data.token));
+      await dispatch(addUser());
       history.replace("/");
     } catch (error) {
       console.log("ERROR: ", error);
