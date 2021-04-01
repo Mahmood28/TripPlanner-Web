@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { deleteTrip } from "store/actions/tripActions";
+import { deleteTrip } from "store/actions/authActions";
 import moment from "moment";
 import { useToasts } from "react-toast-notifications";
 

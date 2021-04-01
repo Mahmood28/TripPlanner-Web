@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { useDispatch } from "react-redux";
 // Components
 import GridItem from "components/Grid/GridItem";
@@ -20,15 +21,16 @@ const DayTable = ({ day }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  // const _activities = day.activities.sort(
-  //   (a, b) => a.DayActivity.startTime - b.DayActivity.startTime
-  // );
-  // console.log("sorted activities", _activities);
+  const sortedActivities = day.activities.sort(
+    (a, b) =>
+      moment.duration(a.DayActivity.startTime) -
+      moment.duration(b.DayActivity.startTime)
+  );
 
   let data = [["", "", "Start your day plan by adding activities", "", ""]];
 
-  if (day.activities.length > 0) {
-    data = day.activities.map((activity, idx) => [
+  if (sortedActivities.length > 0) {
+    data = sortedActivities.map((activity, idx) => [
       `${idx + 1}`,
       `${activity.DayActivity.startTime.slice(
         0,

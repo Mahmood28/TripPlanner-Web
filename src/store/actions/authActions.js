@@ -19,6 +19,10 @@ export const signin = (userData, history) => {
       const res = await instance.post("/signin", userData);
       await dispatch(setUser(res.data.token));
       await dispatch(addUser());
+//       dispatch(setUser(res.data.token));
+//       if (JSON.parse(localStorage.getItem("activeTrip"))) {
+//         assignTrip(JSON.parse(localStorage.getItem("activeTrip")).id);
+//       }
       history.replace("/");
     } catch (error) {
       console.log("ERROR: ", error);
@@ -32,6 +36,10 @@ export const signup = (newUser, history) => {
       const res = await instance.post("/signup", newUser);
       await dispatch(setUser(res.data.token));
       await dispatch(addUser());
+//       dispatch(setUser(res.data.token));
+//       if (JSON.parse(localStorage.getItem("activeTrip"))) {
+//         assignTrip(JSON.parse(localStorage.getItem("activeTrip")).id);
+//       }
       history.replace("/");
     } catch (error) {
       console.log("ERROR: ", error);
@@ -40,6 +48,7 @@ export const signup = (newUser, history) => {
 };
 
 export const signout = () => {
+  console.log("SIGNOUT");
   Cookies.remove("token");
   delete instance.defaults.headers.common.Authorization;
   return {
@@ -68,4 +77,22 @@ export const fetchHistory = () => async (dispatch) => {
   } catch (error) {
     console.log("Error: ", error);
   }
+};
+
+export const deleteTrip = (tripId, history) => async (dispatch) => {
+  try {
+    await instance.delete(`/trips/${tripId}`);
+    history.replace("/history");
+    dispatch({
+      type: types.DELETE_TRIP,
+      payload: tripId,
+    });
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
+
+const assignTrip = async (tripId) => {
+  const res = await instance.put(`/trips/${tripId}`);
+  localStorage.setItem("activeTrip", JSON.stringify(res.data));
 };

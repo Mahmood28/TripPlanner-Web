@@ -4,7 +4,7 @@ import { ToastProvider } from "react-toast-notifications";
 // Components
 import MainLayout from "layouts/Main";
 import AuthLayout from "layouts/Auth";
-import Home from "views/Home";
+import Search from "views/Home/Search";
 import Signin from "views/Authentication/Signin";
 import Signup from "views/Authentication/Signup";
 
@@ -13,13 +13,19 @@ function App() {
     <ToastProvider>
       <Switch>
         <Route path="/home">
-          <Home />
+          <AuthLayout>
+            <Search />
+          </AuthLayout>
         </Route>
         <Route path="/signin">
-          <Signin />
+          <AuthLayout>
+            <Signin />
+          </AuthLayout>
         </Route>
         <Route path="/signup">
-          <Signup />
+          <AuthLayout>
+            <Signup />
+          </AuthLayout>
         </Route>
         <Route path="/">
           <MainLayout />

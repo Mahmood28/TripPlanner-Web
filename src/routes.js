@@ -25,13 +25,13 @@ const routes = [
     component: MainMap,
     layout: "/",
   },
-  {
-    path: "timeline",
-    name: "Timeline",
-    icon: Timeline,
-    // component: ,
-    layout: "/",
-  },
+  // {
+  //   path: "timeline",
+  //   name: "Timeline",
+  //   icon: Timeline,
+  //   // component: ,
+  //   layout: "/",
+  // },
   {
     path: "itinerary",
     name: "Itinerary",
@@ -41,9 +41,16 @@ const routes = [
   },
   {
     path: "routes",
-    name: "Routes",
-    icon: Map,
+    name: "Daily Routes",
+    icon: Timeline,
     component: Routes,
+    layout: "/",
+  },
+  {
+    path: "summary",
+    name: "Trip Summary",
+    icon: Map,
+    component: TripSummary,
     layout: "/",
   },
   {
@@ -51,13 +58,6 @@ const routes = [
     name: "Calendar",
     icon: DateRange,
     component: Calendar,
-    layout: "/",
-  },
-  {
-    path: "summary",
-    name: "Summary",
-    icon: ArtTrack,
-    component: TripSummary,
     layout: "/",
   },
   {
