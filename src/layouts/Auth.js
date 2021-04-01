@@ -29,7 +29,7 @@ const AuthLayout = (props) => {
           className={classes.fullPage}
           style={{ backgroundImage: "url(" + background + ")" }}
         >
-          {/* add component prop here */}
+          {props.children}
         </div>
       </div>
     </div>
