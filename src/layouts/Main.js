@@ -12,12 +12,16 @@ import Sidebar from "components/Sidebar/Sidebar.js";
 
 import routes from "routes.js";
 import styles from "assets/jss/material-dashboard-pro-react/layouts/adminStyle.js";
+import TripSummary from "views/TripSummary";
+import { useSelector } from "react-redux";
 
 let ps;
 
 const useStyles = makeStyles(styles);
 
 const MainLayout = (props) => {
+  const { itinerary } = useSelector((state) => state.tripReducer);
+  const activeTrip = JSON.parse(localStorage.getItem("activeTrip"));
   const classes = useStyles();
   const { ...rest } = props;
 
@@ -87,7 +91,15 @@ const MainLayout = (props) => {
         return getRoutes(prop.views);
       }
       if (prop.layout === "/") {
-        return (
+        return prop.path === "summary" ? (
+          <Route path={prop.layout + prop.path}>
+            <TripSummary
+              activeTrip={activeTrip}
+              itinerary={itinerary}
+              key={key}
+            />
+          </Route>
+        ) : (
           <Route
             path={prop.layout + prop.path}
             component={prop.component}

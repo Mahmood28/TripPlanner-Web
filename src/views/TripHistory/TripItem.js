@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteTrip } from "store/actions/authActions";
 import moment from "moment";
@@ -56,19 +56,11 @@ export default function TripItem({ trip }) {
               placement="bottom"
               classes={{ tooltip: classes.tooltip }}
             >
-              <Button color="transparent" simple justIcon>
-                <ArtTrack className={classes.underChartIcons} />
-              </Button>
-            </Tooltip>
-            <Tooltip
-              id="tooltip-top"
-              title="Edit"
-              placement="bottom"
-              classes={{ tooltip: classes.tooltip }}
-            >
-              <Button color="warning" simple justIcon>
-                <Edit className={classes.underChartIcons} />
-              </Button>
+              <Link to={`/history/trips/${trip.id}`}>
+                <Button color="transparent" simple justIcon>
+                  <ArtTrack className={classes.underChartIcons} />
+                </Button>
+              </Link>
             </Tooltip>
             <Tooltip
               id="tooltip-top"
