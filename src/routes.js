@@ -75,6 +75,13 @@ const routes = [
     redirect: true,
   },
   {
+    path: "history/trips/:tripId",
+    name: "Trip Summary",
+    component: TripSummary,
+    layout: "/",
+    redirect: true,
+  },
+  {
     path: "history",
     name: "Trips History",
     component: TripHistory,
