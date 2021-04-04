@@ -1,3 +1,4 @@
+//remove useless imports
 import React from "react";
 import moment from "moment";
 import { compose, withProps } from "recompose";
@@ -34,6 +35,8 @@ import {
   styledMap,
 } from "../Routes/styles";
 import Map from "./Map";
+
+//remove dummy data
 var mapData = {
   AU: 760,
   BR: 550,
