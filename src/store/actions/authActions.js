@@ -2,11 +2,27 @@ import instance from "./instance";
 import decode from "jwt-decode";
 import Cookies from "js-cookie";
 import * as types from "../types";
-import { addUser } from "./tripActions";
+
+const assignTrip = async (dispatch) => {
+  try {
+    const trip = JSON.parse(localStorage.getItem("activeTrip"));
+    if (trip) {
+      const res = await instance.put(`/trips/${trip.id}`);
+      await localStorage.setItem("activeTrip", JSON.stringify(res.data));
+      await dispatch({
+        type: types.SET_TRIP,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
 
 const setUser = (token) => {
   Cookies.set("token", token);
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  assignTrip();
   return {
     type: types.SET_USER,
     payload: decode(token),
@@ -18,11 +34,6 @@ export const signin = (userData, history) => {
     try {
       const res = await instance.post("/signin", userData);
       await dispatch(setUser(res.data.token));
-      await dispatch(addUser());
-//       dispatch(setUser(res.data.token));
-//       if (JSON.parse(localStorage.getItem("activeTrip"))) {
-//         assignTrip(JSON.parse(localStorage.getItem("activeTrip")).id);
-//       }
       history.replace("/");
     } catch (error) {
       console.log("ERROR: ", error);
@@ -35,11 +46,6 @@ export const signup = (newUser, history) => {
     try {
       const res = await instance.post("/signup", newUser);
       await dispatch(setUser(res.data.token));
-      await dispatch(addUser());
-//       dispatch(setUser(res.data.token));
-//       if (JSON.parse(localStorage.getItem("activeTrip"))) {
-//         assignTrip(JSON.parse(localStorage.getItem("activeTrip")).id);
-//       }
       history.replace("/");
     } catch (error) {
       console.log("ERROR: ", error);
@@ -48,7 +54,6 @@ export const signup = (newUser, history) => {
 };
 
 export const signout = () => {
-  console.log("SIGNOUT");
   Cookies.remove("token");
   delete instance.defaults.headers.common.Authorization;
   return {
@@ -90,9 +95,4 @@ export const deleteTrip = (tripId, history) => async (dispatch) => {
   } catch (error) {
     console.log("Error:", error);
   }
-};
-
-const assignTrip = async (tripId) => {
-  const res = await instance.put(`/trips/${tripId}`);
-  localStorage.setItem("activeTrip", JSON.stringify(res.data));
 };
