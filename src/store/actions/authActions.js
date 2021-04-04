@@ -102,13 +102,13 @@ export const deleteTrip = (tripId, history) => async (dispatch) => {
   }
 };
 
-export const deleteReview = (reviewId, history) => async (dispatch) => {
+export const deleteReview = (review, history) => async (dispatch) => {
   try {
-    await instance.delete(`/reviews/${reviewId}`);
+    await instance.delete(`/reviews/${review.id}`);
     // history.replace("/profile");
     dispatch({
       type: types.DELETE_REVIEW,
-      payload: reviewId,
+      payload: review,
     });
   } catch (error) {
     console.log("Error:", error);

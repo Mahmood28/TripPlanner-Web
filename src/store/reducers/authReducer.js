@@ -29,7 +29,7 @@ const authReducer = (state = initialState, action) => {
     case types.DELETE_REVIEW:
       return {
         ...state,
-        reviews: state.reviews.filter((review) => review.id !== action.payload),
+        reviews: state.reviews.filter((review) => review.id !== action.payload.id),
       };
     case types.UPDATE_REVIEW:
       const updatedReview = action.payload;
