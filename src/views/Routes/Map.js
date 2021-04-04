@@ -6,6 +6,7 @@ import {
   withGoogleMap,
   GoogleMap,
   DirectionsRenderer,
+  Marker,
 } from "react-google-maps";
 import { MAP_API_KEY } from "keys";
 // Components
@@ -31,7 +32,7 @@ const Map = compose(
 
   const DirectionsService = new google.maps.DirectionsService();
 
-  if (!directions[shown])
+  if (!directions[shown] && activities.length > 1)
     DirectionsService.route(
       {
         origin: {
@@ -61,6 +62,7 @@ const Map = compose(
         }
       }
     );
+
   return (
     <GoogleMap
       defaultZoom={11}
@@ -80,6 +82,15 @@ const Map = compose(
           icon: { scale: 3 },
         }}
       />
+      {activities.length === 1 && (
+        <Marker
+          key={activities[0].id}
+          position={{
+            lat: +activities[0].geoCode.latitude,
+            lng: +activities[0].geoCode.longitude,
+          }}
+        />
+      )}
     </GoogleMap>
   );
 });

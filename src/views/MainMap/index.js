@@ -20,6 +20,7 @@ import { Redirect } from "react-router";
 const MainMap = () => {
   const dispatch = useDispatch();
   const { activities } = useSelector((state) => state.activityReducer);
+  const { trip } = useSelector((state) => state.tripReducer);
 
   const initialFilter = {
     price: [0, Infinity],
@@ -29,16 +30,14 @@ const MainMap = () => {
   const [shown, setShown] = useState(false);
   const [filter, setFilter] = useState(initialFilter);
 
+  if (!trip) return <Redirect to="/home" />;
+  if (activities.length === 0) return <Loading />;
+
   const maxPrice = Math.max(
     ...activities.map((activity) => +activity.price.amount)
   );
 
-  const activeTrip = JSON.parse(localStorage.getItem("activeTrip"));
-  const location = activeTrip.destination;
-
-  if (activeTrip) dispatch(fetchItinerary(activeTrip.id));
-  if (!activeTrip) return <Redirect to="/home" />;
-  if (activities.length === 0) return <Loading />;
+  const location = trip.destination;
 
   return (
     <>

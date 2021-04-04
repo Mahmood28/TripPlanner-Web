@@ -27,7 +27,6 @@ const Markers = ({
   activities,
   selectedActivities,
 }) => {
-  const { user } = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
   const { addToast } = useToasts();
   //Filters
@@ -43,26 +42,21 @@ const Markers = ({
   );
 
   const add = async (activity, remove) => {
-    if (!user)
-      addToast("You need to log in before adding an activity!", {
-        appearance: "warning",
+    await dispatch(handleActivity(activity));
+    handleOpen(activity.id);
+    addToast(
+      `${activity.name} ${remove ? "removed from" : "added to"} your trip.`,
+      {
+        appearance: `${remove ? "warning" : "success"}`,
         autoDismiss: true,
-      });
-    else {
-      await dispatch(handleActivity(activity));
-      handleOpen(activity.id);
-      addToast(
-        `${activity.name} ${remove ? "removed from" : "added to"} your trip.`,
-        {
-          appearance: `${remove ? "warning" : "success"}`,
-          autoDismiss: true,
-        }
-      );
-    }
+      }
+    );
   };
 
   const markers = filteredActivities.map((activity) => {
-    const remove = selectedActivities.includes(activity);
+    const remove = selectedActivities.some(
+      (_activity) => activity.id === _activity.id
+    );
     return (
       <Marker
         key={activity.id}
@@ -107,7 +101,6 @@ const Markers = ({
                 activity={activity}
                 handleOpen={handleOpen}
                 remove={remove}
-                user={user}
               />
             </InfoCard>
           </InfoWindow>

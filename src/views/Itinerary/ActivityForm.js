@@ -14,6 +14,7 @@ import {
   DialogContent,
   DialogTitle,
 } from "@material-ui/core";
+import { useToasts } from "react-toast-notifications";
 
 const useStyles = makeStyles(() => ({
   formInput: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles(() => ({
 const ActivityForm = ({ day, dayId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  const { addToast } = useToasts();
   const [activity, setActivity] = useState({
     startTime: "10:00",
     endTime: "11:00",
@@ -43,7 +44,7 @@ const ActivityForm = ({ day, dayId }) => {
   const handleSubmit = () => {
     activity.activityId = event.id;
     const newActivity = { tripId, day, activity, dayId };
-    dispatch(addActivity(newActivity));
+    dispatch(addActivity(newActivity, addToast));
     setOpen(false);
     setActivity({});
   };
