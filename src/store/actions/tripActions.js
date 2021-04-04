@@ -24,7 +24,7 @@ export const addUser = () => async (dispatch) => {
     const res = await instance.put(`/trips/${trip.id}`);
     await localStorage.setItem(
       "activeTrip",
-      JSON.stringify({ ...trip, userId: res })
+      JSON.stringify({ ...trip, userId: res.data })
     );
     await dispatch({
       type: types.SET_TRIP,

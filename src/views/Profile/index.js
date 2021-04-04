@@ -45,7 +45,7 @@ const Profile = () => {
     );
   }
 
-  if (!user) return <Redirect to="/home" />;
+  if (!user) return <Redirect to="/404" />;
   return (
     <StyledContainer>
       <CardContainer bgcolor={"#f5f5f5"} borderRadius={16}>

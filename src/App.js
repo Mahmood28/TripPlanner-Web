@@ -8,11 +8,17 @@ import Search from "views/Home/Search";
 import Signin from "views/Authentication/Signin";
 import Signup from "views/Authentication/Signup";
 import ActivityDetail from "views/ActivityDetail";
+import NotFound from "views/NotFound";
 
 function App() {
   return (
     <ToastProvider>
       <Switch>
+        <Route path="/404">
+          <AuthLayout>
+            <NotFound />
+          </AuthLayout>
+        </Route>
         <Route path="/activities/:activitySlug">
           <MainLayout>
             <ActivityDetail />
@@ -37,7 +43,8 @@ function App() {
           <MainLayout />
         </Route>
         {/* <Route path="/" component={MainLayout} /> */}
-        <Redirect from="/" to="/home" />
+        {/* <Redirect from="/" to="/home" /> */}
+        <Redirect to="/404" />
       </Switch>
     </ToastProvider>
   );
