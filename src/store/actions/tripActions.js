@@ -17,7 +17,26 @@ export const createTrip = (trip) => async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
-    console.log(error);
+    console.log("Error:", error);
+  }
+};
+
+export const addUser = () => async (dispatch) => {
+  try {
+    const token = Cookies.get("token");
+    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+    const trip = await JSON.parse(localStorage.getItem("activeTrip"));
+    const res = await instance.put(`/trips/${trip.id}`);
+    await localStorage.setItem(
+      "activeTrip",
+      JSON.stringify({ ...trip, userId: res.data })
+    );
+    await dispatch({
+      type: types.SET_TRIP,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log("Error:", error);
   }
 };
 
