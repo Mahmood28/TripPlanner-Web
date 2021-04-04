@@ -139,8 +139,3 @@ export const updateReview = (reviewId, newReview, destinationId) => async (
     console.log("Error:", error);
   }
 };
-
-const assignTrip = async (tripId) => {
-  const res = await instance.put(`/trips/${tripId}`);
-  localStorage.setItem("activeTrip", JSON.stringify(res.data));
-};
