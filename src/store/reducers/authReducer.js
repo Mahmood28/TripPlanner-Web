@@ -27,14 +27,18 @@ const authReducer = (state = initialState, action) => {
         history: remainingTrips,
       };
     case types.DELETE_REVIEW:
-      const remainingReviews = state.reviews.filter(
-        (review) => review.id !== action.payload.id
-      );
       return {
         ...state,
-        reviews: remainingReviews,
+        reviews: state.reviews.filter((review) => review.id !== action.payload.id),
       };
-
+    case types.UPDATE_REVIEW:
+      const updatedReview = action.payload;
+      return {
+        ...state,
+        reviews: state.reviews.map((review) =>
+          review.id === updatedReview.id ? updatedReview : review
+        ),
+      };
     default:
       return state;
   }

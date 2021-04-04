@@ -16,3 +16,4 @@ export const DELETE_TRIP = "DELETE_TRIP";
 
 //Review Types
 export const DELETE_REVIEW = "DELETE_REVIEW";
+export const UPDATE_REVIEW = "UPDATE_REVIEW";

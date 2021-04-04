@@ -3,6 +3,8 @@ import decode from "jwt-decode";
 import Cookies from "js-cookie";
 import * as types from "../types";
 import { addUser } from "./tripActions";
+import ActivityDetails from "views/MainMap/ActivityDetails";
+import { listActivities } from "./activityActions";
 
 const setUser = (token) => {
   Cookies.set("token", token);
@@ -107,6 +109,28 @@ export const deleteReview = (review, history) => async (dispatch) => {
     dispatch({
       type: types.DELETE_REVIEW,
       payload: review,
+    });
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
+
+export const updateReview = (reviewId, newReview, destinationId) => async (
+  dispatch
+) => {
+  try {
+    const updatedReview = await instance.put(`/reviews/${reviewId}`, newReview);
+    dispatch({
+      type: types.UPDATE_REVIEW,
+      payload: updatedReview.data,
+    });
+
+    const activities = await instance.get(
+      `/destinations/${destinationId}/activities`
+    );
+    dispatch({
+      type: types.SET_ACTIVITIES,
+      payload: activities.data,
     });
   } catch (error) {
     console.log("Error:", error);
