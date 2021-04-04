@@ -27,11 +27,14 @@ export const listActivities = (destinationId) => async (dispatch) => {
 
 export const addReview = (activityId, review) => async (dispatch) => {
   try {
-    await instance.post(`/activities/${activityId}/reviews`, review);
-    // dispatch({
-    //   type: types.SET_ACTIVITIES,
-    //   payload: res.data,
-    // });
+    const res = await instance.post(
+      `/activities/${activityId}/reviews`,
+      review
+    );
+    dispatch({
+      type: types.SET_ACTIVITIES,
+      payload: res.data,
+    });
   } catch (error) {
     console.log("Error:", error);
   }

@@ -9,7 +9,7 @@ import { Star } from "@material-ui/icons";
 import avatar from "assets/img/faces/avatar3.png";
 
 const Review = ({ review }) => {
-  if (!review) return <p>Loading...</p>;
+  if (!review) return <p></p>;
   return (
     <>
       <Media
