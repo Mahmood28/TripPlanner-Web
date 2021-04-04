@@ -1,5 +1,11 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { deleteReview } from "store/actions/authActions";
+// Components
+import EditReview from "views/Profile/EditReview";
+// Styling
 import { makeStyles } from "@material-ui/core/styles";
+import { StyledRating } from "views/ActivityDetail/ReviewForm";
 import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -10,12 +16,8 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-
-// Styling
-import { StyledRating } from "views/ActivityDetail/ReviewForm";
 import { Star } from "@material-ui/icons";
-import { useDispatch } from "react-redux";
-import { deleteReview } from "store/actions/authActions";
+import { Box } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,16 +66,21 @@ export default function ReviewItem({ review }) {
           <Typography variant="body2" gutterBottom>
             {review.date}
 
-            <IconButton edge="end" aria-label="edit">
+            {/* <IconButton edge="end" aria-label="edit">
               <EditIcon color="action" />
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="delete"
-              onClick={() => dispatch(deleteReview(review.id))}
-            >
-              <DeleteIcon color="secondary" />
-            </IconButton>
+            </IconButton> */}
+            <Box display="flex">
+              <Box mt={1}>
+                <EditReview review={review} />
+              </Box>
+              <IconButton
+                edge="end"
+                aria-label="delete"
+                onClick={() => dispatch(deleteReview(review.id))}
+              >
+                <DeleteIcon color="secondary" />
+              </IconButton>
+            </Box>
           </Typography>
         </ListItemSecondaryAction>
       </ListItem>
