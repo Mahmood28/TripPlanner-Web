@@ -14,6 +14,7 @@ import {
   ItemContainer,
   EditButton,
 } from "./styles";
+import ReviewsList from "./ReviewsList";
 
 const Profile = () => {
   const { user } = useSelector((state) => state.authReducer);
@@ -71,7 +72,7 @@ const Profile = () => {
       </ItemContainer>
       <ItemContainer>
         <Typography variant="body1" align="center">
-          {show.reviews && "No reviews added."}
+          {show.reviews && <ReviewsList />}
           {show.favorites && "No favorites added."}
           {show.trips && "No trips added."}
         </Typography>
