@@ -27,10 +27,7 @@ const ActivityForm = ({ day, dayId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const [activity, setActivity] = useState({
-    startTime: "10:00",
-    endTime: "11:00",
-  });
+  const [activity, setActivity] = useState({});
   const [event, setEvent] = useState({});
   const [open, setOpen] = useState(false);
 

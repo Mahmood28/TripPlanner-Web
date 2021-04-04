@@ -65,7 +65,7 @@ export const updateActivity = (currActivity, newActivity) => async (
     const { dayId, activityId } = currActivity;
     const tripId = JSON.parse(localStorage.getItem("activeTrip")).id;
     const res = await instance.put(
-      `/trips/${tripId}/days/${dayId}/activitites/${activityId}`,
+      `/trips/${tripId}/days/${dayId}/activities/${activityId}`,
       newActivity
     );
     dispatch({
@@ -82,7 +82,7 @@ export const deleteActivity = (activity) => async (dispatch) => {
     const { dayId, activityId } = activity;
     const tripId = JSON.parse(localStorage.getItem("activeTrip")).id;
     const res = await instance.delete(
-      `/trips/${tripId}/days/${dayId}/activitites/${activityId}`
+      `/trips/${tripId}/days/${dayId}/activities/${activityId}`
     );
     dispatch({
       type: types.SET_ITINERARY,

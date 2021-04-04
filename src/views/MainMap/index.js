@@ -7,8 +7,6 @@ import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
 import Card from "components/Card/Card";
 import CardBody from "components/Card/CardBody";
-import CardIcon from "components/Card/CardIcon";
-import CardHeader from "components/Card/CardHeader";
 import Loading from "components/Loading";
 import Map from "./Map";
 // Styling
