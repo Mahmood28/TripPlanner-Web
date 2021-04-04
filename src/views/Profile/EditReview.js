@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-// import { updateReview } from "store/actions/tripActions";
+import { updateReview } from "store/actions/authActions";
 // Components
 import Button from "components/CustomButtons/Button";
 import CustomInput from "components/CustomInput/CustomInput";
@@ -12,6 +12,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  CardMedia,
   Box,
 } from "@material-ui/core";
 import { Edit, Star } from "@material-ui/icons";
@@ -19,34 +20,34 @@ import { Edit, Star } from "@material-ui/icons";
 import styles from "assets/jss/material-dashboard-pro-react/views/extendedTablesStyle";
 const useStyles = makeStyles(styles);
 
-const EditReview = ({}) => {
+const EditReview = ({ review }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
-  const [review, setReview] = useState({
-    date: "",
-    rating: 0,
-    description: "",
+  const [newReview, setNewReview] = useState({
+    date: review.date,
+    rating: review.rating,
+    description: review.description,
   });
 
   const handleChange = (event) =>
-    setReview({ ...review, [event.target.name]: event.target.value });
+    setNewReview({ ...newReview, [event.target.name]: event.target.value });
 
   const handleCancel = () => {
-    setReview({
-      date: "",
-      rating: 0,
-      description: "",
+    setNewReview({
+      date: review.date,
+      rating: review.rating,
+      description: review.description,
     });
     setOpen(false);
   };
 
   const handleSubmit = () => {
     const today = new Date().toISOString().slice(0, 10);
-    review.date = today;
-    // dispatch(editReview(activityId, review));
-    setReview(review);
+    newReview.date = today;
+    dispatch(updateReview(review.id, newReview, review.activity.destinationId));
+    setNewReview(newReview);
     setOpen(false);
   };
 
@@ -62,13 +63,18 @@ const EditReview = ({}) => {
       </Button>
       <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogTitle>
-          <h4>Edit Review</h4>
+          <h4>{review.activity.name}</h4>
         </DialogTitle>
         <DialogContent>
+          <CardMedia
+            style={{ height: 200, borderRadius: "5px" }}
+            image={review.activity.image}
+            title={review.activity.name}
+          />
           <h6>Rate your experience</h6>
           <StyledRating
-            value={review.rating}
-            onChange={(event, rating) => setReview({ ...review, rating })}
+            value={newReview.rating}
+            onChange={(event, rating) => setNewReview({ ...newReview, rating })}
             precision={0.5}
             icon={<Star fontSize="30px" />}
           />
@@ -78,7 +84,7 @@ const EditReview = ({}) => {
               fullWidth: true,
             }}
             inputProps={{
-              value: review.description,
+              value: newReview.description,
               name: "description",
               onChange: handleChange,
               multiline: true,

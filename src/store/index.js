@@ -15,6 +15,10 @@ const trip = JSON.parse(localStorage.getItem("activeTrip"));
 if (trip) {
   store.dispatch(listActivities(trip.destination.id));
   store.dispatch(fetchItinerary(trip.id));
+  store.dispatch({
+    type: "SET_TRIP",
+    payload: trip,
+  });
 }
 
 const activities = JSON.parse(localStorage.getItem("myActivities"));

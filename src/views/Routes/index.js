@@ -11,11 +11,12 @@ import { StyledContainer } from "./styles";
 
 const Routes = () => {
   const [shown, setShown] = useState(0);
-  const { days } = useSelector((state) => state.tripReducer.itinerary);
+  const { itinerary, trip } = useSelector((state) => state.tripReducer);
+  const { days } = itinerary;
 
   if (days == undefined) return <Loading />;
-  const activeTrip = JSON.parse(localStorage.getItem("activeTrip"));
-  const location = activeTrip.destination;
+
+  const location = trip.destination;
 
   const dayTabs = days.map((day) => (
     <Tab label={`Day ${day.day}`} disabled={!day.activities.length} />
@@ -40,7 +41,8 @@ const Routes = () => {
               onChange={(event, day) => setShown(day)}
               indicatorColor="primary"
               textColor="primary"
-              centered
+              variant="scrollable"
+              scrollButtons="auto"
             >
               {dayTabs}
             </Tabs>
