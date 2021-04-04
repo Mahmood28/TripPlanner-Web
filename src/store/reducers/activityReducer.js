@@ -20,6 +20,14 @@ const activityReducer = (state = initialState, action) => {
       };
     default:
       return state;
+    // case types.DELETE_REVIEW:
+    //   const remainingReviews = state.activities.reviews.filter(
+    //     (review) => review.id !== action.payload
+    //   );
+    //   return {
+    //     ...state,
+    //     reviews: remainingReviews,
+    //   };
   }
 };
 
