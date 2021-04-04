@@ -26,7 +26,7 @@ const ActivityCard = ({ activity }) => {
             <GridItem md={6} sm={6}>
               <CardMedia
                 className={classes.media}
-                image={activity.pictures[0]}
+                image={activity.image}
                 title={activity.name}
               />
             </GridItem>
