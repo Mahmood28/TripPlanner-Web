@@ -34,6 +34,7 @@ const Routes = () => {
         Your {days.length} Days in {location.city}
       </Typography>
       <StyledContainer>
+        {/* remove inline styling */}
         <div style={{ minWidth: "60%" }}>
           <Paper>
             <Tabs

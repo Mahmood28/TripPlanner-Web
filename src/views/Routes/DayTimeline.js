@@ -33,6 +33,7 @@ const DayTimeline = ({ activities }) => {
         <TimelineSeparator>
           <TimelineDot
             color="secondary"
+            // remove inline styling
             style={{ paddingRight: "10px", paddingLeft: "10px" }}
           >
             <Typography>{String.fromCharCode(i + 65)}</Typography>
