@@ -48,6 +48,7 @@ const Signup = () => {
             <CardBody>
               <GridContainer justify="center">
                 <GridItem xs={12} sm={12} md={5}>
+                  {/* content shoud be changed */}
                   <InfoArea
                     title="Marketing"
                     description="We've created the marketing campaign of the website. It was a very interesting collaboration."
@@ -82,6 +83,7 @@ const Signup = () => {
                             position="start"
                             className={classes.inputAdornment}
                           >
+                            {/* remove comment */}
                             {/* <Face className={classes.inputAdornmentIcon} /> */}
                           </InputAdornment>
                         ),
@@ -101,6 +103,7 @@ const Signup = () => {
                             position="start"
                             className={classes.inputAdornment}
                           >
+                            {/* remove comment */}
                             {/* <Face className={classes.inputAdornmentIcon} /> */}
                           </InputAdornment>
                         ),
@@ -169,6 +172,7 @@ const Signup = () => {
                       }}
                     />
                     <Box mt={2} ml={2}>
+                      {/* remove inline style */}
                       <a href="/signin" style={{ color: "#e91e63" }}>
                         Already have an account? Signin
                       </a>

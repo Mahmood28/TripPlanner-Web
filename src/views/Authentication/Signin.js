@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signin } from "../../store/actions/authActions";
+
 // Components
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
@@ -11,11 +12,11 @@ import Card from "components/Card/Card";
 import CardBody from "components/Card/CardBody";
 import CardHeader from "components/Card/CardHeader";
 import CardFooter from "components/Card/CardFooter";
+
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
 import { InputAdornment, Icon } from "@material-ui/core";
 import { Face } from "@material-ui/icons";
-
 import styles from "assets/jss/material-dashboard-pro-react/views/loginPageStyle";
 
 const useStyles = makeStyles(styles);
@@ -102,6 +103,7 @@ const Signin = () => {
                   }}
                   onChange={handleChange}
                 />
+                {/* remove inline style */}
                 <a href="/signup" style={{ color: "#e91e63" }}>
                   Don't have an account? Signup
                 </a>
