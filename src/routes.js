@@ -6,6 +6,8 @@ import Profile from "views/Profile";
 import ProfileEdit from "views/Profile/ProfileEdit";
 import TripHistory from "views/TripHistory";
 import Routes from "views/Routes";
+import ActivityDetail from "views/ActivityDetail";
+
 // @material-ui/icons
 import {
   DateRange,
@@ -41,14 +43,14 @@ const routes = [
   },
   {
     path: "routes",
-    name: "Daily Routes",
+    name: "Routes",
     icon: Timeline,
     component: Routes,
     layout: "/",
   },
   {
     path: "summary",
-    name: "Trip Summary",
+    name: "Summary",
     icon: Map,
     component: TripSummary,
     layout: "/",
@@ -81,5 +83,12 @@ const routes = [
     layout: "/",
     redirect: true,
   },
+  // {
+  //   path: "activity",
+  //   name: "Activity Detail",
+  //   component: ActivityDetail,
+  //   layout: "/",
+  //   redirect: true,
+  // },
 ];
 export default routes;
