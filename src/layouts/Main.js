@@ -144,10 +144,12 @@ const MainLayout = (props) => {
         />
         <div className={classes.content}>
           <div className={classes.container}>
-            <Switch>
-              {getRoutes(routes)}
-              <Redirect to="/" />
-            </Switch>
+            {props.children ?? (
+              <Switch>
+                {getRoutes(routes)}
+                <Redirect to="/" />
+              </Switch>
+            )}
           </div>
         </div>
       </div>

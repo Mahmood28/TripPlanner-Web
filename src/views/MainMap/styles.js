@@ -352,10 +352,10 @@ export const FilterContainer = styled(StyledContainer)`
 
 export const StyledRating = withStyles({
   iconFilled: {
-    color: "#daa520",
+    color: "#ff9800",
   },
   iconHover: {
-    color: "#daa520",
+    color: "#ff9800",
   },
   root: {
     marginLeft: "30px",
