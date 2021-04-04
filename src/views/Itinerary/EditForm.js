@@ -27,7 +27,7 @@ const inputStyles = makeStyles(() => ({
   },
 }));
 
-const EditForm = ({ activityNum, day, activityId }) => {
+const EditForm = ({ activityNum, day, activityId, addToast }) => {
   const _classes = useStyles();
   const classes = inputStyles();
   const dispatch = useDispatch();
@@ -60,7 +60,7 @@ const EditForm = ({ activityNum, day, activityId }) => {
   };
   const handleSubmit = () => {
     const newActivity = { ...activity, dayId: day.id, activityId: event.id };
-    dispatch(updateActivity(currActivity, newActivity));
+    dispatch(updateActivity(currActivity, newActivity, addToast));
     setOpen(false);
     setActivity(newActivity);
   };

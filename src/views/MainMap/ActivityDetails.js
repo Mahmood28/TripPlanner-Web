@@ -21,31 +21,23 @@ const ActivityDetails = ({
   handleDetails,
   handleOpen,
   remove,
-  user,
 }) => {
   const dispatch = useDispatch();
   const { addToast } = useToasts();
 
   const add = async (activity) => {
-    if (!user)
-      addToast("You need to log in before adding an activity!", {
-        appearance: "warning",
+    await dispatch(handleActivity(activity));
+    handleOpen(activity.id);
+    handleDetails(activity.id);
+    addToast(
+      `${activity.name} ${
+        remove ? "removed from" : "added to"
+      } your itinerary.`,
+      {
+        appearance: `${remove ? "warning" : "success"}`,
         autoDismiss: true,
-      });
-    else {
-      await dispatch(handleActivity(activity));
-      handleOpen(activity.id);
-      handleDetails(activity.id);
-      addToast(
-        `${activity.name} ${
-          remove ? "removed from" : "added to"
-        } your itinerary.`,
-        {
-          appearance: `${remove ? "warning" : "success"}`,
-          autoDismiss: true,
-        }
-      );
-    }
+      }
+    );
   };
 
   return (
