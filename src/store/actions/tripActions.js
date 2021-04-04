@@ -1,5 +1,6 @@
 import React from "react";
 import instance from "./instance";
+import Cookies from "js-cookie";
 import * as types from "../types";
 
 export const createTrip = (trip) => async (dispatch) => {
