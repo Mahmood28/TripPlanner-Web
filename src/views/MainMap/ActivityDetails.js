@@ -49,7 +49,7 @@ const ActivityDetails = ({
         {activity.name}
       </DialogTitle>
       <DialogContent dividers>
-        <StyledImage src={activity.pictures[0]} key={activity.id} />
+        <StyledImage src={activity.image} key={activity.id} />
         <StyledDescription gutterBottom>
           {activity.shortDescription}
         </StyledDescription>

@@ -7,11 +7,17 @@ import AuthLayout from "layouts/Auth";
 import Search from "views/Home/Search";
 import Signin from "views/Authentication/Signin";
 import Signup from "views/Authentication/Signup";
+import ActivityDetail from "views/ActivityDetail";
 
 function App() {
   return (
     <ToastProvider>
       <Switch>
+        <Route path="/activities/:activitySlug">
+          <MainLayout>
+            <ActivityDetail />
+          </MainLayout>
+        </Route>
         <Route path="/home">
           <AuthLayout>
             <Search />

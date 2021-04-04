@@ -47,7 +47,7 @@ const ActivityCard = ({ day, activity, event, setEvent }) => {
           <Card className={selected ? classes.selectedCard : classes.root}>
             <CardMedia
               className={classes.cover}
-              image={activity.pictures[0]}
+              image={activity.image}
               title="activity name"
             />
 

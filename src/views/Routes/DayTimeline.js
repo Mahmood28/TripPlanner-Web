@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 //Styling
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -10,7 +11,7 @@ import {
   TimelineOppositeContent,
   TimelineDot,
 } from "@material-ui/lab/";
-import { Paper, Typography } from "@material-ui/core";
+import { Paper, Typography, ButtonBase } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   paper: {
@@ -39,11 +40,15 @@ const DayTimeline = ({ activities }) => {
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
-          <Paper elevation={3} className={classes.paper}>
-            <Typography variant="h6" component="h1">
-              {activities[i].name}
-            </Typography>
-          </Paper>
+          <ButtonBase>
+            <Link to={`/activities/${activities[i].slug}`}>
+              <Paper elevation={3} className={classes.paper}>
+                <Typography variant="h6" component="h1">
+                  {activities[i].name}
+                </Typography>
+              </Paper>
+            </Link>
+          </ButtonBase>
         </TimelineContent>
       </TimelineItem>
     );

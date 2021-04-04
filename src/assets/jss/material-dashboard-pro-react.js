@@ -355,6 +355,32 @@ const title = {
   },
 };
 
+const main = {
+  background: whiteColor,
+  position: "relative",
+  zIndex: "3",
+};
+
+const mainRaised = {
+  "@media (max-width: 576px)": {
+    marginTop: "-30px",
+  },
+  "@media (max-width: 830px)": {
+    marginLeft: "10px",
+    marginRight: "10px",
+  },
+  margin: "-60px 30px 0px",
+  borderRadius: "6px",
+  boxShadow:
+    "0 10px 30px -12px rgba(" +
+    hexToRgb(blackColor) +
+    ", 0.42), 0 4px 25px 0px rgba(" +
+    hexToRgb(blackColor) +
+    ", 0.12), 0 8px 10px -5px rgba(" +
+    hexToRgb(blackColor) +
+    ", 0.2)",
+};
+
 const cardTitle = {
   ...title,
   marginTop: "0",
@@ -425,6 +451,8 @@ export {
   defaultBoxShadow,
   tooltip,
   title,
+  main,
+  mainRaised,
   cardTitle,
   cardSubtitle,
   cardLink,

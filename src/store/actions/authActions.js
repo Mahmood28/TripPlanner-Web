@@ -83,6 +83,14 @@ export const fetchHistory = () => async (dispatch) => {
     console.log("Error: ", error);
   }
 };
+export const fetchReviews = () => async (dispatch) => {
+  try {
+    const res = await instance.get("/reviews");
+    dispatch({ type: types.FETH_REVIEWS, payload: res.data });
+  } catch (error) {
+    console.log("Error: ", error);
+  }
+};
 
 export const deleteTrip = (tripId, history) => async (dispatch) => {
   try {
@@ -95,4 +103,44 @@ export const deleteTrip = (tripId, history) => async (dispatch) => {
   } catch (error) {
     console.log("Error:", error);
   }
+};
+
+export const deleteReview = (review, history) => async (dispatch) => {
+  try {
+    await instance.delete(`/reviews/${review.id}`);
+    // history.replace("/profile");
+    dispatch({
+      type: types.DELETE_REVIEW,
+      payload: review,
+    });
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
+
+export const updateReview = (reviewId, newReview, destinationId) => async (
+  dispatch
+) => {
+  try {
+    const updatedReview = await instance.put(`/reviews/${reviewId}`, newReview);
+    dispatch({
+      type: types.UPDATE_REVIEW,
+      payload: updatedReview.data,
+    });
+
+    const activities = await instance.get(
+      `/destinations/${destinationId}/activities`
+    );
+    dispatch({
+      type: types.SET_ACTIVITIES,
+      payload: activities.data,
+    });
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
+
+const assignTrip = async (tripId) => {
+  const res = await instance.put(`/trips/${tripId}`);
+  localStorage.setItem("activeTrip", JSON.stringify(res.data));
 };
