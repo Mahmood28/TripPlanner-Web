@@ -19,10 +19,10 @@ export const signin = (userData, history) => {
       const res = await instance.post("/signin", userData);
       await dispatch(setUser(res.data.token));
       await dispatch(addUser());
-//       dispatch(setUser(res.data.token));
-//       if (JSON.parse(localStorage.getItem("activeTrip"))) {
-//         assignTrip(JSON.parse(localStorage.getItem("activeTrip")).id);
-//       }
+      //       dispatch(setUser(res.data.token));
+      //       if (JSON.parse(localStorage.getItem("activeTrip"))) {
+      //         assignTrip(JSON.parse(localStorage.getItem("activeTrip")).id);
+      //       }
       history.replace("/");
     } catch (error) {
       console.log("ERROR: ", error);
@@ -36,10 +36,10 @@ export const signup = (newUser, history) => {
       const res = await instance.post("/signup", newUser);
       await dispatch(setUser(res.data.token));
       await dispatch(addUser());
-//       dispatch(setUser(res.data.token));
-//       if (JSON.parse(localStorage.getItem("activeTrip"))) {
-//         assignTrip(JSON.parse(localStorage.getItem("activeTrip")).id);
-//       }
+      //       dispatch(setUser(res.data.token));
+      //       if (JSON.parse(localStorage.getItem("activeTrip"))) {
+      //         assignTrip(JSON.parse(localStorage.getItem("activeTrip")).id);
+      //       }
       history.replace("/");
     } catch (error) {
       console.log("ERROR: ", error);
@@ -78,6 +78,14 @@ export const fetchHistory = () => async (dispatch) => {
     console.log("Error: ", error);
   }
 };
+export const fetchReviews = () => async (dispatch) => {
+  try {
+    const res = await instance.get("/reviews");
+    dispatch({ type: types.FETH_REVIEWS, payload: res.data });
+  } catch (error) {
+    console.log("Error: ", error);
+  }
+};
 
 export const deleteTrip = (tripId, history) => async (dispatch) => {
   try {
@@ -86,6 +94,19 @@ export const deleteTrip = (tripId, history) => async (dispatch) => {
     dispatch({
       type: types.DELETE_TRIP,
       payload: tripId,
+    });
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
+
+export const deleteReview = (reviewId, history) => async (dispatch) => {
+  try {
+    await instance.delete(`/reviews/${reviewId}`);
+    // history.replace("/profile");
+    dispatch({
+      type: types.DELETE_REVIEW,
+      payload: reviewId,
     });
   } catch (error) {
     console.log("Error:", error);

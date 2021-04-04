@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router";
 // Styling
 import { Typography } from "@material-ui/core";
@@ -15,10 +15,15 @@ import {
   EditButton,
 } from "./styles";
 import ReviewsList from "./ReviewsList";
+import { fetchReviews } from "store/actions/authActions";
 
 const Profile = () => {
   const { user } = useSelector((state) => state.authReducer);
   const history = useHistory();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchReviews());
+  }, [dispatch]);
 
   const initialState = {
     reviews: false,
@@ -34,7 +39,7 @@ const Profile = () => {
   const tabButtons = [];
   for (const key in show) {
     tabButtons.push(
-      <TabButton shown={show[key]} onClick={() => handleShow(key)}>
+      <TabButton shown={show[key]} onClick={() => handleShow(key)} key={key}>
         {key}
       </TabButton>
     );
@@ -66,7 +71,7 @@ const Profile = () => {
         </TabContainer>
       </CardContainer>
       <ItemContainer>
-        <CardContainer bgcolor={"#f5f5f5"} borderRadius={16}>
+        <CardContainer bgcolor={"#f5f5f5"} borderradius={16}>
           <TabContainer>{tabButtons}</TabContainer>
         </CardContainer>
       </ItemContainer>
