@@ -1,3 +1,4 @@
+//remove useless imports
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -18,6 +19,7 @@ import { DialogContainer, FilterContainer, StyledRating } from "./styles";
 import { Redirect } from "react-router";
 
 const MainMap = () => {
+  //not used, to remove
   const dispatch = useDispatch();
   const { activities } = useSelector((state) => state.activityReducer);
   const { trip } = useSelector((state) => state.tripReducer);
@@ -59,6 +61,7 @@ const MainMap = () => {
             }
           />
           <div>
+            {/* remove inline styling */}
             <Typography style={{ textAlign: "center" }} gutterBottom>
               Price Range (EUR)
             </Typography>
@@ -69,10 +72,12 @@ const MainMap = () => {
               valueLabelDisplay="auto"
               aria-labelledby="range-slider"
               max={Math.round(maxPrice + 10)}
+              //  remove inline styling
               style={{ width: "200px", marginLeft: "30px" }}
             />
           </div>
           <div>
+            {/* remove inline styling */}
             <Typography style={{ textAlign: "center" }} gutterBottom>
               Rating
             </Typography>
