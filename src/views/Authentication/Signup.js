@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signup } from "../../store/actions/authActions";
+
 // Components
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
@@ -10,12 +11,14 @@ import CustomInput from "components/CustomInput/CustomInput";
 import InfoArea from "components/InfoArea/InfoArea";
 import Card from "components/Card/Card";
 import CardBody from "components/Card/CardBody";
+
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
 import { InputAdornment, Box, Icon } from "@material-ui/core";
 import { Timeline, Code, Group, Face, Email } from "@material-ui/icons";
-
 import styles from "assets/jss/material-dashboard-pro-react/views/registerPageStyle";
+import { AuthMsg } from "./styles";
+
 const useStyles = makeStyles(styles);
 
 const Signup = () => {
@@ -48,6 +51,7 @@ const Signup = () => {
             <CardBody>
               <GridContainer justify="center">
                 <GridItem xs={12} sm={12} md={5}>
+                  {/* content shoud be changed */}
                   <InfoArea
                     title="Marketing"
                     description="We've created the marketing campaign of the website. It was a very interesting collaboration."
@@ -81,9 +85,7 @@ const Signup = () => {
                           <InputAdornment
                             position="start"
                             className={classes.inputAdornment}
-                          >
-                            {/* <Face className={classes.inputAdornmentIcon} /> */}
-                          </InputAdornment>
+                          ></InputAdornment>
                         ),
                         placeholder: "First Name",
                       }}
@@ -100,9 +102,7 @@ const Signup = () => {
                           <InputAdornment
                             position="start"
                             className={classes.inputAdornment}
-                          >
-                            {/* <Face className={classes.inputAdornmentIcon} /> */}
-                          </InputAdornment>
+                          ></InputAdornment>
                         ),
                         placeholder: "Last Name",
                       }}
@@ -169,9 +169,9 @@ const Signup = () => {
                       }}
                     />
                     <Box mt={2} ml={2}>
-                      <a href="/signin" style={{ color: "#e91e63" }}>
+                      <AuthMsg href="/signin">
                         Already have an account? Signin
-                      </a>
+                      </AuthMsg>
                     </Box>
                     <div className={classes.center}>
                       <Box mt={4} ml={6}>

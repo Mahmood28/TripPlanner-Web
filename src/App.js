@@ -9,42 +9,12 @@ import Signin from "views/Authentication/Signin";
 import Signup from "views/Authentication/Signup";
 import ActivityDetail from "views/ActivityDetail";
 import NotFound from "views/NotFound";
+import AppRoutes from "views/AppRoutes";
 
 function App() {
   return (
     <ToastProvider>
-      <Switch>
-        <Route path="/404">
-          <AuthLayout>
-            <NotFound />
-          </AuthLayout>
-        </Route>
-        <Route path="/activities/:activitySlug">
-          <MainLayout>
-            <ActivityDetail />
-          </MainLayout>
-        </Route>
-        <Route path="/home">
-          <AuthLayout>
-            <Search />
-          </AuthLayout>
-        </Route>
-        <Route path="/signin">
-          <AuthLayout>
-            <Signin />
-          </AuthLayout>
-        </Route>
-        <Route path="/signup">
-          <AuthLayout>
-            <Signup />
-          </AuthLayout>
-        </Route>
-        <Route path="/">
-          <MainLayout />
-        </Route>
-        <Redirect from="/" to="/home" />
-        <Redirect to="/404" />
-      </Switch>
+      <AppRoutes />
     </ToastProvider>
   );
 }

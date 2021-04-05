@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+
 // Components
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
@@ -9,10 +10,11 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardIcon from "components/Card/CardIcon.js";
 import CardBody from "components/Card/CardBody.js";
 import Map from "./Map";
+
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
+import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
 
-import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
 const useStyles = makeStyles(styles);
 
 export default function DayItem({ day, destination }) {
@@ -20,14 +22,14 @@ export default function DayItem({ day, destination }) {
 
   const sortedActivities = day.activities.sort(
     (a, b) =>
-      moment.duration(a.DayActivity.startTime) -
-      moment.duration(b.DayActivity.startTime)
+      moment.duration(a.dayActivity.startTime) -
+      moment.duration(b.dayActivity.startTime)
   );
 
   const activitiesList =
     day.activities.length > 0
       ? sortedActivities.map((_activity, idx) => {
-          let activity = _activity.DayActivity;
+          let activity = _activity.dayActivity;
           return [
             `${idx + 1}`,
             activity.name,

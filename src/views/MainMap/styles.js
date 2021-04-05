@@ -5,6 +5,7 @@ import {
   CardActions,
   Button,
   CardHeader,
+  Slider,
 } from "@material-ui/core";
 import { Rating } from "@material-ui/lab";
 import { withStyles } from "@material-ui/core/styles";
@@ -362,3 +363,11 @@ export const StyledRating = withStyles({
     marginRight: "30px",
   },
 })(Rating);
+
+export const StyledFilterText = styled(Typography)`
+  text-align: center;
+`;
+export const StyledPrice = styled(Slider)`
+  width: 200px;
+  margin-left: 30px;
+`;

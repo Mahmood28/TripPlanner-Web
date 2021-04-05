@@ -22,8 +22,8 @@ const DayTable = ({ day }) => {
 
   const sortedActivities = day.activities.sort(
     (a, b) =>
-      moment.duration(a.DayActivity.startTime) -
-      moment.duration(b.DayActivity.startTime)
+      moment.duration(a.dayActivity.startTime) -
+      moment.duration(b.dayActivity.startTime)
   );
 
   let data = [["", "", "Start your day plan by adding activities", "", ""]];
@@ -31,11 +31,11 @@ const DayTable = ({ day }) => {
   if (sortedActivities.length > 0) {
     data = sortedActivities.map((activity, idx) => [
       `${idx + 1}`,
-      `${activity.DayActivity.startTime.slice(
+      `${activity.dayActivity.startTime.slice(
         0,
         -3
-      )} -${activity.DayActivity.endTime.slice(0, -3)}`,
-      activity.DayActivity.name,
+      )} -${activity.dayActivity.endTime.slice(0, -3)}`,
+      activity.dayActivity.name,
       "",
       [
         <Buttons

@@ -7,7 +7,7 @@ import Loader from "components/Loading/Loader";
 //Styling
 import { Tabs, Tab, Paper, Typography } from "@material-ui/core";
 import DayTimeline from "./DayTimeline";
-import { StyledContainer } from "./styles";
+import { StyledContainer, StyledMapSection } from "./styles";
 
 const Routes = () => {
   const [shown, setShown] = useState(0);
@@ -29,8 +29,8 @@ const Routes = () => {
 
   const sortedActivities = days[shown].activities.sort(
     (a, b) =>
-      moment.duration(a.DayActivity.startTime) -
-      moment.duration(b.DayActivity.startTime)
+      moment.duration(a.dayActivity.startTime) -
+      moment.duration(b.dayActivity.startTime)
   );
 
   return (
@@ -38,8 +38,9 @@ const Routes = () => {
       <Typography variant="h3">
         Your {days.length} Days in {location.city}
       </Typography>
+
       <StyledContainer>
-        <div style={{ minWidth: "60%" }}>
+        <StyledMapSection>
           <Paper>
             <Tabs
               value={shown}
@@ -52,6 +53,7 @@ const Routes = () => {
               {dayTabs}
             </Tabs>
           </Paper>
+
           <Map
             isMarkerShown
             lat={location.latitude}
@@ -59,7 +61,7 @@ const Routes = () => {
             activities={sortedActivities}
             shown={shown}
           />
-        </div>
+        </StyledMapSection>
         <DayTimeline activities={sortedActivities} />
       </StyledContainer>
     </div>

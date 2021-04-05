@@ -1,9 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { handleActivity } from "../../store/actions/tripActions";
 import { Marker, InfoWindow } from "react-google-maps";
+
 // Components
 import ActivityDetails from "./ActivityDetails";
+
 // Styling
 import { useToasts } from "react-toast-notifications";
 import { Divider } from "@material-ui/core";
