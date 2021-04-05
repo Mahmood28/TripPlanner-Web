@@ -1,4 +1,3 @@
-//remove useless imports
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -13,15 +12,13 @@ import Card from "components/Card/Card";
 import CardHeader from "components/Card/CardHeader";
 import CardBody from "components/Card/CardBody";
 import CardFooter from "components/Card/CardFooter";
+
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
-import Refresh from "@material-ui/icons/Refresh";
 import Close from "@material-ui/icons/Close";
-import Edit from "@material-ui/icons/Edit";
 import Place from "@material-ui/icons/Place";
 import ArtTrack from "@material-ui/icons/ArtTrack";
-
 import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
 import tripImage from "assets/img/card-2.jpeg";
 

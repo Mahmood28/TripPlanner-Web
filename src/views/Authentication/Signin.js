@@ -18,6 +18,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { InputAdornment, Icon } from "@material-ui/core";
 import { Face } from "@material-ui/icons";
 import styles from "assets/jss/material-dashboard-pro-react/views/loginPageStyle";
+import { AuthMsg } from "./styles";
 
 const useStyles = makeStyles(styles);
 
@@ -103,10 +104,7 @@ const Signin = () => {
                   }}
                   onChange={handleChange}
                 />
-                {/* remove inline style */}
-                <a href="/signup" style={{ color: "#e91e63" }}>
-                  Don't have an account? Signup
-                </a>
+                <AuthMsg href="/signup">Don't have an account? Signup</AuthMsg>
               </CardBody>
               <CardFooter className={classes.justifyContentCenter}>
                 <Button
