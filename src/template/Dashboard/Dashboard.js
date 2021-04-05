@@ -40,7 +40,7 @@ import CardFooter from "components/Card/CardFooter.js";
 import {
   dailySalesChart,
   emailsSubscriptionChart,
-  completedTasksChart
+  completedTasksChart,
 } from "variables/charts";
 
 import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
@@ -67,7 +67,7 @@ var mapData = {
   IN: 200,
   RO: 600,
   RU: 300,
-  US: 2920
+  US: 2920,
 };
 
 const useStyles = makeStyles(styles);
@@ -93,7 +93,7 @@ export default function Dashboard() {
                 <Danger>
                   <Warning />
                 </Danger>
-                <a href="#pablo" onClick={e => e.preventDefault()}>
+                <a href="#pablo" onClick={(e) => e.preventDefault()}>
                   Get more space
                 </a>
               </div>
@@ -172,38 +172,38 @@ export default function Dashboard() {
                         <img src={us_flag} alt="us_flag" key={"flag"} />,
                         "USA",
                         "2.920",
-                        "53.23%"
+                        "53.23%",
                       ],
                       [
                         <img src={de_flag} alt="us_flag" key={"flag"} />,
                         "Germany",
                         "1.300",
-                        "20.43%"
+                        "20.43%",
                       ],
                       [
                         <img src={au_flag} alt="us_flag" key={"flag"} />,
                         "Australia",
                         "760",
-                        "10.35%"
+                        "10.35%",
                       ],
                       [
                         <img src={gb_flag} alt="us_flag" key={"flag"} />,
                         "United Kingdom",
                         "690",
-                        "7.87%"
+                        "7.87%",
                       ],
                       [
                         <img src={ro_flag} alt="us_flag" key={"flag"} />,
                         "Romania",
                         "600",
-                        "5.94%"
+                        "5.94%",
                       ],
                       [
                         <img src={br_flag} alt="us_flag" key={"flag"} />,
                         "Brasil",
                         "550",
-                        "4.34%"
-                      ]
+                        "4.34%",
+                      ],
                     ]}
                   />
                 </GridItem>
@@ -214,7 +214,7 @@ export default function Dashboard() {
                     zoomOnScroll={false}
                     containerStyle={{
                       width: "100%",
-                      height: "280px"
+                      height: "280px",
                     }}
                     containerClassName="map"
                     regionStyle={{
@@ -223,17 +223,17 @@ export default function Dashboard() {
                         "fill-opacity": 0.9,
                         stroke: "none",
                         "stroke-width": 0,
-                        "stroke-opacity": 0
-                      }
+                        "stroke-opacity": 0,
+                      },
                     }}
                     series={{
                       regions: [
                         {
                           values: mapData,
                           scale: ["#AAAAAA", "#444444"],
-                          normalizeFunction: "polynomial"
-                        }
-                      ]
+                          normalizeFunction: "polynomial",
+                        },
+                      ],
                     }}
                   />
                 </GridItem>
@@ -388,7 +388,7 @@ export default function Dashboard() {
         <GridItem xs={12} sm={12} md={4}>
           <Card product className={classes.cardHover}>
             <CardHeader image className={classes.cardHeaderHover}>
-              <a href="#pablo" onClick={e => e.preventDefault()}>
+              <a href="#pablo" onClick={(e) => e.preventDefault()}>
                 <img src={priceImage1} alt="..." />
               </a>
             </CardHeader>
@@ -426,7 +426,7 @@ export default function Dashboard() {
                 </Tooltip>
               </div>
               <h4 className={classes.cardProductTitle}>
-                <a href="#pablo" onClick={e => e.preventDefault()}>
+                <a href="#pablo" onClick={(e) => e.preventDefault()}>
                   Cozy 5 Stars Apartment
                 </a>
               </h4>
@@ -449,7 +449,7 @@ export default function Dashboard() {
         <GridItem xs={12} sm={12} md={4}>
           <Card product className={classes.cardHover}>
             <CardHeader image className={classes.cardHeaderHover}>
-              <a href="#pablo" onClick={e => e.preventDefault()}>
+              <a href="#pablo" onClick={(e) => e.preventDefault()}>
                 <img src={priceImage2} alt="..." />
               </a>
             </CardHeader>
@@ -487,7 +487,7 @@ export default function Dashboard() {
                 </Tooltip>
               </div>
               <h4 className={classes.cardProductTitle}>
-                <a href="#pablo" onClick={e => e.preventDefault()}>
+                <a href="#pablo" onClick={(e) => e.preventDefault()}>
                   Office Studio
                 </a>
               </h4>
@@ -510,7 +510,7 @@ export default function Dashboard() {
         <GridItem xs={12} sm={12} md={4}>
           <Card product className={classes.cardHover}>
             <CardHeader image className={classes.cardHeaderHover}>
-              <a href="#pablo" onClick={e => e.preventDefault()}>
+              <a href="#pablo" onClick={(e) => e.preventDefault()}>
                 <img src={priceImage3} alt="..." />
               </a>
             </CardHeader>
@@ -548,7 +548,7 @@ export default function Dashboard() {
                 </Tooltip>
               </div>
               <h4 className={classes.cardProductTitle}>
-                <a href="#pablo" onClick={e => e.preventDefault()}>
+                <a href="#pablo" onClick={(e) => e.preventDefault()}>
                   Beautiful Castle
                 </a>
               </h4>

@@ -1,9 +1,8 @@
 import React from "react";
+import moment from "moment";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteTrip } from "store/actions/authActions";
-import moment from "moment";
-import { useToasts } from "react-toast-notifications";
 // Components
 import GridItem from "components/Grid/GridItem";
 import Button from "components/CustomButtons/Button";
@@ -11,12 +10,13 @@ import Card from "components/Card/Card";
 import CardHeader from "components/Card/CardHeader";
 import CardBody from "components/Card/CardBody";
 import CardFooter from "components/Card/CardFooter";
+import DeleteAlert from "./DeleteAlert";
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
-import Tooltip from "@material-ui/core/Tooltip";
-import Close from "@material-ui/icons/Close";
-import Place from "@material-ui/icons/Place";
-import ArtTrack from "@material-ui/icons/ArtTrack";
+import { Tooltip } from "@material-ui/core";
+import { ArtTrack, Edit, Close, Place } from "@material-ui/icons";
+import { useToasts } from "react-toast-notifications";
+
 import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
 import tripImage from "assets/img/card-2.jpeg";
 
@@ -46,19 +46,29 @@ const TripItem = ({ trip }) => {
         <CardBody>
           <div className={classes.cardHoverUnder}>
             <Tooltip
-              id="tooltip-top"
               title="Details"
               placement="bottom"
               classes={{ tooltip: classes.tooltip }}
             >
-              <Link to={`/history/trips/${trip.id}`}>
+              <Link
+                to={`/history/trips/${trip.id}`}
+                style={{ color: "#424242", textDecoration: "inherit" }}
+              >
                 <Button color="transparent" simple justIcon>
                   <ArtTrack className={classes.underChartIcons} />
                 </Button>
               </Link>
             </Tooltip>
             <Tooltip
-              id="tooltip-top"
+              title="edit"
+              placement="bottom"
+              classes={{ tooltip: classes.tooltip }}
+            >
+              <Button color="warning" simple justIcon>
+                <Edit className={classes.underChartIcons} />
+              </Button>
+            </Tooltip>
+            <Tooltip
               title="Delete"
               placement="bottom"
               classes={{ tooltip: classes.tooltip }}
@@ -66,6 +76,7 @@ const TripItem = ({ trip }) => {
               <Button color="rose" simple justIcon onClick={handleDelete}>
                 <Close className={classes.underChartIcons} />
               </Button>
+              {/* <DeleteAlert tripId={trip.id} /> */}
             </Tooltip>
           </div>
           <h4 className={classes.cardProductTitle}>
