@@ -1,14 +1,13 @@
 // Components
 import MainMap from "views/MainMap";
 import Itinerary from "views/Itinerary";
-import Calendar from "views/Calendar";
 import Profile from "views/Profile";
 import ProfileEdit from "views/Profile/ProfileEdit";
 import TripHistory from "views/TripHistory";
 import Routes from "views/Routes";
 import TripSummary from "views/TripSummary";
 // Styling
-import { DateRange, Place, Timeline, GridOn, Map } from "@material-ui/icons";
+import { Place, Timeline, GridOn, Map } from "@material-ui/icons";
 
 const routes = [
   {
@@ -37,13 +36,6 @@ const routes = [
     name: "Summary",
     icon: Map,
     component: TripSummary,
-    layout: "/",
-  },
-  {
-    path: "calendar",
-    name: "Calendar",
-    icon: DateRange,
-    component: Calendar,
     layout: "/",
   },
   {

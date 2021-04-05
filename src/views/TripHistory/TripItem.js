@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { deleteTrip } from "store/actions/authActions";
 import moment from "moment";
 import { useToasts } from "react-toast-notifications";
-
 // Components
 import GridItem from "components/Grid/GridItem";
 import Button from "components/CustomButtons/Button";
@@ -12,7 +11,6 @@ import Card from "components/Card/Card";
 import CardHeader from "components/Card/CardHeader";
 import CardBody from "components/Card/CardBody";
 import CardFooter from "components/Card/CardFooter";
-
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -24,7 +22,7 @@ import tripImage from "assets/img/card-2.jpeg";
 
 const useStyles = makeStyles(styles);
 
-export default function TripItem({ trip }) {
+const TripItem = ({ trip }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const { addToast } = useToasts();
@@ -35,12 +33,6 @@ export default function TripItem({ trip }) {
       autoDismiss: true,
     });
     dispatch(deleteTrip(trip.id));
-  };
-
-  console.log("trip", trip);
-
-  const handleDetails = () => {
-    // localStorage.setItem("activeTrip", JSON.stringify());
   };
 
   return (
@@ -100,4 +92,6 @@ export default function TripItem({ trip }) {
       </Card>
     </GridItem>
   );
-}
+};
+
+export default TripItem;
