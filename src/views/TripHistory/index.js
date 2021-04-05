@@ -14,6 +14,7 @@ const TripHistory = () => {
   const { loading } = useSelector((state) => state.authReducer.loading);
   const { history } = useSelector((state) => state.authReducer);
   const { user } = useSelector((state) => state.authReducer);
+
   useEffect(() => {
     dispatch(fetchHistory());
   }, [dispatch]);

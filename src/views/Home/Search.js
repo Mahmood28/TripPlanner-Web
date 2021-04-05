@@ -15,14 +15,10 @@ import GridItem from "components/Grid/GridItem";
 import Button from "components/CustomButtons/Button";
 import Card from "components/Card/Card";
 import CardBody from "components/Card/CardBody";
+import Loader from "components/Loading/Loader";
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  InputLabel,
-  TextField,
-  Backdrop,
-  CircularProgress,
-} from "@material-ui/core";
+import { InputLabel, TextField, Backdrop } from "@material-ui/core";
 
 import styles from "assets/jss/material-dashboard-pro-react/views/pricingPageStyle";
 
@@ -174,7 +170,7 @@ const Search = () => {
       </GridContainer>
       {loading && (
         <Backdrop open={loading} onClick={() => setLoading(false)}>
-          <CircularProgress color="inherit" />
+          <Loader />
         </Backdrop>
       )}
     </div>

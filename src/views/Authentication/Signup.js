@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signup } from "../../store/actions/authActions";
-
 // Components
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
@@ -11,7 +10,6 @@ import CustomInput from "components/CustomInput/CustomInput";
 import InfoArea from "components/InfoArea/InfoArea";
 import Card from "components/Card/Card";
 import CardBody from "components/Card/CardBody";
-
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
 import { InputAdornment, Box, Icon } from "@material-ui/core";

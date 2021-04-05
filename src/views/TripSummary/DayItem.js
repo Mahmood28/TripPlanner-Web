@@ -1,23 +1,21 @@
 import React from "react";
 import moment from "moment";
-
 // Components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Table from "components/Table/Table.js";
-import Card from "components/Card/Card.js";
-import CardHeader from "components/Card/CardHeader.js";
-import CardIcon from "components/Card/CardIcon.js";
-import CardBody from "components/Card/CardBody.js";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
+import Table from "components/Table/Table";
+import Card from "components/Card/Card";
+import CardHeader from "components/Card/CardHeader";
+import CardIcon from "components/Card/CardIcon";
+import CardBody from "components/Card/CardBody";
 import Map from "./Map";
-
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
-import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
+import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 
 const useStyles = makeStyles(styles);
 
-export default function DayItem({ day, destination }) {
+const DayItem = ({ day, destination }) => {
   const classes = useStyles();
 
   const sortedActivities = day.activities.sort(
@@ -80,4 +78,6 @@ export default function DayItem({ day, destination }) {
       </GridItem>
     </GridContainer>
   );
-}
+};
+
+export default DayItem;

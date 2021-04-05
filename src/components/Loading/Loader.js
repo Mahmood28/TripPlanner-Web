@@ -5,7 +5,7 @@ import { Box } from "@material-ui/core";
 
 const Loader = () => {
   return (
-    <Box ml={"50%"} mt={"50%"}>
+    <Box ml={"50%"} mt={"25%"}>
       <BeatLoader color="black" size={12} />
     </Box>
   );

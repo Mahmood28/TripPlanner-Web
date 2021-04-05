@@ -2,19 +2,17 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router";
 import moment from "moment";
-
-// @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-import { Box } from "@material-ui/core";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
-
 //Components
 import Loader from "components/Loading/Loader";
-import DayItem from "./DayItem.js";
+import DayItem from "./DayItem";
+// Stylilng
+import { makeStyles } from "@material-ui/core/styles";
+import { Box } from "@material-ui/core";
+import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 
 const useStyles = makeStyles(styles);
-export default function TripSummary({ activeTrip, itinerary }) {
+
+const TripSummary = ({ activeTrip, itinerary }) => {
   const classes = useStyles();
   const { tripId } = useParams();
   const { history } = useSelector((state) => state.authReducer);
@@ -50,4 +48,6 @@ export default function TripSummary({ activeTrip, itinerary }) {
       {daysList}
     </div>
   );
-}
+};
+
+export default TripSummary;

@@ -41,8 +41,8 @@ const ActivityForm = ({ day, dayId }) => {
 
   const handleCancel = () => {
     setOpen(false);
-    setActivity({});
     setEvent({});
+    setActivity({});
   };
 
   const handleSubmit = () => {
@@ -50,6 +50,7 @@ const ActivityForm = ({ day, dayId }) => {
     const newActivity = { tripId, day, activity, dayId };
     dispatch(addActivity(newActivity, addToast));
     setOpen(false);
+    setEvent({});
     setActivity({});
   };
 

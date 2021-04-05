@@ -4,6 +4,7 @@ import moment from "moment";
 //Components
 import Map from "./Map";
 import Loader from "components/Loading/Loader";
+import RedirectPage from "views/Routes/RedirectPage";
 //Styling
 import { Tabs, Tab, Paper, Typography } from "@material-ui/core";
 import DayTimeline from "./DayTimeline";
@@ -22,10 +23,7 @@ const Routes = () => {
     <Tab label={`Day ${day.day}`} disabled={!day.activities.length} />
   ));
 
-  if (days[shown].activities.length === 0)
-    return (
-      <p>start planning your trip by adding activities in the itinerary</p>
-    );
+  if (days[shown].activities.length === 0) return <RedirectPage />;
 
   const sortedActivities = days[shown].activities.sort(
     (a, b) =>
