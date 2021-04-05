@@ -29,8 +29,8 @@ const Routes = () => {
 
   const sortedActivities = days[shown].activities.sort(
     (a, b) =>
-      moment.duration(a.DayActivity.startTime) -
-      moment.duration(b.DayActivity.startTime)
+      moment.duration(a.dayActivity.startTime) -
+      moment.duration(b.dayActivity.startTime)
   );
 
   return (
