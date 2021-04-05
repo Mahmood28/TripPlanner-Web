@@ -1,8 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
 import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -12,18 +12,32 @@ import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import Popover from "@material-ui/core/Popover";
+import Typography from "@material-ui/core/Typography";
+import MenuItem from "@material-ui/core/MenuItem";
+import MenuList from "@material-ui/core/MenuList";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
+
 import Fingerprint from "@material-ui/icons/Fingerprint";
 // core components
 import Button from "components/CustomButtons/Button";
 
 import styles from "assets/jss/material-dashboard-pro-react/components/authNavbarStyle";
+import { StyledMenueItem, StyledMenuList } from "./styles";
+
+import { signout } from "store/actions/authActions";
+import { Divider } from "@material-ui/core";
 const useStyles = makeStyles(styles);
 
 export default function AuthNavbar(props) {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const { user } = useSelector((state) => state.authReducer);
+  const trip = JSON.parse(localStorage.getItem("activeTrip"));
+
   const handleDrawerToggle = () => {
     setOpen(!open);
   };
@@ -32,18 +46,67 @@ export default function AuthNavbar(props) {
   const appBarClasses = cx({
     [" " + classes[color]]: color,
   });
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const openPop = Boolean(anchorEl);
+  const id = openPop ? "simple-popover" : undefined;
+
   const list = (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
         {user ? (
-          <NavLink to={"/profile"} className={cx(classes.navLink)}>
+          <div>
             <Fingerprint className={classes.listItemIcon} />
-            <ListItemText
-              primary={user.username}
+            <Button
+              aria-describedby={id}
+              variant="contained"
+              color="transparent"
+              onClick={handleClick}
+              // primary={user.username}
               disableTypography={true}
               className={classes.listItemText}
-            />
-          </NavLink>
+            >
+              {user.username}
+            </Button>
+
+            <Popover
+              id={id}
+              open={openPop}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "center",
+              }}
+            >
+              <StyledMenuList autoFocusItem={openPop} id="menu-list-grow">
+                <StyledMenueItem onClick={() => history.push("/profile")}>
+                  Profile
+                </StyledMenueItem>
+                {trip && (
+                  <StyledMenueItem onClick={() => history.push("/explore")}>
+                    Current Trip
+                  </StyledMenueItem>
+                )}
+
+                <Divider light />
+                <StyledMenueItem onClick={() => dispatch(signout())}>
+                  Logout
+                </StyledMenueItem>
+              </StyledMenuList>
+            </Popover>
+          </div>
         ) : (
           <NavLink to={"/signin"} className={cx(classes.navLink)}>
             <Fingerprint className={classes.listItemIcon} />
