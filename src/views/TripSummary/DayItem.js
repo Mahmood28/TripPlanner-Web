@@ -1,26 +1,25 @@
 import React from "react";
 import moment from "moment";
 
-// @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-
 // Components
-import GridContainer from "../../components/Grid/GridContainer.js";
-import GridItem from "../../components/Grid/GridItem.js";
-import Table from "../../components/Table/Table.js";
-import Card from "../../components/Card/Card.js";
-import CardHeader from "../../components/Card/CardHeader.js";
-import CardIcon from "../../components/Card/CardIcon.js";
-import CardBody from "../../components/Card/CardBody.js";
+import GridContainer from "components/Grid/GridContainer.js";
+import GridItem from "components/Grid/GridItem.js";
+import Table from "components/Table/Table.js";
+import Card from "components/Card/Card.js";
+import CardHeader from "components/Card/CardHeader.js";
+import CardIcon from "components/Card/CardIcon.js";
+import CardBody from "components/Card/CardBody.js";
 import Map from "./Map";
 
 // Styling
+import { makeStyles } from "@material-ui/core/styles";
 import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
 
 const useStyles = makeStyles(styles);
 
 export default function DayItem({ day, destination }) {
   const classes = useStyles();
+
   const sortedActivities = day.activities.sort(
     (a, b) =>
       moment.duration(a.DayActivity.startTime) -

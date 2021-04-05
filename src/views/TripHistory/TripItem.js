@@ -38,6 +38,12 @@ export default function TripItem({ trip }) {
     dispatch(deleteTrip(trip.id, history));
   };
 
+  console.log("trip", trip);
+
+  const handleDetails = () => {
+    // localStorage.setItem("activeTrip", JSON.stringify());
+  };
+
   return (
     <GridItem xs={12} sm={12} md={4}>
       <Card product className={classes.cardHover}>

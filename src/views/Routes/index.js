@@ -22,6 +22,11 @@ const Routes = () => {
     <Tab label={`Day ${day.day}`} disabled={!day.activities.length} />
   ));
 
+  if (days[shown].activities.length === 0)
+    return (
+      <p>start planning your trip by adding activities in the itinerary</p>
+    );
+
   const sortedActivities = days[shown].activities.sort(
     (a, b) =>
       moment.duration(a.DayActivity.startTime) -
