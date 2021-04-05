@@ -28,7 +28,7 @@ const DayTimeline = ({ activities }) => {
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-            {activities[i].DayActivity.startTime.slice(0, 5)}
+            {activities[i].dayActivity.startTime.slice(0, 5)}
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>

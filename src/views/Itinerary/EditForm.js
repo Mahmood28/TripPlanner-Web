@@ -38,9 +38,9 @@ const EditForm = ({ activityNum, day, activityId, addToast }) => {
   const currActivity = {
     dayId: day.id,
     activityId,
-    name: foundActivity.DayActivity.name,
-    startTime: foundActivity.DayActivity.startTime,
-    endTime: foundActivity.DayActivity.endTime,
+    name: foundActivity.dayActivity.name,
+    startTime: foundActivity.dayActivity.startTime,
+    endTime: foundActivity.dayActivity.endTime,
   };
 
   const [activity, setActivity] = useState(currActivity);

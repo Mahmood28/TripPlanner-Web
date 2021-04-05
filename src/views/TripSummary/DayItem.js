@@ -22,14 +22,14 @@ export default function DayItem({ day, destination }) {
 
   const sortedActivities = day.activities.sort(
     (a, b) =>
-      moment.duration(a.DayActivity.startTime) -
-      moment.duration(b.DayActivity.startTime)
+      moment.duration(a.dayActivity.startTime) -
+      moment.duration(b.dayActivity.startTime)
   );
 
   const activitiesList =
     day.activities.length > 0
       ? sortedActivities.map((_activity, idx) => {
-          let activity = _activity.DayActivity;
+          let activity = _activity.dayActivity;
           return [
             `${idx + 1}`,
             activity.name,
