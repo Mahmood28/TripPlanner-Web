@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+
 // Components
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
@@ -9,10 +10,11 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardIcon from "components/Card/CardIcon.js";
 import CardBody from "components/Card/CardBody.js";
 import Map from "./Map";
+
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
+import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
 
-import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
 const useStyles = makeStyles(styles);
 
 export default function DayItem({ day, destination }) {

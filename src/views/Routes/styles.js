@@ -6,6 +6,7 @@ import {
   Button,
   CardHeader,
 } from "@material-ui/core";
+import { TimelineDot } from "@material-ui/lab/";
 
 export const StyledContainer = styled.div`
   display: flex;
@@ -21,6 +22,15 @@ export const StyledMapContainer = styled.div`
 
 export const StyledMapElement = styled.div`
   height: 100%;
+`;
+
+export const StyledTimeline = styled(TimelineDot)`
+  padding-right: 10px;
+  padding-left: 10px;
+`;
+
+export const StyledMapSection = styled.div`
+  min-width: 60%;
 `;
 
 export const styledMap = [

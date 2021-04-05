@@ -12,6 +12,7 @@ import {
   TimelineDot,
 } from "@material-ui/lab/";
 import { Paper, Typography, ButtonBase } from "@material-ui/core";
+import { StyledTimeline } from "./styles";
 
 const useStyles = makeStyles(() => ({
   paper: {
@@ -31,12 +32,9 @@ const DayTimeline = ({ activities }) => {
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>
-          <TimelineDot
-            color="secondary"
-            style={{ paddingRight: "10px", paddingLeft: "10px" }}
-          >
+          <StyledTimeline color="secondary">
             <Typography>{String.fromCharCode(i + 65)}</Typography>
-          </TimelineDot>
+          </StyledTimeline>
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>

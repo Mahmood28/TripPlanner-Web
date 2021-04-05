@@ -76,7 +76,7 @@ export default function ReviewItem({ review }) {
               <IconButton
                 edge="end"
                 aria-label="delete"
-                onClick={() => dispatch(deleteReview(review.id))}
+                onClick={() => dispatch(deleteReview(review))}
               >
                 <DeleteIcon color="secondary" />
               </IconButton>

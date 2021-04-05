@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { fetchItinerary } from "store/actions/tripActions";
+
 // Components
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
@@ -9,14 +8,20 @@ import Card from "components/Card/Card";
 import CardBody from "components/Card/CardBody";
 import Loading from "components/Loading";
 import Map from "./Map";
+
 // Styling
-import { TextField, Slider, Typography, Button } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 import { Tune, Star } from "@material-ui/icons/";
-import { DialogContainer, FilterContainer, StyledRating } from "./styles";
+import {
+  DialogContainer,
+  FilterContainer,
+  StyledFilterText,
+  StyledPrice,
+  StyledRating,
+} from "./styles";
 import { Redirect } from "react-router";
 
 const MainMap = () => {
-  const dispatch = useDispatch();
   const { activities } = useSelector((state) => state.activityReducer);
   const { trip } = useSelector((state) => state.tripReducer);
 
@@ -57,23 +62,18 @@ const MainMap = () => {
             }
           />
           <div>
-            <Typography style={{ textAlign: "center" }} gutterBottom>
-              Price Range (EUR)
-            </Typography>
-            <Slider
+            <StyledFilterText gutterBottom>Price Range (EUR)</StyledFilterText>
+            <StyledPrice
               value={filter.price}
               onChange={(event, price) => setFilter({ ...filter, price })}
               step={10}
               valueLabelDisplay="auto"
               aria-labelledby="range-slider"
               max={Math.round(maxPrice + 10)}
-              style={{ width: "200px", marginLeft: "30px" }}
             />
           </div>
           <div>
-            <Typography style={{ textAlign: "center" }} gutterBottom>
-              Rating
-            </Typography>
+            <StyledFilterText gutterBottom>Rating</StyledFilterText>
             <StyledRating
               name="simple-controlled"
               value={filter.rating}
