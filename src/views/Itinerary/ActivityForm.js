@@ -28,7 +28,7 @@ const ActivityForm = ({ day, dayId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { addToast } = useToasts();
-  
+
   const [activity, setActivity] = useState({});
   const [event, setEvent] = useState({});
   const [open, setOpen] = useState(false);
@@ -37,6 +37,12 @@ const ActivityForm = ({ day, dayId }) => {
 
   const handleChange = (event) => {
     setActivity({ ...activity, [event.target.name]: event.target.value });
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+    setActivity({});
+    setEvent({});
   };
 
   const handleSubmit = () => {
@@ -70,7 +76,6 @@ const ActivityForm = ({ day, dayId }) => {
               shrink: true,
             }}
           />
-          <br />
           <TextField
             name="startTime"
             value={activity.startTime}
@@ -82,7 +87,6 @@ const ActivityForm = ({ day, dayId }) => {
               shrink: true,
             }}
           />
-          <br />
           <TextField
             name="endTime"
             value={activity.endTime}
@@ -99,15 +103,13 @@ const ActivityForm = ({ day, dayId }) => {
             collapses={[
               {
                 title: "Select Activity",
-                content: (
-                  <ActivityList day={day} event={event} setEvent={setEvent} />
-                ),
+                content: <ActivityList event={event} setEvent={setEvent} />,
               },
             ]}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpen(false)} color="rose">
+          <Button onClick={handleCancel} color="rose">
             Cancel
           </Button>
           <Button onClick={handleSubmit} color="warning">

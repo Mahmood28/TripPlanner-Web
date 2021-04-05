@@ -10,7 +10,7 @@ const Loading = () => {
       height={10}
       width={10}
       timeout={3000}
-      style={{ position: "absolute", top: "25%", left: "25%" }}
+      style={{ position: "absolute", top: "50%", left: "40%" }}
     />
   );
 };

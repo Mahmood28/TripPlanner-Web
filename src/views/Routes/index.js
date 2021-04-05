@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import moment from "moment";
 //Components
 import Map from "./Map";
+import Loader from "components/Loading/Loader";
 //Styling
 import { Tabs, Tab, Paper, Typography } from "@material-ui/core";
-import Loading from "components/Loading";
 import DayTimeline from "./DayTimeline";
 import { StyledContainer } from "./styles";
 
@@ -14,7 +14,7 @@ const Routes = () => {
   const { itinerary, trip } = useSelector((state) => state.tripReducer);
   const { days } = itinerary;
 
-  if (days == undefined) return <Loading />;
+  if (days == undefined) return <Loader />;
 
   const location = trip.destination;
 

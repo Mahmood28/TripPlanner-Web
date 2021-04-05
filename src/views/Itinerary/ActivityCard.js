@@ -33,9 +33,9 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const ActivityCard = ({ day, activity, event, setEvent }) => {
+const ActivityCard = ({ activity, event, setEvent }) => {
   const classes = useStyles();
-  const selected = event === activity;
+  const selected = event.id === activity.id;
 
   return (
     <Box mb={2}>

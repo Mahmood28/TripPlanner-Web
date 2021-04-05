@@ -1,10 +1,8 @@
 import React from "react";
 import moment from "moment";
-import { useDispatch } from "react-redux";
 // Components
 import GridItem from "components/Grid/GridItem";
 import Table from "components/Table/Table";
-import Button from "components/CustomButtons/Button";
 import Card from "components/Card/Card";
 import CardBody from "components/Card/CardBody";
 import CardIcon from "components/Card/CardIcon";
@@ -20,7 +18,6 @@ const useStyles = makeStyles(styles);
 
 const DayTable = ({ day }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
   const { addToast } = useToasts();
 
   const sortedActivities = day.activities.sort(

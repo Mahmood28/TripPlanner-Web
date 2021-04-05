@@ -55,17 +55,6 @@ const ReviewForm = ({ user, activityId }) => {
               icon={<Star fontSize="30px" />}
             />
           </Box>
-          {/* <CustomInput
-            labelText="Give your review a title..."
-            formControlProps={{
-              fullWidth: true,
-            }}
-            inputProps={{
-              name: "title",
-              //   onChange: handleChange,
-              autoComplete: "off",
-            }}
-          /> */}
           <CustomInput
             labelText="Describe your experience..."
             formControlProps={{

@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, createRef } from "react";
+import { useSelector } from "react-redux";
 import { Switch, Route, Redirect } from "react-router-dom";
-import cx from "classnames";
 // Scrollbar
 import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
-// @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
 // Components
-import AdminNavbar from "components/Navbars/AdminNavbar.js";
-import Sidebar from "components/Sidebar/Sidebar.js";
-
-import routes from "routes.js";
-import styles from "assets/jss/material-dashboard-pro-react/layouts/adminStyle.js";
+import routes from "routes";
+import AdminNavbar from "components/Navbars/AdminNavbar";
+import Sidebar from "components/Sidebar/Sidebar";
 import TripSummary from "views/TripSummary";
-import { useSelector } from "react-redux";
+// Styling
+import cx from "classnames";
+import { makeStyles } from "@material-ui/core/styles";
+
+import styles from "assets/jss/material-dashboard-pro-react/layouts/adminStyle";
 
 let ps;
 
@@ -25,8 +25,8 @@ const MainLayout = (props) => {
   const classes = useStyles();
   const { ...rest } = props;
 
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [miniActive, setMiniActive] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [miniActive, setMiniActive] = useState(false);
 
   const image = require("assets/img/sidebar-2.jpg");
   const logo = require("assets/img/logo-white.svg");
@@ -43,7 +43,7 @@ const MainLayout = (props) => {
     });
 
   // ref for main panel div
-  const mainPanel = React.createRef();
+  const mainPanel = createRef();
   // effect instead of componentDidMount, componentDidUpdate and componentWillUnmount
   useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -63,6 +63,7 @@ const MainLayout = (props) => {
       window.removeEventListener("resize", resizeFunction);
     };
   });
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -85,6 +86,7 @@ const MainLayout = (props) => {
     }
     return activeRoute;
   };
+
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.collapse) {
@@ -111,9 +113,11 @@ const MainLayout = (props) => {
       }
     });
   };
+
   const sidebarMinimize = () => {
     setMiniActive(!miniActive);
   };
+
   const resizeFunction = () => {
     if (window.innerWidth >= 960) {
       setMobileOpen(false);

@@ -43,12 +43,14 @@ const ActivityCard = ({ activity }) => {
               </Box>
               <Box display="flex" mt={2}>
                 <Box mt={1.2} mr={1}>
-                  <StyledRating
-                    value={rating}
-                    precision={0.5}
-                    icon={<Star fontSize="30px" />}
-                    readOnly
-                  />
+                  {rating !== 0 && (
+                    <StyledRating
+                      value={rating}
+                      precision={0.5}
+                      icon={<Star fontSize="30px" />}
+                      readOnly
+                    />
+                  )}
                 </Box>
                 <h4>{rating === 0 ? "No rating" : rating}</h4>
               </Box>

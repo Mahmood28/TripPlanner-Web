@@ -8,7 +8,7 @@ import ReviewForm from "views/ActivityDetail/ReviewForm";
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
 
-import sectionCommentsStyle from "assets/jss/material-dashboard-pro-react/views/sectionCommentsStyle.js";
+import sectionCommentsStyle from "assets/jss/material-dashboard-pro-react/views/sectionCommentsStyle";
 const useStyles = makeStyles(sectionCommentsStyle);
 
 const ReviewList = ({ activity }) => {

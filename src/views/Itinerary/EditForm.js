@@ -35,6 +35,7 @@ const EditForm = ({ activityNum, day, activityId, addToast }) => {
   const foundActivity = day.activities.find(
     (activity) => activity.id === activityId
   );
+
   const currActivity = {
     dayId: day.id,
     activityId,
@@ -53,11 +54,14 @@ const EditForm = ({ activityNum, day, activityId, addToast }) => {
 
   const handleCancel = () => {
     setOpen(false);
+    setEvent(foundActivity);
     setActivity(currActivity);
   };
+
   const handleChange = (event) => {
     setActivity({ ...activity, [event.target.name]: event.target.value });
   };
+
   const handleSubmit = () => {
     const newActivity = { ...activity, dayId: day.id, activityId: event.id };
     dispatch(updateActivity(currActivity, newActivity, addToast));
@@ -94,7 +98,6 @@ const EditForm = ({ activityNum, day, activityId, addToast }) => {
               shrink: true,
             }}
           />
-          <br />
           <TextField
             name="startTime"
             value={activity.startTime}
@@ -107,7 +110,6 @@ const EditForm = ({ activityNum, day, activityId, addToast }) => {
               shrink: true,
             }}
           />
-          <br />
           <TextField
             name="endTime"
             value={activity.endTime}

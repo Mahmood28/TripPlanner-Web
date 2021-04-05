@@ -1,4 +1,3 @@
-import React from "react";
 import instance from "./instance";
 import Cookies from "js-cookie";
 import * as types from "../types";
@@ -14,25 +13,6 @@ export const createTrip = (trip) => async (dispatch) => {
     await localStorage.setItem("activeTrip", JSON.stringify(res.data));
     await dispatch(fetchItinerary(res.data.id));
     dispatch({
-      type: types.SET_TRIP,
-      payload: res.data,
-    });
-  } catch (error) {
-    console.log("Error:", error);
-  }
-};
-
-export const addUser = () => async (dispatch) => {
-  try {
-    const token = Cookies.get("token");
-    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
-    const trip = await JSON.parse(localStorage.getItem("activeTrip"));
-    const res = await instance.put(`/trips/${trip.id}`);
-    await localStorage.setItem(
-      "activeTrip",
-      JSON.stringify({ ...trip, userId: res.data })
-    );
-    await dispatch({
       type: types.SET_TRIP,
       payload: res.data,
     });

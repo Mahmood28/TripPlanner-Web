@@ -33,7 +33,6 @@ const Review = ({ review }) => {
             </Box>
           </>
         }
-        footer={<div></div>}
       />
       <hr
         style={{

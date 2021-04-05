@@ -23,14 +23,14 @@ const Buttons = ({ activityNum, day, dayId, activityId, addToast }) => {
         day={day}
         activityId={activityId}
         key={activityId}
-        addToast={addToast}
+        addToast={addToast} // remove this later
       />
       <Button
         color="rose"
         simple
         className={classes.actionButton}
-        onClick={() =>
-          dispatch(deleteActivity({ dayId, activityId }, addToast))
+        onClick={
+          () => dispatch(deleteActivity({ dayId, activityId }, addToast)) // remove addToast later
         }
       >
         <Close className={classes.icon} />

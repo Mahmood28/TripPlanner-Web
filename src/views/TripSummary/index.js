@@ -10,6 +10,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
 
 //Components
+import Loader from "components/Loading/Loader";
 import DayItem from "./DayItem.js";
 
 const useStyles = makeStyles(styles);
@@ -27,7 +28,7 @@ export default function TripSummary({ activeTrip, itinerary }) {
   }
   const tripDays = tripId ? trip.days : itinerary.days;
 
-  if (!tripDays) return <CircularProgress color="inherit" />;
+  if (!tripDays) return <Loader />;
   const daysList = tripDays.map((day) => (
     <DayItem day={day} key={day.id} destination={trip.destination} />
   ));

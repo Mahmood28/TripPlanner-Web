@@ -4,6 +4,7 @@ import moment from "moment";
 // Components
 import GridContainer from "components/Grid/GridContainer";
 import DayTable from "views/Itinerary/DayTable";
+import Loader from "components/Loading/Loader";
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
@@ -19,22 +20,22 @@ const useStyles = makeStyles(() => ({
 const Itinerary = () => {
   const classes = useStyles();
   const { itinerary } = useSelector((state) => state.tripReducer);
-  const activeTrip = JSON.parse(localStorage.getItem("activeTrip"));
+  const trip = JSON.parse(localStorage.getItem("activeTrip"));
 
-  if (!itinerary.days) return <p>Loading...</p>;
+  if (!itinerary.days) return <Loader />;
   const days = itinerary.days.sort((a, b) => a.day - b.day);
 
   return (
     <div>
       <Box className={classes.box}>
         <h2>
-          {activeTrip.destination.city}, {activeTrip.destination.country}
+          {trip.destination.city}, {trip.destination.country}
         </h2>
       </Box>
       <Box className={classes.box}>
         <h3>
-          {moment(activeTrip.startDate).format("LL")} -{" "}
-          {moment(activeTrip.endDate).format("LL")}
+          {moment(trip.startDate).format("LL")} -{" "}
+          {moment(trip.endDate).format("LL")}
         </h3>
       </Box>
       <GridContainer>
