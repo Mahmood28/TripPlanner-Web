@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteTrip } from "store/actions/authActions";
 import moment from "moment";
@@ -26,7 +26,6 @@ const useStyles = makeStyles(styles);
 
 export default function TripItem({ trip }) {
   const dispatch = useDispatch();
-  const history = useHistory();
   const classes = useStyles();
   const { addToast } = useToasts();
 
@@ -35,7 +34,7 @@ export default function TripItem({ trip }) {
       appearance: "warning",
       autoDismiss: true,
     });
-    dispatch(deleteTrip(trip.id, history));
+    dispatch(deleteTrip(trip.id));
   };
 
   console.log("trip", trip);

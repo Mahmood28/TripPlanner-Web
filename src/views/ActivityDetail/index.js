@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 // Components
 import ActivityCard from "views/ActivityDetail/ActivityCard";
 import ReviewList from "views/ActivityDetail/ReviewList";
+import Loader from "components/Loading/Loader";
 
 const ActivityDetail = () => {
   const { activities } = useSelector((state) => state.activityReducer);
@@ -13,7 +14,7 @@ const ActivityDetail = () => {
     (activity) => activity.slug === activitySlug
   );
 
-  if (!foundActivity) return <p>Loading...</p>;
+  if (!foundActivity) return <Loader />;
   return (
     <>
       <ActivityCard activity={foundActivity} />

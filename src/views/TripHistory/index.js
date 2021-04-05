@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
+import { Redirect } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchHistory } from "../../store/actions/authActions";
 // Components
 import GridContainer from "components/Grid/GridContainer";
+import Loader from "components/Loading/Loader";
 import TripItem from "./TripItem";
 // Styling
 import { Box } from "@material-ui/core";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import { Redirect } from "react-router";
 
 const TripHistory = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const TripHistory = () => {
 
   if (!user) return <Redirect to="/404" />;
 
-  if (loading) return <CircularProgress color="inherit" />;
+  if (loading) return <Loader />;
 
   const trips = history.map((trip) => <TripItem trip={trip} key={trip.id} />);
 

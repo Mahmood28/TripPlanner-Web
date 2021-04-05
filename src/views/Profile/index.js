@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router";
+import { fetchReviews } from "store/actions/authActions";
+// Components
+import ReviewsList from "./ReviewsList";
 // Styling
 import { Typography } from "@material-ui/core";
 import {
@@ -14,13 +17,12 @@ import {
   ItemContainer,
   EditButton,
 } from "./styles";
-import ReviewsList from "./ReviewsList";
-import { fetchReviews } from "store/actions/authActions";
 
 const Profile = () => {
   const { user } = useSelector((state) => state.authReducer);
   const history = useHistory();
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchReviews());
   }, [dispatch]);
@@ -54,7 +56,7 @@ const Profile = () => {
             <ProfilePicture
               src={
                 user.picture ??
-                "https://vectorified.com/images/generic-avatar-icon-12.jpg"
+                "https://vectorified.com/images/generic-avatar-icon-12.jpg" // add default image in backend
               }
               alt={user.username}
             />

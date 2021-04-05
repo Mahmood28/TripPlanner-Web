@@ -20,8 +20,16 @@ import { Edit, Star } from "@material-ui/icons";
 import styles from "assets/jss/material-dashboard-pro-react/views/extendedTablesStyle";
 const useStyles = makeStyles(styles);
 
+const customStyles = makeStyles(() => ({
+  image: {
+    height: 200,
+    borderRadius: "5px",
+  },
+}));
+
 const EditReview = ({ review }) => {
   const classes = useStyles();
+  const _classes = customStyles();
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
@@ -67,17 +75,21 @@ const EditReview = ({ review }) => {
         </DialogTitle>
         <DialogContent>
           <CardMedia
-            style={{ height: 200, borderRadius: "5px" }}
+            className={_classes.image}
             image={review.activity.image}
             title={review.activity.name}
           />
-          <h6>Rate your experience</h6>
-          <StyledRating
-            value={newReview.rating}
-            onChange={(event, rating) => setNewReview({ ...newReview, rating })}
-            precision={0.5}
-            icon={<Star fontSize="30px" />}
-          />
+          <Box mt={4}>
+            <h6>Rate your experience</h6>
+            <StyledRating
+              value={newReview.rating}
+              onChange={(event, rating) =>
+                setNewReview({ ...newReview, rating })
+              }
+              precision={0.5}
+              icon={<Star fontSize="30px" />}
+            />
+          </Box>
           <CustomInput
             labelText="Describe your experience..."
             formControlProps={{

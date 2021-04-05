@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import Button from "components/CustomButtons/Button";
 import ActivityCard from "views/Itinerary/ActivityCard";
 
-const ActivityList = ({ day, event, setEvent }) => {
+const ActivityList = ({ event, setEvent }) => {
   const history = useHistory();
   const { activities } = useSelector((state) => state.tripReducer);
 
@@ -14,7 +14,6 @@ const ActivityList = ({ day, event, setEvent }) => {
       {activities.length > 0 ? (
         activities.map((activity) => (
           <ActivityCard
-            day={day}
             activity={activity}
             event={event}
             setEvent={setEvent}

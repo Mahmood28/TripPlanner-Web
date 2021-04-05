@@ -3,7 +3,7 @@ import * as types from "../types";
 const initialState = {
   trip: {},
   activities: [],
-  itinerary: {},
+  itinerary: [],
 };
 
 const tripReducer = (state = initialState, action) => {

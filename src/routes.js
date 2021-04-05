@@ -6,18 +6,9 @@ import Profile from "views/Profile";
 import ProfileEdit from "views/Profile/ProfileEdit";
 import TripHistory from "views/TripHistory";
 import Routes from "views/Routes";
-import ActivityDetail from "views/ActivityDetail";
-
-// @material-ui/icons
-import {
-  DateRange,
-  Place,
-  Timeline,
-  GridOn,
-  Map,
-  ArtTrack,
-} from "@material-ui/icons/";
 import TripSummary from "views/TripSummary";
+// Styling
+import { DateRange, Place, Timeline, GridOn, Map } from "@material-ui/icons";
 
 const routes = [
   {
@@ -27,13 +18,6 @@ const routes = [
     component: MainMap,
     layout: "/",
   },
-  // {
-  //   path: "timeline",
-  //   name: "Timeline",
-  //   icon: Timeline,
-  //   // component: ,
-  //   layout: "/",
-  // },
   {
     path: "itinerary",
     name: "Itinerary",
@@ -90,12 +74,5 @@ const routes = [
     layout: "/",
     redirect: true,
   },
-  // {
-  //   path: "activity",
-  //   name: "Activity Detail",
-  //   component: ActivityDetail,
-  //   layout: "/",
-  //   redirect: true,
-  // },
 ];
 export default routes;

@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-// @material-ui/core Components
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useEffect, createRef } from "react";
 // Components
 import AuthNavbar from "components/Navbars/AuthNavbar";
+// Styling
+import { makeStyles } from "@material-ui/core/styles";
 
 import styles from "assets/jss/material-dashboard-pro-react/layouts/authStyle";
 import background from "assets/img/login.jpeg";
@@ -14,7 +14,7 @@ const AuthLayout = (props) => {
   const { ...rest } = props;
 
   // ref for the wrapper div
-  const wrapper = React.createRef();
+  const wrapper = createRef();
   useEffect(() => {
     document.body.style.overflow = "unset";
     // Specify how to clean up after this effect:
