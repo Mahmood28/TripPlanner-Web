@@ -41,7 +41,6 @@ function AppRoutes() {
       <Route path="/">
         <MainLayout />
       </Route>
-      {/* <Route path="/" component={MainLayout} /> */}
       {/* <Redirect from="/" to="/home" /> */}
       <Redirect to="/404" />
     </Switch>
