@@ -59,10 +59,10 @@ const Search = () => {
     }
   );
 
-  const yesterday = moment().subtract(1, "day");
-  function valid(current) {
-    return current.isAfter(yesterday);
-  }
+  // const yesterday = moment().subtract(1, "day");
+  // function valid(current) {
+  //   return current.isAfter(yesterday);
+  // }
 
   const handleChange = (event) => {
     setDates({ ...dates, [event.target.name]: event.target.value });

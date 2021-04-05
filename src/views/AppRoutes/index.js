@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-
 // Components
 import MainLayout from "layouts/Main";
 import AuthLayout from "layouts/Auth";
