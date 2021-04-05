@@ -1,57 +1,23 @@
 import React from "react";
 import moment from "moment";
-import { compose, withProps } from "recompose";
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  DirectionsRenderer,
-} from "react-google-maps";
-import { MAP_API_KEY } from "keys";
 // Components
-import Loading from "../../components/Loading";
-
-// react plugin for creating vector maps
-import { VectorMap } from "react-jvectormap";
-
-// @material-ui/core components
+import GridContainer from "components/Grid/GridContainer.js";
+import GridItem from "components/Grid/GridItem.js";
+import Table from "components/Table/Table.js";
+import Card from "components/Card/Card.js";
+import CardHeader from "components/Card/CardHeader.js";
+import CardIcon from "components/Card/CardIcon.js";
+import CardBody from "components/Card/CardBody.js";
+import Map from "./Map";
+// Styling
 import { makeStyles } from "@material-ui/core/styles";
 
-// core components
-import GridContainer from "../../components/Grid/GridContainer.js";
-import GridItem from "../../components/Grid/GridItem.js";
-import Table from "../../components/Table/Table.js";
-import Card from "../../components/Card/Card.js";
-import CardHeader from "../../components/Card/CardHeader.js";
-import CardIcon from "../../components/Card/CardIcon.js";
-import CardBody from "../../components/Card/CardBody.js";
-
-// Styling
-import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
-import {
-  StyledMapContainer,
-  StyledMapElement,
-  styledMap,
-} from "../Routes/styles";
-import Map from "./Map";
-var mapData = {
-  AU: 760,
-  BR: 550,
-  CA: 120,
-  DE: 1300,
-  FR: 540,
-  GB: 690,
-  GE: 200,
-  IN: 200,
-  RO: 600,
-  RU: 300,
-  US: 2920,
-};
-
+import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
 const useStyles = makeStyles(styles);
 
 export default function DayItem({ day, destination }) {
   const classes = useStyles();
+
   const sortedActivities = day.activities.sort(
     (a, b) =>
       moment.duration(a.DayActivity.startTime) -

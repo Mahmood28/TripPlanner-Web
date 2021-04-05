@@ -15,8 +15,15 @@ const useStyles = makeStyles(productStyle);
 
 const ActivityCard = ({ activity }) => {
   const classes = useStyles();
-  console.log("active activitiy", activity);
-  const rating = Math.round(parseFloat(activity.rating) * 2) / 2;
+
+  let rating = 0;
+  if (!activity.rating) {
+    const ratings = activity.reviews.map((review) => review.rating);
+    const sum = ratings.reduce((a, b) => a + b, 0);
+    rating = sum / ratings.length || 0;
+  } else {
+    rating = Math.round(parseFloat(activity.rating) * 2) / 2;
+  }
 
   return (
     <Box mt={8} mr={0}>
@@ -43,7 +50,7 @@ const ActivityCard = ({ activity }) => {
                     readOnly
                   />
                 </Box>
-                <h4>{rating}</h4>
+                <h4>{rating === 0 ? "No rating" : rating}</h4>
               </Box>
               <Box mt={4} mr={4}>
                 <h5>{activity.shortDescription}</h5>
