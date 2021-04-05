@@ -12,7 +12,7 @@ import { Close } from "@material-ui/icons";
 import styles from "assets/jss/material-dashboard-pro-react/views/extendedTablesStyle";
 const useStyles = makeStyles(styles);
 
-const Buttons = ({ activityNum, day, dayId, activityId }) => {
+const Buttons = ({ activityNum, day, dayId, activityId, addToast }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -23,12 +23,15 @@ const Buttons = ({ activityNum, day, dayId, activityId }) => {
         day={day}
         activityId={activityId}
         key={activityId}
+        addToast={addToast}
       />
       <Button
         color="rose"
         simple
         className={classes.actionButton}
-        onClick={() => dispatch(deleteActivity({ dayId, activityId }))}
+        onClick={() =>
+          dispatch(deleteActivity({ dayId, activityId }, addToast))
+        }
       >
         <Close className={classes.icon} />
       </Button>

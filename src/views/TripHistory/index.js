@@ -18,7 +18,7 @@ const TripHistory = () => {
     dispatch(fetchHistory());
   }, [dispatch]);
 
-  if (!user) return <Redirect to="/" />;
+  if (!user) return <Redirect to="/404" />;
 
   if (loading) return <CircularProgress color="inherit" />;
 

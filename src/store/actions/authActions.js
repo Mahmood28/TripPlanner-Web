@@ -2,11 +2,27 @@ import instance from "./instance";
 import decode from "jwt-decode";
 import Cookies from "js-cookie";
 import * as types from "../types";
-import { addUser } from "./tripActions";
+
+const assignTrip = async (dispatch) => {
+  try {
+    const trip = JSON.parse(localStorage.getItem("activeTrip"));
+    if (trip) {
+      const res = await instance.put(`/trips/${trip.id}`);
+      await localStorage.setItem("activeTrip", JSON.stringify(res.data));
+      await dispatch({
+        type: types.SET_TRIP,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
 
 const setUser = (token) => {
   Cookies.set("token", token);
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  assignTrip();
   return {
     type: types.SET_USER,
     payload: decode(token),
@@ -18,11 +34,6 @@ export const signin = (userData, history) => {
     try {
       const res = await instance.post("/signin", userData);
       await dispatch(setUser(res.data.token));
-      await dispatch(addUser());
-//       dispatch(setUser(res.data.token));
-//       if (JSON.parse(localStorage.getItem("activeTrip"))) {
-//         assignTrip(JSON.parse(localStorage.getItem("activeTrip")).id);
-//       }
       history.replace("/");
     } catch (error) {
       console.log("ERROR: ", error);
@@ -35,11 +46,6 @@ export const signup = (newUser, history) => {
     try {
       const res = await instance.post("/signup", newUser);
       await dispatch(setUser(res.data.token));
-      await dispatch(addUser());
-//       dispatch(setUser(res.data.token));
-//       if (JSON.parse(localStorage.getItem("activeTrip"))) {
-//         assignTrip(JSON.parse(localStorage.getItem("activeTrip")).id);
-//       }
       history.replace("/");
     } catch (error) {
       console.log("ERROR: ", error);
@@ -48,7 +54,6 @@ export const signup = (newUser, history) => {
 };
 
 export const signout = () => {
-  console.log("SIGNOUT");
   Cookies.remove("token");
   delete instance.defaults.headers.common.Authorization;
   return {
@@ -78,6 +83,14 @@ export const fetchHistory = () => async (dispatch) => {
     console.log("Error: ", error);
   }
 };
+export const fetchReviews = () => async (dispatch) => {
+  try {
+    const res = await instance.get("/reviews");
+    dispatch({ type: types.FETH_REVIEWS, payload: res.data });
+  } catch (error) {
+    console.log("Error: ", error);
+  }
+};
 
 export const deleteTrip = (tripId, history) => async (dispatch) => {
   try {
@@ -92,7 +105,37 @@ export const deleteTrip = (tripId, history) => async (dispatch) => {
   }
 };
 
-const assignTrip = async (tripId) => {
-  const res = await instance.put(`/trips/${tripId}`);
-  localStorage.setItem("activeTrip", JSON.stringify(res.data));
+export const deleteReview = (review, history) => async (dispatch) => {
+  try {
+    await instance.delete(`/reviews/${review.id}`);
+    // history.replace("/profile");
+    dispatch({
+      type: types.DELETE_REVIEW,
+      payload: review,
+    });
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
+
+export const updateReview = (reviewId, newReview, destinationId) => async (
+  dispatch
+) => {
+  try {
+    const updatedReview = await instance.put(`/reviews/${reviewId}`, newReview);
+    dispatch({
+      type: types.UPDATE_REVIEW,
+      payload: updatedReview.data,
+    });
+
+    const activities = await instance.get(
+      `/destinations/${destinationId}/activities`
+    );
+    dispatch({
+      type: types.SET_ACTIVITIES,
+      payload: activities.data,
+    });
+  } catch (error) {
+    console.log("Error:", error);
+  }
 };

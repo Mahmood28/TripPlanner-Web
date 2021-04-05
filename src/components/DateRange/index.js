@@ -12,12 +12,12 @@ import {
   Row,
 } from "reactstrap";
 
-function Range() {
+const Range = () => {
   const [startFocus, setStartFocus] = useState("");
   const [endFocus, setEndFocus] = useState("");
   const [startDate, setStartDate] = useState(undefined);
   const [endDate, setEndDate] = useState(undefined);
-  console.log(startDate);
+
   return (
     <>
       <Row>
@@ -120,6 +120,6 @@ function Range() {
       </Row>
     </>
   );
-}
+};
 
 export default Range;

@@ -17,10 +17,15 @@ import Card from "components/Card/Card";
 import CardBody from "components/Card/CardBody";
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
-import { InputLabel, FormControl, TextField } from "@material-ui/core";
+import {
+  InputLabel,
+  FormControl,
+  TextField,
+  Backdrop,
+  CircularProgress,
+} from "@material-ui/core";
 
 import styles from "assets/jss/material-dashboard-pro-react/views/pricingPageStyle";
-import { addUser } from "store/actions/tripActions";
 
 const useStyles = makeStyles(styles);
 
@@ -28,12 +33,10 @@ export default function Search() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { user } = useSelector((state) => state.authReducer);
 
   const [destination, setDestination] = useState("");
-  // const [startDate, setStartDate] = useState("");
-  // const [endDate, setEndDate] = useState("");
   const [dates, setDates] = useState({ startDate: "", endDate: "" });
+  const [loading, setLoading] = useState(false);
 
   Geocode.setApiKey(MAP_API_KEY);
   Geocode.setLanguage("en");
@@ -71,9 +74,9 @@ export default function Search() {
       ...dates,
       destination: { ...coordinates, country, city },
     };
+    setLoading(true);
     await dispatch(searchActivities(trip.destination));
     await dispatch(createTrip(trip));
-    if (user) await dispatch(addUser());
     history.push("/explore");
   };
 
@@ -170,6 +173,11 @@ export default function Search() {
           </Card>
         </GridItem>
       </GridContainer>
+      {loading && (
+        <Backdrop open={loading} onClick={() => setLoading(false)}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      )}
     </div>
   );
 }

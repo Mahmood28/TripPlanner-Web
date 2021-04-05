@@ -11,6 +11,7 @@ import CardIcon from "components/Card/CardIcon";
 import CardHeader from "components/Card/CardHeader";
 import ActivityForm from "views/Itinerary/ActivityForm";
 import Buttons from "views/Itinerary/Buttons";
+import { useToasts } from "react-toast-notifications";
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -20,6 +21,7 @@ const useStyles = makeStyles(styles);
 const DayTable = ({ day }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { addToast } = useToasts();
 
   const sortedActivities = day.activities.sort(
     (a, b) =>
@@ -44,6 +46,7 @@ const DayTable = ({ day }) => {
           day={day}
           dayId={day.id}
           activityId={activity.id}
+          addToast={addToast}
         />,
       ],
     ]);
