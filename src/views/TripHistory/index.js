@@ -20,7 +20,6 @@ const TripHistory = () => {
   }, [dispatch]);
 
   if (!user) return <Redirect to="/404" />;
-
   if (loading) return <Loader />;
 
   const trips = history.map((trip) => <TripItem trip={trip} key={trip.id} />);

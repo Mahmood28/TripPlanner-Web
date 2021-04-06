@@ -9,7 +9,6 @@ import Loader from "components/Loading/Loader";
 const ActivityDetail = () => {
   const { activities } = useSelector((state) => state.activityReducer);
   const { activitySlug } = useParams();
-
   const foundActivity = activities.find(
     (activity) => activity.slug === activitySlug
   );

@@ -1,8 +1,10 @@
 import React from "react";
 import moment from "moment";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteTrip } from "store/actions/authActions";
+import { listActivities } from "store/actions/activityActions";
+import { fetchItinerary } from "store/actions/tripActions";
 // Components
 import GridItem from "components/Grid/GridItem";
 import Button from "components/CustomButtons/Button";
@@ -24,8 +26,23 @@ const useStyles = makeStyles(styles);
 
 const TripItem = ({ trip }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const classes = useStyles();
   const { addToast } = useToasts();
+
+  const handleEdit = async () => {
+    const activeTrip = trip;
+    delete activeTrip.days;
+    await localStorage.setItem("activeTrip", JSON.stringify(activeTrip));
+    await localStorage.removeItem("myActivities");
+    dispatch(listActivities(activeTrip.destination.id));
+    dispatch(fetchItinerary(activeTrip.id));
+    dispatch({
+      type: "SET_TRIP",
+      payload: activeTrip,
+    });
+    history.push("/itinerary");
+  };
 
   const handleDelete = async () => {
     await addToast("Trip Deleted", {
@@ -34,6 +51,8 @@ const TripItem = ({ trip }) => {
     });
     dispatch(deleteTrip(trip.id));
   };
+
+  console.log("trip", trip);
 
   return (
     <GridItem xs={12} sm={12} md={4}>
@@ -60,11 +79,11 @@ const TripItem = ({ trip }) => {
               </Link>
             </Tooltip>
             <Tooltip
-              title="edit"
+              title="Edit"
               placement="bottom"
               classes={{ tooltip: classes.tooltip }}
             >
-              <Button color="warning" simple justIcon>
+              <Button color="warning" simple justIcon onClick={handleEdit}>
                 <Edit className={classes.underChartIcons} />
               </Button>
             </Tooltip>

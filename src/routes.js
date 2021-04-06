@@ -2,7 +2,9 @@
 import MainMap from "views/MainMap";
 import Itinerary from "views/Itinerary";
 import Profile from "views/Profile";
+import UserProfile from "views/Profile/UserProfile";
 import ProfileEdit from "views/Profile/ProfileEdit";
+import ReviewsList from "views/Profile/ReviewsList";
 import TripHistory from "views/TripHistory";
 import Routes from "views/Routes";
 import TripSummary from "views/TripSummary";
@@ -46,13 +48,6 @@ const routes = [
     redirect: true,
   },
   {
-    path: "profile",
-    name: "Profile",
-    component: Profile,
-    layout: "/",
-    redirect: true,
-  },
-  {
     path: "history/trips/:tripId",
     name: "Trip Summary",
     component: TripSummary,
@@ -60,9 +55,24 @@ const routes = [
     redirect: true,
   },
   {
-    path: "history",
+    path: "profile",
+    name: "Profile",
+    // component: Profile,
+    component: UserProfile,
+    layout: "/",
+    redirect: true,
+  },
+  {
+    path: "trips-history",
     name: "Trips History",
     component: TripHistory,
+    layout: "/",
+    redirect: true,
+  },
+  {
+    path: "reviews",
+    name: "Reviews",
+    component: ReviewsList,
     layout: "/",
     redirect: true,
   },

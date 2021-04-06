@@ -15,6 +15,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Hidden from "@material-ui/core/Hidden";
 import Collapse from "@material-ui/core/Collapse";
+import Box from "@material-ui/core/Box";
 import Icon from "@material-ui/core/Icon";
 
 // core components
@@ -360,7 +361,11 @@ class Sidebar extends React.Component {
         {currUser.user ? (
           <div>
             <div className={photo}>
-              <img src={avatar} className={classes.avatarImg} alt="..." />
+              <img
+                src={avatar}
+                className={classes.avatarImg}
+                alt={currUser.user.username}
+              />
             </div>
             <List className={classes.list}>
               <ListItem className={classes.item + " " + classes.userItem}>
@@ -371,22 +376,24 @@ class Sidebar extends React.Component {
                   }
                   onClick={() => this.openCollapse("openAvatar")}
                 >
-                  <ListItemText
-                    primary={currUser.user.username}
-                    secondary={
-                      <b
-                        className={
-                          caret +
-                          " " +
-                          classes.userCaret +
-                          " " +
-                          (this.state.openAvatar ? classes.caretActive : "")
-                        }
-                      />
-                    }
-                    disableTypography={true}
-                    className={itemText + " " + classes.userItemText}
-                  />
+                  <Box ml={6}>
+                    <ListItemText
+                      primary={currUser.user.username}
+                      secondary={
+                        <b
+                          className={
+                            caret +
+                            " " +
+                            classes.userCaret +
+                            " " +
+                            (this.state.openAvatar ? classes.caretActive : "")
+                          }
+                        />
+                      }
+                      disableTypography={true}
+                      className={itemText + " " + classes.userItemText}
+                    />
+                  </Box>
                 </NavLink>
                 <Collapse in={this.state.openAvatar} unmountOnExit>
                   <List className={classes.list + " " + classes.collapseList}>
@@ -397,42 +404,48 @@ class Sidebar extends React.Component {
                           classes.itemLink + " " + classes.userCollapseLinks
                         }
                       >
-                        <span className={collapseItemMini}>{"P"}</span>
-                        <ListItemText
-                          primary="Profile"
-                          disableTypography={true}
-                          className={collapseItemText}
-                        />
+                        <span className={collapseItemMini}>{""}</span>
+                        <Box ml={7}>
+                          <ListItemText
+                            primary="Profile"
+                            disableTypography={true}
+                            className={collapseItemText}
+                          />
+                        </Box>
                       </NavLink>
                     </ListItem>
                     <ListItem className={classes.collapseItem}>
                       <NavLink
-                        to="/history"
+                        to="/trips-history"
                         className={
                           classes.itemLink + " " + classes.userCollapseLinks
                         }
                       >
-                        <span className={collapseItemMini}>{"T"}</span>
-                        <ListItemText
-                          primary="Trips"
-                          disableTypography={true}
-                          className={collapseItemText}
-                        />
+                        <span className={collapseItemMini}>{""}</span>
+                        <Box ml={7}>
+                          <ListItemText
+                            primary="Trips"
+                            disableTypography={true}
+                            className={collapseItemText}
+                          />
+                        </Box>
                       </NavLink>
                     </ListItem>
                     <ListItem className={classes.collapseItem}>
                       <NavLink
-                        to="#"
+                        to="/reviews"
                         className={
                           classes.itemLink + " " + classes.userCollapseLinks
                         }
                       >
-                        <span className={collapseItemMini}>{"R"}</span>
-                        <ListItemText
-                          primary="Reviews"
-                          disableTypography={true}
-                          className={collapseItemText}
-                        />
+                        <span className={collapseItemMini}>{""}</span>
+                        <Box ml={7}>
+                          <ListItemText
+                            primary="Reviews"
+                            disableTypography={true}
+                            className={collapseItemText}
+                          />
+                        </Box>
                       </NavLink>
                     </ListItem>
                     <ListItem className={classes.collapseItem}>
@@ -442,13 +455,15 @@ class Sidebar extends React.Component {
                           classes.itemLink + " " + classes.userCollapseLinks
                         }
                       >
-                        <span className={collapseItemMini}>{"L"}</span>
-                        <ListItemText
-                          primary="Logout"
-                          disableTypography={true}
-                          className={collapseItemText}
-                          onClick={() => this.props.signout()}
-                        />
+                        <span className={collapseItemMini}>{""}</span>
+                        <Box ml={7}>
+                          <ListItemText
+                            primary="Logout"
+                            disableTypography={true}
+                            className={collapseItemText}
+                            onClick={() => this.props.signout()}
+                          />
+                        </Box>
                       </NavLink>
                     </ListItem>
                   </List>

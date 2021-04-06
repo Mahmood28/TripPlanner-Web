@@ -404,6 +404,31 @@ const cardLink = {
   },
 };
 
+const description = {
+  color: grayColor[0],
+};
+
+const mlAuto = {
+  marginLeft: "auto",
+};
+
+const coloredShadow = {
+  // some jss/css to make the cards look a bit better on Internet Explorer
+  "@media all and (-ms-high-contrast: none), (-ms-high-contrast: active)": {
+    display: "none !important",
+  },
+  transform: "scale(0.94)",
+  top: "12px",
+  filter: "blur(12px)",
+  position: "absolute",
+  width: "100%",
+  height: "100%",
+  backgroundSize: "cover",
+  zIndex: "-1",
+  transition: "opacity .45s",
+  opacity: "0",
+};
+
 export {
   hexToRgb,
   //variables
@@ -456,4 +481,7 @@ export {
   cardTitle,
   cardSubtitle,
   cardLink,
+  description,
+  mlAuto,
+  coloredShadow,
 };

@@ -6,7 +6,7 @@ import Map from "./Map";
 import Loader from "components/Loading/Loader";
 import RedirectPage from "views/Routes/RedirectPage";
 //Styling
-import { Tabs, Tab, Paper, Typography } from "@material-ui/core";
+import { Tabs, Tab, Paper, Box } from "@material-ui/core";
 import DayTimeline from "./DayTimeline";
 import { StyledContainer, StyledMapSection } from "./styles";
 
@@ -33,9 +33,11 @@ const Routes = () => {
 
   return (
     <div>
-      <Typography variant="h3">
-        Your {days.length} Days in {location.city}
-      </Typography>
+      <Box mb={2}>
+        <h3>
+          Your {days.length} Days in {location.city}
+        </h3>
+      </Box>
 
       <StyledContainer>
         <StyledMapSection>

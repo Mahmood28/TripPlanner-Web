@@ -22,7 +22,7 @@ const TripSummary = ({ activeTrip, itinerary }) => {
     : activeTrip;
 
   if (!trip) {
-    return <Redirect to="/history" />;
+    return <Redirect to="/trips-history" />;
   }
   const tripDays = tripId ? trip.days : itinerary.days;
 
