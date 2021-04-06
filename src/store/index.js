@@ -5,7 +5,11 @@ import reducer from "./reducers";
 // Actions
 import { checkForToken } from "./actions/authActions";
 import { listActivities } from "./actions/activityActions";
-import { fetchActivities, fetchItinerary } from "./actions/tripActions";
+import {
+  fetchActivities,
+  fetchItinerary,
+  handleDirections,
+} from "./actions/tripActions";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -23,6 +27,9 @@ if (trip) {
 
 const activities = JSON.parse(localStorage.getItem("myActivities"));
 if (activities) store.dispatch(fetchActivities(activities));
+
+const directions = JSON.parse(localStorage.getItem("directions"));
+if (directions) store.dispatch(handleDirections(directions));
 
 store.dispatch(checkForToken());
 

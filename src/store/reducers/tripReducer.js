@@ -4,6 +4,7 @@ const initialState = {
   trip: {},
   activities: [],
   itinerary: [],
+  directions: {},
 };
 
 const tripReducer = (state = initialState, action) => {
@@ -35,6 +36,13 @@ const tripReducer = (state = initialState, action) => {
         ...state,
         activities,
       };
+    case types.SET_DIRECTIONS:
+      localStorage.setItem("directions", JSON.stringify(action.payload));
+      return {
+        ...state,
+        directions: action.payload,
+      };
+
     default:
       return state;
   }

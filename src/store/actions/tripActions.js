@@ -9,6 +9,10 @@ export const createTrip = (trip) => async (dispatch) => {
       type: types.SET_TRIP_ACTIVITIES,
       payload: [],
     });
+    await dispatch({
+      type: types.SET_DIRECTIONS,
+      payload: {},
+    });
     const res = await instance.post("/trips", trip);
     await localStorage.setItem("activeTrip", JSON.stringify(res.data));
     await dispatch(fetchItinerary(res.data.id));
@@ -95,6 +99,11 @@ export const fetchItinerary = (tripId) => async (dispatch) => {
 export const handleActivity = (activity) => ({
   type: types.HANDLE_ACTIVITY,
   payload: activity,
+});
+
+export const handleDirections = (directions) => ({
+  type: types.SET_DIRECTIONS,
+  payload: directions,
 });
 
 // Unauthorized prompt
