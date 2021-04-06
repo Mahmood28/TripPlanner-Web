@@ -4,7 +4,6 @@ import Itinerary from "views/Itinerary";
 import Profile from "views/Profile";
 import ProfileEdit from "views/Profile/ProfileEdit";
 import TripHistory from "views/TripHistory";
-import Routes from "views/Routes";
 import TripSummary from "views/TripSummary";
 // Styling
 import { Place, Timeline, GridOn, Map } from "@material-ui/icons";
@@ -22,13 +21,6 @@ const routes = [
     name: "Itinerary",
     icon: GridOn,
     component: Itinerary,
-    layout: "/",
-  },
-  {
-    path: "routes",
-    name: "Routes",
-    icon: Timeline,
-    component: Routes,
     layout: "/",
   },
   {

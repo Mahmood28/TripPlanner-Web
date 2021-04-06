@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
 // Components
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
-import Table from "components/Table/Table";
 import Card from "components/Card/Card";
 import CardHeader from "components/Card/CardHeader";
 import CardIcon from "components/Card/CardIcon";
@@ -12,10 +11,11 @@ import Map from "./Map";
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle";
+import DayTimeline from "./DayTimeline";
 
 const useStyles = makeStyles(styles);
 
-const DayItem = ({ day, destination }) => {
+const DayItem = ({ day, destination, directions, setDirections }) => {
   const classes = useStyles();
 
   const sortedActivities = day.activities.sort(
@@ -39,44 +39,52 @@ const DayItem = ({ day, destination }) => {
       : null;
 
   return (
-    <GridContainer>
-      <GridItem xs={12}>
-        <Card>
-          <CardHeader color="warning" icon>
-            <CardIcon color="warning">
-              <h5>Day {day.day}</h5>
-            </CardIcon>
-            <h4 className={classes.cardIconTitle}>
-              {moment(day.date).format("dddd, MMMM D YYYY")}
-            </h4>
-          </CardHeader>
-          <CardBody>
-            <GridContainer justify="space-between">
-              <GridItem xs={12} sm={12} md={5}>
-                {activitiesList ? (
-                  <Table tableData={activitiesList} />
-                ) : (
-                  <p>No Activities Yet</p>
-                )}
-              </GridItem>
-              <GridItem xs={12} sm={12} md={6}>
-                {day.activities.length > 0 ? (
-                  <Map
-                    isMarkerShown
-                    lat={destination.latitude}
-                    lng={destination.longitude}
-                    activities={sortedActivities}
-                    // shown={1}
-                  />
-                ) : (
-                  <p>add activities</p>
-                )}
-              </GridItem>
-            </GridContainer>
-          </CardBody>
-        </Card>
-      </GridItem>
-    </GridContainer>
+    (day.day === 1 || day.activities.length > 0) && (
+      <GridContainer>
+        <GridItem xs={12}>
+          <Card>
+            <CardHeader color="rose" icon>
+              <CardIcon color="rose">
+                <h5>Day {day.day}</h5>
+              </CardIcon>
+              <h4 className={classes.cardIconTitle}>
+                {moment(day.date).format("dddd, MMMM D YYYY")}
+              </h4>
+            </CardHeader>
+            <CardBody>
+              <GridContainer justify="space-between">
+                <GridItem xs={12} sm={12} md={5}>
+                  {activitiesList ? (
+                    <DayTimeline
+                      activities={day.activities}
+                      directions={directions}
+                      day={day}
+                    />
+                  ) : (
+                    <p>No Activities Yet</p>
+                  )}
+                </GridItem>
+                <GridItem xs={12} sm={12} md={7}>
+                  {day.activities.length > 0 ? (
+                    <Map
+                      isMarkerShown
+                      lat={destination.latitude}
+                      lng={destination.longitude}
+                      activities={sortedActivities}
+                      directions={directions}
+                      setDirections={setDirections}
+                      day={day}
+                    />
+                  ) : (
+                    <p>add activities</p>
+                  )}
+                </GridItem>
+              </GridContainer>
+            </CardBody>
+          </Card>
+        </GridItem>
+      </GridContainer>
+    )
   );
 };
 
