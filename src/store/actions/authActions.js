@@ -3,26 +3,27 @@ import decode from "jwt-decode";
 import Cookies from "js-cookie";
 import * as types from "../types";
 
-const assignTrip = async (dispatch) => {
-  try {
-    const trip = JSON.parse(localStorage.getItem("activeTrip"));
-    if (trip) {
+const assignTrip = async () => {
+  const trip = JSON.parse(localStorage.getItem("activeTrip"));
+  if (trip) {
+    if (!trip.userId) {
       const res = await instance.put(`/trips/${trip.id}`);
       await localStorage.setItem("activeTrip", JSON.stringify(res.data));
-      await dispatch({
+      return {
         type: types.SET_TRIP,
         payload: res.data,
-      });
+      };
     }
-  } catch (error) {
-    console.log("Error:", error);
+    return {
+      type: types.SET_TRIP,
+      payload: trip ?? {},
+    };
   }
 };
 
 const setUser = (token) => {
   Cookies.set("token", token);
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
-  assignTrip();
   return {
     type: types.SET_USER,
     payload: decode(token),
@@ -34,6 +35,7 @@ export const signin = (userData, history) => {
     try {
       const res = await instance.post("/signin", userData);
       await dispatch(setUser(res.data.token));
+      await dispatch(await assignTrip());
       const trip = JSON.parse(localStorage.getItem("activeTrip"));
       trip ? history.replace("/explore") : history.replace("/home");
     } catch (error) {
@@ -47,6 +49,7 @@ export const signup = (newUser, history) => {
     try {
       const res = await instance.post("/signup", newUser);
       await dispatch(setUser(res.data.token));
+      await dispatch(await assignTrip());
       const trip = JSON.parse(localStorage.getItem("activeTrip"));
       trip ? history.replace("/explore") : history.replace("/home");
     } catch (error) {
