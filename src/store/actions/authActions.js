@@ -37,7 +37,7 @@ export const signin = (userData, history) => {
       await dispatch(setUser(res.data.token));
       await dispatch(await assignTrip());
       const trip = JSON.parse(localStorage.getItem("activeTrip"));
-      trip ? history.replace("/explore") : history.replace("/home");
+      trip ? history.replace("/explore") : history.replace("/");
     } catch (error) {
       console.log("ERROR: ", error);
     }
@@ -51,7 +51,7 @@ export const signup = (newUser, history) => {
       await dispatch(setUser(res.data.token));
       await dispatch(await assignTrip());
       const trip = JSON.parse(localStorage.getItem("activeTrip"));
-      trip ? history.replace("/explore") : history.replace("/home");
+      trip ? history.replace("/explore") : history.replace("/");
     } catch (error) {
       console.log("ERROR: ", error);
     }

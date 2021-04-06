@@ -37,7 +37,7 @@ const MainMap = () => {
     location = trip.destination;
   }, [trip]);
 
-  if (!trip) return <Redirect to="/home" />;
+  if (!trip) return <Redirect to="/" />;
   if (activities.length === 0) return <Loading />;
 
   const maxPrice = Math.max(
