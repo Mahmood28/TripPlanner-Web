@@ -22,11 +22,6 @@ function AppRoutes() {
           <ActivityDetail />
         </MainLayout>
       </Route>
-      <Route path="/home">
-        <AuthLayout>
-          <Search />
-        </AuthLayout>
-      </Route>
       <Route path="/signin">
         <AuthLayout>
           <Signin />
@@ -35,6 +30,11 @@ function AppRoutes() {
       <Route path="/signup">
         <AuthLayout>
           <Signup />
+        </AuthLayout>
+      </Route>
+      <Route exact path="/">
+        <AuthLayout>
+          <Search />
         </AuthLayout>
       </Route>
       <MainLayout />
