@@ -1,11 +1,7 @@
 import styled from "styled-components";
-import {
-  Card,
-  Typography,
-  CardActions,
-  Button,
-  CardHeader,
-} from "@material-ui/core";
+import { TimelineDot } from "@material-ui/lab";
+import { Typography } from "@material-ui/core";
+import { DirectionsCar } from "@material-ui/icons";
 
 export const StyledContainer = styled.div`
   display: flex;
@@ -13,7 +9,7 @@ export const StyledContainer = styled.div`
 
 export const StyledMapContainer = styled.div`
   position: relative;
-  height: 30vh;
+  height: 100%;
   width: 100%;
   border-radius: 6px;
   over-flow: hidden;
@@ -21,6 +17,27 @@ export const StyledMapContainer = styled.div`
 
 export const StyledMapElement = styled.div`
   height: 100%;
+`;
+
+export const StyledTimeline = styled(TimelineDot)`
+  && {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+`;
+
+export const StyledCarIcon = styled(DirectionsCar)`
+  && {
+    margin-top: 15px;
+    margin-right: 5px;
+  }
+`;
+
+export const StyledDurationText = styled(Typography)`
+  && {
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const styledMap = [

@@ -37,10 +37,7 @@ function AppRoutes() {
           <Signup />
         </AuthLayout>
       </Route>
-      <Route path="/">
-        <MainLayout />
-      </Route>
-      {/* <Redirect from="/" to="/home" /> */}
+      <MainLayout />
       <Redirect to="/404" />
     </Switch>
   );
