@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-
+import { Redirect } from "react-router";
 // Components
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
 import Card from "components/Card/Card";
 import CardBody from "components/Card/CardBody";
 import Loading from "components/Loading";
+import Footer from "components/Footer/Footer";
 import Map from "./Map";
-
 // Styling
 import { TextField, Button } from "@material-ui/core";
 import { Tune, Star } from "@material-ui/icons/";
@@ -19,7 +19,6 @@ import {
   StyledPrice,
   StyledRating,
 } from "./styles";
-import { Redirect } from "react-router";
 
 const MainMap = () => {
   const { activities } = useSelector((state) => state.activityReducer);
@@ -102,6 +101,7 @@ const MainMap = () => {
           </Card>
         </GridItem>
       </GridContainer>
+      <Footer fluid />
     </>
   );
 };

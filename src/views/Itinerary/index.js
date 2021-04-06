@@ -5,6 +5,7 @@ import moment from "moment";
 import GridContainer from "components/Grid/GridContainer";
 import DayTable from "views/Itinerary/DayTable";
 import Loader from "components/Loading/Loader";
+import Footer from "components/Footer/Footer";
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
@@ -43,6 +44,7 @@ const Itinerary = () => {
           <DayTable day={day} key={day.day} />
         ))}
       </GridContainer>
+      <Footer fluid />
     </div>
   );
 };
