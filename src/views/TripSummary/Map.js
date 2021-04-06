@@ -1,11 +1,12 @@
 /* eslint-disable no-undef */
-import React, { useState } from "react";
+import React from "react";
 import { compose, withProps } from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   DirectionsRenderer,
+  Marker,
 } from "react-google-maps";
 import { MAP_API_KEY } from "keys";
 // Components
@@ -26,12 +27,10 @@ const Map = compose(
   }),
   withScriptjs,
   withGoogleMap
-)(({ lng, lat, activities, shown }) => {
-  const [directions, setDirections] = useState({ 0: null });
-
+)(({ lng, lat, activities, directions, setDirections, day }) => {
   const DirectionsService = new google.maps.DirectionsService();
 
-  if (!directions[shown])
+  if (!directions[day.id])
     DirectionsService.route(
       {
         origin: {
@@ -55,7 +54,7 @@ const Map = compose(
       },
       (result, status) => {
         if (status === "OK") {
-          setDirections({ ...directions, [shown]: result });
+          setDirections({ ...directions, [day.id]: result });
         } else {
           console.error(`error fetching directions ${result}`);
         }
@@ -64,22 +63,32 @@ const Map = compose(
   return (
     <GoogleMap
       defaultZoom={11}
-      defaultCenter={{ lat, lng }}
+      center={{ lat, lng }}
       options={{
         styles: styledMap,
       }}
     >
-      <DirectionsRenderer
-        directions={directions[shown]}
-        options={{
-          polylineOptions: {
-            stokeColor: "#FF0000",
-            strokeOpacity: 0.5,
-            strokeWeight: 4,
-          },
-          icon: { scale: 3 },
-        }}
-      />
+      {activities.length === 1 ? (
+        <Marker
+          key={activities[0].id}
+          position={{
+            lat: +activities[0].geoCode.latitude,
+            lng: +activities[0].geoCode.longitude,
+          }}
+        />
+      ) : (
+        <DirectionsRenderer
+          directions={directions[day.id]}
+          options={{
+            polylineOptions: {
+              stokeColor: "#FF0000",
+              strokeOpacity: 0.5,
+              strokeWeight: 4,
+            },
+            icon: { scale: 3 },
+          }}
+        />
+      )}
     </GoogleMap>
   );
 });
