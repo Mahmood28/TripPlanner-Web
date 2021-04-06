@@ -18,8 +18,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
-
 import Fingerprint from "@material-ui/icons/Fingerprint";
+import PersonIcon from "@material-ui/icons/Person";
 // core components
 import Button from "components/CustomButtons/Button";
 
@@ -63,7 +63,7 @@ export default function AuthNavbar(props) {
       <ListItem className={classes.listItem}>
         {user ? (
           <div>
-            <Fingerprint className={classes.listItemIcon} />
+            <PersonIcon className={classes.listItemIcon} />
             <Button
               aria-describedby={id}
               variant="contained"
