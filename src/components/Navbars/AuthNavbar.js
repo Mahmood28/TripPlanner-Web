@@ -102,7 +102,7 @@ export default function AuthNavbar(props) {
 
                 <Divider light />
                 <StyledMenueItem onClick={() => dispatch(signout())}>
-                  Logout
+                  Log out
                 </StyledMenueItem>
               </StyledMenuList>
             </Popover>
@@ -125,7 +125,7 @@ export default function AuthNavbar(props) {
       <Toolbar className={classes.container}>
         <Hidden smDown>
           <div className={classes.flex}>
-            <Button href="/home" className={classes.title} color="transparent">
+            <Button href="/" className={classes.title} color="transparent">
               {"TRIP PLANNER"}
             </Button>
           </div>

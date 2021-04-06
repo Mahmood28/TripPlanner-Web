@@ -151,7 +151,7 @@ const MainLayout = (props) => {
             {props.children ?? (
               <Switch>
                 {getRoutes(routes)}
-                <Redirect to="/home" />
+                <Redirect to="/" />
               </Switch>
             )}
           </div>
