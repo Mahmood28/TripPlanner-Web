@@ -116,6 +116,18 @@ const ActivityForm = ({ day, dayId }) => {
               destination,
               onChange: setDestination,
               placeholder: "Enter destination",
+              //   styles: {
+              //     option: (provided) => ({
+              //       ...provided,
+              //       opacity: 1,
+              //       backgroundColor: "white",
+              //     }),
+              //     menu: (provided) => ({
+              //       ...provided,
+              //       opacity: 1,
+              //       backgroundColor: "white",
+              //     }),
+              //   },
             }}
             onLoadFailed={(error) =>
               console.error("Could not inject Google script", error)
@@ -129,6 +141,7 @@ const ActivityForm = ({ day, dayId }) => {
               label="Start Date"
               type="date"
               variant="outlined"
+              size="small"
               className={classes.formInput}
               InputLabelProps={{
                 shrink: true,
@@ -143,6 +156,7 @@ const ActivityForm = ({ day, dayId }) => {
               label="End Date"
               type="date"
               variant="outlined"
+              size="small"
               className={classes.formInput}
               InputLabelProps={{
                 shrink: true,

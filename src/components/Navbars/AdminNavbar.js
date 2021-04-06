@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 import cx from "classnames";
@@ -34,6 +34,12 @@ export default function AdminNavbar(props) {
     cx({
       [classes.sidebarMinimizeRTL]: rtlActive,
     });
+
+  let title = brandText;
+  useEffect(() => {
+    title = brandText;
+  }, [brandText]);
+
   return (
     <AppBar className={classes.appBar + appBarClasses}>
       <Toolbar className={classes.container}>

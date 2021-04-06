@@ -5,9 +5,13 @@ import { useHistory } from "react-router-dom";
 import Button from "components/CustomButtons/Button";
 import ActivityCard from "views/Itinerary/ActivityCard";
 
-const ActivityList = ({ event, setEvent }) => {
+const ActivityList = ({ event, setEvent, isMap, setOpen }) => {
   const history = useHistory();
   const { activities } = useSelector((state) => state.tripReducer);
+
+  const handleExplore = () => {
+    isMap ? setOpen(false) : history.push("/explore");
+  };
 
   return (
     <div>
@@ -25,7 +29,7 @@ const ActivityList = ({ event, setEvent }) => {
           color="warning"
           simple
           style={{ width: "80ch" }}
-          onClick={() => history.push("/explore")}
+          onClick={handleExplore}
         >
           Explore Activities
         </Button>

@@ -122,11 +122,6 @@ export default function HeaderLinks(props) {
                   : classes.links)
               }
             />
-            <Hidden mdUp implementation="css">
-              <span onClick={handleClickProfile} className={classes.linkText}>
-                {rtlActive ? "الملف الشخصي" : "Profile"}
-              </span>
-            </Hidden>
           </Button>
           <Popper
             open={Boolean(openProfile)}
@@ -153,20 +148,14 @@ export default function HeaderLinks(props) {
                         onClick={handleCloseProfile}
                         className={dropdownItem}
                       >
-                        {rtlActive ? "الملف الشخصي" : "Profile"}
-                      </MenuItem>
-                      <MenuItem
-                        onClick={handleCloseProfile}
-                        className={dropdownItem}
-                      >
-                        {rtlActive ? "الإعدادات" : "Settings"}
+                        {"Profile"}
                       </MenuItem>
                       <Divider light />
                       <MenuItem
                         onClick={handleCloseProfile}
                         className={dropdownItem}
                       >
-                        {rtlActive ? "الخروج" : "Log out"}
+                        {"Log out"}
                       </MenuItem>
                     </MenuList>
                   </ClickAwayListener>

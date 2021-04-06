@@ -136,7 +136,14 @@ const ActivityForm = () => {
             collapses={[
               {
                 title: "Select Activity",
-                content: <ActivityList event={event} setEvent={setEvent} />,
+                content: (
+                  <ActivityList
+                    event={event}
+                    setEvent={setEvent}
+                    isMap={true}
+                    setOpen={setOpen}
+                  />
+                ),
               },
             ]}
           />
