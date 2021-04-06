@@ -19,8 +19,6 @@ export default function Footer(props) {
   const history = useHistory();
   const activePage = useLocation().pathname;
 
-  console.log("activePage", activePage);
-
   const handleNext = () => {
     if (activePage === "/explore") {
       history.push("/itinerary");

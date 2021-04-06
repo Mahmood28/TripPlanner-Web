@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
 // Components
@@ -32,6 +32,11 @@ const MainMap = () => {
   const [shown, setShown] = useState(false);
   const [filter, setFilter] = useState(initialFilter);
 
+  let location = trip.destination;
+  useEffect(() => {
+    location = trip.destination;
+  }, [trip]);
+
   if (!trip) return <Redirect to="/home" />;
   if (activities.length === 0) return <Loading />;
 
@@ -39,7 +44,9 @@ const MainMap = () => {
     ...activities.map((activity) => +activity.price.amount)
   );
 
-  const location = trip.destination;
+  // const location = trip.destination;
+
+  console.log("location", location);
 
   return (
     <>
