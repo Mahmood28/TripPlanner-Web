@@ -4,7 +4,7 @@ import { Redirect, useParams } from "react-router";
 import moment from "moment";
 //Components
 import Loader from "components/Loading/Loader";
-import DayItem from "./DayItem";
+import DayItem from "../TripSummary/DayItem";
 // Stylilng
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Grid, Container } from "@material-ui/core";
@@ -15,11 +15,11 @@ import { fetchTrip } from "store/actions/tripActions";
 
 const useStyles = makeStyles(styles);
 
-const ShareSummary = () => {
+const SharedTrip = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { tripSlug } = useParams();
-  const trip = useSelector((state) => state.tripReducer.trip);
+  const trip = useSelector((state) => state.tripReducer.shardeTrip);
   const tripDirections = useSelector((state) => state.tripReducer.directions);
   const [directions, setDirections] = useState(tripDirections ?? {});
 
@@ -64,4 +64,4 @@ const ShareSummary = () => {
   );
 };
 
-export default ShareSummary;
+export default SharedTrip;

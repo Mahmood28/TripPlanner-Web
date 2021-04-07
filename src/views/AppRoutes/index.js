@@ -8,7 +8,7 @@ import Signin from "views/Authentication/Signin";
 import Signup from "views/Authentication/Signup";
 import ActivityDetail from "views/ActivityDetail";
 import NotFound from "views/NotFound";
-import ShareSummary from "views/TripSummary/ShareSummary";
+import SharedTrip from "views/SharedTrip";
 
 function AppRoutes() {
   return (
@@ -34,7 +34,7 @@ function AppRoutes() {
         </AuthLayout>
       </Route>
       <Route exact path="/trips/:tripSlug">
-        <ShareSummary />
+        <SharedTrip />
       </Route>
       <Route exact path="/">
         <AuthLayout>

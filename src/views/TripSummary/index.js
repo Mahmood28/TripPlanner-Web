@@ -5,12 +5,21 @@ import moment from "moment";
 //Components
 import Loader from "components/Loading/Loader";
 import DayItem from "./DayItem";
+import {
+  EmailShareButton,
+  EmailIcon,
+  FacebookShareButton,
+  FacebookIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+} from "react-share";
 // Stylilng
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 import { AddAlarmSharp } from "@material-ui/icons";
 import { handleDirections } from "store/actions/tripActions";
+import SocialShare from "./SocialShare";
 
 const useStyles = makeStyles(styles);
 
@@ -63,6 +72,7 @@ const TripSummary = ({ activeTrip, itinerary }) => {
             {moment(trip.endDate).format("LL")}
           </h3>
         </Box>
+        <SocialShare slug={trip.slug} destination={trip.destination} />
       </div>
       {daysList}
     </div>

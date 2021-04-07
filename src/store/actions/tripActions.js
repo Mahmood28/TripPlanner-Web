@@ -100,7 +100,7 @@ export const fetchTrip = (tripSlug) => async (dispatch) => {
   try {
     const res = await instance.get(`/trips/share/?tripSlug=${tripSlug}`);
     dispatch({
-      type: types.SET_TRIP,
+      type: types.SET_SHARED,
       payload: res.data,
     });
   } catch (error) {
