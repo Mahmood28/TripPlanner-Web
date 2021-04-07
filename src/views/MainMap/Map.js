@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { compose, withProps } from "recompose";
@@ -32,25 +33,42 @@ const Map = compose(
   );
 
   let initialState = {};
-  for (const activity of activities) initialState[activity.id] = false;
+  activities.forEach((activity) => (initialState[activity.id] = false));
 
   const [open, setOpen] = useState(initialState);
   const [details, setDetails] = useState(initialState);
+  const [mapRef, setMapRef] = useState(null);
 
   const handleOpen = (id) => {
     setOpen({ ...initialState, [id]: !open[id] });
   };
+
   const handleDetails = (id) => {
     setDetails({ ...initialState, [id]: !details[id] });
   };
 
+  let bounds = new google.maps.LatLngBounds();
+
+  activities.forEach((activity) => {
+    bounds.extend(
+      new google.maps.LatLng(
+        +activity.geoCode.latitude,
+        +activity.geoCode.longitude
+      )
+    );
+  });
+
+  if (mapRef) mapRef.fitBounds(bounds);
+
   return (
     <GoogleMap
-      defaultZoom={11}
-      // defaultCenter={{ lat, lng }}
+      zoom={11}
       center={{ lat, lng }}
       options={{
         styles: styledMap,
+      }}
+      ref={(ref) => {
+        setMapRef(ref);
       }}
     >
       {isMarkerShown && (
