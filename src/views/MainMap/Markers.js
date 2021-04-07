@@ -17,6 +17,7 @@ import {
   StarContainer,
   customIcon,
   selectedIcon,
+  StyledInfoPrice,
 } from "./styles";
 import { Rating } from "@material-ui/lab";
 
@@ -81,6 +82,9 @@ const Markers = ({
                   readOnly
                 />
               </StarContainer>
+              <StyledInfoPrice variant="body1">
+                {`${activity.price.currencyCode} ${activity.price.amount}`}
+              </StyledInfoPrice>
               <Divider variant="middle" />
               <ButtonContainer>
                 <StyledButton
