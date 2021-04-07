@@ -9,7 +9,8 @@ import DayItem from "./DayItem";
 // Stylilng
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle";
-import { AddAlarmSharp, Box } from "@material-ui/icons";
+import { AddAlarmSharp } from "@material-ui/icons";
+import { Box } from "@material-ui/core";
 import { PageContainer } from "./styles";
 
 const useStyles = makeStyles(styles);
