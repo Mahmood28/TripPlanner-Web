@@ -72,7 +72,7 @@ const ReviewForm = ({ user, activityId }) => {
       }
       footer={
         <Button
-          color="warning"
+          color="rose"
           round
           className={classes.footerButtons}
           onClick={handleSubmit}

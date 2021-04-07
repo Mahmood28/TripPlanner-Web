@@ -376,24 +376,22 @@ class Sidebar extends React.Component {
                   }
                   onClick={() => this.openCollapse("openAvatar")}
                 >
-                  <Box ml={6}>
-                    <ListItemText
-                      primary={currUser.user.username}
-                      secondary={
-                        <b
-                          className={
-                            caret +
-                            " " +
-                            classes.userCaret +
-                            " " +
-                            (this.state.openAvatar ? classes.caretActive : "")
-                          }
-                        />
-                      }
-                      disableTypography={true}
-                      className={itemText + " " + classes.userItemText}
-                    />
-                  </Box>
+                  <ListItemText
+                    primary={currUser.user.username}
+                    secondary={
+                      <b
+                        className={
+                          caret +
+                          " " +
+                          classes.userCaret +
+                          " " +
+                          (this.state.openAvatar ? classes.caretActive : "")
+                        }
+                      />
+                    }
+                    disableTypography={true}
+                    className={itemText + " " + classes.userItemText}
+                  />
                 </NavLink>
                 <Collapse in={this.state.openAvatar} unmountOnExit>
                   <List className={classes.list + " " + classes.collapseList}>
@@ -405,7 +403,7 @@ class Sidebar extends React.Component {
                         }
                       >
                         <span className={collapseItemMini}>{""}</span>
-                        <Box ml={7}>
+                        <Box ml={5.5}>
                           <ListItemText
                             primary="Profile"
                             disableTypography={true}
@@ -422,7 +420,7 @@ class Sidebar extends React.Component {
                         }
                       >
                         <span className={collapseItemMini}>{""}</span>
-                        <Box ml={7}>
+                        <Box ml={5.5}>
                           <ListItemText
                             primary="Trips"
                             disableTypography={true}
@@ -439,7 +437,7 @@ class Sidebar extends React.Component {
                         }
                       >
                         <span className={collapseItemMini}>{""}</span>
-                        <Box ml={7}>
+                        <Box ml={5.5}>
                           <ListItemText
                             primary="Reviews"
                             disableTypography={true}
@@ -448,7 +446,7 @@ class Sidebar extends React.Component {
                         </Box>
                       </NavLink>
                     </ListItem>
-                    <ListItem className={classes.collapseItem}>
+                    {/* <ListItem className={classes.collapseItem}>
                       <NavLink
                         to="/home"
                         className={
@@ -465,7 +463,7 @@ class Sidebar extends React.Component {
                           />
                         </Box>
                       </NavLink>
-                    </ListItem>
+                    </ListItem> */}
                   </List>
                 </Collapse>
               </ListItem>

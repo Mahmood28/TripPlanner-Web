@@ -15,12 +15,16 @@ const ReviewList = ({ activity }) => {
   const classes = useStyles();
   const { user } = useSelector((state) => state.authReducer);
 
+  const reviewsCount = activity.reviews.length;
+
   return (
     <div className={classes.section}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={10} md={8}>
           <div>
-            <h3 className={classes.title}>{activity.reviews.length} Reviews</h3>
+            <h3 className={classes.title}>
+              {reviewsCount} {reviewsCount === 1 ? "Review" : "Reviews"}
+            </h3>
             {activity.reviews.map((review) => (
               <Review review={review} key={review.id} />
             ))}

@@ -92,6 +92,7 @@ export const fetchHistory = () => async (dispatch) => {
 export const fetchReviews = () => async (dispatch) => {
   try {
     const res = await instance.get("/reviews");
+    console.log("fetched reviews", res.data);
     dispatch({
       type: types.FETCH_REVIEWS,
       payload: res.data,

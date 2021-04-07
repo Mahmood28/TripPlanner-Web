@@ -1,15 +1,13 @@
 // Components
 import MainMap from "views/MainMap";
 import Itinerary from "views/Itinerary";
-import Profile from "views/Profile";
 import UserProfile from "views/Profile/UserProfile";
-import ProfileEdit from "views/Profile/ProfileEdit";
-import ReviewsList from "views/Profile/ReviewsList";
+import ReviewList from "views/Profile/ReviewList";
 import TripHistory from "views/TripHistory";
 import Routes from "views/Routes";
 import TripSummary from "views/TripSummary";
 // Styling
-import { Place, Timeline, GridOn, Map } from "@material-ui/icons";
+import { Place, Timeline, Map, DateRange } from "@material-ui/icons";
 
 const routes = [
   {
@@ -22,7 +20,7 @@ const routes = [
   {
     path: "itinerary",
     name: "Itinerary",
-    icon: GridOn,
+    icon: DateRange,
     component: Itinerary,
     layout: "/",
   },
@@ -41,13 +39,6 @@ const routes = [
     layout: "/",
   },
   {
-    path: "profile/edit",
-    name: "Edit Profile",
-    component: ProfileEdit,
-    layout: "/",
-    redirect: true,
-  },
-  {
     path: "history/trips/:tripId",
     name: "Trip Summary",
     component: TripSummary,
@@ -57,14 +48,13 @@ const routes = [
   {
     path: "profile",
     name: "Profile",
-    // component: Profile,
     component: UserProfile,
     layout: "/",
     redirect: true,
   },
   {
     path: "trips-history",
-    name: "Trips History",
+    name: "Trips",
     component: TripHistory,
     layout: "/",
     redirect: true,
@@ -72,7 +62,7 @@ const routes = [
   {
     path: "reviews",
     name: "Reviews",
-    component: ReviewsList,
+    component: ReviewList,
     layout: "/",
     redirect: true,
   },

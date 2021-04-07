@@ -40,24 +40,21 @@ export default function Footer(props) {
   });
   return (
     <footer className={classes.footer}>
-      <div className={container}>
-        <div className={classes.right}>
-          <List className={classes.list}>
-            {activePage === "/explore" && (
-              <ListItem className={classes.inlineBlock}>
-                {/* <Button color="warning">Add Activity</Button> */}
-                <ActivityForm />
-              </ListItem>
-            )}
+      <div className={classes.right}>
+        <List className={classes.list}>
+          {activePage === "/explore" && (
             <ListItem className={classes.inlineBlock}>
-              <Box ml={2}>
-                <Button color="warning" onClick={handleNext}>
-                  Next
-                </Button>
-              </Box>
+              <ActivityForm />
             </ListItem>
-          </List>
-        </div>
+          )}
+          <ListItem className={classes.inlineBlock}>
+            <Box ml={2}>
+              <Button color="warning" onClick={handleNext}>
+                Next
+              </Button>
+            </Box>
+          </ListItem>
+        </List>
       </div>
     </footer>
   );

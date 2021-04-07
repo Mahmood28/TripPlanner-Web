@@ -5,40 +5,42 @@ import {
   roseColor,
   whiteColor,
   grayColor,
-  hexToRgb
+  hexToRgb,
+  tooltip,
 } from "assets/jss/material-dashboard-pro-react.js";
 
-const pricingPageStyle = theme => ({
+const pricingPageStyle = (theme) => ({
+  tooltip,
   container: {
     ...container,
     zIndex: "4",
     [theme.breakpoints.down("sm")]: {
-      paddingBottom: "100px"
-    }
+      paddingBottom: "100px",
+    },
   },
   title: {
     ...defaultFont,
     color: whiteColor,
     marginTop: "5vh",
     marginBottom: "30px",
-    textAlign: "center"
+    textAlign: "center",
   },
   description: {
     fontSize: "18px",
     color: whiteColor,
-    textAlign: "center"
+    textAlign: "center",
   },
   cardTitleWhite: {
     ...cardTitle,
-    color: whiteColor + " !important"
+    color: whiteColor + " !important",
   },
   cardCategory: {
     color: grayColor[0],
-    marginTop: "10px"
+    marginTop: "10px",
   },
   cardCategoryWhite: {
     color: whiteColor,
-    marginTop: "10px"
+    marginTop: "10px",
   },
   icon: {
     color: "rgba(" + hexToRgb(whiteColor) + ", 0.76)",
@@ -50,22 +52,45 @@ const pricingPageStyle = theme => ({
     lineHeight: "174px",
     "& svg": {
       width: "55px",
-      height: "55px"
+      height: "55px",
     },
     "& .fab,& .fas,& .far,& .fal,& .material-icons": {
       width: "55px",
-      fontSize: "55px"
-    }
+      fontSize: "55px",
+    },
   },
   iconWhite: {
-    color: whiteColor
+    color: whiteColor,
   },
   iconRose: {
-    color: roseColor[0]
+    color: roseColor[0],
   },
   marginTop30: {
-    marginTop: "30px"
-  }
+    marginTop: "30px",
+  },
+  links: {
+    width: "20px",
+    height: "20px",
+    zIndex: "4",
+    [theme.breakpoints.down("sm")]: {
+      display: "block",
+      width: "30px",
+      height: "30px",
+      color: "inherit",
+      opacity: "0.8",
+      marginRight: "16px",
+      marginLeft: "-5px",
+    },
+  },
+  headerLinksSvg: {
+    width: "22px !important",
+    height: "22px !important",
+  },
+  managerClasses: {
+    [theme.breakpoints.up("md")]: {
+      display: "inline-block",
+    },
+  },
 });
 
 export default pricingPageStyle;

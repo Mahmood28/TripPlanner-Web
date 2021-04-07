@@ -18,23 +18,23 @@ const Buttons = ({ activityNum, day, dayId, activityId, addToast }) => {
 
   return (
     <Box display="flex" flexDirection="row-reverse">
+      <Button
+        color="rose"
+        simple
+        className={classes.actionButton}
+        onClick={() =>
+          dispatch(deleteActivity({ dayId, activityId }, addToast))
+        }
+      >
+        <Close className={classes.icon} />
+      </Button>
       <EditForm
         activityNum={activityNum}
         day={day}
         activityId={activityId}
         key={activityId}
-        addToast={addToast} // remove this later
+        addToast={addToast}
       />
-      <Button
-        color="rose"
-        simple
-        className={classes.actionButton}
-        onClick={
-          () => dispatch(deleteActivity({ dayId, activityId }, addToast)) // remove addToast later
-        }
-      >
-        <Close className={classes.icon} />
-      </Button>
     </Box>
   );
 };

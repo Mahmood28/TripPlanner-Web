@@ -43,21 +43,16 @@ const ActivityCard = ({ activity, event, setEvent }) => {
         className={classes.cardAction}
         onClick={() => setEvent(activity)}
       >
-        <Box>
-          <Card className={selected ? classes.selectedCard : classes.root}>
-            <CardMedia
-              className={classes.cover}
-              image={activity.image}
-              title="activity name"
-            />
-
-            <div>
-              <CardContent>
-                <h4>{activity.name}</h4>
-              </CardContent>
-            </div>
-          </Card>
-        </Box>
+        <Card className={selected ? classes.selectedCard : classes.root}>
+          <CardMedia
+            className={classes.cover}
+            image={activity.image}
+            title="activity name"
+          />
+          <CardContent>
+            <h5>{activity.name}</h5>
+          </CardContent>
+        </Card>
       </ButtonBase>
     </Box>
   );

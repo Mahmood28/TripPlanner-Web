@@ -10,6 +10,20 @@ import hoverCardStyle from "assets/jss/material-dashboard-pro-react/hoverCardSty
 const dashboardStyle = {
   ...hoverCardStyle,
   tooltip,
+  actionButton: {
+    margin: "0 0 0 5px",
+    padding: "5px",
+    "& svg,& .fab,& .fas,& .far,& .fal,& .material-icons": {
+      marginRight: "0px",
+    },
+  },
+  icon: {
+    verticalAlign: "middle",
+    width: "17px",
+    height: "17px",
+    top: "-1px",
+    position: "relative",
+  },
   cardTitle: {
     ...cardTitle,
     marginTop: "0px",
