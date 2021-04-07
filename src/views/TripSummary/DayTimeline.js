@@ -13,6 +13,7 @@ import {
 import { Paper, Typography, ButtonBase } from "@material-ui/core";
 import { StyledCarIcon, StyledDurationText, StyledTimeline } from "./styles";
 import moment from "moment";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const useStyles = makeStyles(() => ({
   paper: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles(() => ({
 const DayTimeline = ({ activities, directions, day }) => {
   const classes = useStyles();
   const timeline = activities.map((activity, idx) => (
-    <TimelineItem>
+    <TimelineItem key={idx}>
       <TimelineOppositeContent>
         <Typography variant="body2" color="textSecondary">
           {moment(activity.dayActivity.startTime, "hh:mm:ss").format("h:mm A")}
@@ -35,7 +36,14 @@ const DayTimeline = ({ activities, directions, day }) => {
           {directions[day.id] && idx !== activities.length - 1 && (
             <>
               <StyledCarIcon />
-              {directions[day.id].routes[0].legs[idx].duration.text}
+              {directions[day.id].routes[0].legs[idx] ? (
+                directions[day.id].routes[0].legs[idx].duration.text
+              ) : (
+                <>
+                  Calculating
+                  <BeatLoader size="5" color="black" />
+                </>
+              )}
             </>
           )}
         </StyledDurationText>
