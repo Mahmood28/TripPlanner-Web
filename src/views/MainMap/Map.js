@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { compose, withProps } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
@@ -13,6 +13,7 @@ import {
   StyledMapElement,
   styledMap,
 } from "views/MainMap/styles";
+// import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
 
 const Map = compose(
   withProps({
@@ -37,7 +38,12 @@ const Map = compose(
 
   const [open, setOpen] = useState(initialState);
   const [details, setDetails] = useState(initialState);
-  const [mapRef, setMapRef] = useState(null);
+  const [ref1, setRef1] = useState(false);
+  const [pan, setPan] = useState(true);
+
+  useEffect(() => {
+    setPan(true);
+  }, [activities]);
 
   const handleOpen = (id) => {
     setOpen({ ...initialState, [id]: !open[id] });
@@ -58,19 +64,27 @@ const Map = compose(
     );
   });
 
-  if (mapRef) mapRef.fitBounds(bounds);
-
+  if (ref1 && ref1.props && pan) {
+    ref1.fitBounds(bounds, 180);
+    ref1.panToBounds(bounds);
+    setPan(false);
+  }
   return (
     <GoogleMap
-      zoom={11}
+      defaultZoom={11}
       center={{ lat, lng }}
       options={{
         styles: styledMap,
       }}
       ref={(ref) => {
-        setMapRef(ref);
+        setRef1(ref);
       }}
     >
+      {/* <MarkerClusterer
+        onClick={(markerClusterer) => markerClusterer.getMarkers()}
+        averageCenter
+        enableRetinaIcons 
+      > */}
       {isMarkerShown && (
         <Markers
           open={open}
@@ -82,6 +96,7 @@ const Map = compose(
           selectedActivities={selectedActivities}
         />
       )}
+      {/* </MarkerClusterer> */}
     </GoogleMap>
   );
 });
