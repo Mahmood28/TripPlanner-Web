@@ -61,10 +61,10 @@ const DeleteAlert = ({ tripId }) => {
 
   return (
     <>
-      {alert}
       <Button color="rose" simple justIcon onClick={deleteAlert}>
         <Close className={_classes.underChartIcons} />
       </Button>
+      {alert}
     </>
   );
 };
