@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
+import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router";
-import moment from "moment";
-// Components
-import Loader from "components/Loading/Loader";
-import DayItem from "./DayItem";
 import { handleDirections } from "store/actions/tripActions";
+import Loader from "components/Loading/Loader";
+import Footer from "components/Footer/Footer";
+import DayItem from "./DayItem";
 // Stylilng
 import { makeStyles } from "@material-ui/core/styles";
-import { Box } from "@material-ui/core";
 import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle";
+import { AddAlarmSharp, Box } from "@material-ui/icons";
+import { PageContainer } from "./styles";
 
 const useStyles = makeStyles(styles);
 
@@ -50,20 +51,23 @@ const TripSummary = ({ activeTrip, itinerary }) => {
 
   return (
     <div>
-      <div>
-        <Box className={classes.box}>
-          <h2>
-            {trip.destination.city}, {trip.destination.country}
-          </h2>
-        </Box>
-        <Box className={classes.box}>
-          <h3>
-            {moment(trip.startDate).format("LL")} -{" "}
-            {moment(trip.endDate).format("LL")}
-          </h3>
-        </Box>
-      </div>
-      {daysList}
+      <PageContainer>
+        <div>
+          <Box className={classes.box}>
+            <h2>
+              {trip.destination.city}, {trip.destination.country}
+            </h2>
+          </Box>
+          <Box className={classes.box}>
+            <h3>
+              {moment(trip.startDate).format("LL")} -{" "}
+              {moment(trip.endDate).format("LL")}
+            </h3>
+          </Box>
+        </div>
+        {daysList}
+      </PageContainer>
+      <Footer fluid />
     </div>
   );
 };

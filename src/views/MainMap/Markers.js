@@ -52,6 +52,7 @@ const Markers = ({
       {
         appearance: `${remove ? "warning" : "success"}`,
         autoDismiss: true,
+        placement: "bottom-right",
       }
     );
   };
