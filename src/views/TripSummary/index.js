@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router";
 import moment from "moment";
-//Components
+// Components
 import Loader from "components/Loading/Loader";
 import DayItem from "./DayItem";
+import { handleDirections } from "store/actions/tripActions";
 // Stylilng
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle";
-import { AddAlarmSharp } from "@material-ui/icons";
-import { handleDirections } from "store/actions/tripActions";
 
 const useStyles = makeStyles(styles);
 
