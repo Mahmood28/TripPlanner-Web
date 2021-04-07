@@ -47,7 +47,8 @@ const Map = compose(
   return (
     <GoogleMap
       defaultZoom={11}
-      defaultCenter={{ lat, lng }}
+      // defaultCenter={{ lat, lng }}
+      center={{ lat, lng }}
       options={{
         styles: styledMap,
       }}

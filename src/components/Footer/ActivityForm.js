@@ -72,7 +72,7 @@ const ActivityForm = () => {
 
   return (
     <div>
-      <Button color="warning" onClick={() => setOpen(true)}>
+      <Button color="rose" onClick={() => setOpen(true)}>
         Add Activity
       </Button>
       <Dialog open={open} onClose={() => setOpen(false)}>

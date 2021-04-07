@@ -19,7 +19,7 @@ import { Tooltip } from "@material-ui/core";
 import { ArtTrack, Edit, Close, Place } from "@material-ui/icons";
 import { useToasts } from "react-toast-notifications";
 
-import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
+import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 import tripImage from "assets/img/card-2.jpeg";
 
 const useStyles = makeStyles(styles);
@@ -30,11 +30,14 @@ const TripItem = ({ trip }) => {
   const classes = useStyles();
   const { addToast } = useToasts();
 
+  const passed = new Date() > new Date(trip.startDate);
+
   const handleEdit = async () => {
     const activeTrip = trip;
     delete activeTrip.days;
     await localStorage.setItem("activeTrip", JSON.stringify(activeTrip));
     await localStorage.removeItem("myActivities");
+
     dispatch(listActivities(activeTrip.destination.id));
     dispatch(fetchItinerary(activeTrip.id));
     dispatch({
@@ -76,15 +79,17 @@ const TripItem = ({ trip }) => {
                 </Button>
               </Link>
             </Tooltip>
-            <Tooltip
-              title="Edit"
-              placement="bottom"
-              classes={{ tooltip: classes.tooltip }}
-            >
-              <Button color="warning" simple justIcon onClick={handleEdit}>
-                <Edit className={classes.underChartIcons} />
-              </Button>
-            </Tooltip>
+            {!passed && (
+              <Tooltip
+                title="Edit"
+                placement="bottom"
+                classes={{ tooltip: classes.tooltip }}
+              >
+                <Button color="warning" simple justIcon onClick={handleEdit}>
+                  <Edit className={classes.underChartIcons} />
+                </Button>
+              </Tooltip>
+            )}
             <Tooltip
               title="Delete"
               placement="bottom"

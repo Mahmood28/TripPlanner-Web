@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import classNames from "classnames";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchActivities } from "store/actions/activityActions";
@@ -32,7 +33,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const ActivityForm = ({ day, dayId }) => {
+const ActivityForm = () => {
   const classes = useStyles();
   const _classes = ButtonStyles();
   const dispatch = useDispatch();
@@ -85,6 +86,10 @@ const ActivityForm = ({ day, dayId }) => {
     setOpen(false);
   };
 
+  const managerClasses = classNames({
+    [_classes.managerClasses]: true,
+  });
+
   return (
     <div>
       <Tooltip
@@ -100,7 +105,9 @@ const ActivityForm = ({ day, dayId }) => {
           className={_classes.buttonLink}
           onClick={() => setOpen(true)}
         >
-          <AddBoxIcon />
+          <AddBoxIcon
+            className={_classes.headerLinksSvg + " " + _classes.links}
+          />
         </Button>
       </Tooltip>
       <Dialog open={open} onClose={() => setOpen(false)}>
