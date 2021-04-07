@@ -31,7 +31,7 @@ const routes = [
     layout: "/",
   },
   {
-    path: "history/trips/:tripId",
+    path: "history/trips/:tripSlug",
     name: "Trip Summary",
     component: TripSummary,
     layout: "/",

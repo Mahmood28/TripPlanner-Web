@@ -71,7 +71,7 @@ const TripItem = ({ trip }) => {
               classes={{ tooltip: classes.tooltip }}
             >
               <Link
-                to={`/history/trips/${trip.id}`}
+                to={`/history/trips/${trip.slug}`}
                 style={{ color: "#424242", textDecoration: "inherit" }}
               >
                 <Button color="transparent" simple justIcon>
