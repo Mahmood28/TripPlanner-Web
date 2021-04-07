@@ -38,3 +38,9 @@ export const StyledTab = withStyles((theme) => ({
 export const StyledTabSection = styled.div`
   background-color: transparent;
 `;
+
+export const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
