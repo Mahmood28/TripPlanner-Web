@@ -7,6 +7,10 @@ export const StyledContainer = styled.div`
   display: flex;
 `;
 
+export const ButtonContainer = styled(StyledContainer)`
+  justify-content: center;
+`;
+
 export const StyledMapContainer = styled.div`
   position: relative;
   height: 100%;
