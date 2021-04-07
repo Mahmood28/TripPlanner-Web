@@ -16,7 +16,7 @@ const useStyles = makeStyles(styles);
 
 const TripSummary = ({ activeTrip, itinerary }) => {
   const classes = useStyles();
-  const { tripId } = useParams();
+  const { tripSlug } = useParams();
   const { history } = useSelector((state) => state.authReducer);
   const tripDirections = useSelector((state) => state.tripReducer.directions);
   const [directions, setDirections] = useState(tripDirections ?? {});
@@ -26,14 +26,14 @@ const TripSummary = ({ activeTrip, itinerary }) => {
     dispatch(handleDirections(directions));
   }, [directions]);
 
-  const trip = tripId
-    ? history.find((_trip) => _trip.id === +tripId)
+  const trip = tripSlug
+    ? history.find((_trip) => _trip.slug === tripSlug)
     : activeTrip;
 
   if (!trip) {
     return <Redirect to="/trips-history" />;
   }
-  const { days } = tripId ? trip : itinerary;
+  const { days } = tripSlug ? trip : itinerary;
 
   if (!days) return <Loader />;
 
