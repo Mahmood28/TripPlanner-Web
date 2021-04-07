@@ -44,10 +44,6 @@ const MainMap = () => {
     ...activities.map((activity) => +activity.price.amount)
   );
 
-  // const location = trip.destination;
-
-  console.log("location", location);
-
   return (
     <>
       <DialogContainer>
