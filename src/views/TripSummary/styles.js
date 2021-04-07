@@ -23,6 +23,12 @@ export const StyledMapElement = styled.div`
   height: 100%;
 `;
 
+export const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
+
 export const StyledTimeline = styled(TimelineDot)`
   && {
     padding-right: 10px;

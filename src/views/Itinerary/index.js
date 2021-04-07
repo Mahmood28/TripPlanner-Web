@@ -9,7 +9,12 @@ import Footer from "components/Footer/Footer";
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
-import { StyledTab, StyledTabs, StyledTabSection } from "./styles";
+import {
+  StyledTab,
+  StyledTabs,
+  StyledTabSection,
+  PageContainer,
+} from "./styles";
 
 const useStyles = makeStyles(() => ({
   box: {
@@ -30,7 +35,7 @@ const Itinerary = () => {
 
   let daysList = [...days];
   const tripWeeks =
-    itinerary.days.length >= 7
+    itinerary.days.length > 7
       ? new Array(Math.ceil(itinerary.days.length / 7)).fill().map((_, idx) => {
           return { weekNumber: idx + 1, daysList: daysList.splice(0, 7) };
         })
@@ -42,37 +47,39 @@ const Itinerary = () => {
 
   return (
     <div>
-      <Box className={classes.box}>
-        <h2>
-          {trip.destination.city}, {trip.destination.country}
-        </h2>
-      </Box>
-      <Box className={classes.box}>
-        <h3>
-          {moment(trip.startDate).format("LL")} -{" "}
-          {moment(trip.endDate).format("LL")}
-        </h3>
-      </Box>
-      {weekTabs && (
-        <StyledTabSection>
-          <StyledTabs
-            value={shown}
-            onChange={(event, week) => setShown(week)}
-            variant="scrollable"
-            scrollButtons="auto"
-          >
-            {weekTabs}
-          </StyledTabs>
-        </StyledTabSection>
-      )}
+      <PageContainer>
+        <Box className={classes.box}>
+          <h2>
+            {trip.destination.city}, {trip.destination.country}
+          </h2>
+        </Box>
+        <Box className={classes.box}>
+          <h3>
+            {moment(trip.startDate).format("LL")} -{" "}
+            {moment(trip.endDate).format("LL")}
+          </h3>
+        </Box>
+        {weekTabs && (
+          <StyledTabSection>
+            <StyledTabs
+              value={shown}
+              onChange={(event, week) => setShown(week)}
+              variant="scrollable"
+              scrollButtons="auto"
+            >
+              {weekTabs}
+            </StyledTabs>
+          </StyledTabSection>
+        )}
 
-      <GridContainer>
-        {tripWeeks
-          ? tripWeeks[shown].daysList.map((day) => (
-              <DayTable day={day} key={day.day} />
-            ))
-          : days.map((day) => <DayTable day={day} key={day.day} />)}
-      </GridContainer>
+        <GridContainer>
+          {tripWeeks
+            ? tripWeeks[shown].daysList.map((day) => (
+                <DayTable day={day} key={day.day} />
+              ))
+            : days.map((day) => <DayTable day={day} key={day.day} />)}
+        </GridContainer>
+      </PageContainer>
       <Footer fluid />
     </div>
   );
