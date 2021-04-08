@@ -3,33 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { fetchProfile } from "../../store/actions/userActions";
 import Loader from "../../components/Loading/Loader";
-import GridContainer from "components/Grid/GridContainer";
-import GridItem from "components/Grid/GridItem";
-import Button from "components/CustomButtons/Button";
-import CustomInput from "components/CustomInput/CustomInput";
-import Clearfix from "components/Clearfix/Clearfix";
-import Card from "components/Card/Card";
-import CardBody from "components/Card/CardBody";
-import CardHeader from "components/Card/CardHeader";
-import CardIcon from "components/Card/CardIcon";
-import CardAvatar from "components/Card/CardAvatar";
-import styles from "assets/jss/material-dashboard-pro-react/views/userProfileStyles";
-import avatar from "assets/img/faces/avatar3.png";
-import { Box, makeStyles } from "@material-ui/core";
-import moment from "moment";
-import {
-  CalendarToday,
-  Explore,
-  RateReview,
-  Favorite,
-} from "@material-ui/icons";
+import { Box } from "@material-ui/core";
+import { Explore, RateReview, Favorite } from "@material-ui/icons";
 import { Paper, Tabs, Tab, Typography } from "@material-ui/core/";
 import TripHistory from "views/TripHistory";
 import ReviewList from "views/Profile/ReviewList";
+import Profile from "./Profile";
 
-const useStyles = makeStyles(styles);
-
-function TabPanel(props) {
+const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -47,21 +28,15 @@ function TabPanel(props) {
       )}
     </div>
   );
-}
+};
 
 const PublicProfile = () => {
   const dispatch = useDispatch();
   const { username } = useParams();
   const [value, setValue] = useState(0);
-  const profiles = useSelector((state) => state.userReducer.profiles);
-  const classes = useStyles();
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const { profiles } = useSelector((state) => state.userReducer);
 
   if (!profiles.some((profile) => profile.username === username)) {
-    console.log("hello");
     dispatch(fetchProfile(username));
     return <Loader />;
   }
@@ -77,29 +52,7 @@ const PublicProfile = () => {
           justifyContent: "center",
         }}
       >
-        <Card profile style={{ width: "33%" }}>
-          <CardAvatar profile>
-            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-              <img src={profile.image ?? avatar} alt={profile.username} />
-            </a>
-          </CardAvatar>
-          <CardBody profile>
-            <h3 className={classes.cardTitle}>{profile.username}</h3>
-            <h4 className={classes.cardTitle}>
-              {profile.firstName} {profile.lastName}
-            </h4>
-            <h6>
-              <CalendarToday size="small" />
-              {` Joined at ${moment(profile.createdAt).format("LL")}`}
-            </h6>
-            <Box mt={3} mb={3}>
-              <p className={classes.description}>{profile.bio ?? ""}</p>
-            </Box>
-            <Button color="rose" round>
-              Follow
-            </Button>
-          </CardBody>
-        </Card>
+        <Profile profile={profile} />
       </div>
       <div
         style={{
@@ -111,7 +64,7 @@ const PublicProfile = () => {
         <Paper square>
           <Tabs
             value={value}
-            onChange={handleChange}
+            onChange={(event, newValue) => setValue(newValue)}
             variant="fullWidth"
             indicatorColor="secondary"
             textColor="secondary"
