@@ -345,6 +345,12 @@ export const StyledDescription = styled(Typography)`
   }
 `;
 
+export const StyledInfoPrice = styled(Typography)`
+  && {
+    margin-bottom: 10px;
+  }
+`;
+
 export const FilterContainer = styled(StyledContainer)`
   justify-content: flex-end;
   flex: 1;

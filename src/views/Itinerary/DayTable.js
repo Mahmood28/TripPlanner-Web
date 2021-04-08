@@ -54,10 +54,11 @@ const DayTable = ({ day }) => {
       <Card>
         <CardHeader color="rose" icon>
           <CardIcon color="rose">
-            <h5>
-              Day {day.day} ({day.date.split("-").reverse().join("-")})
-            </h5>
+            <h5>Day {day.day}</h5>
           </CardIcon>
+          <h4 className={classes.cardIconTitle}>
+            {moment(day.date).format("dddd, MMMM D YYYY")}
+          </h4>
         </CardHeader>
         <CardBody>
           <Table

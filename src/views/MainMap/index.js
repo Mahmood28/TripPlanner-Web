@@ -44,10 +44,6 @@ const MainMap = () => {
     ...activities.map((activity) => +activity.price.amount)
   );
 
-  // const location = trip.destination;
-
-  console.log("location", location);
-
   return (
     <>
       <DialogContainer>
@@ -84,7 +80,7 @@ const MainMap = () => {
               name="simple-controlled"
               value={filter.rating}
               onChange={(event, rating) => setFilter({ ...filter, rating })}
-              precision={0.5}
+              precision={0.25}
               icon={<Star fontSize="30px" />}
             />
           </div>

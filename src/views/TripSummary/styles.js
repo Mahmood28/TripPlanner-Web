@@ -7,6 +7,10 @@ export const StyledContainer = styled.div`
   display: flex;
 `;
 
+export const ButtonContainer = styled(StyledContainer)`
+  justify-content: center;
+`;
+
 export const StyledMapContainer = styled.div`
   position: relative;
   height: 100%;
@@ -17,6 +21,12 @@ export const StyledMapContainer = styled.div`
 
 export const StyledMapElement = styled.div`
   height: 100%;
+`;
+
+export const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 `;
 
 export const StyledTimeline = styled(TimelineDot)`

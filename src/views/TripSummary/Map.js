@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import React from "react";
+import React, { useEffect } from "react";
 import { compose, withProps } from "recompose";
 import {
   withScriptjs,
@@ -30,7 +30,10 @@ const Map = compose(
 )(({ lng, lat, activities, directions, setDirections, day }) => {
   const DirectionsService = new google.maps.DirectionsService();
 
-  if (!directions[day.id])
+  if (
+    !directions[day.id] ||
+    directions[day.id].routes[0].legs.length < activities.length - 1
+  ) {
     DirectionsService.route(
       {
         origin: {
@@ -60,6 +63,8 @@ const Map = compose(
         }
       }
     );
+  }
+
   return (
     <GoogleMap
       defaultZoom={11}
