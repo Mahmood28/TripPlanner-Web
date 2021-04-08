@@ -34,7 +34,7 @@ const UserProfile = () => {
     username: user.username,
     email: user.email,
     image: user.image,
-    bio: user.bio,
+    bio: user.bio ?? "",
   };
 
   useEffect(() => {

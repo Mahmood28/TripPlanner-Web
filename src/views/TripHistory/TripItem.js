@@ -41,6 +41,10 @@ const TripItem = ({ trip, profile }) => {
     dispatch(listActivities(activeTrip.destination.id));
     dispatch(fetchItinerary(activeTrip.id));
     dispatch({
+      type: "SET_TRIP_ACTIVITIES",
+      payload: [],
+    });
+    dispatch({
       type: "SET_TRIP",
       payload: activeTrip,
     });
