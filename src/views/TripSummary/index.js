@@ -14,7 +14,6 @@ import SocialShare from "./SocialShare";
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 import { AddAlarmSharp } from "@material-ui/icons";
-import { handleDirections } from "store/actions/tripActions";
 import { Box } from "@material-ui/core";
 import { PageContainer } from "./styles";
 

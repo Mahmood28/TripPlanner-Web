@@ -12,6 +12,8 @@ import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboar
 import { AddAlarmSharp } from "@material-ui/icons";
 import { handleDirections } from "store/actions/tripActions";
 import { fetchTrip } from "store/actions/tripActions";
+import { StyledContainer } from "./styles";
+import Scrollbar from "./Scrollbar";
 
 const useStyles = makeStyles(styles);
 
@@ -45,7 +47,7 @@ const SharedTrip = () => {
   ));
 
   return (
-    <div>
+    <Scrollbar>
       <div>
         <Box className={classes.box}>
           <h2>
@@ -59,8 +61,8 @@ const SharedTrip = () => {
           </h3>
         </Box>
       </div>
-      <Container maxWidth="lg">{daysList}</Container>
-    </div>
+      <Container>{daysList}</Container>
+    </Scrollbar>
   );
 };
 
