@@ -18,8 +18,9 @@ import CardBody from "components/Card/CardBody";
 import Loader from "components/Loading/Loader";
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
-import { InputLabel, TextField, Backdrop } from "@material-ui/core";
+import { InputLabel, TextField, Backdrop, Box } from "@material-ui/core";
 import BeatLoader from "react-spinners/BeatLoader";
+
 
 import styles from "assets/jss/material-dashboard-pro-react/views/pricingPageStyle";
 
@@ -79,7 +80,7 @@ const Search = () => {
   return (
     <div className={classes.container}>
       <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={6}>
+        <GridItem xs={12} sm={12} md={10}>
           <h2 className={classes.title}>Plan your next adventure!</h2>
           {/* <h5 className={classes.description}>
             Explore activities and create an itinerary for your trip
@@ -87,28 +88,25 @@ const Search = () => {
         </GridItem>
       </GridContainer>
       <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={3}>
-          <Card>
-            <CardBody pricing>
-              <GooglePlacesAutocomplete
-                apiKey={MAP_API_KEY}
-                apiOptions={{ language: "eng" }}
-                autocompletionRequest={{ types: ["(cities)"] }}
-                selectProps={{
-                  destination,
-                  onChange: setDestination,
-                  placeholder: "Enter destination",
-                }}
-                onLoadFailed={(error) =>
-                  console.error("Could not inject Google script", error)
-                }
-              />
-            </CardBody>
-          </Card>
-        </GridItem>
-        <GridItem xs={12} sm={12} md={3}>
-          <Card>
-            <CardBody>
+        <GridItem xs={12} sm={12} md={10}>
+          <Card style={{ borderRadius: "40px" }}>
+            <Box display="flex" m={2}>
+              <Box style={{ width: 220 }} ml={4.5} mt={0.8} mr={3}>
+                <GooglePlacesAutocomplete
+                  apiKey={MAP_API_KEY}
+                  apiOptions={{ language: "eng" }}
+                  autocompletionRequest={{ types: ["(cities)"] }}
+                  selectProps={{
+                    destination,
+                    onChange: setDestination,
+                    placeholder: "Enter destination",
+                  }}
+                  onLoadFailed={(error) =>
+                    console.error("Could not inject Google script", error)
+                  }
+                />
+              </Box>
+
               {/* <InputLabel style={{color: "white"}}>Start Date</InputLabel> */}
               {/* <Datetime
                 // initialValue={new Date()}
@@ -120,22 +118,22 @@ const Search = () => {
                 }}
                 onChange={(date) => setStartDate(date)}
               /> */}
-              <TextField
-                name="startDate"
-                value={dates.startDate}
-                onChange={handleChange}
-                // label="Start Date"
-                type="date"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-            </CardBody>
-          </Card>
-        </GridItem>
-        <GridItem xs={12} sm={12} md={3}>
-          <Card>
-            <CardBody>
+              <Box mt={0.8} mr={3}>
+                <TextField
+                  name="startDate"
+                  value={dates.startDate}
+                  onChange={handleChange}
+                  label="Start Date"
+                  type="date"
+                  variant="outlined"
+                  size="small"
+                  style={{ width: 220 }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </Box>
+
               {/* <Datetime
                 // initialValue={new Date()}
                 isValidDate={valid}
@@ -146,26 +144,26 @@ const Search = () => {
                 }}
                 onChange={(date) => console.log(date)}
               /> */}
-              <TextField
-                name="endDate"
-                value={dates.endDate}
-                onChange={handleChange}
-                // label="End Date"
-                type="date"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-            </CardBody>
-          </Card>
-        </GridItem>
-        <GridItem xs={12} sm={12} md={1}>
-          <Card plain>
-            <CardBody plain>
+              <Box mt={0.8} mr={3}>
+                <TextField
+                  name="endDate"
+                  value={dates.endDate}
+                  onChange={handleChange}
+                  label="End Date"
+                  type="date"
+                  variant="outlined"
+                  size="small"
+                  style={{ width: 220 }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </Box>
+
               <Button round color="warning" onClick={handleSearch}>
                 Explore
               </Button>
-            </CardBody>
+            </Box>
           </Card>
         </GridItem>
       </GridContainer>

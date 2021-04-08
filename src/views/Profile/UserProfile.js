@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
+import { useDispatch } from "react-redux";
+import { updateProfile } from "store/actions/authActions";
 // Components
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
@@ -12,26 +14,49 @@ import CardBody from "components/Card/CardBody";
 import CardHeader from "components/Card/CardHeader";
 import CardIcon from "components/Card/CardIcon";
 import CardAvatar from "components/Card/CardAvatar";
+import PictureUpload from "components/CustomUpload/PictureUpload";
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
 import { InputLabel, Box } from "@material-ui/core";
 import { PermIdentity } from "@material-ui/icons";
 
 import styles from "assets/jss/material-dashboard-pro-react/views/userProfileStyles";
-import avatar from "assets/img/faces/avatar3.png";
-
 const useStyles = makeStyles(styles);
 
 const UserProfile = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer);
 
-  const [profile, setProfile] = useState({
+  let currProfile = {
     firstName: user.firstName,
     lastName: user.lastName,
     username: user.username,
     email: user.email,
-  });
+    image: user.image,
+    bio: user.bio,
+  };
+
+  useEffect(() => {
+    setProfile(currProfile);
+  }, [user]);
+
+  const [disabled, setDisabled] = useState(true);
+  const [profile, setProfile] = useState(currProfile);
+
+  const handleChange = (event) =>
+    setProfile({ ...profile, [event.target.name]: event.target.value });
+
+  const handleCancel = () => {
+    setProfile(currProfile);
+    setDisabled(true);
+  };
+
+  const handleSubmit = () => {
+    dispatch(updateProfile(profile));
+    setProfile(currProfile);
+    setDisabled(true);
+  };
 
   if (!user) return <Redirect to="/404" />;
   return (
@@ -57,7 +82,8 @@ const UserProfile = () => {
                       inputProps={{
                         name: "firstName",
                         value: profile.firstName,
-                        disabled: true,
+                        onChange: handleChange,
+                        disabled: disabled,
                       }}
                     />
                   </GridItem>
@@ -71,7 +97,8 @@ const UserProfile = () => {
                       inputProps={{
                         name: "lastName",
                         value: profile.lastName,
-                        disabled: true,
+                        onChange: handleChange,
+                        disabled: disabled,
                       }}
                     />
                   </GridItem>
@@ -88,7 +115,8 @@ const UserProfile = () => {
                     inputProps={{
                       name: "username",
                       value: profile.username,
-                      disabled: true,
+                      onChange: handleChange,
+                      disabled: disabled,
                     }}
                   />
                 </GridItem>
@@ -102,7 +130,8 @@ const UserProfile = () => {
                     inputProps={{
                       name: "email",
                       value: profile.email,
-                      disabled: true,
+                      onChange: handleChange,
+                      disabled: disabled,
                     }}
                   />
                 </GridItem>
@@ -114,13 +143,19 @@ const UserProfile = () => {
                       About me
                     </InputLabel>
                     <CustomInput
-                      labelText="Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is..."
+                      labelText={
+                        user.bio.length === 0 &&
+                        "Add a fun bio to your public profile ..."
+                      }
                       id="about-me"
                       formControlProps={{
                         fullWidth: true,
                       }}
                       inputProps={{
-                        disabled: true,
+                        name: "bio",
+                        value: profile.bio,
+                        onChange: handleChange,
+                        disabled: disabled,
                         multiline: true,
                         rows: 5,
                       }}
@@ -128,9 +163,32 @@ const UserProfile = () => {
                   </Box>
                 </GridItem>
               </GridContainer>
-              <Button color="rose" className={classes.updateProfileButton}>
-                Edit Profile
-              </Button>
+              {disabled ? (
+                <Button
+                  color="rose"
+                  className={classes.updateProfileButton}
+                  onClick={() => setDisabled(false)}
+                >
+                  Edit Profile
+                </Button>
+              ) : (
+                <>
+                  <Button
+                    color="warning"
+                    className={classes.updateProfileButton}
+                    onClick={handleSubmit}
+                  >
+                    Save
+                  </Button>
+                  <Button
+                    color="rose"
+                    className={classes.updateProfileButton}
+                    onClick={handleCancel}
+                  >
+                    Cancel
+                  </Button>
+                </>
+              )}
               <Clearfix />
             </CardBody>
           </Card>
@@ -138,20 +196,20 @@ const UserProfile = () => {
         <GridItem xs={12} sm={12} md={4}>
           <Card profile>
             <CardAvatar profile>
-              <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                <img src={user.picture ?? avatar} alt={user.username} />
-              </a>
+              {disabled ? (
+                <div>
+                  <img src={profile.image} alt={user.username} />
+                </div>
+              ) : (
+                <PictureUpload profile={profile} setProfile={setProfile} />
+              )}
             </CardAvatar>
             <CardBody profile>
               <h4 className={classes.cardTitle}>
-                {user.firstName} {user.lastName}
+                {profile.firstName} {profile.lastName}
               </h4>
               <Box mt={3} mb={3}>
-                <p className={classes.description}>
-                  Don't be scared of the truth because we need to restart the
-                  human foundation in truth And I love you like Kanye loves
-                  Kanye I love Rick Owens’ bed design but the back is...
-                </p>
+                <p className={classes.description}>{profile.bio}</p>
               </Box>
               <Button color="rose" round>
                 Public Profile

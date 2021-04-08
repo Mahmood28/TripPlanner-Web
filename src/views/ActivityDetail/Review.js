@@ -6,14 +6,12 @@ import { StyledRating } from "views/ActivityDetail/ReviewForm";
 import { Box } from "@material-ui/core";
 import { Star } from "@material-ui/icons";
 
-import avatar from "assets/img/faces/avatar3.png";
-
 const Review = ({ review }) => {
   if (!review) return <p></p>;
   return (
     <>
       <Media
-        avatar={avatar}
+        avatar={review.user.image}
         title={
           <span>
             {review.user.firstName + " " + review.user.lastName}

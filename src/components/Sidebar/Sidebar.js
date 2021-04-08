@@ -362,7 +362,7 @@ class Sidebar extends React.Component {
           <div>
             <div className={photo}>
               <img
-                src={avatar}
+                src={currUser.user.image}
                 className={classes.avatarImg}
                 alt={currUser.user.username}
               />
@@ -440,6 +440,23 @@ class Sidebar extends React.Component {
                         <Box ml={5.5}>
                           <ListItemText
                             primary="Reviews"
+                            disableTypography={true}
+                            className={collapseItemText}
+                          />
+                        </Box>
+                      </NavLink>
+                    </ListItem>
+                    <ListItem className={classes.collapseItem}>
+                      <NavLink
+                        to="/favourites"
+                        className={
+                          classes.itemLink + " " + classes.userCollapseLinks
+                        }
+                      >
+                        <span className={collapseItemMini}>{""}</span>
+                        <Box ml={5.5}>
+                          <ListItemText
+                            primary="Favourites"
                             disableTypography={true}
                             className={collapseItemText}
                           />
