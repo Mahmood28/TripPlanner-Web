@@ -9,7 +9,7 @@ import TripItem from "./TripItem";
 // Styling
 import { Box } from "@material-ui/core";
 
-const TripHistory = () => {
+const TripHistory = ({ _trips, profile }) => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.authReducer.loading);
   const { history } = useSelector((state) => state.authReducer);
@@ -19,10 +19,13 @@ const TripHistory = () => {
     dispatch(fetchHistory());
   }, [dispatch]);
 
-  if (!user) return <Redirect to="/404" />;
+  if (!user && !profile) return <Redirect to="/404" />;
   if (loading) return <Loader />;
 
-  const trips = history.map((trip) => <TripItem trip={trip} key={trip.id} />);
+  const profileTrips = _trips ?? history;
+  const trips = profileTrips.map((trip) => (
+    <TripItem trip={trip} key={trip.id} profile={profile ?? false} />
+  ));
 
   return (
     <Box mt={4}>
