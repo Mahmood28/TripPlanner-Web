@@ -4,20 +4,24 @@ import Cookies from "js-cookie";
 import * as types from "../types";
 
 const assignTrip = async () => {
-  const trip = JSON.parse(localStorage.getItem("activeTrip"));
-  if (trip) {
-    if (!trip.userId) {
-      const res = await instance.put(`/trips/${trip.id}`);
-      await localStorage.setItem("activeTrip", JSON.stringify(res.data));
-      return {
-        type: types.SET_TRIP,
-        payload: res.data,
-      };
+  try {
+    const trip = JSON.parse(localStorage.getItem("activeTrip"));
+    if (trip) {
+      if (!trip.userId) {
+        const res = await instance.put(`/trips/${trip.id}`);
+        await localStorage.setItem("activeTrip", JSON.stringify(res.data));
+        return {
+          type: types.SET_TRIP,
+          payload: res.data,
+        };
+      }
     }
     return {
       type: types.SET_TRIP,
       payload: trip ?? {},
     };
+  } catch (error) {
+    console.error(error);
   }
 };
 

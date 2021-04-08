@@ -93,10 +93,7 @@ const PublicProfile = () => {
               {` Joined at ${moment(profile.createdAt).format("LL")}`}
             </h6>
             <Box mt={3} mb={3}>
-              <p className={classes.description}>
-                {profile.bio ??
-                  "Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is..."}
-              </p>
+              <p className={classes.description}>{profile.bio ?? ""}</p>
             </Box>
             <Button color="rose" round>
               Follow
