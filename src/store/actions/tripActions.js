@@ -98,7 +98,7 @@ export const fetchItinerary = (tripId) => async (dispatch) => {
 
 export const fetchTrip = (tripSlug) => async (dispatch) => {
   try {
-    const res = await instance.get(`/trips/share/?tripSlug=${tripSlug}`);
+    const res = await instance.get(`/trips/${tripSlug}`);
     dispatch({
       type: types.SET_SHARED,
       payload: res.data,
