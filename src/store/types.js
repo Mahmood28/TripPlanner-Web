@@ -6,6 +6,7 @@ export const FETCH_REVIEWS = "FETCH_REVIEWS";
 // Activity Types
 export const SEARCH_ACTIVITY = "SEARCH_ACTIVITY";
 export const SET_ACTIVITIES = "SET_ACTIVITIES";
+export const FETCH_ACTIVITY = "FETCH_ACTIVITY";
 
 // Trip Types
 export const SET_TRIP = "SET_TRIP";

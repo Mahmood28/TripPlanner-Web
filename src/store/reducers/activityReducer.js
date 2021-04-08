@@ -3,6 +3,7 @@ import * as types from "../types";
 const initialState = {
   activities: [],
   loading: true,
+  fetchedActivities: [],
 };
 
 const activityReducer = (state = initialState, action) => {
@@ -17,6 +18,11 @@ const activityReducer = (state = initialState, action) => {
       return {
         ...state,
         activities: action.payload,
+      };
+    case types.FETCH_ACTIVITY:
+      return {
+        ...state,
+        fetchedActivities: [...state.fetchedActivities, action.payload],
       };
     default:
       return state;
