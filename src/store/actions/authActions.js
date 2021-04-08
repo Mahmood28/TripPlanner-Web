@@ -83,6 +83,19 @@ export const checkForToken = () => (dispatch) => {
   }
 };
 
+export const updateProfile = (userData) => {
+  return async (dispatch) => {
+    try {
+      const formData = new FormData();
+      for (const Key in userData) formData.append(Key, userData[Key]);
+      const res = await instance.put("/profile", formData);
+      await dispatch(setUser(res.data.token));
+    } catch (error) {
+      console.log("ERROR: ", error);
+    }
+  };
+};
+
 export const fetchHistory = () => async (dispatch) => {
   try {
     const res = await instance.get("/trips");

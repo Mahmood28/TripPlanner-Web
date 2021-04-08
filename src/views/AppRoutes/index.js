@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 // Components
 import MainLayout from "layouts/Main";
 import AuthLayout from "layouts/Auth";
-import Search from "views/Home/Search";
+import Home from "views/Home";
 import Signin from "views/Authentication/Signin";
 import Signup from "views/Authentication/Signup";
 import ActivityDetail from "views/ActivityDetail";
@@ -33,9 +33,7 @@ function AppRoutes() {
         </AuthLayout>
       </Route>
       <Route exact path="/">
-        <AuthLayout>
-          <Search />
-        </AuthLayout>
+        <Home />
       </Route>
       <MainLayout />
       <Redirect to="/404" />
