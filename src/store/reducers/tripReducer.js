@@ -5,6 +5,7 @@ const initialState = {
   activities: [],
   itinerary: [],
   directions: {},
+  shardeTrip: {},
 };
 
 const tripReducer = (state = initialState, action) => {
@@ -42,7 +43,11 @@ const tripReducer = (state = initialState, action) => {
         ...state,
         directions: action.payload,
       };
-
+    case types.SET_SHARED:
+      return {
+        ...state,
+        shardeTrip: action.payload,
+      };
     default:
       return state;
   }

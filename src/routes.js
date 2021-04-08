@@ -66,5 +66,12 @@ const routes = [
     layout: "/",
     redirect: true,
   },
+  {
+    path: "favourites",
+    name: "Favourites",
+    // component: Favourites,
+    layout: "/",
+    redirect: true,
+  },
 ];
 export default routes;

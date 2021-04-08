@@ -12,7 +12,6 @@ import { Rating } from "@material-ui/lab";
 import { Star } from "@material-ui/icons";
 import { Box } from "@material-ui/core";
 
-import avatar from "assets/img/faces/avatar3.png";
 import sectionCommentsStyle from "assets/jss/material-dashboard-pro-react/views/sectionCommentsStyle.js";
 const useStyles = makeStyles(sectionCommentsStyle);
 
@@ -42,7 +41,7 @@ const ReviewForm = ({ user, activityId }) => {
 
   return (
     <Media
-      avatar={avatar}
+      avatar={user.image}
       title={<span>{user.firstName + " " + user.lastName}</span>}
       body={
         <>

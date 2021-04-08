@@ -23,7 +23,7 @@ const ReviewCard = ({ review, profile }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const rating = Math.round(parseFloat(review.rating) * 2) / 2;
-  console.log("review", review);
+
   return (
     <GridItem xs={12} sm={12} md={10}>
       <Card>

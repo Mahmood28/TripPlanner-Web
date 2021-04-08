@@ -3,11 +3,12 @@ import { Switch, Route, Redirect } from "react-router-dom";
 // Components
 import MainLayout from "layouts/Main";
 import AuthLayout from "layouts/Auth";
-import Search from "views/Home/Search";
+import Home from "views/Home";
 import Signin from "views/Authentication/Signin";
 import Signup from "views/Authentication/Signup";
 import ActivityDetail from "views/ActivityDetail";
 import NotFound from "views/NotFound";
+import SharedTrip from "views/SharedTrip";
 
 function AppRoutes() {
   return (
@@ -32,10 +33,11 @@ function AppRoutes() {
           <Signup />
         </AuthLayout>
       </Route>
+      <Route exact path="/trips/:tripSlug">
+        <SharedTrip />
+      </Route>
       <Route exact path="/">
-        <AuthLayout>
-          <Search />
-        </AuthLayout>
+        <Home />
       </Route>
       <MainLayout />
       <Redirect to="/404" />

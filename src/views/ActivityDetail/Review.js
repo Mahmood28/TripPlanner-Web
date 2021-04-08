@@ -14,8 +14,8 @@ const Review = ({ review }) => {
   return (
     <>
       <Media
-        avatar={avatar}
         onClick={() => history.push(`/profile/${review.user.username}`)}
+        avatar={review.user.image?? avatar}
         title={
           <span>
             {review.user.firstName + " " + review.user.lastName}

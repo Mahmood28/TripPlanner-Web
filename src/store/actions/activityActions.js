@@ -24,6 +24,20 @@ export const listActivities = (destinationId) => async (dispatch) => {
     console.log("Error:", error);
   }
 };
+export const fetchActivity = (activitySlug, history) => async (dispatch) => {
+  try {
+    const res = await instance.get(`/activities/${activitySlug}`);
+    if (!res.data) {
+      history.replace("/404");
+    }
+    dispatch({
+      type: types.FETCH_ACTIVITY,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
 
 export const addReview = (activityId, review) => async (dispatch) => {
   try {
