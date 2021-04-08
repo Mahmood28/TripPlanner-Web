@@ -8,7 +8,7 @@ import ReviewCard from "./ReviewCard";
 import Loader from "components/Loading/Loader";
 // Styling
 
-const ReviewList = () => {
+const ReviewList = ({ _reviews, profile }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,16 +18,16 @@ const ReviewList = () => {
   const { reviews } = useSelector((state) => state.authReducer);
   const { user } = useSelector((state) => state.authReducer);
 
-  if (!user) return <Redirect to="/404" />;
-  if (!reviews) return <Loader />;
+  console.log(profile);
+  if (!user && !profile) return <Redirect to="/404" />;
+  if (!reviews && !_reviews) return <Loader />;
 
-  return (
-    <GridContainer justify="center">
-      {reviews.map((review) => (
-        <ReviewCard review={review} key={review.id} />
-      ))}
-    </GridContainer>
-  );
+  const userReviews = _reviews ?? reviews;
+  const reviewList = userReviews.map((review) => (
+    <ReviewCard review={review} key={review.id} profile={profile} />
+  ));
+
+  return <GridContainer justify="center">{reviewList} </GridContainer>;
 };
 
 export default ReviewList;
