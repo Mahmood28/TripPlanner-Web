@@ -24,7 +24,7 @@ import tripImage from "assets/img/card-2.jpeg";
 
 const useStyles = makeStyles(styles);
 
-const TripItem = ({ trip }) => {
+const TripItem = ({ trip, profile }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
@@ -79,27 +79,37 @@ const TripItem = ({ trip }) => {
                 </Button>
               </Link>
             </Tooltip>
-            {!passed && (
-              <Tooltip
-                title="Edit"
-                placement="bottom"
-                classes={{ tooltip: classes.tooltip }}
-              >
-                <Button color="warning" simple justIcon onClick={handleEdit}>
-                  <Edit className={classes.underChartIcons} />
-                </Button>
-              </Tooltip>
-            )}
-            <Tooltip
-              title="Delete"
-              placement="bottom"
-              classes={{ tooltip: classes.tooltip }}
-            >
-              {/* <Button color="rose" simple justIcon onClick={handleDelete}>
+            {!profile && (
+              <>
+                {!passed && (
+                  <Tooltip
+                    title="Edit"
+                    placement="bottom"
+                    classes={{ tooltip: classes.tooltip }}
+                  >
+                    <Button
+                      color="warning"
+                      simple
+                      justIcon
+                      onClick={handleEdit}
+                    >
+                      <Edit className={classes.underChartIcons} />
+                    </Button>
+                  </Tooltip>
+                )}
+
+                <Tooltip
+                  title="Delete"
+                  placement="bottom"
+                  classes={{ tooltip: classes.tooltip }}
+                >
+                  {/* <Button color="rose" simple justIcon onClick={handleDelete}>
                 <Close className={classes.underChartIcons} />
               </Button> */}
-              <DeleteAlert tripId={trip.id} />
-            </Tooltip>
+                  <DeleteAlert tripId={trip.id} />
+                </Tooltip>
+              </>
+            )}
           </div>
           <h4 className={classes.cardProductTitle}>
             <a href="#pablo" onClick={(e) => e.preventDefault()}>

@@ -19,7 +19,7 @@ import { Close, Place, Star, DateRange } from "@material-ui/icons";
 import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
 const useStyles = makeStyles(styles);
 
-const ReviewCard = ({ review }) => {
+const ReviewCard = ({ review, profile }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const rating = Math.round(parseFloat(review.rating) * 2) / 2;
@@ -67,19 +67,21 @@ const ReviewCard = ({ review }) => {
                     <DateRange /> {review.date.split("-").reverse().join("-")}
                   </Box>
                 </div>
-                <div className={classes.price}>
-                  <Box display="flex">
-                    <EditReview review={review} />
-                    <Button
-                      color="rose"
-                      simple
-                      className={classes.actionButton}
-                      onClick={() => dispatch(deleteReview(review))}
-                    >
-                      <Close className={classes.icon} />
-                    </Button>
-                  </Box>
-                </div>
+                {!profile && (
+                  <div className={classes.price}>
+                    <Box display="flex">
+                      <EditReview review={review} />
+                      <Button
+                        color="rose"
+                        simple
+                        className={classes.actionButton}
+                        onClick={() => dispatch(deleteReview(review))}
+                      >
+                        <Close className={classes.icon} />
+                      </Button>
+                    </Box>
+                  </div>
+                )}
               </CardFooter>
             </Box>
           </GridItem>

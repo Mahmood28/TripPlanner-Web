@@ -5,6 +5,7 @@ import UserProfile from "views/Profile/UserProfile";
 import ReviewList from "views/Profile/ReviewList";
 import TripHistory from "views/TripHistory";
 import TripSummary from "views/TripSummary";
+import PublicProfile from "views/PublicProfile";
 // Styling
 import { Place, Timeline, Map, DateRange } from "@material-ui/icons";
 
@@ -34,6 +35,13 @@ const routes = [
     path: "history/trips/:tripSlug",
     name: "Trip Summary",
     component: TripSummary,
+    layout: "/",
+    redirect: true,
+  },
+  {
+    path: "profile/:username",
+    name: "Profiles",
+    component: PublicProfile,
     layout: "/",
     redirect: true,
   },

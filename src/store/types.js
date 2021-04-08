@@ -20,3 +20,6 @@ export const SET_DIRECTIONS = "SET_DIRECTIONS";
 // Review Types
 export const DELETE_REVIEW = "DELETE_REVIEW";
 export const UPDATE_REVIEW = "UPDATE_REVIEW";
+
+// Profile Types
+export const FETCH_PROFILE = "FETCH_PROFILE";
