@@ -6,9 +6,10 @@ import ReviewList from "views/Profile/ReviewList";
 import TripHistory from "views/TripHistory";
 import TripSummary from "views/TripSummary";
 import PublicProfile from "views/PublicProfile";
+import Search from "views/PublicProfile/Search";
 // Styling
 import { Place, Timeline, Map, DateRange } from "@material-ui/icons";
-
+import SearchIcon from "@material-ui/icons/Search";
 const routes = [
   {
     path: "explore",
@@ -37,6 +38,13 @@ const routes = [
     component: TripSummary,
     layout: "/",
     redirect: true,
+  },
+  {
+    path: "profile/search",
+    name: "Search",
+    icon: SearchIcon,
+    component: Search,
+    layout: "/",
   },
   {
     path: "profile/:username",

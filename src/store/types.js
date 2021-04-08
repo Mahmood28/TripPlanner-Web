@@ -23,3 +23,4 @@ export const UPDATE_REVIEW = "UPDATE_REVIEW";
 
 // Profile Types
 export const FETCH_PROFILE = "FETCH_PROFILE";
+export const SEARCH_PROFILES = "SEARCH_PROFILES";
