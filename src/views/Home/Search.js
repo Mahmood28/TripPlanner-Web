@@ -19,6 +19,8 @@ import Loader from "components/Loading/Loader";
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
 import { InputLabel, TextField, Backdrop, Box } from "@material-ui/core";
+import BeatLoader from "react-spinners/BeatLoader";
+
 
 import styles from "assets/jss/material-dashboard-pro-react/views/pricingPageStyle";
 
@@ -167,7 +169,7 @@ const Search = () => {
       </GridContainer>
       {loading && (
         <Backdrop open={loading} onClick={() => setLoading(false)}>
-          <Loader />
+          <BeatLoader color="white" />
         </Backdrop>
       )}
     </div>

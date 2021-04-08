@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 //Styling
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -12,7 +13,6 @@ import {
 } from "@material-ui/lab/";
 import { Paper, Typography, ButtonBase } from "@material-ui/core";
 import { StyledCarIcon, StyledDurationText, StyledTimeline } from "./styles";
-import moment from "moment";
 import BeatLoader from "react-spinners/BeatLoader";
 
 const useStyles = makeStyles(() => ({

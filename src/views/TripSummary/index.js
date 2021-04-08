@@ -3,15 +3,18 @@ import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router";
 import { handleDirections } from "store/actions/tripActions";
-//Components
 import Loader from "components/Loading/Loader";
 import Footer from "components/Footer/Footer";
 import DayItem from "./DayItem";
+
+//Components
+import SocialShare from "./SocialShare";
+
 // Stylilng
 import { makeStyles } from "@material-ui/core/styles";
-import { Box } from "@material-ui/core";
 import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 import { AddAlarmSharp } from "@material-ui/icons";
+import { Box } from "@material-ui/core";
 import { PageContainer } from "./styles";
 
 const useStyles = makeStyles(styles);
@@ -66,6 +69,7 @@ const TripSummary = ({ activeTrip, itinerary }) => {
               {moment(trip.endDate).format("LL")}
             </h3>
           </Box>
+          <SocialShare slug={trip.slug} destination={trip.destination} />
         </div>
         {daysList}
       </PageContainer>

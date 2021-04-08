@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useHistory } from "react-router-dom";
 import moment from "moment";
 // Components
 import GridContainer from "components/Grid/GridContainer";
@@ -12,11 +13,13 @@ import Map from "./Map";
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 import DayTimeline from "./DayTimeline";
-
+import { Button } from "@material-ui/core";
+import { ButtonContainer } from "./styles";
 const useStyles = makeStyles(styles);
 
 const DayItem = ({ day, destination, directions, setDirections }) => {
   const classes = useStyles();
+  const history = useHistory();
 
   const sortedActivities = day.activities.sort(
     (a, b) =>
@@ -54,17 +57,19 @@ const DayItem = ({ day, destination, directions, setDirections }) => {
             <CardBody>
               <GridContainer justify="space-between">
                 <GridItem xs={12} sm={12} md={5}>
-                  {activitiesList ? (
+                  {activitiesList && (
                     <DayTimeline
                       activities={day.activities}
                       directions={directions}
                       day={day}
                     />
-                  ) : (
-                    <p>No Activities Yet</p>
                   )}
                 </GridItem>
-                <GridItem xs={12} sm={12} md={7}>
+                <GridItem
+                  xs={12}
+                  sm={12}
+                  md={day.activities.length > 0 ? 7 : 12}
+                >
                   {day.activities.length > 0 ? (
                     <Map
                       isMarkerShown
@@ -76,7 +81,11 @@ const DayItem = ({ day, destination, directions, setDirections }) => {
                       day={day}
                     />
                   ) : (
-                    <p>add activities</p>
+                    <ButtonContainer>
+                      <Button onClick={() => history.push("/itinerary")}>
+                        Add Activities
+                      </Button>
+                    </ButtonContainer>
                   )}
                 </GridItem>
               </GridContainer>

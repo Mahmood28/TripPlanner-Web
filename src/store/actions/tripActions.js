@@ -96,6 +96,18 @@ export const fetchItinerary = (tripId) => async (dispatch) => {
   }
 };
 
+export const fetchTrip = (tripSlug) => async (dispatch) => {
+  try {
+    const res = await instance.get(`/trips/share/?tripSlug=${tripSlug}`);
+    dispatch({
+      type: types.SET_SHARED,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
+
 export const handleActivity = (activity) => ({
   type: types.HANDLE_ACTIVITY,
   payload: activity,

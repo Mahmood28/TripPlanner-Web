@@ -8,6 +8,7 @@ import Signin from "views/Authentication/Signin";
 import Signup from "views/Authentication/Signup";
 import ActivityDetail from "views/ActivityDetail";
 import NotFound from "views/NotFound";
+import SharedTrip from "views/SharedTrip";
 
 function AppRoutes() {
   return (
@@ -31,6 +32,9 @@ function AppRoutes() {
         <AuthLayout>
           <Signup />
         </AuthLayout>
+      </Route>
+      <Route exact path="/trips/:tripSlug">
+        <SharedTrip />
       </Route>
       <Route exact path="/">
         <Home />
