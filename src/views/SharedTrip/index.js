@@ -43,6 +43,7 @@ const SharedTrip = () => {
       destination={trip.destination}
       directions={directions}
       setDirections={setDirections}
+      share={true}
     />
   ));
 
