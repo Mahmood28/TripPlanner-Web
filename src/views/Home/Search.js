@@ -73,8 +73,15 @@ const Search = ({ alert, setAlert }) => {
     const search = await dispatch(
       searchActivities(trip.destination, setAlert, history)
     );
+    console.log(
+      "🚀 ~ file: Search.js ~ line 76 ~ handleSearch ~ search",
+      search
+    );
     setLoading(!search);
-    if (search === false) await dispatch(createTrip(trip));
+    if (search === false) {
+      await dispatch(createTrip(trip));
+      history.push("/explore");
+    }
   };
 
   const resetForm = () => {
