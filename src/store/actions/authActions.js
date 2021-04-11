@@ -169,3 +169,29 @@ export const updateReview = (reviewId, newReview, destinationId) => async (
     console.log("Error:", error);
   }
 };
+
+export const handleFavourite = (activity, favourite) => async (dispatch) => {
+  try {
+    !favourite
+      ? await instance.post(`/activities/${activity.id}/favourites`)
+      : await instance.delete(`/activities/${activity.id}/favourites`);
+    dispatch({
+      type: types.HANDLE_FAVOURITE,
+      payload: activity,
+    });
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};
+
+export const fetchFavourites = () => async (dispatch) => {
+  try {
+    const res = await instance.get("/activities/favourites");
+    dispatch({
+      type: types.SET_FAVOURITES,
+      payload: res.data.Activities,
+    });
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};

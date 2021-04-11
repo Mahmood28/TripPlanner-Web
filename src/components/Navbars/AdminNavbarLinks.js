@@ -25,6 +25,7 @@ import Notifications from "@material-ui/icons/Notifications";
 import Dashboard from "@material-ui/icons/Dashboard";
 import Search from "@material-ui/icons/Search";
 import AddBoxIcon from "@material-ui/icons/AddBox";
+import { Favorite } from "@material-ui/icons";
 
 // core components
 import CustomInput from "components/CustomInput/CustomInput.js";
@@ -32,10 +33,13 @@ import Button from "components/CustomButtons/Button.js";
 import TripForm from "./TripForm";
 
 import styles from "assets/jss/material-dashboard-pro-react/components/adminNavbarLinksStyle.js";
+import ButtonStyling from "assets/jss/material-dashboard-pro-react/views/pricingPageStyle";
 
+const ButtonStyles = makeStyles(ButtonStyling);
 const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
+  const _classes = ButtonStyles();
   const dispatch = useDispatch();
   const history = useHistory();
   const { user } = useSelector((state) => state.authReducer);
@@ -118,6 +122,36 @@ export default function HeaderLinks(props) {
         <TripForm />
         {user && (
           <div className={managerClasses}>
+            <Tooltip
+              title="Favourites"
+              placement="bottom"
+              classes={{ tooltip: _classes.tooltip }}
+            >
+              <Button
+                color="transparent"
+                aria-label="Person"
+                justIcon
+                aria-owns={openProfile ? "profile-menu-list" : null}
+                aria-haspopup="true"
+                onClick={() => history.push("/favourites")}
+                className={
+                  rtlActive ? classes.buttonLinkRTL : classes.buttonLink
+                }
+                muiClasses={{
+                  label: rtlActive ? classes.labelRTL : "",
+                }}
+              >
+                <Favorite
+                  className={
+                    classes.headerLinksSvg +
+                    " " +
+                    (rtlActive
+                      ? classes.links + " " + classes.linksRTL
+                      : classes.links)
+                  }
+                />
+              </Button>
+            </Tooltip>
             <Button
               color="transparent"
               aria-label="Person"

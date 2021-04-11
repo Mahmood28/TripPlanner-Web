@@ -4,6 +4,7 @@ const initialState = {
   user: null,
   history: [],
   reviews: [],
+  favourites: [],
   loading: true,
 };
 
@@ -44,6 +45,19 @@ const authReducer = (state = initialState, action) => {
         reviews: state.reviews.map((review) =>
           review.id === updatedReview.id ? updatedReview : review
         ),
+      };
+    case types.HANDLE_FAVOURITE:
+      const remove = state.favourites.includes(action.payload);
+      return {
+        ...state,
+        favourites: remove
+          ? state.favourites.filter((activity) => activity !== action.payload)
+          : [...state.favourites, action.payload],
+      };
+    case types.SET_FAVOURITES:
+      return {
+        ...state,
+        favourites: action.payload,
       };
     default:
       return state;

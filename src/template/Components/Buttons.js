@@ -143,7 +143,7 @@ export default function Buttons() {
                   { text: 8 },
                   { text: 9 },
                   { text: "..." },
-                  { text: 12 }
+                  { text: 12 },
                 ]}
               />
               <Pagination
@@ -154,7 +154,7 @@ export default function Buttons() {
                   { active: true, text: 3 },
                   { text: 4 },
                   { text: 5 },
-                  { text: "NEXT" }
+                  { text: "NEXT" },
                 ]}
                 color="info"
               />

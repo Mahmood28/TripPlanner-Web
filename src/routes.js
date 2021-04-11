@@ -6,8 +6,9 @@ import ReviewList from "views/Profile/ReviewList";
 import TripHistory from "views/TripHistory";
 import TripSummary from "views/TripSummary";
 import PublicProfile from "views/PublicProfile";
+import Favourites from "views/Favourites";
 // Styling
-import { Place, Timeline, Map, DateRange } from "@material-ui/icons";
+import { Place, Map, DateRange } from "@material-ui/icons";
 
 const routes = [
   {
@@ -69,7 +70,7 @@ const routes = [
   {
     path: "favourites",
     name: "Favourites",
-    // component: Favourites,
+    component: Favourites,
     layout: "/",
     redirect: true,
   },

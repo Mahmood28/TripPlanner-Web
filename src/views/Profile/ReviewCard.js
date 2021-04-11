@@ -16,7 +16,7 @@ import { StyledRating } from "views/ActivityDetail/ReviewForm";
 import { Box, CardActionArea, ButtonBase, CardMedia } from "@material-ui/core";
 import { Close, Place, Star, DateRange } from "@material-ui/icons";
 
-import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle.js";
+import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 const useStyles = makeStyles(styles);
 
 const ReviewCard = ({ review, profile }) => {

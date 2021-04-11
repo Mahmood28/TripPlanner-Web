@@ -61,7 +61,6 @@ const PublicProfile = () => {
   };
 
   if (!profiles.some((profile) => profile.username === username)) {
-    console.log("hello");
     dispatch(fetchProfile(username));
     return <Loader />;
   }

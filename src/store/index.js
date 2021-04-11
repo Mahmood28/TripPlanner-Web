@@ -1,9 +1,10 @@
 import { createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import reducer from "./reducers";
+import Cookies from "js-cookie";
 
 // Actions
-import { checkForToken } from "./actions/authActions";
+import { checkForToken, fetchFavourites } from "./actions/authActions";
 import { listActivities } from "./actions/activityActions";
 import {
   fetchActivities,
@@ -32,5 +33,8 @@ const directions = JSON.parse(localStorage.getItem("directions"));
 if (directions) store.dispatch(handleDirections(directions));
 
 store.dispatch(checkForToken());
+
+const token = Cookies.get("token");
+if (token) store.dispatch(fetchFavourites());
 
 export default store;

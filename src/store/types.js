@@ -2,6 +2,8 @@
 export const SET_USER = "SET_USER";
 export const FETCH_HISTORY = "FETCH_HISTORY";
 export const FETCH_REVIEWS = "FETCH_REVIEWS";
+export const HANDLE_FAVOURITE = "HANDLE_FAVOURITE";
+export const SET_FAVOURITES = "SET_FAVOURITES";
 
 // Activity Types
 export const SEARCH_ACTIVITY = "SEARCH_ACTIVITY";
