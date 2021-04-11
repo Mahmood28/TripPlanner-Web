@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { Avatar, Button, Card } from "@material-ui/core";
+import { Avatar, Card, FormControl } from "@material-ui/core";
+import Button from "components/CustomButtons/Button";
 
 export const ProfilePicture = styled(Avatar)`
   && {
@@ -8,21 +9,18 @@ export const ProfilePicture = styled(Avatar)`
   }
 `;
 
-export const TabButton = styled(Button)`
-  && {
-    background-color: ${(props) => (props.shown ? "#d3d3d3" : "null")};
-  }
-`;
-
 export const StyledContainer = styled.div`
   padding-right: 10%;
   padding-left: 10%;
+  margin-bottom: 30px;
 `;
 
 export const CardContainer = styled(Card)`
   && {
     width: 100%;
     padding: 20px;
+    border-radius: 16px;
+    background-color: #ffffff;
   }
 `;
 
@@ -43,8 +41,11 @@ export const ItemContainer = styled.div`
   margin-top: 15px;
 `;
 
-export const EditButton = styled(Button)`
-  align-self: flex-start;
+export const StyledButton = styled(Button)`
+  && {
+    align-self: center;
+    margin: 0 5px 0 5px;
+  }
 `;
 
 export const EditPicture = styled(ProfilePicture)`
@@ -57,4 +58,23 @@ export const EditPicture = styled(ProfilePicture)`
   .add {
     opacity: 0;
   }
+`;
+
+export const DisplayMessage = styled.h5`
+  display: flex;
+  justify-content: center;
+`;
+
+export const StyledFormControl = styled(FormControl)`
+  && {
+    margin-bottom: 5%;
+  }
+`;
+
+export const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  flexwrap: wrap;
+  justify-content: center;
 `;
