@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <>
       <AuthLayout>
-        <Search setAlert={setAlert} />
+        <Search alert={alert} setAlert={setAlert} />
       </AuthLayout>
       <NoResultAlert alert={alert} setAlert={setAlert} />
       <InfoSection />

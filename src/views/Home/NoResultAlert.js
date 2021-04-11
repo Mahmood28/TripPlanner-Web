@@ -21,7 +21,6 @@ const NoResultAlert = ({ alert, setAlert }) => {
   const dispatch = useDispatch();
 
   if (alert === "show") {
-    console.log("HI");
     setAlert(
       <Box ml={100}>
         <SweetAlert

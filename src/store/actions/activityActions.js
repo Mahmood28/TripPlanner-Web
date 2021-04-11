@@ -1,13 +1,22 @@
 import instance from "./instance";
 import * as types from "../types";
 
-export const searchActivities = (destination) => async (dispatch) => {
+export const searchActivities = (destination, setAlert, history) => async (
+  dispatch
+) => {
   try {
     const res = await instance.post("/activities", destination);
-    dispatch({
-      type: types.SEARCH_ACTIVITY,
-      payload: res.data,
-    });
+    if (res.data.length === 0) {
+      setAlert("show");
+      return true;
+    } else {
+      dispatch({
+        type: types.SEARCH_ACTIVITY,
+        payload: res.data,
+      });
+      history.push("/explore");
+      return false;
+    }
   } catch (error) {
     console.log("Error:", error);
   }
