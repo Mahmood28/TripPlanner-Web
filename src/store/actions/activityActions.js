@@ -14,7 +14,6 @@ export const searchActivities = (destination, setAlert, history) => async (
         type: types.SEARCH_ACTIVITY,
         payload: res.data,
       });
-      history.push("/explore");
       return false;
     }
   } catch (error) {
