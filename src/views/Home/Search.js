@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchActivities } from "store/actions/activityActions";
 import { createTrip } from "store/actions/tripActions";
 
@@ -24,11 +24,11 @@ import BeatLoader from "react-spinners/BeatLoader";
 import styles from "assets/jss/material-dashboard-pro-react/views/pricingPageStyle";
 const useStyles = makeStyles(styles);
 
-const Search = () => {
+const Search = ({ setAlert }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
-
+  const { activities } = useSelector((state) => state.activityReducer);
   const [destination, setDestination] = useState("");
   const [dates, setDates] = useState({ startDate: "", endDate: "" });
   const [loading, setLoading] = useState(false);
@@ -71,10 +71,20 @@ const Search = () => {
     };
     setLoading(true);
     await dispatch(searchActivities(trip.destination));
-    await dispatch(createTrip(trip));
-    history.push("/explore");
+    if (!activities.length) {
+      setAlert("show");
+      resetForm();
+    } else {
+      await dispatch(createTrip(trip));
+      history.push("/explore");
+    }
   };
 
+  const resetForm = () => {
+    setDates({ startDate: "", endDate: "" });
+    setDestination("");
+    setLoading(false);
+  };
   return (
     <div className={classes.container}>
       <GridContainer justify="center">

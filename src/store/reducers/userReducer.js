@@ -2,6 +2,7 @@ import * as types from "../types";
 
 const initialState = {
   profiles: [],
+  search: [],
 };
 
 const tripReducer = (state = initialState, action) => {
@@ -10,6 +11,11 @@ const tripReducer = (state = initialState, action) => {
       return {
         ...state,
         profiles: [...state.profiles, action.payload],
+      };
+    case types.SEARCH_PROFILES:
+      return {
+        ...state,
+        search: action.payload,
       };
 
     default:
