@@ -17,7 +17,7 @@ import { Button } from "@material-ui/core";
 import { ButtonContainer } from "./styles";
 const useStyles = makeStyles(styles);
 
-const DayItem = ({ day, destination, directions, setDirections }) => {
+const DayItem = ({ day, destination, directions, setDirections, share }) => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -82,9 +82,13 @@ const DayItem = ({ day, destination, directions, setDirections }) => {
                     />
                   ) : (
                     <ButtonContainer>
-                      <Button onClick={() => history.push("/itinerary")}>
-                        Add Activities
-                      </Button>
+                      {share ? (
+                        <h5>There are no activities for this trip.</h5>
+                      ) : (
+                        <Button onClick={() => history.push("/itinerary")}>
+                          Add Activities
+                        </Button>
+                      )}
                     </ButtonContainer>
                   )}
                 </GridItem>

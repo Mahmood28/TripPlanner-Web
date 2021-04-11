@@ -1,37 +1,57 @@
 import React, { useEffect, useState } from "react";
 import debounce from "lodash.debounce";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import moment from "moment";
 //Components
-import Profile from "./Profile";
 import { searchProfiles } from "store/actions/userActions";
 //Styling
 import {
   InputAdornment,
-  FormControl,
   InputLabel,
   Input,
+  Typography,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
+import {
+  ProfilePicture,
+  CardContainer,
+  StyledContainer,
+  FlexContainer,
+  TabContainer,
+  NameContainer,
+  DisplayMessage,
+  StyledFormControl,
+  StyledButton,
+  PageContainer,
+} from "./styles";
+import { CalendarToday } from "@material-ui/icons";
+import avatar from "assets/img/faces/avatar3.png";
+import { setSeconds } from "date-fns";
+import Loader from "components/Loading/Loader";
 
 const Search = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { search } = useSelector((state) => state.userReducer);
   const [query, setQuery] = useState("");
+  const [queryEnd, setQueryEnd] = useState(false);
 
   const delayedQuery = debounce(async () => {
-    console.log(search);
     await dispatch(searchProfiles(query));
+    setQueryEnd(true);
   }, 500);
 
   useEffect(() => {
-    if (query.length) delayedQuery();
+    setQueryEnd(false);
+    delayedQuery();
 
     return delayedQuery.cancel;
   }, [query]);
 
   return (
-    <div>
-      <FormControl>
+    <PageContainer>
+      <StyledFormControl>
         <InputLabel htmlFor="input-with-icon-adornment">
           Search for a user
         </InputLabel>
@@ -40,28 +60,61 @@ const Search = () => {
           onChange={(e) => setQuery(e.target.value)}
           value={query}
           fullWidth
+          autoFocus
           startAdornment={
             <InputAdornment position="start">
               <SearchIcon />
             </InputAdornment>
           }
         />
-      </FormControl>
-      <div
-        style={{
-          display: "flex",
-          flex: 1,
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}
-      >
-        {search
-          ? search.map((profile) => <Profile profile={profile} type="search" />)
-          : !search.length
-          ? "No users found"
-          : null}
+      </StyledFormControl>
+      <div>
+        {!query ? null : search.length ? (
+          search.map((profile) => (
+            <StyledContainer>
+              <CardContainer>
+                <TabContainer>
+                  <FlexContainer>
+                    <ProfilePicture
+                      src={profile.image ?? avatar}
+                      alt={profile.username}
+                    />
+                    <NameContainer>
+                      <Typography variant="h3">
+                        {`${profile.firstName} ${profile.lastName}`}
+                      </Typography>
+                      <Typography variant="h5">{profile.username}</Typography>
+                      <h6>
+                        <CalendarToday size="small" />
+                        {` Joined at ${moment(profile.createdAt).format("LL")}`}
+                      </h6>
+                    </NameContainer>
+                  </FlexContainer>
+                  <StyledButton
+                    color="rose"
+                    round
+                    onClick={() => history.push(`/profile/${profile.username}`)}
+                  >
+                    View
+                  </StyledButton>
+                  <StyledButton
+                    color="rose"
+                    round
+                    onClick={() => history.push(`/profile/${profile.username}`)}
+                  >
+                    Follow
+                  </StyledButton>
+                </TabContainer>
+              </CardContainer>
+            </StyledContainer>
+          ))
+        ) : queryEnd ? (
+          <DisplayMessage>No users found.</DisplayMessage>
+        ) : (
+          <Loader />
+        )}
       </div>
-    </div>
+    </PageContainer>
   );
 };
 export default Search;
