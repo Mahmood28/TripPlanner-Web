@@ -15,11 +15,18 @@ export const fetchProfile = (username) => async (dispatch) => {
 
 export const searchProfiles = (query) => async (dispatch) => {
   try {
-    const res = await instance.get(`/profile/search?username=${query}`);
-    dispatch({
-      type: types.SEARCH_PROFILES,
-      payload: res.data,
-    });
+    if (!query.length)
+      dispatch({
+        type: types.SEARCH_PROFILES,
+        payload: [],
+      });
+    else {
+      const res = await instance.get(`/profile/search?username=${query}`);
+      dispatch({
+        type: types.SEARCH_PROFILES,
+        payload: res.data,
+      });
+    }
   } catch (error) {
     console.error(error);
   }
