@@ -39,6 +39,7 @@ const ButtonStyles = makeStyles(ButtonStyling);
 const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
+  const classes = useStyles();
   const _classes = ButtonStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -75,7 +76,6 @@ export default function HeaderLinks(props) {
     dispatch(signout());
     history.replace("/");
   };
-  const classes = useStyles();
   const { rtlActive } = props;
   const searchButton =
     classes.top +
@@ -166,7 +166,7 @@ export default function HeaderLinks(props) {
             >
               <Person
                 className={
-                  classes.headerLinksSvg +
+                  classes.userIcon +
                   " " +
                   (rtlActive
                     ? classes.links + " " + classes.linksRTL

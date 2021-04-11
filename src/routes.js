@@ -9,7 +9,7 @@ import PublicProfile from "views/PublicProfile";
 import Favourites from "views/Favourites";
 import Search from "views/PublicProfile/Search";
 // Styling
-import { Place, Map, DateRange } from "@material-ui/icons";
+import { Place, Map, DateRange, Group } from "@material-ui/icons";
 import SearchIcon from "@material-ui/icons/Search";
 
 const routes = [
@@ -42,9 +42,9 @@ const routes = [
     redirect: true,
   },
   {
-    path: "profile/search",
-    name: "Search",
-    icon: SearchIcon,
+    path: "connect",
+    name: "Connect",
+    icon: Group,
     component: Search,
     layout: "/",
   },

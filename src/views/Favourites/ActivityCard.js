@@ -32,7 +32,7 @@ const ActivityCard = ({ activity }) => {
 
   return (
     <GridItem xs={12} sm={12} md={4}>
-      <Card background style={{ backgroundImage: `url(${tempImage})` }}>
+      <Card background style={{ backgroundImage: `url(${activity.image})` }}>
         <CardBody background>
           <GridContainer justify="center">
             <GridItem xs={12} sm={10} md={8}>

@@ -144,8 +144,8 @@ export default function AuthNavbar(props) {
         </Hidden>
         <Hidden mdUp>
           <div className={classes.flex}>
-            <Button href="#" className={classes.title} color="transparent">
-              MD Pro React
+            <Button href="/" className={classes.title} color="transparent">
+              TRIP PLANNER
             </Button>
           </div>
         </Hidden>

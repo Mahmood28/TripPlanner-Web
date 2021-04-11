@@ -35,7 +35,11 @@ const InfoSection = () => {
     <div className={classes.wrapper} ref={wrapper}>
       <div
         className={classes.fullPage}
-        style={{ backgroundImage: "url(" + background + ")" }}
+        // style={{ backgroundImage: "url(" + background + ")" }}
+        style={{
+          backgroundImage:
+            "url(http://4.bp.blogspot.com/--jzqUffWE9U/UQt8IuzjMdI/AAAAAAAAAK4/Lys89VlTOGY/s1600/blue-sky-1600.jpg)",
+        }}
       >
         <div className={classes.container}>
           <GridContainer justify="center">
@@ -129,7 +133,6 @@ const InfoSection = () => {
               </Card>
             </GridItem>
           </GridContainer>
-          <br />
         </div>
       </div>
     </div>

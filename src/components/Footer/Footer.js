@@ -10,6 +10,7 @@ import Button from "components/CustomButtons/Button";
 import ActivityForm from "./ActivityForm";
 import SaveAlert from "./SaveAlert";
 import AuthAlert from "./AuthAlert";
+import SocialShare from "views/TripSummary/SocialShare";
 // Syling
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, List, ListItem } from "@material-ui/core";
@@ -22,7 +23,7 @@ export default function Footer(props) {
   const history = useHistory();
   const { user } = useSelector((state) => state.authReducer);
 
-  const { fluid, white } = props;
+  const { fluid, white, slug, destination } = props;
   const activePage = useLocation().pathname;
 
   const handleNext = () => {
@@ -37,14 +38,16 @@ export default function Footer(props) {
 
   return (
     <footer className={classes.footer}>
-      <div className={classes.right}>
-        <List className={classes.list}>
-          {activePage === "/explore" && (
+      <List className={classes.list}>
+        {activePage === "/explore" && (
+          <div className={classes.right}>
             <ListItem className={classes.inlineBlock}>
               <ActivityForm />
             </ListItem>
-          )}
-          {!isSummary && (
+          </div>
+        )}
+        {!isSummary && (
+          <div className={classes.right}>
             <ListItem className={classes.inlineBlock}>
               <Box ml={2}>
                 <Button color="warning" onClick={handleNext}>
@@ -52,17 +55,27 @@ export default function Footer(props) {
                 </Button>
               </Box>
             </ListItem>
-          )}
-          {isSummary && (
-            <ListItem className={classes.inlineBlock}>
-              <Box ml={2}>
-                {user && <SaveAlert />}
-                {!user && <AuthAlert />}
-              </Box>
-            </ListItem>
-          )}
-        </List>
-      </div>
+          </div>
+        )}
+        {isSummary && (
+          <>
+            <div className={classes.left}>
+              {/* <h6 className={classes.inlineBlock}>Share your trip</h6> */}
+              <ListItem className={classes.inlineBlock}>
+                <SocialShare slug={slug} destination={destination} />
+              </ListItem>
+            </div>
+            <div className={classes.right}>
+              <ListItem className={classes.inlineBlock}>
+                <Box ml={2}>
+                  {user && <SaveAlert />}
+                  {!user && <AuthAlert />}
+                </Box>
+              </ListItem>
+            </div>
+          </>
+        )}
+      </List>
     </footer>
   );
 }
