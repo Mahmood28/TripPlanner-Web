@@ -69,11 +69,11 @@ const TripSummary = ({ activeTrip, itinerary }) => {
               {moment(trip.endDate).format("LL")}
             </h3>
           </Box>
-          <SocialShare slug={trip.slug} destination={trip.destination} />
+          {/* <SocialShare slug={trip.slug} destination={trip.destination} /> */}
         </div>
         {daysList}
       </PageContainer>
-      <Footer fluid />
+      <Footer fluid slug={trip.slug} destination={trip.destination} />
     </div>
   );
 };

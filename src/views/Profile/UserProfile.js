@@ -44,8 +44,6 @@ const UserProfile = () => {
   const [disabled, setDisabled] = useState(true);
   const [profile, setProfile] = useState(currProfile);
 
-  console.log("profile", profile);
-
   const handleChange = (event) =>
     setProfile({ ...profile, [event.target.name]: event.target.value });
 

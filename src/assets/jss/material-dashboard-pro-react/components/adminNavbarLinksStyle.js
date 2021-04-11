@@ -153,6 +153,10 @@ const adminNavbarLinksStyle = (theme) => ({
     width: "22px !important",
     height: "22px !important",
   },
+  userIcon: {
+    width: "25px !important",
+    height: "25px !important",
+  },
 });
 
 export default adminNavbarLinksStyle;
