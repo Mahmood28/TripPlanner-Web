@@ -2,12 +2,12 @@ import React from "react";
 import { useHistory } from "react-router";
 import moment from "moment";
 // Styling
+import avatar from "assets/img/faces/avatar3.png";
 import Button from "components/CustomButtons/Button";
 import Card from "components/Card/Card";
 import CardBody from "components/Card/CardBody";
 import CardAvatar from "components/Card/CardAvatar";
 import styles from "assets/jss/material-dashboard-pro-react/views/userProfileStyles";
-import avatar from "assets/img/faces/avatar3.png";
 import { Box, makeStyles } from "@material-ui/core";
 import { CalendarToday } from "@material-ui/icons";
 
@@ -17,8 +17,8 @@ const Profile = ({ profile, type }) => {
   const classes = useStyles();
   const history = useHistory();
   return (
-    <>
-      <Card profile style={{ width: "33%", margin: "30px" }}>
+    <div>
+      <Card profile style={{ width: "100%", margin: "30px" }}>
         <CardAvatar profile>
           <a href="#pablo" onClick={(e) => e.preventDefault()}>
             <img src={avatar} alt={profile.username} />
@@ -46,7 +46,7 @@ const Profile = ({ profile, type }) => {
           </Button>
         </CardBody>
       </Card>
-    </>
+    </div>
   );
 };
 
