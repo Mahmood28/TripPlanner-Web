@@ -24,7 +24,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 import styles from "assets/jss/material-dashboard-pro-react/views/pricingPageStyle";
 const useStyles = makeStyles(styles);
 
-const Search = ({ setAlert }) => {
+const Search = ({ alert, setAlert }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -70,14 +70,11 @@ const Search = ({ setAlert }) => {
       destination: { ...coordinates, country, city },
     };
     setLoading(true);
-    await dispatch(searchActivities(trip.destination));
-    if (!activities.length) {
-      setAlert("show");
-      resetForm();
-    } else {
-      await dispatch(createTrip(trip));
-      history.push("/explore");
-    }
+    const search = await dispatch(
+      searchActivities(trip.destination, setAlert, history)
+    );
+    setLoading(!search);
+    if (search === false) await dispatch(createTrip(trip));
   };
 
   const resetForm = () => {

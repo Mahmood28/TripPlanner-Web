@@ -23,6 +23,7 @@ import {
 } from "@material-ui/core";
 
 import styles from "assets/jss/material-dashboard-pro-react/views/pricingPageStyle";
+import NoResultAlert from "views/Home/NoResultAlert";
 
 const ButtonStyles = makeStyles(styles);
 const useStyles = makeStyles(() => ({
@@ -42,6 +43,7 @@ const ActivityForm = () => {
   const [destination, setDestination] = useState("");
   const [dates, setDates] = useState({ startDate: "", endDate: "" });
   const [open, setOpen] = useState(false);
+  const [alert, setAlert] = useState(null);
 
   Geocode.setApiKey(MAP_API_KEY);
   Geocode.setLanguage("en");
@@ -74,10 +76,11 @@ const ActivityForm = () => {
       ...dates,
       destination: { ...coordinates, country, city },
     };
-    await dispatch(searchActivities(trip.destination));
-    await dispatch(createTrip(trip));
-    setOpen(false);
-    history.push("/explore");
+    const search = await dispatch(
+      searchActivities(trip.destination, setAlert, history)
+    );
+    setOpen(search);
+    if (search === false) await dispatch(createTrip(trip));
   };
 
   const handleCancel = () => {
@@ -170,6 +173,7 @@ const ActivityForm = () => {
               }}
             />
           </Box>
+          <NoResultAlert alert={alert} setAlert={setAlert} />
         </DialogContent>
         <Box mr={2} mb={2}>
           <DialogActions>
