@@ -7,6 +7,7 @@ import TripHistory from "views/TripHistory";
 import TripSummary from "views/TripSummary";
 import PublicProfile from "views/PublicProfile";
 import Favourites from "views/Favourites";
+import Search from "views/PublicProfile/Search";
 // Styling
 import { Place, Map, DateRange } from "@material-ui/icons";
 import SearchIcon from "@material-ui/icons/Search";
