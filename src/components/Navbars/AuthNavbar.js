@@ -16,10 +16,12 @@ import Popover from "@material-ui/core/Popover";
 import Typography from "@material-ui/core/Typography";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
+import Box from "@material-ui/core/Box";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
 import Fingerprint from "@material-ui/icons/Fingerprint";
 import PersonIcon from "@material-ui/icons/Person";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 // core components
 import Button from "components/CustomButtons/Button";
 
@@ -108,14 +110,24 @@ export default function AuthNavbar(props) {
             </Popover>
           </div>
         ) : (
-          <NavLink to={"/signin"} className={cx(classes.navLink)}>
-            <Fingerprint className={classes.listItemIcon} />
-            <ListItemText
-              primary={"Sign in"}
-              disableTypography={true}
-              className={classes.listItemText}
-            />
-          </NavLink>
+          <Box display="flex">
+            <NavLink to={"/signup"} className={cx(classes.navLink)}>
+              <PersonAddIcon className={classes.listItemIcon} />
+              <ListItemText
+                primary={"Sign up"}
+                disableTypography={true}
+                className={classes.listItemText}
+              />
+            </NavLink>
+            <NavLink to={"/signin"} className={cx(classes.navLink)}>
+              <Fingerprint className={classes.listItemIcon} />
+              <ListItemText
+                primary={"Sign in"}
+                disableTypography={true}
+                className={classes.listItemText}
+              />
+            </NavLink>
+          </Box>
         )}
       </ListItem>
     </List>

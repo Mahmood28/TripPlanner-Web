@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router";
+import { fetchTrip } from "store/actions/tripActions";
+import { handleDirections } from "store/actions/tripActions";
 import moment from "moment";
 //Components
 import Loader from "components/Loading/Loader";
@@ -10,8 +12,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Box, Grid, Container } from "@material-ui/core";
 import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 import { AddAlarmSharp } from "@material-ui/icons";
-import { handleDirections } from "store/actions/tripActions";
-import { fetchTrip } from "store/actions/tripActions";
 import { StyledContainer } from "./styles";
 import Scrollbar from "./Scrollbar";
 

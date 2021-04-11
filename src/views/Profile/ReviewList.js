@@ -18,7 +18,6 @@ const ReviewList = ({ _reviews, profile }) => {
   const { reviews } = useSelector((state) => state.authReducer);
   const { user } = useSelector((state) => state.authReducer);
 
-  console.log(profile);
   if (!user && !profile) return <Redirect to="/404" />;
   if (!reviews && !_reviews) return <Loader />;
 

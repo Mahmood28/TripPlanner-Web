@@ -14,6 +14,9 @@ import CardBody from "components/Card/CardBody";
 import { makeStyles } from "@material-ui/core/styles";
 import { InputAdornment, Box, Icon } from "@material-ui/core";
 import { Timeline, Code, Group, Face, Email } from "@material-ui/icons";
+import RoomIcon from "@material-ui/icons/Room";
+import EventNoteIcon from "@material-ui/icons/EventNote";
+import MapIcon from "@material-ui/icons/Map";
 import styles from "assets/jss/material-dashboard-pro-react/views/registerPageStyle";
 import { AuthMsg } from "./styles";
 
@@ -51,22 +54,22 @@ const Signup = () => {
                 <GridItem xs={12} sm={12} md={5}>
                   {/* content shoud be changed */}
                   <InfoArea
-                    title="Marketing"
-                    description="We've created the marketing campaign of the website. It was a very interesting collaboration."
-                    icon={Timeline}
+                    title="Interactive Map"
+                    description="Explore activities and events for your trip directly from an interactive map."
+                    icon={RoomIcon}
                     iconColor="rose"
                   />
                   <InfoArea
-                    title="Fully Coded in HTML5"
-                    description="We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub."
-                    icon={Code}
-                    iconColor="primary"
+                    title="Trip Itinerary"
+                    description="Create daily plans for your trip from a selection of activities or create your own."
+                    icon={EventNoteIcon}
+                    iconColor="rose"
                   />
                   <InfoArea
-                    title="Built Audience"
-                    description="There is also a Fully Customizable CMS Admin Dashboard for this product."
-                    icon={Group}
-                    iconColor="info"
+                    title="Daily Routes"
+                    description="View your trip as day routes to easily plan transportation and track activities."
+                    icon={MapIcon}
+                    iconColor="rose"
                   />
                 </GridItem>
                 <GridItem xs={12} sm={8} md={5}>

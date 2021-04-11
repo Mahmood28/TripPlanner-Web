@@ -22,7 +22,6 @@ import { InputLabel, TextField, Backdrop, Box } from "@material-ui/core";
 import BeatLoader from "react-spinners/BeatLoader";
 
 import styles from "assets/jss/material-dashboard-pro-react/views/pricingPageStyle";
-
 const useStyles = makeStyles(styles);
 
 const Search = ({ setAlert }) => {
@@ -90,10 +89,10 @@ const Search = ({ setAlert }) => {
     <div className={classes.container}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={10}>
-          <h2 className={classes.title}>Plan your next adventure!</h2>
-          {/* <h5 className={classes.description}>
-            Explore activities and create an itinerary for your trip
-          </h5> */}
+          <h2 className={classes.title}>Plan your next adventure !</h2>
+          <h5 className={classes.description}>
+            Explore activities and create an itinerary for your upcoming trip.
+          </h5>
         </GridItem>
       </GridContainer>
       <GridContainer justify="center">

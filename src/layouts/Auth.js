@@ -5,7 +5,7 @@ import AuthNavbar from "components/Navbars/AuthNavbar";
 import { makeStyles } from "@material-ui/core/styles";
 
 import styles from "assets/jss/material-dashboard-pro-react/layouts/authStyle";
-import background from "assets/img/login.jpeg";
+import background from "assets/img/lock.jpeg";
 
 const useStyles = makeStyles(styles);
 
