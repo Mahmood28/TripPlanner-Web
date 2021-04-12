@@ -5,6 +5,8 @@ import { useHistory } from "react-router";
 import moment from "moment";
 //Components
 import { searchProfiles } from "store/actions/userActions";
+import Loader from "components/Loading/Loader";
+import { followUser, unfollowUser } from "store/actions/authActions";
 //Styling
 import {
   InputAdornment,
@@ -28,13 +30,12 @@ import {
 } from "./styles";
 import { CalendarToday } from "@material-ui/icons";
 import avatar from "assets/img/faces/avatar3.png";
-import { setSeconds } from "date-fns";
-import Loader from "components/Loading/Loader";
 
 const Search = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { search } = useSelector((state) => state.userReducer);
+  const { user, following } = useSelector((state) => state.authReducer);
   const [query, setQuery] = useState("");
   const [queryEnd, setQueryEnd] = useState(false);
 
@@ -71,50 +72,65 @@ const Search = () => {
       </StyledFormControl>
       <div>
         {!query ? null : search.length ? (
-          search.map((profile) => (
-            <StyledContainer>
-              <CardContainer>
-                <TabContainer>
-                  <FlexContainer>
-                    <ProfilePicture
-                      src={profile.image ?? avatar}
-                      alt={profile.username}
-                    />
-                    <NameContainer>
-                      <h3>
-                        {profile.firstName} {profile.lastName}
-                      </h3>
-                      <h4>{profile.username}</h4>
-                      <Box display="flex">
+          search.map((profile) => {
+            const unfollow = following.length
+              ? following.some((_user) => _user.username === profile.username)
+              : false;
+            return (
+              <StyledContainer>
+                <CardContainer>
+                  <TabContainer>
+                    <FlexContainer>
+                      <ProfilePicture
+                        src={profile.image ?? avatar}
+                        alt={profile.username}
+                      />
+                      <NameContainer>
+                        <Typography variant="h3">
+                          {`${profile.firstName} ${profile.lastName}`}
+                        </Typography>
+                        <Typography variant="h5">{profile.username}</Typography>
+                                <Box display="flex">
                         <Box mt={1} mr={1}>
                           <CalendarToday style={{ fontSize: 15 }} />
                         </Box>
-                        <h6>
-                          {` Joined at ${moment(profile.createdAt).format(
-                            "LL"
-                          )}`}
-                        </h6>
+                          <h6>
+                            {` Joined at ${moment(profile.createdAt).format(
+                              "LL"
+                            )}`}
+                          </h6>
                       </Box>
-                    </NameContainer>
-                  </FlexContainer>
-                  <StyledButton
-                    color="rose"
-                    round
-                    onClick={() => history.push(`/profile/${profile.username}`)}
-                  >
-                    View
-                  </StyledButton>
-                  <StyledButton
-                    color="rose"
-                    round
-                    onClick={() => history.push(`/profile/${profile.username}`)}
-                  >
-                    Follow
-                  </StyledButton>
-                </TabContainer>
-              </CardContainer>
-            </StyledContainer>
-          ))
+                      </NameContainer>
+                    </FlexContainer>
+                    <StyledButton
+                      color="rose"
+                      round
+                      onClick={() =>
+                        history.push(`/profile/${profile.username}`)
+                      }
+                    >
+                      View
+                    </StyledButton>
+                    {user.username !== profile.username && (
+                      <StyledButton
+                        color={unfollow ? "danger" : "success"}
+                        round
+                        onClick={() =>
+                          dispatch(
+                            unfollow
+                              ? unfollowUser(user, profile.username)
+                              : followUser(user, profile.username)
+                          )
+                        }
+                      >
+                        {unfollow ? "UnFollow" : "Follow"}
+                      </StyledButton>
+                    )}
+                  </TabContainer>
+                </CardContainer>
+              </StyledContainer>
+            );
+          })
         ) : queryEnd ? (
           <DisplayMessage>No users found.</DisplayMessage>
         ) : (

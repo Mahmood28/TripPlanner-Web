@@ -1,30 +1,17 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+// Components
 import { fetchProfile } from "../../store/actions/userActions";
 import Loader from "../../components/Loading/Loader";
-import { Box } from "@material-ui/core";
-import { Explore, RateReview, Favorite } from "@material-ui/icons";
-import { Paper, Tabs, Tab, Typography } from "@material-ui/core/";
 import TripHistory from "views/TripHistory";
 import ReviewList from "views/Profile/ReviewList";
 import Profile from "./Profile";
-
-const TabPanel = (props) => {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box p={3}>{children}</Box>}
-    </div>
-  );
-};
+import Favourites from "views/Favourites";
+import TabPanel from "./TabPanel";
+// Styling
+import { Explore, RateReview, Favorite } from "@material-ui/icons";
+import { Paper, Tabs, Tab } from "@material-ui/core/";
 
 const PublicProfile = () => {
   const dispatch = useDispatch();
@@ -91,7 +78,11 @@ const PublicProfile = () => {
         )}
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Typography align="center">Coming soon</Typography>
+        {profile.favourites.length ? (
+          <Favourites profile={profile} />
+        ) : (
+          `${profile.username} has not added any favourite activities.`
+        )}
       </TabPanel>
     </>
   );

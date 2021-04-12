@@ -1,6 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router";
 import moment from "moment";
+import { useDispatch, useSelector } from "react-redux";
+// Components
+import { followUser, unfollowUser } from "store/actions/authActions";
 // Styling
 import avatar from "assets/img/faces/avatar3.png";
 import Button from "components/CustomButtons/Button";
@@ -13,9 +15,15 @@ import { CalendarToday } from "@material-ui/icons";
 
 const useStyles = makeStyles(styles);
 
-const Profile = ({ profile, type }) => {
+const Profile = ({ profile }) => {
   const classes = useStyles();
-  const history = useHistory();
+  const dispatch = useDispatch();
+  const { user, following } = useSelector((state) => state.authReducer);
+
+  const unfollow = following.length
+    ? following.some((_user) => _user.username === profile.username)
+    : false;
+
   return (
     <div>
       <Card profile style={{ width: "100%", margin: "30px" }}>
@@ -39,13 +47,21 @@ const Profile = ({ profile, type }) => {
             <p className={classes.description}>{profile.bio ?? ""}</p>
           </Box>
 
-          <Button
-            color="rose"
-            round
-            onClick={() => history.push(`/profile/${profile.username}`)}
-          >
-            {type === "search" ? "View" : "Follow"}
-          </Button>
+          {user.username !== profile.username && (
+            <Button
+              color={unfollow ? "danger" : "success"}
+              round
+              onClick={() =>
+                dispatch(
+                  unfollow
+                    ? unfollowUser(user, profile.username)
+                    : followUser(user, profile.username)
+                )
+              }
+            >
+              {unfollow ? "UnFollow" : "Follow"}
+            </Button>
+          )}
         </CardBody>
       </Card>
     </div>
