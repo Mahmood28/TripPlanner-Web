@@ -189,7 +189,7 @@ export const fetchFavourites = () => async (dispatch) => {
     const res = await instance.get("/activities/favourites");
     dispatch({
       type: types.SET_FAVOURITES,
-      payload: res.data.Activities,
+      payload: res.data.favourites,
     });
   } catch (error) {
     console.log("Error:", error);
