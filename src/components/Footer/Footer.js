@@ -39,13 +39,6 @@ export default function Footer(props) {
   return (
     <footer className={classes.footer}>
       <List className={classes.list}>
-        {activePage === "/explore" && (
-          <div className={classes.right}>
-            <ListItem className={classes.inlineBlock}>
-              <ActivityForm />
-            </ListItem>
-          </div>
-        )}
         {!isSummary && (
           <div className={classes.right}>
             <ListItem className={classes.inlineBlock}>
@@ -54,6 +47,13 @@ export default function Footer(props) {
                   Next
                 </Button>
               </Box>
+            </ListItem>
+          </div>
+        )}
+        {activePage === "/explore" && (
+          <div className={classes.right}>
+            <ListItem className={classes.inlineBlock}>
+              <ActivityForm />
             </ListItem>
           </div>
         )}

@@ -111,10 +111,10 @@ const TripItem = ({ trip, profile }) => {
                   placement="bottom"
                   classes={{ tooltip: classes.tooltip }}
                 >
-                  {/* <Button color="rose" simple justIcon onClick={handleDelete}>
-                <Close className={classes.underChartIcons} />
-              </Button> */}
-                  <DeleteAlert tripId={trip.id} />
+                  <Button color="rose" simple justIcon onClick={handleDelete}>
+                    <Close className={classes.underChartIcons} />
+                  </Button>
+                  {/* <DeleteAlert tripId={trip.id} /> */}
                 </Tooltip>
               </>
             )}

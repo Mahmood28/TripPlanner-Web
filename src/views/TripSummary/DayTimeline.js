@@ -23,6 +23,7 @@ const useStyles = makeStyles(() => ({
 
 const DayTimeline = ({ activities, directions, day }) => {
   const classes = useStyles();
+
   const timeline = activities.map((activity, idx) => (
     <TimelineItem key={idx}>
       <TimelineOppositeContent>
@@ -59,7 +60,7 @@ const DayTimeline = ({ activities, directions, day }) => {
           <Link to={`/activities/${activity.slug}`}>
             <Paper elevation={3} className={classes.paper}>
               <Typography variant="h6" component="h1">
-                {activity.name}
+                {activity.dayActivity.name}
               </Typography>
             </Paper>
           </Link>
@@ -67,6 +68,7 @@ const DayTimeline = ({ activities, directions, day }) => {
       </TimelineContent>
     </TimelineItem>
   ));
+
   return <Timeline align="alternate">{timeline}</Timeline>;
 };
 
