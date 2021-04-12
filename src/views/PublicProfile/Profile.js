@@ -29,7 +29,7 @@ const Profile = ({ profile }) => {
       <Card profile style={{ width: "100%", margin: "30px" }}>
         <CardAvatar profile>
           <a href="#pablo" onClick={(e) => e.preventDefault()}>
-            <img src={avatar} alt={profile.username} />
+            <img src={profile.image} alt={profile.username} />
           </a>
         </CardAvatar>
         <CardBody profile>
@@ -37,10 +37,12 @@ const Profile = ({ profile }) => {
           <h4 className={classes.cardTitle}>
             {profile.firstName} {profile.lastName}
           </h4>
-          <h6>
-            <CalendarToday size="small" />
-            {` Joined at ${moment(profile.createdAt).format("LL")}`}
-          </h6>
+          <Box display="flex" justifyContent="center" mt={2}>
+            <Box mt={1} mr={1}>
+              <CalendarToday style={{ fontSize: 15 }} />
+            </Box>
+            <h6>{` Joined at ${moment(profile.createdAt).format("LL")}`}</h6>
+          </Box>
           <Box mt={3} mb={3}>
             <p className={classes.description}>{profile.bio ?? ""}</p>
           </Box>

@@ -63,14 +63,18 @@ const PublicProfile = () => {
         {profile.trips.length ? (
           <TripHistory _trips={profile.trips} profile={profile} />
         ) : (
-          `${profile.username} has not planned trips.`
+          <Typography align="center">
+            {profile.username} has not planned trips.
+          </Typography>
         )}
       </TabPanel>
       <TabPanel value={value} index={1}>
         {profile.reviews.length ? (
           <ReviewList _reviews={profile.reviews} profile={profile} />
         ) : (
-          `${profile.username} has not submitted reviews.`
+          <Typography align="center">
+            {profile.username} has not posted reviews.
+          </Typography>
         )}
       </TabPanel>
       <TabPanel value={value} index={2}>

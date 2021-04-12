@@ -13,6 +13,7 @@ import {
   InputLabel,
   Input,
   Typography,
+  Box,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import {
@@ -89,12 +90,16 @@ const Search = () => {
                           {`${profile.firstName} ${profile.lastName}`}
                         </Typography>
                         <Typography variant="h5">{profile.username}</Typography>
-                        <h6>
-                          <CalendarToday size="small" />
-                          {` Joined at ${moment(profile.createdAt).format(
-                            "LL"
-                          )}`}
-                        </h6>
+                                <Box display="flex">
+                        <Box mt={1} mr={1}>
+                          <CalendarToday style={{ fontSize: 15 }} />
+                        </Box>
+                          <h6>
+                            {` Joined at ${moment(profile.createdAt).format(
+                              "LL"
+                            )}`}
+                          </h6>
+                      </Box>
                       </NameContainer>
                     </FlexContainer>
                     <StyledButton
