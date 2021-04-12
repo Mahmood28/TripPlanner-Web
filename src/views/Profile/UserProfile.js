@@ -17,10 +17,12 @@ import CardAvatar from "components/Card/CardAvatar";
 import PictureUpload from "components/CustomUpload/PictureUpload";
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
-import { InputLabel, Box } from "@material-ui/core";
+import { InputLabel, Box, Typography, Grid } from "@material-ui/core";
 import { PermIdentity } from "@material-ui/icons";
+import PeopleOutlineIcon from "@material-ui/icons/PeopleOutline";
 
 import styles from "assets/jss/material-dashboard-pro-react/views/userProfileStyles";
+import { Link } from "react-router-dom";
 const useStyles = makeStyles(styles);
 
 const UserProfile = () => {
@@ -211,9 +213,34 @@ const UserProfile = () => {
               <Box mt={3} mb={3}>
                 <p className={classes.description}>{profile.bio}</p>
               </Box>
-              <Button color="rose" round>
-                Public Profile
-              </Button>
+              <Link to={`/profile/${user.username}`}>
+                <Button color="rose" round>
+                  Public Profile
+                </Button>
+              </Link>
+
+              <Box mt={4}>
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="flex-start"
+                  spacing={2}
+                >
+                  <Grid item onClick={() => console.log("show followers")}>
+                    <PeopleOutlineIcon color="secondary" />
+                    <Typography variant="body1" gutterBottom>
+                      Followers
+                    </Typography>
+                  </Grid>
+                  <Grid item onClick={() => console.log("show following")}>
+                    <PeopleOutlineIcon color="secondary" />
+                    <Typography variant="body1" gutterBottom>
+                      Following
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Box>
             </CardBody>
           </Card>
         </GridItem>
