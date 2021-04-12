@@ -17,7 +17,7 @@ import tempImage from "assets/img/card-2.jpeg";
 import styles from "assets/jss/material-dashboard-pro-react/views/sectionCards";
 const useStyles = makeStyles(styles);
 
-const ActivityCard = ({ activity }) => {
+const ActivityCard = ({ activity, user }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { addToast } = useToasts();
@@ -49,21 +49,23 @@ const ActivityCard = ({ activity }) => {
               <h4 className={classes.cardTitleWhite}>{activity.name}</h4>
             </GridItem>
           </GridContainer>
-          <Button
-            justIcon
-            round
-            color="white"
-            style={{
-              position: "absolute",
-              bottom: "0",
-              right: "0",
-              marginRight: "10px",
-              marginBottom: "15px",
-            }}
-            onClick={handleFavourites}
-          >
-            <Favorite style={{ color: "#e91e63" }} />
-          </Button>
+          {user && (
+            <Button
+              justIcon
+              round
+              color="white"
+              style={{
+                position: "absolute",
+                bottom: "0",
+                right: "0",
+                marginRight: "10px",
+                marginBottom: "15px",
+              }}
+              onClick={handleFavourites}
+            >
+              <Favorite style={{ color: "#e91e63" }} />
+            </Button>
+          )}
         </CardBody>
       </Card>
     </GridItem>

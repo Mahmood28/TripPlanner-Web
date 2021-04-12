@@ -21,7 +21,7 @@ const ActivityCard = ({ activity }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { addToast } = useToasts();
-  const { favourites } = useSelector((state) => state.authReducer);
+  const { favourites, user } = useSelector((state) => state.authReducer);
 
   const favourite = favourites.some(
     (_activity) => _activity.id === activity.id
@@ -92,25 +92,26 @@ const ActivityCard = ({ activity }) => {
                   right: "0",
                 }}
               >
-                {favourite ? (
-                  <Button
-                    justIcon
-                    round
-                    color="rose"
-                    onClick={handleFavourites}
-                  >
-                    <Favorite style={{ color: "white" }} />
-                  </Button>
-                ) : (
-                  <Button
-                    justIcon
-                    round
-                    color="grey"
-                    onClick={handleFavourites}
-                  >
-                    <Favorite />
-                  </Button>
-                )}
+                {user &&
+                  (favourite ? (
+                    <Button
+                      justIcon
+                      round
+                      color="rose"
+                      onClick={handleFavourites}
+                    >
+                      <Favorite style={{ color: "white" }} />
+                    </Button>
+                  ) : (
+                    <Button
+                      justIcon
+                      round
+                      color="grey"
+                      onClick={handleFavourites}
+                    >
+                      <Favorite />
+                    </Button>
+                  ))}
                 <Box ml={2}>
                   <Button
                     round

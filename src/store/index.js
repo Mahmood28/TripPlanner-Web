@@ -4,7 +4,11 @@ import reducer from "./reducers";
 import Cookies from "js-cookie";
 
 // Actions
-import { checkForToken, fetchFavourites } from "./actions/authActions";
+import {
+  checkForToken,
+  fetchFavourites,
+  fetchSocial,
+} from "./actions/authActions";
 import { listActivities } from "./actions/activityActions";
 import {
   fetchActivities,
@@ -35,6 +39,9 @@ if (directions) store.dispatch(handleDirections(directions));
 store.dispatch(checkForToken());
 
 const token = Cookies.get("token");
-if (token) store.dispatch(fetchFavourites());
+if (token) {
+  store.dispatch(fetchFavourites());
+  store.dispatch(fetchSocial());
+}
 
 export default store;
