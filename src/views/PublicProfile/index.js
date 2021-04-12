@@ -21,11 +21,7 @@ const TabPanel = (props) => {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box p={3}>
-          <Typography align="center">{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box p={3}>{children}</Box>}
     </div>
   );
 };
@@ -80,18 +76,22 @@ const PublicProfile = () => {
         {profile.trips.length ? (
           <TripHistory _trips={profile.trips} profile={profile} />
         ) : (
-          `${profile.username} has not planned trips.`
+          <Typography align="center">
+            {profile.username} has not planned trips.
+          </Typography>
         )}
       </TabPanel>
       <TabPanel value={value} index={1}>
         {profile.reviews.length ? (
           <ReviewList _reviews={profile.reviews} profile={profile} />
         ) : (
-          `${profile.username} has not submitted reviews.`
+          <Typography align="center">
+            {profile.username} has not posted reviews.
+          </Typography>
         )}
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Coming soon
+        <Typography align="center">Coming soon</Typography>
       </TabPanel>
     </>
   );
