@@ -40,6 +40,8 @@ export const signin = (userData, history) => {
       const res = await instance.post("/signin", userData);
       await dispatch(setUser(res.data.token));
       await dispatch(await assignTrip());
+      await fetchSocial();
+      await fetchFavourites();
       const trip = JSON.parse(localStorage.getItem("activeTrip"));
       trip ? history.replace("/explore") : history.replace("/");
     } catch (error) {
@@ -193,5 +195,49 @@ export const fetchFavourites = () => async (dispatch) => {
     });
   } catch (error) {
     console.log("Error:", error);
+  }
+};
+
+export const followUser = (user, username) => async (dispatch) => {
+  try {
+    const res = await instance.post(`/follow/${username}`);
+    await dispatch({
+      type: types.SET_FOLLOWING,
+      payload: res.data,
+    });
+    dispatch({
+      type: types.SET_FOLLOWERS,
+      payload: { user, username },
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const unfollowUser = (user, username) => async (dispatch) => {
+  try {
+    const res = await instance.delete(`/unfollow/${username}`);
+    await dispatch({
+      type: types.SET_FOLLOWING,
+      payload: res.data,
+    });
+    dispatch({
+      type: types.SET_FOLLOWERS,
+      payload: { user, username },
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const fetchSocial = () => async (dispatch) => {
+  try {
+    const res = await instance.get("/social");
+    dispatch({
+      type: types.FETCH_SOCIAL,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log("Error: ", error);
   }
 };

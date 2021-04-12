@@ -17,6 +17,28 @@ const tripReducer = (state = initialState, action) => {
         ...state,
         search: action.payload,
       };
+    case types.SET_FOLLOWERS:
+      const { username, user } = action.payload;
+      const foundProfile = state.profiles.find(
+        (profile) => profile.username === username
+      );
+      const unfollow = foundProfile.some(
+        (_user) => _user.username === user.username
+      );
+      return {
+        ...state,
+        profiles: [
+          ...state.profiles.filter((profile) => profile.username !== username),
+          {
+            ...foundProfile,
+            followers: unfollow
+              ? foundProfile.followers.filter(
+                  (follower) => follower.username === user.username
+                )
+              : { ...foundProfile.followers, user },
+          },
+        ],
+      };
 
     default:
       return state;
