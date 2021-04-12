@@ -108,7 +108,7 @@ const Search = () => {
                     </StyledButton>
                     {user.username !== profile.username && (
                       <StyledButton
-                        color="rose"
+                        color={unfollow ? "danger" : "success"}
                         round
                         onClick={() =>
                           dispatch(
