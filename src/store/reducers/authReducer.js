@@ -5,6 +5,8 @@ const initialState = {
   history: [],
   reviews: [],
   favourites: [],
+  followers: [],
+  following: [],
   loading: true,
 };
 
@@ -25,6 +27,12 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         reviews: action.payload,
+      };
+    case types.FETCH_SOCIAL:
+      return {
+        ...state,
+        followers: action.payload.followers,
+        following: action.payload.following,
       };
     case types.DELETE_TRIP:
       return {
@@ -59,6 +67,19 @@ const authReducer = (state = initialState, action) => {
         ...state,
         favourites: action.payload,
       };
+    case types.SET_FOLLOWING:
+      const unfollow = state.following.some(
+        (follower) => follower.username === action.payload.username
+      );
+      return {
+        ...state,
+        following: unfollow
+          ? state.following.filter(
+              (user) => user.username !== action.payload.username
+            )
+          : [...state.following, action.payload],
+      };
+
     default:
       return state;
   }

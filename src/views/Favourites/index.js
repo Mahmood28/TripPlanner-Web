@@ -5,13 +5,14 @@ import GridContainer from "components/Grid/GridContainer";
 import ActivityCard from "./ActivityCard";
 // Styling
 
-const Favourites = () => {
-  const { favourites } = useSelector((state) => state.authReducer);
+const Favourites = ({ profile }) => {
+  const { favourites, user } = useSelector((state) => state.authReducer);
 
+  const userFavourites = profile ? profile.favourites : favourites;
   return (
     <GridContainer>
-      {favourites.map((activity) => (
-        <ActivityCard activity={activity} key={activity.id} />
+      {userFavourites.map((activity) => (
+        <ActivityCard activity={activity} key={activity.id} user={user} />
       ))}
     </GridContainer>
   );
