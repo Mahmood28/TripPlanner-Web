@@ -49,7 +49,7 @@ const Profile = ({ profile }) => {
 
           {user.username !== profile.username && (
             <Button
-              color={unfollow ? "danger" : "success"}
+              color={unfollow ? "" : "rose"}
               round
               onClick={() =>
                 dispatch(

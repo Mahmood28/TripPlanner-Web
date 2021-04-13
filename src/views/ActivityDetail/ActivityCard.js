@@ -32,7 +32,7 @@ const ActivityCard = ({ activity }) => {
     addToast(
       `${activity.name} ${
         !favourite ? "added to" : "removed from"
-      } your favourites.`,
+      } your favorites.`,
       {
         appearance: `${!favourite ? "success" : "warning"}`,
         autoDismiss: true,

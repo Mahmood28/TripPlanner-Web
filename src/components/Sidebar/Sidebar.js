@@ -448,7 +448,7 @@ class Sidebar extends React.Component {
                     </ListItem>
                     <ListItem className={classes.collapseItem}>
                       <NavLink
-                        to="/favourites"
+                        to="/favorites"
                         className={
                           classes.itemLink + " " + classes.userCollapseLinks
                         }
@@ -456,7 +456,7 @@ class Sidebar extends React.Component {
                         <span className={collapseItemMini}>{""}</span>
                         <Box ml={5.5}>
                           <ListItemText
-                            primary="Favourites"
+                            primary="Favorites"
                             disableTypography={true}
                             className={collapseItemText}
                           />

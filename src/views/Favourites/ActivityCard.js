@@ -24,7 +24,7 @@ const ActivityCard = ({ activity, user }) => {
 
   const handleFavourites = () => {
     dispatch(handleFavourite(activity, true));
-    addToast(`${activity.name} removed from your favourites.`, {
+    addToast(`${activity.name} removed from your favorites.`, {
       appearance: "warning",
       autoDismiss: true,
     });

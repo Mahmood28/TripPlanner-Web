@@ -11,7 +11,7 @@ import Favourites from "views/Favourites";
 import TabPanel from "./TabPanel";
 // Styling
 import { Explore, RateReview, Favorite } from "@material-ui/icons";
-import { Paper, Tabs, Tab } from "@material-ui/core/";
+import { Paper, Tabs, Tab, Typography } from "@material-ui/core/";
 
 const PublicProfile = () => {
   const dispatch = useDispatch();
@@ -73,7 +73,7 @@ const PublicProfile = () => {
           <ReviewList _reviews={profile.reviews} profile={profile} />
         ) : (
           <Typography align="center">
-            {profile.username} has not posted reviews.
+            {profile.username} has not posted any reviews.
           </Typography>
         )}
       </TabPanel>
@@ -81,7 +81,9 @@ const PublicProfile = () => {
         {profile.favourites.length ? (
           <Favourites profile={profile} />
         ) : (
-          `${profile.username} has not added any favourite activities.`
+          <Typography align="center">
+            {profile.username} has not added any favourite activities.
+          </Typography>
         )}
       </TabPanel>
     </>

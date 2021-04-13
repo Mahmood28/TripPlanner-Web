@@ -123,7 +123,7 @@ export default function HeaderLinks(props) {
         {user && (
           <div className={managerClasses}>
             <Tooltip
-              title="Favourites"
+              title="Favorites"
               placement="bottom"
               classes={{ tooltip: _classes.tooltip }}
             >
@@ -133,7 +133,7 @@ export default function HeaderLinks(props) {
                 justIcon
                 aria-owns={openProfile ? "profile-menu-list" : null}
                 aria-haspopup="true"
-                onClick={() => history.push("/favourites")}
+                onClick={() => history.push("/favorites")}
                 className={
                   rtlActive ? classes.buttonLinkRTL : classes.buttonLink
                 }

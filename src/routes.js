@@ -77,8 +77,8 @@ const routes = [
     redirect: true,
   },
   {
-    path: "favourites",
-    name: "Favourites",
+    path: "favorites",
+    name: "Favorites",
     component: Favourites,
     layout: "/",
     redirect: true,
