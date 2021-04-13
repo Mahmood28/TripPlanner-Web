@@ -114,7 +114,7 @@ const ActivityForm = ({ day, dayId }) => {
             Cancel
           </Button>
           <Button onClick={handleSubmit} color="warning">
-            Add
+            Confirm
           </Button>
         </DialogActions>
       </Dialog>
