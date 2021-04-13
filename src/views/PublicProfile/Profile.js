@@ -47,22 +47,27 @@ const Profile = ({ profile }) => {
           <Box mt={3} mb={3}>
             <p className={classes.description}>{profile.bio ?? ""}</p>
           </Box>
-          <FollowDialog />
-          {user.username !== profile.username && (
-            <Button
-              color={unfollow ? "" : "rose"}
-              round
-              onClick={() =>
-                dispatch(
-                  unfollow
-                    ? unfollowUser(user, profile.username)
-                    : followUser(user, profile.username)
-                )
-              }
-            >
-              {unfollow ? "UnFollow" : "Follow"}
-            </Button>
-          )}
+          <Box display="flex" justifyContent="center">
+            <FollowDialog users={profile.followers} isFollowers={true} />
+            <FollowDialog users={profile.following} isFollowers={false} />
+            <Box ml={3}>
+              {user.username !== profile.username && (
+                <Button
+                  color={unfollow ? "" : "rose"}
+                  round
+                  onClick={() =>
+                    dispatch(
+                      unfollow
+                        ? unfollowUser(user, profile.username)
+                        : followUser(user, profile.username)
+                    )
+                  }
+                >
+                  {unfollow ? "Following" : "Follow"}
+                </Button>
+              )}
+            </Box>
+          </Box>
         </CardBody>
       </Card>
     </div>

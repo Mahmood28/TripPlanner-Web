@@ -1,21 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
 // Components
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import Button from "components/CustomButtons/Button";
+import FollowItem from "views/PublicProfile/FollowItem";
 // Styling
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Table,
+  TableBody,
+} from "@material-ui/core";
 
-const FollowDialog = () => {
+const useStyles = makeStyles({
+  table: {
+    minWidth: 500,
+  },
+});
+
+const FollowDialog = ({ users, isFollowers }) => {
+  const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [scroll, setScroll] = useState("paper");
-
-  const handleClickOpen = (scrollType) => () => {
-    setOpen(true);
-    setScroll(scrollType);
-  };
 
   const handleClose = () => {
     setOpen(false);
@@ -33,33 +40,33 @@ const FollowDialog = () => {
 
   return (
     <div>
-      <Button onClick={() => setOpen(true)}>scroll=paper</Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        scroll={"paper"}
-        aria-labelledby="scroll-dialog-title"
-        aria-describedby="scroll-dialog-description"
-      >
-        <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
-        <DialogContent dividers={scroll === "paper"}>
+      <Button color="transparent" simple onClick={() => setOpen(true)}>
+        {isFollowers
+          ? `${users.length} Followers`
+          : `${users.length} Following`}
+      </Button>
+      <Dialog open={open} onClose={handleClose} scroll={"paper"}>
+        <DialogTitle id="scroll-dialog-title">
+          <h4>{isFollowers ? "Followers" : "Following"}</h4>
+        </DialogTitle>
+        <DialogContent dividers={true}>
           <DialogContentText ref={descriptionElementRef} tabIndex={-1}>
-            {[...new Array(50)]
-              .map(
-                () => `Cras mattis consectetur purus sit amet fermentum.
-Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
-              )
-              .join("\n")}
+            <Table className={classes.table}>
+              <TableBody>
+                {users.map((user) => (
+                  <FollowItem
+                    user={user}
+                    isFollowers={isFollowers}
+                    key={user.username}
+                  />
+                ))}
+              </TableBody>
+            </Table>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Subscribe
+          <Button onClick={handleClose} color="rose">
+            Close
           </Button>
         </DialogActions>
       </Dialog>

@@ -99,15 +99,6 @@ const Search = () => {
                         </Box>
                       </NameContainer>
                     </FlexContainer>
-                    {/* <StyledButton
-                        color="rose"
-                        round
-                        onClick={() =>
-                          history.push(`/profile/${profile.username}`)
-                        }
-                      >
-                        View
-                      </StyledButton> */}
                     {user.username !== profile.username && (
                       <StyledButton
                         color={unfollow ? "" : "rose"}
@@ -120,7 +111,7 @@ const Search = () => {
                           )
                         }
                       >
-                        {unfollow ? "UnFollow" : "Follow"}
+                        {unfollow ? "Following" : "Follow"}
                       </StyledButton>
                     )}
                   </TabContainer>

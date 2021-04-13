@@ -9,6 +9,13 @@ export const ProfilePicture = styled(Avatar)`
   }
 `;
 
+export const UserImage = styled(Avatar)`
+  && {
+    height: 70px;
+    width: 70px;
+  }
+`;
+
 export const StyledContainer = styled.div`
   padding-right: 10%;
   padding-left: 10%;
