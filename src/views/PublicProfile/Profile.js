@@ -1,8 +1,9 @@
 import React from "react";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-// Components
 import { followUser, unfollowUser } from "store/actions/authActions";
+// Components
+import FollowDialog from "views/PublicProfile/FollowDialog";
 // Styling
 import avatar from "assets/img/faces/avatar3.png";
 import Button from "components/CustomButtons/Button";
@@ -46,22 +47,27 @@ const Profile = ({ profile }) => {
           <Box mt={3} mb={3}>
             <p className={classes.description}>{profile.bio ?? ""}</p>
           </Box>
-
-          {user.username !== profile.username && (
-            <Button
-              color={unfollow ? "" : "rose"}
-              round
-              onClick={() =>
-                dispatch(
-                  unfollow
-                    ? unfollowUser(user, profile.username)
-                    : followUser(user, profile.username)
-                )
-              }
-            >
-              {unfollow ? "UnFollow" : "Follow"}
-            </Button>
-          )}
+          <Box display="flex" justifyContent="center">
+            <FollowDialog users={profile.followers} isFollowers={true} />
+            <FollowDialog users={profile.following} isFollowers={false} />
+            <Box ml={3}>
+              {user.username !== profile.username && (
+                <Button
+                  color={unfollow ? "" : "rose"}
+                  round
+                  onClick={() =>
+                    dispatch(
+                      unfollow
+                        ? unfollowUser(user, profile.username)
+                        : followUser(user, profile.username)
+                    )
+                  }
+                >
+                  {unfollow ? "Following" : "Follow"}
+                </Button>
+              )}
+            </Box>
+          </Box>
         </CardBody>
       </Card>
     </div>
