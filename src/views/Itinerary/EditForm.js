@@ -137,7 +137,7 @@ const EditForm = ({ activityNum, day, activityId, addToast }) => {
             Cancel
           </Button>
           <Button onClick={handleSubmit} color="warning">
-            Edit
+            Confirm
           </Button>
         </DialogActions>
       </Dialog>

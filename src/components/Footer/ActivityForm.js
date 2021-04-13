@@ -153,7 +153,7 @@ const ActivityForm = () => {
             Cancel
           </Button>
           <Button onClick={handleSubmit} color="warning">
-            Add
+            Confirm
           </Button>
         </DialogActions>
       </Dialog>
