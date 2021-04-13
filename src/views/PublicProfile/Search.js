@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import debounce from "lodash.debounce";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
@@ -8,13 +9,7 @@ import { searchProfiles } from "store/actions/userActions";
 import Loader from "components/Loading/Loader";
 import { followUser, unfollowUser } from "store/actions/authActions";
 //Styling
-import {
-  InputAdornment,
-  InputLabel,
-  Input,
-  Typography,
-  Box,
-} from "@material-ui/core";
+import { InputAdornment, InputLabel, Input, Box } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import {
   ProfilePicture,
@@ -81,39 +76,41 @@ const Search = () => {
                 <CardContainer>
                   <TabContainer>
                     <FlexContainer>
-                      <ProfilePicture
-                        src={profile.image ?? avatar}
-                        alt={profile.username}
-                      />
+                      <Link to={`/profile/${profile.username}`}>
+                        <ProfilePicture
+                          src={profile.image ?? avatar}
+                          alt={profile.username}
+                        />
+                      </Link>
                       <NameContainer>
-                        <Typography variant="h3">
-                          {`${profile.firstName} ${profile.lastName}`}
-                        </Typography>
-                        <Typography variant="h5">{profile.username}</Typography>
-                                <Box display="flex">
-                        <Box mt={1} mr={1}>
-                          <CalendarToday style={{ fontSize: 15 }} />
-                        </Box>
+                        <h3>
+                          {profile.firstName} {profile.lastName}
+                        </h3>
+                        <h4>{profile.username}</h4>
+                        <Box display="flex">
+                          <Box mt={1} mr={1}>
+                            <CalendarToday style={{ fontSize: 15 }} />
+                          </Box>
                           <h6>
                             {` Joined at ${moment(profile.createdAt).format(
                               "LL"
                             )}`}
                           </h6>
-                      </Box>
+                        </Box>
                       </NameContainer>
                     </FlexContainer>
-                    <StyledButton
-                      color="rose"
-                      round
-                      onClick={() =>
-                        history.push(`/profile/${profile.username}`)
-                      }
-                    >
-                      View
-                    </StyledButton>
+                    {/* <StyledButton
+                        color="rose"
+                        round
+                        onClick={() =>
+                          history.push(`/profile/${profile.username}`)
+                        }
+                      >
+                        View
+                      </StyledButton> */}
                     {user.username !== profile.username && (
                       <StyledButton
-                        color={unfollow ? "danger" : "success"}
+                        color={unfollow ? "" : "rose"}
                         round
                         onClick={() =>
                           dispatch(
