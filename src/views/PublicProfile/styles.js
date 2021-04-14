@@ -72,10 +72,8 @@ export const DisplayMessage = styled.h5`
   justify-content: center;
 `;
 
-export const StyledFormControl = styled(FormControl)`
-  && {
-    margin-bottom: 5%;
-  }
+export const SearchContainer = styled.div`
+  margin-bottom: 10%;
 `;
 
 export const PageContainer = styled.div`

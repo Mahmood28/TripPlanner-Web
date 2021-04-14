@@ -55,12 +55,12 @@ export default function Notifications() {
       }
     };
   });
-  const showNotification = place => {
+  const showNotification = (place) => {
     switch (place) {
       case "tl":
         if (!tl) {
           setTL(true);
-          setTimeout(function() {
+          setTimeout(function () {
             setTL(false);
           }, 6000);
         }
@@ -68,7 +68,7 @@ export default function Notifications() {
       case "tc":
         if (!tc) {
           setTC(true);
-          setTimeout(function() {
+          setTimeout(function () {
             setTC(false);
           }, 6000);
         }
@@ -76,7 +76,7 @@ export default function Notifications() {
       case "tr":
         if (!tr) {
           setTR(true);
-          setTimeout(function() {
+          setTimeout(function () {
             setTR(false);
           }, 6000);
         }
@@ -84,7 +84,7 @@ export default function Notifications() {
       case "bl":
         if (!bl) {
           setBL(true);
-          setTimeout(function() {
+          setTimeout(function () {
             setBL(false);
           }, 6000);
         }
@@ -92,7 +92,7 @@ export default function Notifications() {
       case "bc":
         if (!bc) {
           setBC(true);
-          setTimeout(function() {
+          setTimeout(function () {
             setBC(false);
           }, 6000);
         }
@@ -100,7 +100,7 @@ export default function Notifications() {
       case "br":
         if (!br) {
           setBR(true);
-          setTimeout(function() {
+          setTimeout(function () {
             setBR(false);
           }, 6000);
         }
@@ -382,7 +382,7 @@ export default function Notifications() {
                     <Dialog
                       classes={{
                         root: classes.center + " " + classes.modalRoot,
-                        paper: classes.modal
+                        paper: classes.modal,
                       }}
                       open={classicModal}
                       TransitionComponent={Transition}
@@ -393,7 +393,7 @@ export default function Notifications() {
                     >
                       <DialogTitle
                         id="classic-modal-slide-title"
-                        disableTypography
+                        disabletypography
                         className={classes.modalHeader}
                       >
                         <Button
@@ -449,7 +449,7 @@ export default function Notifications() {
                     <Dialog
                       classes={{
                         root: classes.center + " " + classes.modalRoot,
-                        paper: classes.modal
+                        paper: classes.modal,
                       }}
                       open={noticeModal}
                       TransitionComponent={Transition}
@@ -460,7 +460,7 @@ export default function Notifications() {
                     >
                       <DialogTitle
                         id="notice-modal-slide-title"
-                        disableTypography
+                        disabletypography
                         className={classes.modalHeader}
                       >
                         <Button
@@ -542,7 +542,7 @@ export default function Notifications() {
                     <Dialog
                       classes={{
                         root: classes.center + " " + classes.modalRoot,
-                        paper: classes.modal + " " + classes.modalSmall
+                        paper: classes.modal + " " + classes.modalSmall,
                       }}
                       open={smallModal}
                       TransitionComponent={Transition}
@@ -553,7 +553,7 @@ export default function Notifications() {
                     >
                       <DialogTitle
                         id="small-modal-slide-title"
-                        disableTypography
+                        disabletypography
                         className={classes.modalHeader}
                       >
                         <Button

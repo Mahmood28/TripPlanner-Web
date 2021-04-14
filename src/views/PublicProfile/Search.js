@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import debounce from "lodash.debounce";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
 import moment from "moment";
-//Components
+import debounce from "lodash.debounce";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { searchProfiles } from "store/actions/userActions";
-import Loader from "components/Loading/Loader";
 import { followUser, unfollowUser } from "store/actions/authActions";
-//Styling
+// Components
+import Loader from "components/Loading/Loader";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
+// Styling
 import { InputAdornment, InputLabel, Input, Box } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import {
@@ -19,7 +20,7 @@ import {
   TabContainer,
   NameContainer,
   DisplayMessage,
-  StyledFormControl,
+  SearchContainer,
   StyledButton,
   PageContainer,
 } from "./styles";
@@ -28,7 +29,6 @@ import avatar from "assets/img/faces/avatar3.png";
 
 const Search = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { search } = useSelector((state) => state.userReducer);
   const { user, following } = useSelector((state) => state.authReducer);
   const [query, setQuery] = useState("");
@@ -48,23 +48,26 @@ const Search = () => {
 
   return (
     <PageContainer>
-      <StyledFormControl>
-        <InputLabel htmlFor="input-with-icon-adornment">
-          Search for a user
-        </InputLabel>
-        <Input
-          id="input-with-icon-adornment"
-          onChange={(e) => setQuery(e.target.value)}
-          value={query}
-          fullWidth
-          autoFocus
-          startAdornment={
-            <InputAdornment position="start">
-              <SearchIcon />
-            </InputAdornment>
-          }
-        />
-      </StyledFormControl>
+      <GridContainer justify="center">
+        <GridItem xs={12} sm={12} md={4}>
+          <SearchContainer>
+            <InputLabel htmlFor="input-with-icon-adornment">
+              Connect with other travellers
+            </InputLabel>
+            <Input
+              onChange={(e) => setQuery(e.target.value)}
+              value={query}
+              fullWidth
+              autoFocus
+              startAdornment={
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              }
+            />
+          </SearchContainer>
+        </GridItem>
+      </GridContainer>
       <div>
         {!query ? null : search.length ? (
           search.map((profile) => {

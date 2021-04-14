@@ -203,7 +203,7 @@ class Sidebar extends React.Component {
                     }
                   />
                 }
-                disableTypography={true}
+                disabletypography="true"
                 className={cx(
                   { [itemText]: prop.icon !== undefined },
                   { [collapseItemText]: prop.icon === undefined }
@@ -290,7 +290,7 @@ class Sidebar extends React.Component {
             )}
             <ListItemText
               primary={rtlActive ? prop.rtlName : prop.name}
-              disableTypography={true}
+              disabletypography="true"
               className={cx(
                 { [itemText]: prop.icon !== undefined },
                 { [collapseItemText]: prop.icon === undefined }
@@ -389,7 +389,7 @@ class Sidebar extends React.Component {
                         }
                       />
                     }
-                    disableTypography={true}
+                    disabletypography="true"
                     className={itemText + " " + classes.userItemText}
                   />
                 </NavLink>
@@ -406,7 +406,7 @@ class Sidebar extends React.Component {
                         <Box ml={5.5}>
                           <ListItemText
                             primary="Profile"
-                            disableTypography={true}
+                            disabletypography="true"
                             className={collapseItemText}
                           />
                         </Box>
@@ -423,7 +423,7 @@ class Sidebar extends React.Component {
                         <Box ml={5.5}>
                           <ListItemText
                             primary="Trips"
-                            disableTypography={true}
+                            disabletypography="true"
                             className={collapseItemText}
                           />
                         </Box>
@@ -440,7 +440,7 @@ class Sidebar extends React.Component {
                         <Box ml={5.5}>
                           <ListItemText
                             primary="Reviews"
-                            disableTypography={true}
+                            disabletypography="true"
                             className={collapseItemText}
                           />
                         </Box>
@@ -457,7 +457,7 @@ class Sidebar extends React.Component {
                         <Box ml={5.5}>
                           <ListItemText
                             primary="Favorites"
-                            disableTypography={true}
+                            disabletypography="true"
                             className={collapseItemText}
                           />
                         </Box>
@@ -474,7 +474,7 @@ class Sidebar extends React.Component {
                         <Box ml={7}>
                           <ListItemText
                             primary="Logout"
-                            disableTypography={true}
+                            disabletypography="true"
                             className={collapseItemText}
                             onClick={() => this.props.signout()}
                           />
@@ -494,7 +494,7 @@ class Sidebar extends React.Component {
           >
             <ListItemText
               primary="Sign in"
-              disableTypography={true}
+              disabletypography="true"
               className={itemText + " " + classes.userItemText}
             />
           </NavLink>
@@ -529,12 +529,14 @@ class Sidebar extends React.Component {
       });
     var brand = (
       <div className={logoClasses}>
-        <a href="/" className={logoMini}>
+        {/* <a href="/" className={logoMini}>
           <img src={logo} alt="logo" className={classes.img} />
-        </a>
-        <a href="/" className={logoNormal}>
-          {logoText}
-        </a>
+        </a> */}
+        <Box ml={"25%"}>
+          <a href="/" className={logoNormal}>
+            {logoText}
+          </a>
+        </Box>
       </div>
     );
     const drawerPaper =

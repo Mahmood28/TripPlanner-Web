@@ -30,7 +30,7 @@ const Profile = ({ profile }) => {
 
   return (
     <div>
-      <Card profile style={{ width: "100%", margin: "30px" }}>
+      <Card profile>
         <CardAvatar profile>
           <a href="#pablo" onClick={(e) => e.preventDefault()}>
             <img src={profile.image} alt={profile.username} />
