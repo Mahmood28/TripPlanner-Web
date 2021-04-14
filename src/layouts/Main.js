@@ -94,7 +94,7 @@ const MainLayout = (props) => {
       }
       if (prop.layout === "/") {
         return prop.path === "summary" ? (
-          <Route path={prop.layout + prop.path}>
+          <Route path={prop.layout + prop.path} key={key}>
             <TripSummary
               activeTrip={activeTrip}
               itinerary={itinerary}
