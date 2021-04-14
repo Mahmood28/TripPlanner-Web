@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useParams } from "react-router";
+import { useParams } from "react-router";
 import { fetchTrip } from "store/actions/tripActions";
 import { handleDirections } from "store/actions/tripActions";
 import moment from "moment";
 //Components
 import Loader from "components/Loading/Loader";
 import DayItem from "../TripSummary/DayItem";
+import Scrollbar from "./Scrollbar";
 // Stylilng
 import { makeStyles } from "@material-ui/core/styles";
-import { Box, Grid, Container } from "@material-ui/core";
-import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle";
-import { AddAlarmSharp } from "@material-ui/icons";
-import { StyledContainer } from "./styles";
-import Scrollbar from "./Scrollbar";
+import { Box, Container } from "@material-ui/core";
 
+import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 const useStyles = makeStyles(styles);
 
 const SharedTrip = () => {

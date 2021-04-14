@@ -8,13 +8,14 @@ import Card from "components/Card/Card";
 import CardHeader from "components/Card/CardHeader";
 import CardIcon from "components/Card/CardIcon";
 import CardBody from "components/Card/CardBody";
+import DayTimeline from "./DayTimeline";
 import Map from "./Map";
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
-import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle";
-import DayTimeline from "./DayTimeline";
 import { Button } from "@material-ui/core";
 import { ButtonContainer } from "./styles";
+
+import styles from "../../assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 const useStyles = makeStyles(styles);
 
 const DayItem = ({ day, destination, directions, setDirections, share }) => {

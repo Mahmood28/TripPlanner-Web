@@ -13,7 +13,7 @@ import CardBody from "components/Card/CardBody";
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
 import { InputAdornment, Box, Icon } from "@material-ui/core";
-import { Timeline, Code, Group, Face, Email } from "@material-ui/icons";
+import { Face, Email } from "@material-ui/icons";
 import RoomIcon from "@material-ui/icons/Room";
 import EventNoteIcon from "@material-ui/icons/EventNote";
 import MapIcon from "@material-ui/icons/Map";
