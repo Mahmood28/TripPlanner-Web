@@ -1,35 +1,24 @@
-import React, { useState, useEffect, createRef } from "react";
-import { Route } from "react-router-dom";
-import { useSelector } from "react-redux";
+import React, { useEffect, createRef } from "react";
 // Scrollbar
 import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
-// Components
-import TripSummary from "views/TripSummary";
 // Styling
 import cx from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 
 import styles from "./styles";
+const useStyles = makeStyles(styles);
 
 let ps;
 
-const useStyles = makeStyles(styles);
-
 const Scrollbar = (props) => {
   const classes = useStyles();
-  const { ...rest } = props;
-  const { itinerary } = useSelector((state) => state.tripReducer);
-  const activeTrip = JSON.parse(localStorage.getItem("activeTrip"));
-
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [miniActive, setMiniActive] = useState(false);
 
   const mainPanelClasses =
     classes.mainPanel +
     " " +
     cx({
-      [classes.mainPanelSidebarMini]: miniActive,
+      [classes.mainPanelSidebarMini]: false,
       [classes.mainPanelWithPerfectScrollbar]:
         navigator.platform.indexOf("Win") > -1,
     });
@@ -56,56 +45,10 @@ const Scrollbar = (props) => {
     };
   });
 
-  const getActiveRoute = (routes) => {
-    let activeRoute = "";
-    for (let i = 0; i < routes.length; i++) {
-      if (routes[i].collapse) {
-        let collapseActiveRoute = getActiveRoute(routes[i].views);
-        if (collapseActiveRoute !== activeRoute) {
-          return collapseActiveRoute;
-        }
-      } else {
-        if (
-          window.location.href.indexOf(routes[i].layout + routes[i].path) !== -1
-        ) {
-          return routes[i].name;
-        }
-      }
-    }
-    return activeRoute;
-  };
-
-  const getRoutes = (routes) => {
-    return routes.map((prop, key) => {
-      if (prop.collapse) {
-        return getRoutes(prop.views);
-      }
-      if (prop.layout === "/") {
-        return prop.path === "summary" ? (
-          <Route path={prop.layout + prop.path}>
-            <TripSummary
-              activeTrip={activeTrip}
-              itinerary={itinerary}
-              key={key}
-            />
-          </Route>
-        ) : (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
-
   const resizeFunction = () => {
-    if (window.innerWidth >= 960) {
-      setMobileOpen(false);
-    }
+    // if (window.innerWidth >= 960) {
+    //   setMobileOpen(false);
+    // }
   };
 
   return (

@@ -17,7 +17,7 @@ import CardAvatar from "components/Card/CardAvatar";
 import PictureUpload from "components/CustomUpload/PictureUpload";
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
-import { InputLabel, Box, Typography, Grid } from "@material-ui/core";
+import { InputLabel, Box, Grid } from "@material-ui/core";
 import { PermIdentity } from "@material-ui/icons";
 import PeopleOutlineIcon from "@material-ui/icons/PeopleOutline";
 

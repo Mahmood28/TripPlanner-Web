@@ -14,21 +14,15 @@ import MenuList from "@material-ui/core/MenuList";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Paper from "@material-ui/core/Paper";
 import Grow from "@material-ui/core/Grow";
-import Hidden from "@material-ui/core/Hidden";
 import Popper from "@material-ui/core/Popper";
 import Divider from "@material-ui/core/Divider";
 import { Tooltip, Box } from "@material-ui/core";
 
 // @material-ui/icons
 import Person from "@material-ui/icons/Person";
-import Notifications from "@material-ui/icons/Notifications";
-import Dashboard from "@material-ui/icons/Dashboard";
-import Search from "@material-ui/icons/Search";
-import AddBoxIcon from "@material-ui/icons/AddBox";
 import { Favorite } from "@material-ui/icons";
 
 // core components
-import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
 import TripForm from "./TripForm";
 
@@ -45,17 +39,6 @@ export default function HeaderLinks(props) {
   const history = useHistory();
   const { user } = useSelector((state) => state.authReducer);
 
-  const [openNotification, setOpenNotification] = React.useState(null);
-  const handleClickNotification = (event) => {
-    if (openNotification && openNotification.contains(event.target)) {
-      setOpenNotification(null);
-    } else {
-      setOpenNotification(event.currentTarget);
-    }
-  };
-  const handleCloseNotification = () => {
-    setOpenNotification(null);
-  };
   const [openProfile, setOpenProfile] = React.useState(null);
   const handleClickProfile = (event) => {
     if (openProfile && openProfile.contains(event.target)) {
@@ -77,14 +60,7 @@ export default function HeaderLinks(props) {
     history.replace("/");
   };
   const { rtlActive } = props;
-  const searchButton =
-    classes.top +
-    " " +
-    classes.searchButton +
-    " " +
-    classNames({
-      [classes.searchRTL]: rtlActive,
-    });
+
   const dropdownItem = classNames(classes.dropdownItem, classes.primaryHover, {
     [classes.dropdownItemRTL]: rtlActive,
   });
@@ -96,28 +72,6 @@ export default function HeaderLinks(props) {
   });
   return (
     <div className={wrapper}>
-      {/* <CustomInput
-        rtlActive={rtlActive}
-        formControlProps={{
-          className: classes.top + " " + classes.search
-        }}
-        inputProps={{
-          placeholder: rtlActive ? "بحث" : "Search",
-          inputProps: {
-            "aria-label": rtlActive ? "بحث" : "Search",
-            className: classes.searchInput
-          }
-        }}
-      /> */}
-      {/* <Button
-        color="white"
-        aria-label="edit"
-        justIcon
-        round
-        className={searchButton}
-      >
-        <Search className={classes.headerLinksSvg + " " + classes.searchIcon} />
-      </Button> */}
       <Box display="flex">
         <TripForm />
         {user && (

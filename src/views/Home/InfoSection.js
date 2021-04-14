@@ -52,9 +52,6 @@ const InfoSection = () => {
                     <div className={classes.icon}>
                       <RoomIcon className={classes.iconRose} />
                     </div>
-                    <h3
-                      className={`${classes.cardTitle} ${classes.marginTop30}`}
-                    ></h3>
                     <p className={classes.cardDescription}>
                       Explore activities and events based on your destination.
                     </p>
@@ -70,9 +67,6 @@ const InfoSection = () => {
                     <div className={classes.icon}>
                       <EventNoteIcon className={classes.iconRose} />
                     </div>
-                    <h3
-                      className={`${classes.cardTitle} ${classes.marginTop30}`}
-                    ></h3>
                     <p className={classes.cardDescription}>
                       Create an itinerary for your trip with activities that
                       excite you.
@@ -89,9 +83,6 @@ const InfoSection = () => {
                     <div className={classes.icon}>
                       <MapIcon className={classes.iconRose} />
                     </div>
-                    <h3
-                      className={`${classes.cardTitle} ${classes.marginTop30}`}
-                    ></h3>
                     <p className={classes.cardDescription}>
                       View your trip plan as map routes to easily track your
                       activities.
@@ -108,9 +99,6 @@ const InfoSection = () => {
                     <div className={classes.icon}>
                       <GroupIcon className={classes.iconRose} />
                     </div>
-                    <h3
-                      className={`${classes.cardTitle} ${classes.marginTop30}`}
-                    ></h3>
                     <p className={classes.cardDescription}>
                       Connect with other travellers to enhance your trip
                       experience.

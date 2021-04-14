@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   cover: {
-    width: 200,
+    width: 180,
   },
   cardAction: {
     display: "block",

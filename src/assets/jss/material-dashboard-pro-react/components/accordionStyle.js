@@ -1,5 +1,4 @@
 import {
-  primaryColor,
   roseColor,
   grayColor,
 } from "assets/jss/material-dashboard-pro-react.js";

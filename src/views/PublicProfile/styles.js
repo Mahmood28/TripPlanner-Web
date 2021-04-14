@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Avatar, Card, FormControl } from "@material-ui/core";
+import { Avatar, Card } from "@material-ui/core";
 import Button from "components/CustomButtons/Button";
 
 export const ProfilePicture = styled(Avatar)`

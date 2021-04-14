@@ -13,9 +13,6 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Popover from "@material-ui/core/Popover";
-import Typography from "@material-ui/core/Typography";
-import MenuItem from "@material-ui/core/MenuItem";
-import MenuList from "@material-ui/core/MenuList";
 import Box from "@material-ui/core/Box";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
@@ -69,7 +66,6 @@ export default function AuthNavbar(props) {
             <Button
               color="transparent"
               onClick={handleClick}
-              disableTypography={true}
               disabletypography="true"
               className={classes.listItemText}
             >

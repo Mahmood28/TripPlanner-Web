@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import classNames from "classnames";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchActivities } from "store/actions/activityActions";
@@ -88,10 +87,6 @@ const ActivityForm = () => {
     setDates({ startDate: "", endDate: "" });
     setOpen(false);
   };
-
-  const managerClasses = classNames({
-    [_classes.managerClasses]: true,
-  });
 
   return (
     <div>

@@ -10,8 +10,6 @@ import {
   tooltip,
 } from "assets/jss/material-dashboard-pro-react.js";
 
-import authStyle from "assets/jss/material-dashboard-pro-react/layouts/authStyle";
-
 const pricingPageStyle = (theme) => ({
   wrapper: {
     height: "auto",
