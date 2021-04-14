@@ -14,17 +14,16 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createBrowserHistory } from "history";
 import { Router } from "react-router-dom";
-
-import "assets/scss/material-dashboard-pro-react.scss?v=1.9.0";
-
 import App from "./App";
 import store from "./store";
-import { MAP_API_KEY } from "keys";
+
+import "assets/scss/material-dashboard-pro-react.scss?v=1.9.0";
 
 const hist = createBrowserHistory();
 

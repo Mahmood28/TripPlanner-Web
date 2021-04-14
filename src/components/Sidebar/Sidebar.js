@@ -529,12 +529,14 @@ class Sidebar extends React.Component {
       });
     var brand = (
       <div className={logoClasses}>
-        <a href="/" className={logoMini}>
+        {/* <a href="/" className={logoMini}>
           <img src={logo} alt="logo" className={classes.img} />
-        </a>
-        <a href="/" className={logoNormal}>
-          {logoText}
-        </a>
+        </a> */}
+        <Box ml={"25%"}>
+          <a href="/" className={logoNormal}>
+            {logoText}
+          </a>
+        </Box>
       </div>
     );
     const drawerPaper =

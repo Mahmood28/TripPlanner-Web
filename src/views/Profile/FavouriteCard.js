@@ -13,11 +13,10 @@ import { useToasts } from "react-toast-notifications";
 import { Box } from "@material-ui/core";
 import { Place, Favorite } from "@material-ui/icons";
 
-import tempImage from "assets/img/card-2.jpeg";
 import styles from "assets/jss/material-dashboard-pro-react/views/sectionCards";
 const useStyles = makeStyles(styles);
 
-const ActivityCard = ({ activity, user }) => {
+const FavouriteCard = ({ activity, user }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { addToast } = useToasts();
@@ -72,4 +71,4 @@ const ActivityCard = ({ activity, user }) => {
   );
 };
 
-export default ActivityCard;
+export default FavouriteCard;

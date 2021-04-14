@@ -27,7 +27,7 @@ const Profile = ({ profile }) => {
 
   return (
     <div>
-      <Card profile style={{ width: "100%", margin: "30px" }}>
+      <Card profile>
         <CardAvatar profile>
           <a href="#pablo" onClick={(e) => e.preventDefault()}>
             <img src={profile.image} alt={profile.username} />
@@ -50,7 +50,7 @@ const Profile = ({ profile }) => {
           <Box display="flex" justifyContent="center">
             <FollowDialog users={profile.followers} isFollowers={true} />
             <FollowDialog users={profile.following} isFollowers={false} />
-            <Box ml={3}>
+            <Box ml={3} mr={2}>
               {user.username !== profile.username && (
                 <Button
                   color={unfollow ? "" : "rose"}
