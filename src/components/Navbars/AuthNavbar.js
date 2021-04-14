@@ -69,12 +69,8 @@ export default function AuthNavbar(props) {
             <Button
               color="transparent"
               onClick={handleClick}
-<<<<<<< HEAD
               disableTypography={true}
-=======
-              // primary={user.username}
               disabletypography="true"
->>>>>>> 631913df702c761258da1814969103500240e07d
               className={classes.listItemText}
             >
               {user.username}
