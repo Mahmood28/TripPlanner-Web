@@ -26,7 +26,7 @@ import {
   FollowButtonStyled,
 } from "./styles";
 import { CalendarToday } from "@material-ui/icons";
-import avatar from "assets/img/faces/avatar3.png";
+import avatar from "assets/img/faces/avatar.jpg";
 
 const Search = () => {
   const dispatch = useDispatch();

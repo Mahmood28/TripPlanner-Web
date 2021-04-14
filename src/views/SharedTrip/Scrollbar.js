@@ -1,38 +1,29 @@
 import React, { useState, useEffect, createRef } from "react";
+import { Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Switch, Route, Redirect } from "react-router-dom";
 // Scrollbar
 import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 // Components
-import routes from "routes";
-import AdminNavbar from "components/Navbars/AdminNavbar";
-import Sidebar from "components/Sidebar/Sidebar";
 import TripSummary from "views/TripSummary";
 // Styling
 import cx from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 
-import styles from "assets/jss/material-dashboard-pro-react/layouts/adminStyle";
-import styles2 from "./styles";
+import styles from "./styles";
 
 let ps;
 
-const useStyles = makeStyles(styles2);
+const useStyles = makeStyles(styles);
 
 const Scrollbar = (props) => {
-  const { itinerary } = useSelector((state) => state.tripReducer);
-  const activeTrip = JSON.parse(localStorage.getItem("activeTrip"));
   const classes = useStyles();
   const { ...rest } = props;
+  const { itinerary } = useSelector((state) => state.tripReducer);
+  const activeTrip = JSON.parse(localStorage.getItem("activeTrip"));
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [miniActive, setMiniActive] = useState(false);
-
-  const image = require("assets/img/sidebar-2.jpg");
-  const logo = require("assets/img/logo-white.svg");
-  const color = "orange";
-  const bgColor = "black";
 
   const mainPanelClasses =
     classes.mainPanel +
@@ -64,10 +55,6 @@ const Scrollbar = (props) => {
       window.removeEventListener("resize", resizeFunction);
     };
   });
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
 
   const getActiveRoute = (routes) => {
     let activeRoute = "";
@@ -113,10 +100,6 @@ const Scrollbar = (props) => {
         return null;
       }
     });
-  };
-
-  const sidebarMinimize = () => {
-    setMiniActive(!miniActive);
   };
 
   const resizeFunction = () => {

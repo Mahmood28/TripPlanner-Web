@@ -1,7 +1,4 @@
 import React from "react";
-
-//Components
-
 // Stylilng
 import { Grid, Box } from "@material-ui/core";
 import ShareIcon from "@material-ui/icons/Share";
@@ -17,6 +14,7 @@ import {
 const SocialShare = ({ slug, destination }) => {
   const url = `http://localhost:3000/trips/${slug}`;
   const msg = `Hello! check the trip plan for ${destination.city}, ${destination.country}`;
+
   return (
     <Box mt={1}>
       <Grid

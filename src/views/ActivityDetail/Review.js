@@ -6,7 +6,7 @@ import Media from "components/Media/Media";
 import { StyledRating } from "views/ActivityDetail/ReviewForm";
 import { Box } from "@material-ui/core";
 import { Star } from "@material-ui/icons";
-import avatar from "assets/img/faces/avatar3.png";
+import avatar from "assets/img/faces/avatar.jpg";
 
 const Review = ({ review }) => {
   const history = useHistory();
@@ -15,7 +15,7 @@ const Review = ({ review }) => {
     <>
       <Media
         onClick={() => history.push(`/profile/${review.user.username}`)}
-        avatar={review.user.image?? avatar}
+        avatar={review.user.image ?? avatar}
         title={
           <span>
             {review.user.firstName + " " + review.user.lastName}

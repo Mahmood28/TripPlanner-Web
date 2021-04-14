@@ -14,8 +14,6 @@ import {
 
 import imageStyles from "assets/jss/material-dashboard-pro-react/imagesStyles.js";
 
-import rotatingCards from "assets/jss/material-dashboard-pro-react/rotatingCards.js";
-
 const styles = {
   container,
   coloredShadow,
@@ -23,7 +21,6 @@ const styles = {
   mlAuto,
   cardTitle,
   ...imageStyles,
-  ...rotatingCards,
   sectionGray: {
     background: grayColor[14],
   },

@@ -9,10 +9,10 @@ import Button from "components/CustomButtons/Button";
 import Card from "components/Card/Card";
 import CardBody from "components/Card/CardBody";
 import CardAvatar from "components/Card/CardAvatar";
-import styles from "assets/jss/material-dashboard-pro-react/views/userProfileStyles";
 import { Box, makeStyles } from "@material-ui/core";
 import { CalendarToday } from "@material-ui/icons";
 import { FollowButton } from "./styles";
+import styles from "assets/jss/material-dashboard-pro-react/views/userProfileStyles";
 
 const useStyles = makeStyles(styles);
 

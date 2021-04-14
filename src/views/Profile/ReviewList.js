@@ -6,7 +6,6 @@ import { fetchReviews } from "store/actions/authActions";
 import GridContainer from "components/Grid/GridContainer";
 import ReviewCard from "./ReviewCard";
 import Loader from "components/Loading/Loader";
-// Styling
 
 const ReviewList = ({ _reviews, profile }) => {
   const dispatch = useDispatch();

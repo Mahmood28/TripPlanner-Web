@@ -1,5 +1,6 @@
 import React from "react";
-import { Paper, Tabs, Tab, Typography, Box } from "@material-ui/core/";
+// Styling
+import { Box } from "@material-ui/core/";
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;

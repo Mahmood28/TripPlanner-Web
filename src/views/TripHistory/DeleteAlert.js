@@ -27,7 +27,6 @@ const DeleteAlert = ({ tripId }) => {
       <Box ml={100}>
         <SweetAlert
           warning
-          // style={{ display: "block", margin: "200px" }}
           title="Are you sure?"
           onConfirm={() => successDelete()}
           onCancel={() => setAlert(null)}

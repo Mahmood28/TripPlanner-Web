@@ -23,7 +23,6 @@ import AdminNavbarLinks from "components/Navbars/AdminNavbarLinks.js";
 
 import sidebarStyle from "assets/jss/material-dashboard-pro-react/components/sidebarStyle.js";
 
-import avatar from "assets/img/faces/avatar3.png";
 import { signout } from "store/actions/authActions";
 
 var ps;
