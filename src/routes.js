@@ -3,14 +3,13 @@ import MainMap from "views/MainMap";
 import Itinerary from "views/Itinerary";
 import UserProfile from "views/Profile/UserProfile";
 import ReviewList from "views/Profile/ReviewList";
+import FavouriteList from "views/Profile/FavouriteList";
 import TripHistory from "views/TripHistory";
 import TripSummary from "views/TripSummary";
 import PublicProfile from "views/PublicProfile";
-import Favourites from "views/Favourites";
 import Search from "views/PublicProfile/Search";
 // Styling
 import { Place, Map, DateRange, Group } from "@material-ui/icons";
-import SearchIcon from "@material-ui/icons/Search";
 
 const routes = [
   {
@@ -79,7 +78,7 @@ const routes = [
   {
     path: "favorites",
     name: "Favorites",
-    component: Favourites,
+    component: FavouriteList,
     layout: "/",
     redirect: true,
   },

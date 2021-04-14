@@ -4,10 +4,12 @@ import { useParams } from "react-router";
 // Components
 import { fetchProfile } from "../../store/actions/userActions";
 import Loader from "../../components/Loading/Loader";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
 import TripHistory from "views/TripHistory";
 import ReviewList from "views/Profile/ReviewList";
+import FavouriteList from "views/Profile/FavouriteList";
 import Profile from "./Profile";
-import Favourites from "views/Favourites";
 import TabPanel from "./TabPanel";
 // Styling
 import { Explore, RateReview, Favorite } from "@material-ui/icons";
@@ -28,37 +30,29 @@ const PublicProfile = () => {
 
   return (
     <>
-      <div
-        style={{
-          display: "Flex",
-          flexDirection: "row",
-          justifyContent: "center",
-        }}
-      >
-        <Profile profile={profile} />
-      </div>
-      <div
-        style={{
-          display: "Flex",
-          flexDirection: "row",
-          justifyContent: "center",
-        }}
-      >
-        <Paper square>
-          <Tabs
-            value={value}
-            onChange={(event, newValue) => setValue(newValue)}
-            variant="fullWidth"
-            indicatorColor="secondary"
-            textColor="secondary"
-            aria-label="icon label tabs example"
-          >
-            <Tab icon={<Explore />} label="TRIPS" />
-            <Tab icon={<RateReview />} label="REVIEWS" />
-            <Tab icon={<Favorite />} label="FAVORITES" />
-          </Tabs>
-        </Paper>
-      </div>
+      <GridContainer justify="center">
+        <GridItem xs={12} sm={12} md={6}>
+          <Profile profile={profile} />
+        </GridItem>
+      </GridContainer>
+      <GridContainer justify="center">
+        <GridItem xs={12} sm={12} md={6}>
+          <Paper square>
+            <Tabs
+              value={value}
+              onChange={(event, newValue) => setValue(newValue)}
+              variant="fullWidth"
+              indicatorColor="secondary"
+              textColor="secondary"
+              aria-label="icon label tabs example"
+            >
+              <Tab icon={<Explore />} label="TRIPS" />
+              <Tab icon={<RateReview />} label="REVIEWS" />
+              <Tab icon={<Favorite />} label="FAVORITES" />
+            </Tabs>
+          </Paper>
+        </GridItem>
+      </GridContainer>
       <TabPanel value={value} index={0}>
         {profile.trips.length ? (
           <TripHistory _trips={profile.trips} profile={profile} />
@@ -79,7 +73,7 @@ const PublicProfile = () => {
       </TabPanel>
       <TabPanel value={value} index={2}>
         {profile.favourites.length ? (
-          <Favourites profile={profile} />
+          <FavouriteList profile={profile} />
         ) : (
           <Typography align="center">
             {profile.username} has not added any favourite activities.
