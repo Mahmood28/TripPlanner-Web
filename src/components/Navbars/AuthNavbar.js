@@ -72,7 +72,7 @@ export default function AuthNavbar(props) {
               color="transparent"
               onClick={handleClick}
               // primary={user.username}
-              disableTypography={true}
+              disabletypography="true"
               className={classes.listItemText}
             >
               {user.username}
@@ -115,7 +115,7 @@ export default function AuthNavbar(props) {
               <PersonAddIcon className={classes.listItemIcon} />
               <ListItemText
                 primary={"Sign up"}
-                disableTypography={true}
+                disabletypography="true"
                 className={classes.listItemText}
               />
             </NavLink>
@@ -123,7 +123,7 @@ export default function AuthNavbar(props) {
               <Fingerprint className={classes.listItemIcon} />
               <ListItemText
                 primary={"Sign in"}
-                disableTypography={true}
+                disabletypography="true"
                 className={classes.listItemText}
               />
             </NavLink>
