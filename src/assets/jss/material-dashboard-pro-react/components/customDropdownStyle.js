@@ -1,6 +1,5 @@
 import {
   defaultFont,
-  primaryColor,
   primaryBoxShadow,
   infoColor,
   infoBoxShadow,

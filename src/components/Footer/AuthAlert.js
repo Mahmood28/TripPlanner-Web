@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
 // Components
 import Button from "components/CustomButtons/Button";
 // Styling

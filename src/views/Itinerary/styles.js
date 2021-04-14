@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Tabs, Tab } from "@material-ui/core";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 
 export const StyledTabs = withStyles({
   flexContainer: {
