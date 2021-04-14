@@ -73,7 +73,7 @@ const PublicProfile = () => {
       </TabPanel>
       <TabPanel value={value} index={2}>
         {profile.favourites.length ? (
-          <FavouriteList profile={profile} />
+          <FavouriteList profile={profile} isPublic={true} />
         ) : (
           <Typography align="center">
             {profile.username} has not added any favourite activities.

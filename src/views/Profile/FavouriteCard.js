@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { handleFavourite } from "store/actions/authActions";
 // Components
@@ -16,7 +17,7 @@ import { Place, Favorite } from "@material-ui/icons";
 import styles from "assets/jss/material-dashboard-pro-react/views/sectionCards";
 const useStyles = makeStyles(styles);
 
-const FavouriteCard = ({ activity, user }) => {
+const FavouriteCard = ({ activity, isPublic }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { addToast } = useToasts();
@@ -33,22 +34,24 @@ const FavouriteCard = ({ activity, user }) => {
     <GridItem xs={12} sm={12} md={4}>
       <Card background style={{ backgroundImage: `url(${activity.image})` }}>
         <CardBody background>
-          <GridContainer justify="center">
-            <GridItem xs={12} sm={10} md={8}>
-              <Box display="flex" justifyContent="center" alignItems="center">
-                <h6 className={classes.cardCategoryWhite}>
-                  <Place fontSize="small" />
-                </h6>
-                <h6 className={classes.cardCategoryWhite}>
-                  {activity.destination.city}, {activity.destination.country}
-                </h6>
-              </Box>
-            </GridItem>
-            <GridItem xs={12} sm={10} md={8}>
-              <h4 className={classes.cardTitleWhite}>{activity.name}</h4>
-            </GridItem>
-          </GridContainer>
-          {user && (
+          <Link to={`/activities/${activity.slug}`}>
+            <GridContainer justify="center">
+              <GridItem xs={12} sm={10} md={8}>
+                <Box display="flex" justifyContent="center" alignItems="center">
+                  <h6 className={classes.cardCategoryWhite}>
+                    <Place fontSize="small" />
+                  </h6>
+                  <h6 className={classes.cardCategoryWhite}>
+                    {activity.destination.city}, {activity.destination.country}
+                  </h6>
+                </Box>
+              </GridItem>
+              <GridItem xs={12} sm={10} md={8}>
+                <h4 className={classes.cardTitleWhite}>{activity.name}</h4>
+              </GridItem>
+            </GridContainer>
+          </Link>
+          {!isPublic && (
             <Button
               justIcon
               round
