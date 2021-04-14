@@ -13,17 +13,20 @@ import CardAvatar from "components/Card/CardAvatar";
 import styles from "assets/jss/material-dashboard-pro-react/views/userProfileStyles";
 import { Box, makeStyles } from "@material-ui/core";
 import { CalendarToday } from "@material-ui/icons";
-
 const useStyles = makeStyles(styles);
 
 const Profile = ({ profile }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { user, following } = useSelector((state) => state.authReducer);
+  const { user, following, followers } = useSelector(
+    (state) => state.authReducer
+  );
 
   const unfollow = following.length
     ? following.some((_user) => _user.username === profile.username)
     : false;
+
+  const isUser = profile.username === user.username;
 
   return (
     <div>
@@ -48,25 +51,31 @@ const Profile = ({ profile }) => {
             <p className={classes.description}>{profile.bio ?? ""}</p>
           </Box>
           <Box display="flex" justifyContent="center">
-            <FollowDialog users={profile.followers} isFollowers={true} />
-            <FollowDialog users={profile.following} isFollowers={false} />
-            <Box ml={3}>
-              {user.username !== profile.username && (
-                <Button
-                  color={unfollow ? "" : "rose"}
-                  round
-                  onClick={() =>
-                    dispatch(
-                      unfollow
-                        ? unfollowUser(user, profile.username)
-                        : followUser(user, profile.username)
-                    )
-                  }
-                >
-                  {unfollow ? "Following" : "Follow"}
-                </Button>
-              )}
-            </Box>
+            <FollowDialog
+              users={isUser ? following : profile.following}
+              isFollowers={false}
+            />
+            <FollowDialog
+              users={isUser ? followers : profile.followers}
+              isFollowers={true}
+            />
+          </Box>
+          <Box>
+            {!isUser && (
+              <Button
+                color={unfollow ? "" : "rose"}
+                round
+                onClick={() =>
+                  dispatch(
+                    unfollow
+                      ? unfollowUser(user, profile.username)
+                      : followUser(user, profile.username)
+                  )
+                }
+              >
+                {unfollow ? "Following" : "Follow"}
+              </Button>
+            )}
           </Box>
         </CardBody>
       </Card>
