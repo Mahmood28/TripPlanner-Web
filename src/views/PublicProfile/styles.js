@@ -83,3 +83,24 @@ export const PageContainer = styled.div`
   flexwrap: wrap;
   justify-content: center;
 `;
+
+export const FollowButton = styled(Button)`
+  && {
+    :hover {
+      background: red;
+    }
+    :after {
+      content: "Following";
+    }
+    :hover::after {
+      content: "Unfollow";
+    }
+  }
+`;
+
+export const FollowButtonStyled = styled(FollowButton)`
+  && {
+    align-self: center;
+    margin: 0 5px 0 5px;
+  }
+`;

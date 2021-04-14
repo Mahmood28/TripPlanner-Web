@@ -5,7 +5,7 @@ import { followUser, unfollowUser } from "store/actions/authActions";
 // Components
 import Button from "components/CustomButtons/Button";
 // Styling
-import { UserImage } from "./styles";
+import { UserImage, FollowButton } from "./styles";
 import { Box, TableCell, TableRow } from "@material-ui/core";
 
 const FollowItem = ({ user }) => {
@@ -34,21 +34,21 @@ const FollowItem = ({ user }) => {
       </TableCell>
 
       <TableCell align="right">
-        {activeUser.username !== user.username && (
-          <Button
-            color={unfollow ? "" : "rose"}
-            round
-            onClick={() =>
-              dispatch(
-                unfollow
-                  ? unfollowUser(activeUser, user.username)
-                  : followUser(activeUser, user.username)
-              )
-            }
-          >
-            {unfollow ? "Following" : "Follow"}
-          </Button>
-        )}
+        {activeUser.username !== user.username &&
+          (unfollow ? (
+            <FollowButton
+              round
+              onClick={() => dispatch(unfollowUser(activeUser, user.username))}
+            />
+          ) : (
+            <Button
+              color="rose"
+              round
+              onClick={() => dispatch(followUser(activeUser, user.username))}
+            >
+              Follow
+            </Button>
+          ))}
       </TableCell>
     </TableRow>
   );
