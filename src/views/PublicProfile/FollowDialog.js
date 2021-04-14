@@ -12,6 +12,7 @@ import {
   DialogTitle,
   Table,
   TableBody,
+  Typography,
 } from "@material-ui/core";
 
 const useStyles = makeStyles({
@@ -41,9 +42,9 @@ const FollowDialog = ({ users, isFollowers }) => {
   return (
     <div>
       <Button color="transparent" simple onClick={() => setOpen(true)}>
-        {isFollowers
-          ? `${users.length} Followers`
-          : `${users.length} Following`}
+        {`${users.length} ${
+          isFollowers ? `Follower${users.length === 1 ? "" : "s"}` : "Following"
+        }`}
       </Button>
       <Dialog open={open} onClose={handleClose} scroll={"paper"}>
         <DialogTitle id="scroll-dialog-title">
@@ -53,13 +54,19 @@ const FollowDialog = ({ users, isFollowers }) => {
           <DialogContentText ref={descriptionElementRef} tabIndex={-1}>
             <Table className={classes.table}>
               <TableBody>
-                {users.map((user) => (
-                  <FollowItem
-                    user={user}
-                    isFollowers={isFollowers}
-                    key={user.username}
-                  />
-                ))}
+                {users.length ? (
+                  users.map((user) => (
+                    <FollowItem
+                      user={user}
+                      isFollowers={isFollowers}
+                      key={user.username}
+                    />
+                  ))
+                ) : (
+                  <Typography align="center">
+                    No {isFollowers ? " followers" : " following"}
+                  </Typography>
+                )}
               </TableBody>
             </Table>
           </DialogContentText>
