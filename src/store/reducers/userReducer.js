@@ -22,7 +22,7 @@ const tripReducer = (state = initialState, action) => {
       const foundProfile = state.profiles.find(
         (profile) => profile.username === username
       );
-      const unfollow = foundProfile.some(
+      const unfollow = foundProfile.followers.some(
         (_user) => _user.username === user.username
       );
       return {
@@ -33,9 +33,9 @@ const tripReducer = (state = initialState, action) => {
             ...foundProfile,
             followers: unfollow
               ? foundProfile.followers.filter(
-                  (follower) => follower.username === user.username
+                  (follower) => follower.username !== user.username
                 )
-              : { ...foundProfile.followers, user },
+              : [...foundProfile.followers, user],
           },
         ],
       };
