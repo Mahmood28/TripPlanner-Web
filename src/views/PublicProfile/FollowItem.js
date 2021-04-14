@@ -8,13 +8,13 @@ import Button from "components/CustomButtons/Button";
 import { UserImage } from "./styles";
 import { Box, TableCell, TableRow } from "@material-ui/core";
 
-const FollowItem = ({ user, isFollowers }) => {
+const FollowItem = ({ user }) => {
   const dispatch = useDispatch();
   const activeUser = useSelector((state) => state.authReducer.user);
   const { following } = useSelector((state) => state.authReducer);
 
   const unfollow = following.length
-    ? following.some((_user) => _user.username === activeUser.username)
+    ? following.some((_user) => _user.username === user.username)
     : false;
 
   return (
@@ -32,25 +32,24 @@ const FollowItem = ({ user, isFollowers }) => {
           </Box>
         </Box>
       </TableCell>
-      {!isFollowers && (
-        <TableCell align="right">
-          {activeUser.username !== user.username && (
-            <Button
-              color={unfollow ? "" : "rose"}
-              round
-              onClick={() =>
-                dispatch(
-                  unfollow
-                    ? unfollowUser(activeUser, user.username)
-                    : followUser(activeUser, user.username)
-                )
-              }
-            >
-              {unfollow ? "Following" : "Follow"}
-            </Button>
-          )}
-        </TableCell>
-      )}
+
+      <TableCell align="right">
+        {activeUser.username !== user.username && (
+          <Button
+            color={unfollow ? "" : "rose"}
+            round
+            onClick={() =>
+              dispatch(
+                unfollow
+                  ? unfollowUser(activeUser, user.username)
+                  : followUser(activeUser, user.username)
+              )
+            }
+          >
+            {unfollow ? "Following" : "Follow"}
+          </Button>
+        )}
+      </TableCell>
     </TableRow>
   );
 };
