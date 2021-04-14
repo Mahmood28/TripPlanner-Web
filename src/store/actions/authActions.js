@@ -2,6 +2,7 @@ import instance from "./instance";
 import decode from "jwt-decode";
 import Cookies from "js-cookie";
 import * as types from "../types";
+import omit from "lodash/omit";
 
 const assignTrip = async () => {
   try {
@@ -207,7 +208,7 @@ export const followUser = (user, username) => async (dispatch) => {
     });
     dispatch({
       type: types.SET_FOLLOWERS,
-      payload: { user, username },
+      payload: { user: omit(user, ["id", "email", "exp"]), username },
     });
   } catch (error) {
     console.error(error);
@@ -223,7 +224,7 @@ export const unfollowUser = (user, username) => async (dispatch) => {
     });
     dispatch({
       type: types.SET_FOLLOWERS,
-      payload: { user, username },
+      payload: { user: omit(user, ["id", "email", "exp"]), username },
     });
   } catch (error) {
     console.error(error);

@@ -23,12 +23,15 @@ import PeopleOutlineIcon from "@material-ui/icons/PeopleOutline";
 
 import styles from "assets/jss/material-dashboard-pro-react/views/userProfileStyles";
 import { Link } from "react-router-dom";
+import FollowDialog from "views/PublicProfile/FollowDialog";
 const useStyles = makeStyles(styles);
 
 const UserProfile = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.authReducer);
+  const { user, following, followers } = useSelector(
+    (state) => state.authReducer
+  );
 
   let currProfile = {
     firstName: user.firstName,
@@ -227,17 +230,13 @@ const UserProfile = () => {
                   alignItems="flex-start"
                   spacing={2}
                 >
-                  <Grid item onClick={() => console.log("show followers")}>
+                  <Grid item>
                     <PeopleOutlineIcon color="secondary" />
-                    <Typography variant="body1" gutterBottom>
-                      Followers
-                    </Typography>
+                    <FollowDialog users={following} isFollowers={false} />
                   </Grid>
-                  <Grid item onClick={() => console.log("show following")}>
+                  <Grid item>
                     <PeopleOutlineIcon color="secondary" />
-                    <Typography variant="body1" gutterBottom>
-                      Following
-                    </Typography>
+                    <FollowDialog users={followers} isFollowers={true} />
                   </Grid>
                 </Grid>
               </Box>
