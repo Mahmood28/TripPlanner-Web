@@ -23,6 +23,7 @@ import {
   SearchContainer,
   StyledButton,
   PageContainer,
+  FollowButtonStyled,
 } from "./styles";
 import { CalendarToday } from "@material-ui/icons";
 import avatar from "assets/img/faces/avatar3.png";
@@ -102,21 +103,25 @@ const Search = () => {
                         </Box>
                       </NameContainer>
                     </FlexContainer>
-                    {user.username !== profile.username && (
-                      <StyledButton
-                        color={unfollow ? "" : "rose"}
-                        round
-                        onClick={() =>
-                          dispatch(
-                            unfollow
-                              ? unfollowUser(user, profile.username)
-                              : followUser(user, profile.username)
-                          )
-                        }
-                      >
-                        {unfollow ? "Following" : "Follow"}
-                      </StyledButton>
-                    )}
+                    {user.username !== profile.username &&
+                      (unfollow ? (
+                        <FollowButtonStyled
+                          round
+                          onClick={() =>
+                            dispatch(unfollowUser(user, profile.username))
+                          }
+                        />
+                      ) : (
+                        <StyledButton
+                          color="rose"
+                          round
+                          onClick={() =>
+                            dispatch(followUser(user, profile.username))
+                          }
+                        >
+                          Follow
+                        </StyledButton>
+                      ))}
                   </TabContainer>
                 </CardContainer>
               </StyledContainer>

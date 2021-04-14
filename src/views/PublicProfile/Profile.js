@@ -5,7 +5,6 @@ import { followUser, unfollowUser } from "store/actions/authActions";
 // Components
 import FollowDialog from "views/PublicProfile/FollowDialog";
 // Styling
-import avatar from "assets/img/faces/avatar3.png";
 import Button from "components/CustomButtons/Button";
 import Card from "components/Card/Card";
 import CardBody from "components/Card/CardBody";
@@ -13,6 +12,8 @@ import CardAvatar from "components/Card/CardAvatar";
 import styles from "assets/jss/material-dashboard-pro-react/views/userProfileStyles";
 import { Box, makeStyles } from "@material-ui/core";
 import { CalendarToday } from "@material-ui/icons";
+import { FollowButton } from "./styles";
+
 const useStyles = makeStyles(styles);
 
 const Profile = ({ profile }) => {
@@ -61,21 +62,21 @@ const Profile = ({ profile }) => {
             />
           </Box>
           <Box>
-            {!isUser && (
-              <Button
-                color={unfollow ? "" : "rose"}
-                round
-                onClick={() =>
-                  dispatch(
-                    unfollow
-                      ? unfollowUser(user, profile.username)
-                      : followUser(user, profile.username)
-                  )
-                }
-              >
-                {unfollow ? "Following" : "Follow"}
-              </Button>
-            )}
+            {!isUser &&
+              (unfollow ? (
+                <FollowButton
+                  round
+                  onClick={() => dispatch(unfollowUser(user, profile.username))}
+                />
+              ) : (
+                <Button
+                  color="rose"
+                  round
+                  onClick={() => dispatch(followUser(user, profile.username))}
+                >
+                  Follow
+                </Button>
+              ))}
           </Box>
         </CardBody>
       </Card>
