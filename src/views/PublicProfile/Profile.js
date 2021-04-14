@@ -4,16 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { followUser, unfollowUser } from "store/actions/authActions";
 // Components
 import FollowDialog from "views/PublicProfile/FollowDialog";
-// Styling
-import avatar from "assets/img/faces/avatar3.png";
 import Button from "components/CustomButtons/Button";
 import Card from "components/Card/Card";
 import CardBody from "components/Card/CardBody";
 import CardAvatar from "components/Card/CardAvatar";
-import styles from "assets/jss/material-dashboard-pro-react/views/userProfileStyles";
+// Styling
 import { Box, makeStyles } from "@material-ui/core";
 import { CalendarToday } from "@material-ui/icons";
 
+import styles from "assets/jss/material-dashboard-pro-react/views/userProfileStyles";
 const useStyles = makeStyles(styles);
 
 const Profile = ({ profile }) => {

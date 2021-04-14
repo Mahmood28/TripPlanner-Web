@@ -1,34 +1,30 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { searchActivities } from "store/actions/activityActions";
 import { createTrip } from "store/actions/tripActions";
-
 import { MAP_API_KEY } from "keys";
 import Geocode from "react-geocode";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
-import Datetime from "react-datetime";
-import moment from "moment";
 // Components
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
 import Button from "components/CustomButtons/Button";
 import Card from "components/Card/Card";
-import CardBody from "components/Card/CardBody";
-import Loader from "components/Loading/Loader";
+
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
-import { InputLabel, TextField, Backdrop, Box } from "@material-ui/core";
+import { TextField, Backdrop, Box } from "@material-ui/core";
 import BeatLoader from "react-spinners/BeatLoader";
 
 import styles from "assets/jss/material-dashboard-pro-react/views/pricingPageStyle";
 const useStyles = makeStyles(styles);
 
-const Search = ({ alert, setAlert }) => {
+const Search = ({ setAlert }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { activities } = useSelector((state) => state.activityReducer);
+
   const [destination, setDestination] = useState("");
   const [dates, setDates] = useState({ startDate: "", endDate: "" });
   const [loading, setLoading] = useState(false);
@@ -55,11 +51,6 @@ const Search = ({ alert, setAlert }) => {
     }
   );
 
-  // const yesterday = moment().subtract(1, "day");
-  // function valid(current) {
-  //   return current.isAfter(yesterday);
-  // }
-
   const handleChange = (event) => {
     setDates({ ...dates, [event.target.name]: event.target.value });
   };
@@ -78,13 +69,10 @@ const Search = ({ alert, setAlert }) => {
       await dispatch(createTrip(trip));
       history.push("/explore");
     }
-  };
-
-  const resetForm = () => {
     setDates({ startDate: "", endDate: "" });
     setDestination("");
-    setLoading(false);
   };
+
   return (
     <div className={classes.container}>
       <GridContainer justify="center">
@@ -114,18 +102,6 @@ const Search = ({ alert, setAlert }) => {
                   }
                 />
               </Box>
-
-              {/* <InputLabel style={{color: "white"}}>Start Date</InputLabel> */}
-              {/* <Datetime
-                // initialValue={new Date()}
-                isValidDate={valid}
-                timeFormat={false}
-                onChange={(e) => setStartDate(e)}
-                inputProps={{
-                  placeholder: "Start date",
-                }}
-                onChange={(date) => setStartDate(date)}
-              /> */}
               <Box mt={0.8} mr={3}>
                 <TextField
                   name="startDate"
@@ -141,17 +117,6 @@ const Search = ({ alert, setAlert }) => {
                   }}
                 />
               </Box>
-
-              {/* <Datetime
-                // initialValue={new Date()}
-                isValidDate={valid}
-                timeFormat={false}
-                // dateFormat="MM/dd/yyyy"
-                inputProps={{
-                  placeholder: "End date",
-                }}
-                onChange={(date) => console.log(date)}
-              /> */}
               <Box mt={0.8} mr={3}>
                 <TextField
                   name="endDate"
@@ -167,7 +132,6 @@ const Search = ({ alert, setAlert }) => {
                   }}
                 />
               </Box>
-
               <Button round color="warning" onClick={handleSearch}>
                 Explore
               </Button>

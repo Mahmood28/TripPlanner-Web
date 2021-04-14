@@ -13,7 +13,7 @@ import EditReview from "views/Profile/EditReview";
 // Styling
 import { makeStyles } from "@material-ui/core/styles";
 import { StyledRating } from "views/ActivityDetail/ReviewForm";
-import { Box, CardActionArea, ButtonBase, CardMedia } from "@material-ui/core";
+import { Box, ButtonBase, CardMedia } from "@material-ui/core";
 import { Close, Place, Star, DateRange } from "@material-ui/icons";
 
 import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle";
