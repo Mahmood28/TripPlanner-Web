@@ -21,6 +21,7 @@ import { useToasts } from "react-toast-notifications";
 
 import styles from "assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 import tripImage from "assets/img/card-2.jpeg";
+import { StyledDiv } from "views/MainMap/styles";
 
 const useStyles = makeStyles(styles);
 
@@ -58,14 +59,28 @@ const TripItem = ({ trip, profile }) => {
     });
     dispatch(deleteTrip(trip.id));
   };
-
+  console.log(trip);
   return (
     <GridItem xs={12} sm={12} md={4}>
       <Card product className={classes.cardHover}>
         <CardHeader image className={classes.cardHeaderHover}>
-          <a href="#pablo" onClick={(e) => e.preventDefault()}>
-            <img src={tripImage} alt="..." />
-          </a>
+          <StyledDiv
+            style={{
+              backgroundImage: `url(${trip.destination.image ?? tripImage})`,
+            }}
+            href="#pablo"
+            onClick={(e) => e.preventDefault()}
+          >
+            <img
+              src={trip.destination.image ?? tripImage}
+              alt="..."
+              style={{
+                minHeight: "100%",
+                minWidth: "100%",
+                opacity: "0",
+              }}
+            />
+          </StyledDiv>
         </CardHeader>
         <CardBody>
           <div className={classes.cardHoverUnder}>

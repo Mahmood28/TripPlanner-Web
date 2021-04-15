@@ -85,11 +85,6 @@ const Map = compose(
         <DirectionsRenderer
           directions={directions[day.id]}
           options={{
-            polylineOptions: {
-              stokeColor: "#FF0000",
-              strokeOpacity: 0.5,
-              strokeWeight: 4,
-            },
             icon: { scale: 3 },
           }}
         />
