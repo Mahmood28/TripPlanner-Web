@@ -59,9 +59,7 @@ const DayTimeline = ({ activities, directions, day }) => {
         <ButtonBase>
           <Link to={`/activities/${activity.slug}`}>
             <Paper elevation={3} className={classes.paper}>
-              <Typography variant="h6" component="h1">
-                {activity.dayActivity.name}
-              </Typography>
+              <h5>{activity.dayActivity.name}</h5>
             </Paper>
           </Link>
         </ButtonBase>
@@ -69,7 +67,7 @@ const DayTimeline = ({ activities, directions, day }) => {
     </TimelineItem>
   ));
 
-  return <Timeline align="alternate">{timeline}</Timeline>;
+  return <Timeline>{timeline}</Timeline>;
 };
 
 export default DayTimeline;
