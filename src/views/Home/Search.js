@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { searchActivities } from "store/actions/activityActions";
 import { createTrip } from "store/actions/tripActions";
+
 import { MAP_API_KEY } from "keys";
 import { GoogleApiWrapper } from "google-maps-react";
 import Geocode from "react-geocode";

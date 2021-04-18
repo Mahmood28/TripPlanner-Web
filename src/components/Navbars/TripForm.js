@@ -186,9 +186,9 @@ const ActivityForm = () => {
   );
 };
 
-export default GoogleApiWrapper({
-  apiKey: MAP_API_KEY,
-  libraries: ["places"],
-})(ActivityForm);
+// export default GoogleApiWrapper({
+//   apiKey: MAP_API_KEY,
+//   libraries: ["places"],
+// })(ActivityForm);
 
-// export default ActivityForm;
+export default ActivityForm;
