@@ -68,7 +68,6 @@ const TripItem = ({ trip, profile }) => {
             style={{
               backgroundImage: `url(${trip.destination.image ?? tripImage})`,
             }}
-            href="#pablo"
             onClick={(e) => e.preventDefault()}
           >
             <img
