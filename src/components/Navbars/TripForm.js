@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { searchActivities } from "store/actions/activityActions";
 import { createTrip } from "store/actions/tripActions";
 import { MAP_API_KEY } from "keys";
-import { GoogleApiWrapper } from "google-maps-react";
 import Geocode from "react-geocode";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 // Components
@@ -122,18 +121,6 @@ const ActivityForm = () => {
               destination,
               onChange: setDestination,
               placeholder: "Enter destination",
-              //   styles: {
-              //     option: (provided) => ({
-              //       ...provided,
-              //       opacity: 1,
-              //       backgroundColor: "white",
-              //     }),
-              //     menu: (provided) => ({
-              //       ...provided,
-              //       opacity: 1,
-              //       backgroundColor: "white",
-              //     }),
-              //   },
             }}
             onLoadFailed={(error) =>
               console.error("Could not inject Google script", error)
@@ -185,10 +172,5 @@ const ActivityForm = () => {
     </div>
   );
 };
-
-// export default GoogleApiWrapper({
-//   apiKey: MAP_API_KEY,
-//   libraries: ["places"],
-// })(ActivityForm);
 
 export default ActivityForm;
