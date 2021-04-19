@@ -34,7 +34,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ActivityForm = () => {
-  console.log(MAP_API_KEY);
   const classes = useStyles();
   const _classes = ButtonStyles();
   const dispatch = useDispatch();
