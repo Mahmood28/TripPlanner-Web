@@ -34,6 +34,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ActivityForm = () => {
+  console.log(MAP_API_KEY);
   const classes = useStyles();
   const _classes = ButtonStyles();
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ const ActivityForm = () => {
   Geocode.setApiKey(MAP_API_KEY);
   Geocode.setLanguage("en");
   Geocode.setLocationType("ROOFTOP");
+
 
   let city = "";
   let country = "";
