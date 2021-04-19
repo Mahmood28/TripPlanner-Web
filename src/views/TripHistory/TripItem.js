@@ -59,7 +59,7 @@ const TripItem = ({ trip, profile }) => {
     });
     dispatch(deleteTrip(trip.id));
   };
-  console.log(trip);
+
   return (
     <GridItem xs={12} sm={12} md={4}>
       <Card product className={classes.cardHover}>
