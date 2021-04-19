@@ -1,1 +1,1 @@
-export const MAP_API_KEY = "AIzaSyClnHdZ7tCOCEdtjdDwI65HY3SMlmeUEUY";
+export const MAP_API_KEY = process.env.MAP_API_KEY;
