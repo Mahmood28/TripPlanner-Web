@@ -103,7 +103,7 @@ const Search = () => {
                         </Box>
                       </NameContainer>
                     </FlexContainer>
-                    {user.username !== profile.username &&
+                    { !user || user.username !== profile.username &&
                       (unfollow ? (
                         <FollowButtonStyled
                           round

@@ -27,7 +27,7 @@ const Profile = ({ profile }) => {
     ? following.some((_user) => _user.username === profile.username)
     : false;
 
-  const isUser = profile.username === user.username;
+  const isUser = !user? false : profile.username === user.username;
 
   return (
     <div>
